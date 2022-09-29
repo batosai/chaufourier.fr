@@ -17,17 +17,18 @@
         <figure><img src="https://placeimg.com/400/400/arch" alt="Movie"></figure>
       @end
       @jrmc.card.body()
+
         @jrmc.form()
-          @jrmc.form.control({ name: 'email', error: false })
+          @jrmc.form.control({ name: 'email', label: t('form.email'), error: false })
             @!jrmc.form.input({ class: 'input-bordered' })
           @end
 
-          @jrmc.form.control({ name: 'password', error: false })
+          @jrmc.form.control({ name: 'password', label: t('form.password'), error: false })
             @!jrmc.form.input({ class: 'input-bordered' })
           @end
 
           @jrmc.form.control({ label: false, error: false })
-            @!jrmc.button.input({ text: 'Login', type: 'submit', class: 'btn-primary' })
+            @!jrmc.button.input({ text: t('form.validate'), type: 'submit', class: 'btn-primary' })
           @end
         @end
       @end

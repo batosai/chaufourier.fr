@@ -28,7 +28,8 @@
     "@adonisjs/view",
     "@adonisjs/shield",
     "@adonisjs/bouncer",
-    "@adonisjs/lucid"
+    "@adonisjs/lucid",
+    "@adonisjs/i18n"
   ],
   "metaFiles": [
     {
@@ -38,7 +39,8 @@
     {
       "pattern": "resources/views/**/*.edge",
       "reloadServer": false
-    }
+    },
+    "resources/lang/**/*.(json|yaml)"
   ],
   "aceProviders": [
     "@adonisjs/repl"
