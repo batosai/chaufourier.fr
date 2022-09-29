@@ -34,7 +34,8 @@
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/bouncer",
       "@adonisjs/lucid",
-      "@adonisjs/i18n"
+      "@adonisjs/i18n",
+      "@adonisjs/mail"
     ]
   }
 }
