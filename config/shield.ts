@@ -26,7 +26,7 @@ export const csp: ShieldConfig['csp'] = {
   | The CSP rules are disabled by default for seamless onboarding.
   |
   */
-  enabled: false,
+  enabled: Env.get('NODE_ENV') === 'production',
 
   /*
   |--------------------------------------------------------------------------
@@ -44,7 +44,9 @@ export const csp: ShieldConfig['csp'] = {
   | }
   |
   */
-  directives: {},
+  directives: {
+    defaultSrc: ['self', '@nonce'],
+  },
 
   /*
   |--------------------------------------------------------------------------
@@ -73,7 +75,7 @@ export const csrf: ShieldConfig['csrf'] = {
   | Enable/Disable CSRF
   |--------------------------------------------------------------------------
   */
-  enabled: true,
+  enabled: Env.get('NODE_ENV') !== 'test',
 
   /*
   |--------------------------------------------------------------------------
