@@ -1,3 +1,4 @@
+import Route from '@ioc:Adonis/Core/Route'
 import { GuardsList } from '@ioc:Adonis/Addons/Auth'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { AuthenticationException } from '@adonisjs/auth/build/standalone'
@@ -13,7 +14,7 @@ export default class AuthMiddleware {
   /**
    * The URL to redirect to when request is Unauthorized
    */
-  protected redirectTo = '/login'
+  protected redirectTo = Route.builder().make('security.login')
 
   /**
    * Authenticates the current HTTP request against a custom set of defined
@@ -23,7 +24,18 @@ export default class AuthMiddleware {
    * of the mentioned guards and that guard will be used by the rest of the code
    * during the current request.
    */
-  protected async authenticate(auth: HttpContextContract['auth'], guards: (keyof GuardsList)[]) {
+  protected async authenticate(
+    request: HttpContextContract['request'],
+    auth: HttpContextContract['auth'],
+    guards: (keyof GuardsList)[]
+  ) {
+
+    if (request.url()) {
+      this.redirectTo = Route.builder().qs({
+        redirect_to: request.url(),
+      }).make('security.login')
+    }
+
     /**
      * Hold reference to the guard last attempted within the for loop. We pass
      * the reference of the guard to the "AuthenticationException", so that
@@ -61,7 +73,7 @@ export default class AuthMiddleware {
    * Handle request
    */
   public async handle (
-    { auth }: HttpContextContract,
+    { request, auth }: HttpContextContract,
     next: () => Promise<void>,
     customGuards: (keyof GuardsList)[]
   ) {
@@ -70,7 +82,7 @@ export default class AuthMiddleware {
      * the config file
      */
     const guards = customGuards.length ? customGuards : [auth.name]
-    await this.authenticate(auth, guards)
+    await this.authenticate(request, auth, guards)
     await next()
   }
 }
