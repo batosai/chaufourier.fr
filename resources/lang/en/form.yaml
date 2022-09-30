@@ -1,3 +1,4 @@
 email: Your email
 password: Your password
-validate: Send
+rememberMe: Remember me
+validate: Login
