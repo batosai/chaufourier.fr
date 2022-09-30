@@ -47,11 +47,11 @@ export default mailConfig({
       host: Env.get('SMTP_HOST'),
       port: Env.get('SMTP_PORT'),
       ignoreTLS: Env.get('NODE_ENV') !== 'production',
-			auth: {
-				user: Env.get('SMTP_USERNAME'),
-				pass: Env.get('SMTP_PASSWORD'),
-				type: 'login',
-			}
+      auth: {
+        user: Env.get('SMTP_USERNAME'),
+        pass: Env.get('SMTP_PASSWORD'),
+        type: 'login',
+      },
     },
   },
 })

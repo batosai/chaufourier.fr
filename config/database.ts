@@ -42,7 +42,7 @@ const databaseConfig: DatabaseConfig = {
       pool: {
         afterCreate: (conn, cb) => {
           conn.run('PRAGMA foreign_keys=true', cb)
-        }
+        },
       },
       migrations: {
         naturalSort: true,
@@ -51,8 +51,7 @@ const databaseConfig: DatabaseConfig = {
       healthCheck: false,
       debug: Env.get('NODE_ENV') === 'development',
     },
-
-  }
+  },
 }
 
 export default databaseConfig

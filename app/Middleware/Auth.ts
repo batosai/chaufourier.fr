@@ -29,11 +29,12 @@ export default class AuthMiddleware {
     auth: HttpContextContract['auth'],
     guards: (keyof GuardsList)[]
   ) {
-
     if (request.url()) {
-      this.redirectTo = Route.builder().qs({
-        redirect_to: request.url(),
-      }).make('security.login')
+      this.redirectTo = Route.builder()
+        .qs({
+          redirect_to: request.url(),
+        })
+        .make('security.login')
     }
 
     /**
@@ -65,14 +66,14 @@ export default class AuthMiddleware {
       'Unauthorized access',
       'E_UNAUTHORIZED_ACCESS',
       guardLastAttempted,
-      this.redirectTo,
+      this.redirectTo
     )
   }
 
   /**
    * Handle request
    */
-  public async handle (
+  public async handle(
     { request, auth }: HttpContextContract,
     next: () => Promise<void>,
     customGuards: (keyof GuardsList)[]

@@ -7,24 +7,18 @@ export default class LoginController {
    */
   public async create({ request, view }: HttpContextContract) {
     return view.render('security/login', {
-      redirectTo: request.input('redirect_to', '/admin')
+      redirectTo: request.input('redirect_to', '/admin'),
     })
   }
 
   /**
    * Handle login form submissions
    */
-  public async store({
-    request,
-    response,
-    auth,
-    session,
-    i18n,
-  }: HttpContextContract) {
+  public async store({ request, response, auth, session, i18n }: HttpContextContract) {
     await auth.attempt(
       request.input('email'),
       request.input('password'),
-      request.input('remember_me'),
+      request.input('remember_me')
     )
 
     // auth.user!.lastLoginAt = DateTime.local()

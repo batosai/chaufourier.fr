@@ -22,7 +22,7 @@ export default class User extends BaseModel {
   public updatedAt: DateTime
 
   @beforeSave()
-  public static async hashPassword (User: user) {
+  public static async hashPassword(User: user) {
     if (User.$dirty.password) {
       User.password = await Hash.make(User.password)
     }

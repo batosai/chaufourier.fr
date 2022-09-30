@@ -24,6 +24,5 @@ Route.get('/', async ({ view }) => {
   return view.render('index')
 })
 
-
 import './routes/security'
 import './routes/admin'
