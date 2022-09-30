@@ -1,0 +1,47 @@
+@layout('layouts/security')
+
+@set('title', t('seo.security.title'))
+
+@section('body')
+
+  @if(flashMessages.has('auth.error'))
+    @jrmc.toast({
+      class: ['toast-top', 'toast-end'],
+      'x-data': '{ open: true }',
+      'x-show': 'open',
+      'x-transition.duration.500ms': '',
+      'x-init': 'setTimeout(() => open = false, 5000);setTimeout(() => $el.remove(), 4000)',
+    })
+      @!jrmc.alert.error({ text: flashMessages.get('auth.error'), icon: 'false' })
+    @end
+  @endif
+
+  @jrmc.card({ class: 'lg:card-side bg-base-100 shadow-xl' })
+    @slot('top')
+      <figure><img src="https://placeimg.com/400/400/arch" alt="Movie"></figure>
+    @end
+    @jrmc.card.body()
+
+      @jrmc.form({ action: route('security.login'), error: false })
+
+        @jrmc.form.control({ name: 'email', label: t('form.email')})
+          @!jrmc.form.input({ class: 'input-bordered' })
+        @end
+
+        @jrmc.form.control({ name: 'password', label: t('form.password') })
+          @!jrmc.form.input({ type:'password', class: 'input-bordered' })
+        @end
+
+        @jrmc.form.control({ name: 'remember_me', label: false })
+          @jrmc.form.label({ class: 'cursor-pointer', text: t('form.rememberMe') })
+            @!jrmc.form.toggle()
+          @end
+        @end
+
+        @jrmc.form.control({ label: false })
+          @!jrmc.button.input({ text: t('form.validate'), type: 'submit', class: 'btn-primary' })
+        @end
+      @end
+    @end
+  @end
+@end

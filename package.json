@@ -42,7 +42,7 @@
     "@babel/preset-env": "^7.19.3",
     "@japa/preset-adonis": "^1.2.0",
     "@japa/runner": "^2.2.1",
-    "@jrmc/edge-components": "^1.0.6",
+    "@jrmc/edge-components": "^1.0.8",
     "@symfony/webpack-encore": "^4.0.0",
     "adonis-preset-ts": "^2.1.0",
     "alpinejs": "^3.10.3",
