@@ -5,6 +5,6 @@ Route.group(() => {
 
   // Route.resource('users', 'admin/UsersController')
 })
-.prefix('admin')
-.as('admin')
-.middleware('auth')
+  .prefix('admin')
+  .as('admin')
+  .middleware('auth')

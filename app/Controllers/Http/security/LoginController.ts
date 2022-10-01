@@ -25,10 +25,7 @@ export default class LoginController {
     await auth.user!.save()
 
     if (auth.user?.disabled) {
-      session.flash(
-        'auth.error',
-        i18n.formatMessage('auth.E_INVALID_DISABLED'),
-      )
+      session.flash('auth.error', i18n.formatMessage('auth.E_INVALID_DISABLED'))
       session.clear()
       return response.redirect('/security')
     }
