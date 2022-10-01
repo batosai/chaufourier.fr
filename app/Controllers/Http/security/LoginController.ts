@@ -21,17 +21,17 @@ export default class LoginController {
       request.input('remember_me')
     )
 
-    // auth.user!.lastLoginAt = DateTime.local()
-    // await auth.user!.save()
+    auth.user!.lastLoginAt = DateTime.local()
+    await auth.user!.save()
 
-    // if (auth.user?.blocked) {
-    //   session.flash(
-    //     'auth.blocked',
-    //     i18n.formatMessage('auth.E_INVALID_BLOCKED'),
-    //   )
-    //   session.clear()
-    //   return response.redirect('/security/login')
-    // }
+    if (auth.user?.disabled) {
+      session.flash(
+        'auth.error',
+        i18n.formatMessage('auth.E_INVALID_DISABLED'),
+      )
+      session.clear()
+      return response.redirect('/security')
+    }
 
     /**
      * Redirect to the home page
