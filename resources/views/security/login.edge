@@ -18,7 +18,20 @@
 
   @jrmc.card({ class: 'lg:card-side bg-base-100 shadow-xl' })
     @slot('top')
-      <figure><img src="https://placeimg.com/400/400/arch" alt="Movie"></figure>
+      <figure>
+        <img
+          aria-hidden="true"
+          class="dark:hidden"
+          src="/images/login-office.jpeg"
+          alt=""
+        />
+        <img
+          aria-hidden="true"
+          class="hidden dark:block"
+          src="/images/login-office-dark.jpeg"
+          alt=""
+        />
+      </figure>
     @end
     @jrmc.card.body()
 
