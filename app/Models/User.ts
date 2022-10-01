@@ -7,6 +7,12 @@ export default class User extends BaseModel {
   public id: number
 
   @column()
+  public firstname: string
+
+  @column()
+  public lastname: string
+
+  @column()
   public email: string
 
   @column({ serializeAs: null })
@@ -15,6 +21,15 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken?: string
 
+  @column()
+  public disabled: boolean
+
+  @column.dateTime({ autoCreate: false })
+  public disabledOn: DateTime
+
+  @column.dateTime({ autoCreate: false })
+  public lastLoginAt: DateTime
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -22,9 +37,9 @@ export default class User extends BaseModel {
   public updatedAt: DateTime
 
   @beforeSave()
-  public static async hashPassword(User: user) {
-    if (User.$dirty.password) {
-      User.password = await Hash.make(User.password)
+  public static async hashPassword(user: User) {
+    if (user.$dirty.password) {
+      user.password = await Hash.make(user.password)
     }
   }
 }
