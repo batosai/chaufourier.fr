@@ -8,6 +8,7 @@
 import type { Config } from '@japa/runner'
 import TestUtils from '@ioc:Adonis/Core/TestUtils'
 import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-adonis'
+import { playwrightClient } from './plugins/playwright-client'
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,12 @@ import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-ad
 | Feel free to remove existing plugins or add more.
 |
 */
-export const plugins: Config['plugins'] = [assert(), runFailedTests(), apiClient()]
+export const plugins: Config['plugins'] = [
+  assert(),
+  runFailedTests(),
+  apiClient(),
+  playwrightClient(),
+]
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +70,9 @@ export const runnerHooks: Required<Pick<Config, 'setup' | 'teardown'>> = {
 */
 export const configureSuite: Config['configureSuite'] = (suite) => {
   if (suite.name === 'functional') {
+    suite.setup(() => TestUtils.httpServer().start())
+  }
+  if (suite.name === 'e2e') {
     suite.setup(() => TestUtils.httpServer().start())
   }
 }
