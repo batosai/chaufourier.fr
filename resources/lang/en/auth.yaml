@@ -5,3 +5,9 @@ E_INVALID_AUTH_UID: Invalid credentials
 E_INVALID_AUTH_PASSWORD: Invalid credentials
 E_INVALID_DISABLED: Your account is disabled
 E_UNAUTHORIZED_ACCESS: Unauthorized access
+
+
+session:
+  forgot_link: Forgot your password?
+forgot:
+  login_link: Login ?

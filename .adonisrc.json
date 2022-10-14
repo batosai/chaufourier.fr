@@ -20,6 +20,8 @@
     "./start/kernel",
     "./start/bouncer",
     "./start/events",
+    "./start/mail",
+    "./start/validator",
     "./start/view"
   ],
   "providers": [

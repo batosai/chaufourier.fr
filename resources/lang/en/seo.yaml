@@ -1,2 +1,7 @@
 auth:
-  title: Login
+  session:
+    title: Login
+    forgot_link: Forgot your password?
+  forgot:
+    title: Forgot your password
+    login_link: Login ?

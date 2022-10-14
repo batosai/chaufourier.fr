@@ -1,6 +1,6 @@
 @layout('layouts/auth')
 
-@set('title', t('seo.auth.title'))
+@set('title', t('seo.auth.session.title'))
 
 @section('toast')
   @if(flashMessages.has('auth.error'))
@@ -20,8 +20,8 @@
   @jrmc.card({ class: 'lg:card-side bg-base-100 shadow-xl' })
     @slot('top')
       <figure>
-        <img src="/images/login-office.jpeg" class="dark:hidden" aria-hidden="true" alt="" />
-        <img src="/images/login-office-dark.jpeg" class="hidden dark:block" aria-hidden="true" alt="" />
+        <img src="/images/login-office.jpeg" class="dark:hidden h-full" aria-hidden="true" alt="" />
+        <img src="/images/login-office-dark.jpeg" class="hidden dark:block h-full" aria-hidden="true" alt="" />
       </figure>
     @end
     @jrmc.card.body()
@@ -41,11 +41,15 @@
           @end
         @end
 
-        @jrmc.form.control({ label: false })
+        @jrmc.form.control({ label: false, class: 'mb-0' })
           @!jrmc.button.input({ text: t('form.validate'), type: 'submit', class: 'btn-primary' })
         @end
+
       @end
+      <a class="link text-sm" href="{{ route('auth.password.create') }}">
+        {{ t('auth.session.forgot_link') }}
+      </a>
+
     @end
   @end
-
 @end
