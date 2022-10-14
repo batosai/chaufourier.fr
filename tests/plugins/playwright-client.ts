@@ -42,7 +42,7 @@ export function playwrightClient({
             })
             // this may need to be customized depending on the app setup
             test.context.login = async (email, password) => {
-              await test.context.page.goto(test.context.route('auth.create')) // go to login page
+              await test.context.page.goto(test.context.route('auth.session.create')) // go to login page
               const loginDoc = await getDocument(test.context.page)
               const emailInput = await queries.getByLabelText(loginDoc, 'Your email') // get the email input
               const passwordInput = await queries.getByLabelText(loginDoc, 'Your password') // get the password input

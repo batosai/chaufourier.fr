@@ -25,7 +25,7 @@
       </figure>
     @end
     @jrmc.card.body()
-      @jrmc.form({ action: route('auth.create'), error: false })
+      @jrmc.form({ action: route('auth.session.store'), error: false })
 
         @jrmc.form.control({ name: 'email', label: t('form.email')})
           @!jrmc.form.input({ class: 'input-bordered' })

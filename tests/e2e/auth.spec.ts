@@ -10,14 +10,14 @@ test.group('Auth', group => {
   })
 
   test('Should display login page', async ({ assert, page, route, getScreen }) => {
-    await page.goto(route('auth.create'))
+    await page.goto(route('auth.session.create'))
     let screen = await getScreen()
 
     assert.exists(await screen.findByText(/Your email/))
   })
 
   test('Should display error message if validation with empty fields', async ({ assert, page, route, getScreen }) => {
-    await page.goto(route('auth.create'))
+    await page.goto(route('auth.session.create'))
 
     let screen = await getScreen()
 
@@ -33,7 +33,7 @@ test.group('Auth', group => {
       .merge({ password: 'secret' })
       .create()
 
-    await page.goto(route('auth.create'))
+    await page.goto(route('auth.session.create'))
 
     await page.getByLabel('Your email').fill(user.email)
     await page.getByText('Your password').fill('secret')
@@ -55,7 +55,7 @@ test.group('Auth', group => {
       .merge({ password: 'secret',  })
       .create()
 
-    await page.goto(route('auth.create'))
+    await page.goto(route('auth.session.create'))
 
     await page.getByLabel('Your email').fill(user.email)
     await page.getByLabel('Your password').fill('secret')
