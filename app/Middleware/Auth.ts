@@ -14,7 +14,7 @@ export default class AuthMiddleware {
   /**
    * The URL to redirect to when request is Unauthorized
    */
-  protected redirectTo = Route.builder().make('security.create')
+  protected redirectTo = Route.builder().make('auth.create')
 
   /**
    * Authenticates the current HTTP request against a custom set of defined
@@ -34,7 +34,7 @@ export default class AuthMiddleware {
         .qs({
           redirect_to: request.url(),
         })
-        .make('security.create')
+        .make('auth.create')
     }
 
     /**

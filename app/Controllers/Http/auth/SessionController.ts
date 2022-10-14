@@ -1,12 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { DateTime } from 'luxon'
 
-export default class LoginController {
+export default class SessionController {
   /**
    * Show form to login
    */
   public async create({ request, view }: HttpContextContract) {
-    return view.render('security/login', {
+    return view.render('auth/login', {
       redirectTo: request.input('redirect_to', '/admin'),
     })
   }
@@ -27,7 +27,7 @@ export default class LoginController {
     if (auth.user?.disabled) {
       session.flash('auth.error', i18n.formatMessage('auth.E_INVALID_DISABLED'))
       session.clear()
-      return response.redirect('/security')
+      return response.redirect('/auth/login')
     }
 
     /**
