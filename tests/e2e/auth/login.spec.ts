@@ -2,7 +2,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
 import UserFactory from 'Database/factories/UserFactory'
 
-test.group('Auth', group => {
+test.group('Login page', group => {
 
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -21,7 +21,7 @@ test.group('Auth', group => {
 
     let screen = await getScreen()
 
-    await page.locator('text=Login').click()
+    await page.locator('text=validate').click()
 
     screen = await getScreen()
 
@@ -36,11 +36,11 @@ test.group('Auth', group => {
     await page.goto(route('auth.session.create'))
 
     await page.getByLabel('Your email').fill(user.email)
-    await page.getByText('Your password').fill('secret')
+    await page.getByLabel('Your password').fill('secret')
 
     // await page.pause();
 
-    await page.locator('text=Login').click()
+    await page.locator('text=validate').click()
 
     let screen = await getScreen()
 
@@ -59,7 +59,7 @@ test.group('Auth', group => {
 
     await page.getByLabel('Your email').fill(user.email)
     await page.getByLabel('Your password').fill('secret')
-    await page.locator('text=Login').click()
+    await page.locator('text=validate').click()
 
     let screen = await getScreen()
 
