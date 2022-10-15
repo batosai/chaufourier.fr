@@ -50,7 +50,7 @@ export function playwrightClient({
               await emailInput.fill(email) // enter email arg
               await passwordInput.fill(password) // enter password arg
 
-              await (await queries.findByText(loginDoc, 'Login')).click() // submit the form
+              await (await queries.findByText(loginDoc, 'validate')).click() // submit the form
             }
             test.context.getScreen = async () => {
               return getQueriesForElement(await getDocument(test.context.page))
