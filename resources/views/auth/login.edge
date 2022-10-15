@@ -17,39 +17,30 @@
 @end
 
 @section('body')
-  @jrmc.card({ class: 'lg:card-side bg-base-100 shadow-xl' })
-    @slot('top')
-      <figure>
-        <img src="/images/login-office.jpeg" class="dark:hidden h-full" aria-hidden="true" alt="" />
-        <img src="/images/login-office-dark.jpeg" class="hidden dark:block h-full" aria-hidden="true" alt="" />
-      </figure>
-    @end
-    @jrmc.card.body()
-      @jrmc.form({ action: route('auth.session.store'), error: false })
 
-        @jrmc.form.control({ name: 'email', label: t('form.email')})
-          @!jrmc.form.input({ class: 'input-bordered' })
-        @end
-
-        @jrmc.form.control({ name: 'password', label: t('form.password') })
-          @!jrmc.form.input({ type:'password', class: 'input-bordered' })
-        @end
-
-        @jrmc.form.control({ name: 'remember_me', label: false })
-          @jrmc.form.label({ class: 'cursor-pointer', text: t('form.rememberMe') })
-            @!jrmc.form.toggle()
-          @end
-        @end
-
-        @jrmc.form.control({ label: false, class: 'mb-0' })
-          @!jrmc.button.input({ text: t('form.validate'), type: 'submit', class: 'btn-primary' })
-        @end
-
+  @auth.card()
+    @jrmc.form({ action: route('auth.session.store'), error: false })
+      @jrmc.form.control({ name: 'email', label: t('form.email')})
+        @!jrmc.form.input({ class: 'input-bordered' })
       @end
-      <a class="link text-sm" href="{{ route('auth.password.create') }}">
-        {{ t('auth.session.forgot_link') }}
-      </a>
 
+      @jrmc.form.control({ name: 'password', label: t('form.password') })
+        @!jrmc.form.input({ type:'password', class: 'input-bordered' })
+      @end
+
+      @jrmc.form.control({ name: 'remember_me', label: false })
+        @jrmc.form.label({ class: 'cursor-pointer', text: t('form.rememberMe') })
+          @!jrmc.form.toggle()
+        @end
+      @end
+
+      @jrmc.form.control({ label: false, class: 'mb-0' })
+        @!jrmc.button.input({ text: t('form.validate'), type: 'submit', class: 'btn-primary' })
+      @end
     @end
+    <a class="link text-sm" href="{{ route('auth.password.create') }}">
+      {{ t('auth.session.forgot_link') }}
+    </a>
   @end
+
 @end

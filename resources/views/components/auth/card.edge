@@ -1,0 +1,11 @@
+@jrmc.card({ class: 'lg:card-side bg-base-100 shadow-xl' })
+  @slot('top')
+    <figure>
+      <img src="/images/login-office.jpeg" class="dark:hidden h-full lg:!max-w-fit" aria-hidden="true" alt="" />
+      <img src="/images/login-office-dark.jpeg" class="hidden dark:block h-full lg:!max-w-fit" aria-hidden="true" alt="" />
+    </figure>
+  @end
+  @jrmc.card.body({ class: 'p-20' })
+    {{{ await $slots.main() }}}
+  @end
+@end
