@@ -30,6 +30,8 @@ export default class SessionController {
       return response.redirect('/auth/login')
     }
 
+    session.flash('success.message', i18n.formatMessage('form.success.session'))
+
     /**
      * Redirect to the home page
      */
