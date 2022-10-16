@@ -1,5 +1,5 @@
-import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
+import Database from '@ioc:Adonis/Lucid/Database'
 import UserFactory from 'Database/factories/UserFactory'
 
 
