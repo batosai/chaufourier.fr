@@ -1,4 +1,4 @@
-forgot_password:
+forgotPassword:
   subject: Password change request
   content:
     welcome: Welcome { username },
