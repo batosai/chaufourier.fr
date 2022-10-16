@@ -10,13 +10,19 @@ export default class ForgotPasswordMailer extends BaseMailer {
   }
 
   public prepare(message: MessageContract) {
+    // const url = Route.builder()
+    //   .prefixUrl(Env.get('APP_URL'))
+    //   .params({ email: this.user.email })
+    //   .makeSigned('auth.password.reset', {
+    //     expiresIn: '1h',
+    //   })
     const url = ''
 
     message
       .from(Env.get('EMAIL_FROM'), 'Adonis')
       .to(this.user.email, this.user.fullname)
       .subject(
-        I18n.locale(I18n.defaultLocale).formatMessage('emails.forgot.subject'),
+        I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject'),
       )
       .htmlView('emails/auth/forgot-password', {
         user: this.user,

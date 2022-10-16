@@ -1,4 +1,9 @@
-email: Your email
-password: Your password
-rememberMe: Remember me
-validate: validate
+forgotPassword:
+  email: Your email
+  password: Your password
+  rememberMe: Remember me
+  validate: validate
+
+success:
+  session: Connecté(e).
+  forgotPassword: You will receive an email within a few minutes telling you how to reset your password.

@@ -8,12 +8,16 @@ export default class ForgotPasswordController {
     return view.render('auth/forgot-password')
   }
 
-  public async store({ request, response }: HttpContextContract) {
+  public async store({ request, response, session, i18n }: HttpContextContract) {
     const payload = await request.validate(ForgotPasswordValidator)
 
-    const user = await User.findByOrFail('email', payload.email)
+    const user = await User.findBy('email', payload.email)
 
-    await new ForgotPasswordMailer(user).sendLater()
+    if (user) {
+      await new ForgotPasswordMailer(user).sendLater()
+    }
+
+    session.flash('success.message', i18n.formatMessage('form.success.forgotPassword'))
 
     response.redirect('/auth/login')
   }

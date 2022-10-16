@@ -17,6 +17,6 @@ test.group('Forgot password page', group => {
 
     screen = await getScreen()
 
-    assert.exists(await screen.findByText(/required validation failed on email/))
+    assert.exists(await screen.findByText(/Email field is required/))
   })
 })

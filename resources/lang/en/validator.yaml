@@ -1,0 +1,20 @@
+shared:
+  email:
+    required: Email field is required
+    unique: An account with this email already exists
+    email: Email validation failed
+  firstname:
+    required: Firstname is required
+  lastname:
+    required: Lastname is required
+  password:
+    required: Password field is required
+    minLength: Password must be at least { password_min_length } characters long
+    oneLowerCaseAtLeast: Password must contain at least one lowercase letter
+    oneUpperCaseAtLeast: Password must contain at least one uppercase letter
+    oneNumericAtLeast: Password must contain at least one digit
+    oneSpecialCharacterAtLeast: Password must contain at least one special character
+  password_confirmation:
+    required: Password confirmation is required
+    confirmed: Password and confirm password does not match.
+    minLength: Password must be at least { password_min_length } characters long
