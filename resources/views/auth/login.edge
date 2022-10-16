@@ -3,6 +3,7 @@
 @set('title', t('seo.auth.session.title'))
 
 @section('toast')
+  @super
   @if(flashMessages.has('auth.error'))
     @jrmc.toast({
       class: ['toast-top', 'toast-end'],
@@ -11,7 +12,7 @@
       'x-transition.duration.500ms': '',
       'x-init': 'setTimeout(() => open = false, 5000);setTimeout(() => $el.remove(), 4000)',
     })
-      @!jrmc.alert.error({ text: flashMessages.get('auth.error'), icon: 'false' })
+      @!jrmc.alert.error({ text: flashMessages.get('auth.error'), class: ['max-w-xs', 'text-left'] })
     @end
   @endif
 @end
@@ -20,22 +21,22 @@
 
   @auth.card()
     @jrmc.form({ action: route('auth.session.store'), error: false })
-      @jrmc.form.control({ name: 'email', label: t('form.email')})
+      @jrmc.form.control({ name: 'email', label: t('form.forgotPassword.email')})
         @!jrmc.form.input({ class: 'input-bordered' })
       @end
 
-      @jrmc.form.control({ name: 'password', label: t('form.password') })
+      @jrmc.form.control({ name: 'password', label: t('form.forgotPassword.password') })
         @!jrmc.form.input({ type:'password', class: 'input-bordered' })
       @end
 
       @jrmc.form.control({ name: 'remember_me', label: false })
-        @jrmc.form.label({ class: 'cursor-pointer', text: t('form.rememberMe') })
+        @jrmc.form.label({ class: 'cursor-pointer', text: t('form.forgotPassword.rememberMe') })
           @!jrmc.form.toggle()
         @end
       @end
 
       @jrmc.form.control({ label: false, class: 'mb-0' })
-        @!jrmc.button.input({ text: t('form.validate'), type: 'submit', class: 'btn-primary' })
+        @!jrmc.button.input({ text: t('form.forgotPassword.validate'), type: 'submit', class: 'btn-primary' })
       @end
     @end
     <a class="link text-sm" href="{{ route('auth.password.create') }}">
