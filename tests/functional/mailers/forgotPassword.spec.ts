@@ -3,7 +3,6 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import I18n from '@ioc:Adonis/Addons/I18n'
 import UserFactory from 'Database/factories/UserFactory'
-import { assets } from 'Config/app'
 
 test.group('Forgot password mailer', group => {
   group.each.setup(async () => {
