@@ -1,8 +1,9 @@
 shared:
   email:
+    email: Email validation failed
     required: Email field is required
     unique: An account with this email already exists
-    email: Email validation failed
+    exists: Email not exist
   firstname:
     required: Firstname is required
   lastname:

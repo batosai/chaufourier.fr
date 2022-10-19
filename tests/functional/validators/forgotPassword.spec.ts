@@ -30,7 +30,7 @@ test.group('Forgot password validator', () => {
     })
   })
 
-  test('valid email', async ({ client, route }) => {
+  test('Valid email', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.store'))
       .fields({

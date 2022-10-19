@@ -1,7 +1,7 @@
 auth:
   session:
     title: Login
-    forgot_link: Forgot your password?
-  forgot:
+  forgotPassword:
     title: Forgot your password
-    login_link: Login ?
+  resetPassword:
+    title: Reset your password

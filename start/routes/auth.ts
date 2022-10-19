@@ -3,9 +3,13 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
   Route.get('login', 'auth/SessionController.create').as('session.create')
   Route.post('login', 'auth/SessionController.store').as('session.store')
+  Route.post('logout', 'auth/SessionController.destroy').as('session.destroy')
 
   Route.get('forgot-password', 'auth/ForgotPasswordController.create').as('password.create')
   Route.post('forgot-password', 'auth/ForgotPasswordController.store').as('password.store')
+
+  Route.get('reset-password/:email', 'auth/ResetPasswordController.create').as('password.reset.create')
+  Route.post('reset-password', 'auth/ResetPasswordController.store').as('password.reset.store')
 })
   .prefix('auth')
   .as('auth')
