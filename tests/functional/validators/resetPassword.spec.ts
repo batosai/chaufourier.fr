@@ -9,6 +9,16 @@ test.group('Reset password validator', group => {
     return () => Database.rollbackGlobalTransaction()
   })
 
+  test('Invalid signature', async ({ client, route }) => {
+    const response = await client
+      .get(route('auth.password.reset.create', { email: 'virk@adonisjs.com' }))
+      .withCsrfToken()
+
+      response.assertTextIncludes(
+        I18n.locale(I18n.defaultLocale).formatMessage('auth.session.invalidResetLink')
+      )
+  })
+
   test('Empty fields', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.reset.store'))
