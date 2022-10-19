@@ -3,7 +3,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import I18n from '@ioc:Adonis/Addons/I18n'
 import UserFactory from 'Database/factories/UserFactory'
 
-test.group('Rest password validator', group => {
+test.group('Reset password validator', group => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
     return () => Database.rollbackGlobalTransaction()
