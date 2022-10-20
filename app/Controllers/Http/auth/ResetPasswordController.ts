@@ -6,7 +6,6 @@ export default class ResetPasswordController {
   public async create({ request, view, params }: HttpContextContract) {
     const isSignatureValid = request.hasValidSignature()
     const email = params.email
-    console.log(request.params())
 
     return view.render('auth/reset-password', { isSignatureValid, email })
   }
