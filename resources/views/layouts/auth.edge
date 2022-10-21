@@ -13,17 +13,7 @@
   <div class="hero-content text-center">
 
     @section('toast')
-      @if(flashMessages.has('success'))
-        @jrmc.toast({
-          class: ['toast-top', 'toast-end'],
-          'x-data': '{ open: true }',
-          'x-show': 'open',
-          'x-transition.duration.500ms': '',
-          'x-init': 'setTimeout(() => open = false, 5000);setTimeout(() => $el.remove(), 4000)',
-        })
-          @!jrmc.alert.success({ text: flashMessages.get('success.message'), class: ['max-w-xs', 'text-left'] })
-        @end
-      @endif
+      @include('partials/global-notification')
     @end
     @!section('body')
 
