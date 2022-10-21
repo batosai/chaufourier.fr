@@ -3,7 +3,7 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
   Route.get('login', 'auth/SessionController.create').as('session.create')
   Route.post('login', 'auth/SessionController.store').as('session.store')
-  Route.post('logout', 'auth/SessionController.destroy').as('session.destroy')
+
 
   Route.get('forgot-password', 'auth/ForgotPasswordController.create').as('password.create')
   Route.post('forgot-password', 'auth/ForgotPasswordController.store').as('password.store')
@@ -14,3 +14,5 @@ Route.group(() => {
   .prefix('auth')
   .as('auth')
   .middleware('guest')
+
+Route.post('auth/logout', 'auth/SessionController.destroy').as('auth.session.destroy').middleware('auth')
