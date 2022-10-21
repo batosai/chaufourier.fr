@@ -5,3 +5,6 @@ auth:
     title: Forgot your password
   resetPassword:
     title: Reset your password
+admin:
+  dashboard:
+    title: Admin - Dashboard

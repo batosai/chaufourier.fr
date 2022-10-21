@@ -1,0 +1,17 @@
+{{--  breadcrumbs  --}}
+<div class="text-sm breadcrumbs">
+  <ul>
+    @each(item in $props.items)
+      <li>
+        @if(item.link)~
+        <a href="{{ item.link }}">
+        @end~
+        {{ item.label }}
+        @if(item.link)~
+        </a>
+        @end~
+      </li>
+    @end
+  </ul>
+</div>
+{{--  end breadcrumbs  --}}
