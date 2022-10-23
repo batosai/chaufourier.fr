@@ -1,6 +1,7 @@
 import { test } from '@japa/runner'
 import Database from '@ioc:Adonis/Lucid/Database'
 import UserFactory from 'Database/factories/UserFactory'
+import I18n from '@ioc:Adonis/Addons/I18n'
 
 test.group('Login page', group => {
 
@@ -46,7 +47,9 @@ test.group('Login page', group => {
 
     // await page.screenshot({ path: 'screenshot.png', fullPage: true })
 
-    assert.exists(await screen.findByText(/admin/))
+    assert.exists(await screen.findByText(
+      I18n.locale(I18n.defaultLocale).formatMessage('form.success.session')
+    ))
   })
 
   test('Should display error message for blocked user', async ({ assert, page, route, getScreen }) => {
