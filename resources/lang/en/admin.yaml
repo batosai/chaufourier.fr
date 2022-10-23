@@ -1,0 +1,11 @@
+sidebar:
+  content: Content
+  dashboard: Dashboard
+  users: Users
+  settings: Settings
+  health: Health
+  journal: Journal
+  preference: Preference
+  system: System
+table:
+  actions: Actions

@@ -27,46 +27,50 @@
 <ul class="menu menu-compact text-base-content rounded-box p-4">
   <li></li>
   <li class="menu-title">
-  <span>Content</span>
-  </li>
-  <li >
-    <a class="active">
-      @!svg('akar-icons:dashboard')
-      Dashboard
-    </a>
+  <span>{{ t('admin.sidebar.content') }}</span>
   </li>
   <li>
-    <a>
-      @!svg('fa-solid:user')
-      Users
-    </a>
+    @!admin.sidebar.link({
+      class: request.matchesRoute(['admin.dashboard.index']) ? 'active' : null,
+      text: t('admin.sidebar.dashboard'),
+      icon: 'akar-icons:dashboard',
+      href: route('admin.dashboard.index')
+    })
+  </li>
+  <li>
+    @!admin.sidebar.link({
+      class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
+      text: t('admin.sidebar.users'),
+      icon: 'fa-solid:user',
+      href: route('admin.users.index')
+    })
   </li>
   <li></li>
   <li class="menu-title">
-    <span>Settings</span>
+    <span>{{ t('admin.sidebar.settings') }}</span>
   </li>
   <li>
     <a>
       @!svg('akar-icons:health')
-      Health
+      {{ t('admin.sidebar.health') }}
     </a>
   </li>
   <li>
     <a>
       @!svg('fa-solid:cog')
-      Journal
+      {{ t('admin.sidebar.journal') }}
     </a>
   </li>
   <li>
     <a>
       @!svg('fa-solid:cog')
-      Preference
+      {{ t('admin.sidebar.preference') }}
     </a>
   </li>
   <li>
     <a>
       @!svg('fa-solid:cogs')
-      System
+      {{ t('admin.sidebar.system') }}
     </a>
   </li>
 </ul>

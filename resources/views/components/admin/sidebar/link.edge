@@ -1,0 +1,6 @@
+<a {{ $props.serializeExcept(['text', 'icon']) }}>
+  @if(icon)~
+  @!svg(icon)
+  @end~
+  {{ text }}
+</a>

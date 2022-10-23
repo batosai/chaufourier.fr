@@ -3,6 +3,9 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import { column, computed, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
+
+  // Columns
+
   @column({ isPrimary: true })
   public id: number
 
@@ -35,6 +38,18 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  // Getters
+
+  get isAdmin() {
+    return true
+  }
+
+  get isMember() {
+    return false
+  }
+
+  // Hooks
 
   @computed()
   public get fullname() {

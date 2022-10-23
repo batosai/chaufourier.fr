@@ -1,0 +1,5 @@
+user:
+  name: Name
+  email: Email
+  status: Status
+  createdAt: date
