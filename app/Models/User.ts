@@ -1,8 +1,12 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
+import { compose } from '@ioc:Adonis/Core/Helpers'
 import { column, computed, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { Filterable  } from '@ioc:Adonis/Addons/LucidFilter'
+import UserFilter from 'App/Models/Filters/UserFilter'
 
-export default class User extends BaseModel {
+export default class User extends compose(BaseModel, Filterable) {
+  public static $filter = () => UserFilter
 
   // Columns
 

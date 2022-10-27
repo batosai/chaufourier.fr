@@ -6,10 +6,10 @@ export default class DashboardController {
   public async index({ request, view, bouncer }: HttpContextContract) {
     await bouncer.with('UserPolicy').authorize('viewList')
 
-    const page = request.input('page', 1)
+    const { page = 1, ...input } = request.qs()
     const limit = 10
 
-    const users = await User.query().paginate(page, limit)
+    const users = await User.filter(input).paginate(page, limit)
     users.baseUrl(Route.builder().make('admin.users.index'))
 
     return view.render('admin/users/index', {
