@@ -6,7 +6,8 @@
     "@adonisjs/repl/build/commands",
     "@adonisjs/bouncer/build/commands",
     "@adonisjs/lucid/build/commands",
-    "@adonisjs/mail/build/commands"
+    "@adonisjs/mail/build/commands",
+    "adonis-lucid-filter/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -35,7 +36,8 @@
     "@adonisjs/i18n",
     "@adonisjs/mail",
     "@adonisjs/lucid-slugify",
-    "@adonisjs/auth"
+    "@adonisjs/auth",
+    "adonis-lucid-filter"
   ],
   "metaFiles": [
     {
