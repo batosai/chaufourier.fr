@@ -1,7 +1,7 @@
 <div x-data="{ open: false, width: 0, styles: { top: '0', left: '0' } }">
   <div class="btn-group" @keyup.escape.window="open = false" x-init="styles.top = $el.offsetTop+'px' ;styles.left = $el.offsetLeft+'px';">
-    <a href="{{ items[0].href }}" class="btn btn-sm normal-case">{{ items[0].label }}</a>
-    <button @click="open = ! open;styles.top = getBottomPosition($el)+'px' ;styles.left = (getRightPosition($el) - $el.closest('table').parentNode.scrollLeft - width)+'px';" class="btn btn-sm">
+    <a href="{{ items[0].href }}" class="btn normal-case">{{ items[0].label }}</a>
+    <button @click="open = ! open;styles.top = getBottomPosition($el)+'px' ;styles.left = (getRightPosition($el) - $el.closest('table').parentNode.scrollLeft - width)+'px';" class="btn">
       @!svg('akar-icons:more-vertical-fill')
     </button>
   </div>
