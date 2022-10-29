@@ -31,10 +31,10 @@
   </li>
   <li>
     @!admin.sidebar.link({
-      class: request.matchesRoute(['admin.dashboard.index']) ? 'active' : null,
+      class: request.matchesRoute(['admin.dashboard']) ? 'active' : null,
       text: t('admin.sidebar.dashboard'),
       icon: 'akar-icons:dashboard',
-      href: route('admin.dashboard.index')
+      href: route('admin.dashboard')
     })
   </li>
   <li>
