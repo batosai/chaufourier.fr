@@ -5,7 +5,7 @@
       @each((filter, index) in session.get('usersFilter', {}))
         @if(filter)
           @jrmc.badge({ as: 'div', class: 'badge-lg badge-info' })
-            {{ filter }}
+            {{ index }}: {{ filter }}
             @jrmc.button.link({ class: 'btn-xs btn-ghost', href: route('admin.users.index', {}, { qs: { reset: index }}) })
               @!svg('akar-icons:cross', { width: 10, height: 10 })
             @end
