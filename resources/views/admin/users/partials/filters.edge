@@ -54,22 +54,22 @@
     <div class="flex-none">
       @jrmc.form.control({ name: 'order', class: '!m-0', label: false })
         @!jrmc.form.select({ options: [
-            { text: 'Order by Name asc', value: 'name_asc' },
-            { text: 'Order by Name asc', value: 'name_desc' },
+            { text: 'Order by Name asc', value: 'firstname_asc' },
+            { text: 'Order by Name desc', value: 'firstname_desc' },
             { text: 'Order by Email asc', value: 'email_asc' },
             { text: 'Order by Email desc', value: 'email_desc' },
-            { text: 'Order by date asc', value: 'date_asc' },
-            { text: 'Order by date desc', value: 'date_desc' },
+            { text: 'Order by date asc', value: 'createdAt_asc' },
+            { text: 'Order by date desc', value: 'createdAt_desc' },
           ],
           class: 'sm:mr-4 bg-neutral',
-          value: session.get('usersFilter.order') ?? 'date_desc'
+          value: session.get('usersFilter.order') ?? 'createdAt_desc',
+          '@change': '$el.closest("form").submit()'
         })
       @end
       @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
         @!jrmc.form.input({
           placeholder: 'Search',
           class: 'input-bordered hidden sm:inline-block',
-          '@keyup.enter': 'alert("Submitted!")',
           value: session.get('usersFilter.search') ?? ''
         })
       @end

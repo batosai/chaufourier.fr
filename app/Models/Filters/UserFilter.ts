@@ -8,23 +8,28 @@ export default class UserFilter extends BaseModelFilter {
   lastname(value: string) {
     this.$query.where((builder) => {
       builder
-        .where('lastname', 'LIKE', `%${value}%`)
+        .whereLike('lastname', `%${value}%`)
     })
   }
 
   firstname(value: string) {
     this.$query.where((builder) => {
       builder
-        .where('firstname', 'LIKE', `%${value}%`)
+        .whereLike('firstname', `%${value}%`)
     })
+  }
+
+  order(value: string) {console.log('order')
+    const order = value.split('_')
+    this.$query.orderBy(`${(order[0])}`, order[1] === 'asc' ? 'asc' : 'desc')
   }
 
   search(value: string) {
     this.$query.where((builder) => {
       builder
-        .where('firstname', 'LIKE', `%${value}%`)
-        .orWhere('lastname', 'LIKE', `%${value}%`)
-        .orWhere('email', 'LIKE', `%${value}%`)
+        .whereLike('firstname', `%${value}%`)
+        .orWhereLike('lastname', `%${value}%`)
+        .orWhereLike('email', `%${value}%`)
     })
   }
 }
