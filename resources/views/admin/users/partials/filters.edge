@@ -1,11 +1,11 @@
 @if(session.has('usersFilter'))
   <div class="indicator w-full">
-    <span class="indicator-item indicator-center indicator-bottom badge badge-primary">{{ users.total }}&nbsp;results</span>
+    <span class="indicator-item indicator-center indicator-bottom badge badge-primary">{{{ t('filters.results', { itemsCount: users.total }) }}}</span>
     @jrmc.alert()
       @each((filter, index) in session.get('usersFilter', {}))
         @if(filter)
           @jrmc.badge({ as: 'div', class: 'badge-lg badge-info' })
-            {{ index }}: {{ filter }}
+            {{ t(`filters.users.${index}`) }}: {{ index === 'search' ? filter : t(`filters.users.${filter}`) }}
             @jrmc.button.link({ class: 'btn-xs btn-ghost', href: route('admin.users.index', {}, { qs: { reset: index }}) })
               @!svg('akar-icons:cross', { width: 10, height: 10 })
             @end
@@ -13,7 +13,7 @@
         @end
       @end
       @slot('actions')
-        @!jrmc.button.link({ text: 'Reset all', class: 'hidden sm:flex', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
+        @!jrmc.button.link({ text: t('filters.reset'), class: 'hidden sm:flex', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
       @end
     @end
   </div>
@@ -22,13 +22,13 @@
 @jrmc.form({ method: 'GET', error: false, csrf: false })
   <div class="navbar bg-base-100 p-0">
     <div class="flex-1">
-      @jrmc.modal({ button: { text: 'Filter', type: 'button' }, mobile: true })
-        <h3 class="font-bold text-lg">Filter</h3>
+      @jrmc.modal({ button: { text: t('filters.filter'), type: 'button' }, mobile: true })
+        <h3 class="font-bold text-lg">{{ t('filters.filter') }}</h3>
         @jrmc.form({ method: 'GET', error: false, csrf: false })
 
-          @!jrmc.button.link({ text: 'Reset all', class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
+          @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
 
-          @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden' })
+          @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.users.search') })
             @!jrmc.form.input({ class: 'input-bordered', value: session.get('usersFilter.search') ?? '' })
           @end
           @jrmc.form.control({ name: 'status' })
@@ -54,21 +54,22 @@
     <div class="flex-none">
       @jrmc.form.control({ name: 'order', class: '!m-0', label: false })
         @!jrmc.form.select({ options: [
-            { text: 'Order by Name asc', value: 'firstname_asc' },
-            { text: 'Order by Name desc', value: 'firstname_desc' },
-            { text: 'Order by Email asc', value: 'email_asc' },
-            { text: 'Order by Email desc', value: 'email_desc' },
-            { text: 'Order by date asc', value: 'createdAt_asc' },
-            { text: 'Order by date desc', value: 'createdAt_desc' },
+            { text: t('filters.order'), value: '' },
+            { text: t('filters.users.firstname_asc'), value: 'firstname_asc' },
+            { text: t('filters.users.firstname_desc'), value: 'firstname_desc' },
+            { text: t('filters.users.email_asc'), value: 'email_asc' },
+            { text: t('filters.users.email_desc'), value: 'email_desc' },
+            { text: t('filters.users.createdAt_asc'), value: 'createdAt_asc' },
+            { text: t('filters.users.createdAt_desc'), value: 'createdAt_desc' },
           ],
           class: 'sm:mr-4 bg-neutral',
-          value: session.get('usersFilter.order') ?? 'createdAt_desc',
+          value: session.get('usersFilter.order') ?? '',
           '@change': '$el.closest("form").submit()'
         })
       @end
       @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
         @!jrmc.form.input({
-          placeholder: 'Search',
+          placeholder: t('filters.users.search'),
           class: 'input-bordered hidden sm:inline-block',
           value: session.get('usersFilter.search') ?? ''
         })

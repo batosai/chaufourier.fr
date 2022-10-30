@@ -1,0 +1,23 @@
+filter: Filter
+order: Order
+reset: Reset all
+results:
+  "{itemsCount, plural,
+    =0 {no&nbsp;result}
+    one {1&nbsp;result}
+    other {#&nbsp;results}
+  }"
+
+
+users:
+  search: Search
+  role: Role
+  status: Status
+  order: Order
+  all: All
+  firstname_asc: Ascending name
+  firstname_desc: Descending name
+  email_asc: Ascending email
+  email_desc: Descending email
+  createdAt_asc: Ascending date
+  createdAt_desc: Descending date
