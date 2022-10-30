@@ -5,12 +5,13 @@ import UserSessionFilterService from 'App/Services/UsersSessionFilterService'
 
 export default class DashboardController {
   public async index(ctx: HttpContextContract) {
-    const { request, view, bouncer } = ctx
+    const { view, bouncer } = ctx
     await bouncer.with('UserPolicy').authorize('viewList')
 
-    const limit = 10
-    const { page = 1 } = request.qs()
-    const payload = await UserSessionFilterService.handle(ctx)
+    const limit = 1
+    const { page = 1, ...payload } = await UserSessionFilterService.handle(ctx)
+
+    console.log(payload)
 
     const users = await User.filter(payload).paginate(page, limit)
     users.baseUrl(Route.builder().make('admin.users.index'))

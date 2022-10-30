@@ -5,7 +5,7 @@ export default class UserSessionFilterService {
   constructor() {}
 
   public static async handle({ request, session }: HttpContextContract): Promise<any> {
-    let { reset, ...data } = request.qs()
+    let { page = 1, reset, ...data } = request.qs()
 
     if(!Object.keys(data).length && session.has('usersFilter')) {
       data = session.get('usersFilter')
@@ -32,10 +32,13 @@ export default class UserSessionFilterService {
     })
 
     if (Object.keys(data).length) {
+      data.page = page
       session.put('usersFilter', data)
     } else {
       session.forget('usersFilter')
     }
+
+    data.page = page
 
     return data
   }

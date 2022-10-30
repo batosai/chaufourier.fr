@@ -10,6 +10,7 @@ results:
 
 
 users:
+  page: Page
   search: Search
   role: Role
   status: Status
