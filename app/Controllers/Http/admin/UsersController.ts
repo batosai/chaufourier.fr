@@ -11,10 +11,9 @@ export default class DashboardController {
     const limit = 1
     const { page = 1, ...payload } = await UserSessionFilterService.handle(ctx)
 
-    console.log(payload)
-
     const users = await User.filter(payload).paginate(page, limit)
     users.baseUrl(Route.builder().make('admin.users.index'))
+    users.queryString(payload)
 
     return view.render('admin/users/index', {
       users,
