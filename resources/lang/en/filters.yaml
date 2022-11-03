@@ -13,7 +13,11 @@ users:
   page: Page
   search: Search
   role: Role
+  admin: Admin
+  member: Member
   status: Status
+  enabled: Enabled
+  disabled: Disabled
   order: Order
   all: All
   firstname_asc: Ascending name

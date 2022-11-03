@@ -19,9 +19,16 @@ export default class UserFilter extends BaseModelFilter {
     })
   }
 
-  order(value: string) {console.log('order')
+  order(value: string) {
     const order = value.split('_')
     this.$query.orderBy(`${(order[0])}`, order[1] === 'asc' ? 'asc' : 'desc')
+  }
+
+  status(value: string) {
+    this.$query.where((builder) => {
+      builder
+        .where('disabled', value === 'disabled' ? true : false)
+    })
   }
 
   search(value: string) {

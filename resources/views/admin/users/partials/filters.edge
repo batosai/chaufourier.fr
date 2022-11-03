@@ -1,5 +1,5 @@
 @if(session.has('usersFilter'))
-  <div class="indicator w-full">
+  <div class="indicator w-full mb-4">
     <span class="indicator-item indicator-center indicator-bottom badge badge-primary">{{{ t('filters.results', { itemsCount: users.total }) }}}</span>
     @jrmc.alert()
       @each((filter, index) in session.get('usersFilter', {}))
@@ -33,17 +33,25 @@
           @end
           @jrmc.form.control({ name: 'status' })
             @!jrmc.form.select({ options: [
-              { text: 'All', value: 'all' },
-              { text: 'Enabled', value: 'enabled' },
-              { text: 'Disabled', value: 'disabled' },
-            ], class: 'input-bordered', value: session.get('usersFilter.status') ?? 'all' })
+                { text: 'All', value: 'all' },
+                { text: 'Enabled', value: 'enabled' },
+                { text: 'Disabled', value: 'disabled' },
+              ],
+              class: 'input-bordered',
+              value: session.get('usersFilter.status') ?? 'all',
+              '@change': '$el.closest("form").submit()'
+            })
           @end
           @jrmc.form.control({ name: 'role' })
             @!jrmc.form.select({ options: [
-              { text: 'All', value: 'all' },
-              { text: 'Admin', value: 'admin' },
-              { text: 'Member', value: 'member' },
-            ], class: 'input-bordered', value: session.get('usersFilter.role') ?? 'all' })
+                { text: 'All', value: 'all' },
+                { text: 'Admin', value: 'admin' },
+                { text: 'Member', value: 'member' },
+              ],
+              class: 'input-bordered',
+              value: session.get('usersFilter.role') ?? 'all',
+              '@change': '$el.closest("form").submit()'
+            })
           @end
           @jrmc.form.control({ name: 'order', label: false, class: 'hidden' })
             @!jrmc.form.input({ type: 'hidden', value: session.get('usersFilter.order') ?? '' })
