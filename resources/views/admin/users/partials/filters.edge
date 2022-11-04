@@ -33,7 +33,7 @@
           @end
           @jrmc.form.control({ name: 'status' })
             @!jrmc.form.select({ options: [
-                { text: 'All', value: 'all' },
+                { text: 'All', value: '' },
                 { text: 'Enabled', value: 'enabled' },
                 { text: 'Disabled', value: 'disabled' },
               ],
@@ -44,9 +44,8 @@
           @end
           @jrmc.form.control({ name: 'role' })
             @!jrmc.form.select({ options: [
-                { text: 'All', value: 'all' },
-                { text: 'Admin', value: 'admin' },
-                { text: 'Member', value: 'member' },
+                { text: 'All', value: '' },
+                ...roles.map(role => ({ text: capitalCase(role.name), value: role.name })),
               ],
               class: 'input-bordered',
               value: session.get('usersFilter.role') ?? 'all',

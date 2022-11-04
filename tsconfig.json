@@ -38,7 +38,8 @@
       "@adonisjs/mail",
       "@adonisjs/lucid-slugify",
       "@adonisjs/auth",
-      "adonis-lucid-filter"
+      "adonis-lucid-filter",
+      "@verful/permissions"
     ]
   }
 }

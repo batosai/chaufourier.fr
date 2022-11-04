@@ -48,7 +48,7 @@
                 </div>
                 <div>
                   <div class="font-bold">{{ user.fullname }}</div>
-                  <div class="text-sm opacity-50">Admin</div>
+                  <div class="text-sm opacity-50">{{ (await user.getRoleNames()).join(', ') }}</div>
                 </div>
               </div>
             </th>

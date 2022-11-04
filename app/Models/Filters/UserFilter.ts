@@ -6,14 +6,14 @@ export default class UserFilter extends BaseModelFilter {
   public $query: ModelQueryBuilderContract<typeof User, User>
 
   lastname(value: string) {
-    this.$query.where((builder) => {
+    this.$query.where(builder => {
       builder
         .whereLike('lastname', `%${value}%`)
     })
   }
 
   firstname(value: string) {
-    this.$query.where((builder) => {
+    this.$query.where(builder => {
       builder
         .whereLike('firstname', `%${value}%`)
     })
@@ -25,14 +25,20 @@ export default class UserFilter extends BaseModelFilter {
   }
 
   status(value: string) {
-    this.$query.where((builder) => {
+    this.$query.where(builder => {
       builder
         .where('disabled', value === 'disabled' ? true : false)
     })
   }
 
+  role(value: string) {
+    this.$query.whereHas('roles', query => {
+      query.where('name', value)
+    })
+  }
+
   search(value: string) {
-    this.$query.where((builder) => {
+    this.$query.where(builder => {
       builder
         .whereLike('firstname', `%${value}%`)
         .orWhereLike('lastname', `%${value}%`)

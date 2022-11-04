@@ -3,7 +3,7 @@ import User from 'App/Models/User'
 
 export default class extends BaseSeeder {
   public async run() {
-    await User.createMany([
+    const users = await User.createMany([
       {
         lastname: 'adonis',
         firstname: 'virk',
@@ -17,5 +17,7 @@ export default class extends BaseSeeder {
         password: 'supersecret',
       },
     ])
+    await users[0].assignRole('admin')
+    await users[1].assignRole('member')
   }
 }
