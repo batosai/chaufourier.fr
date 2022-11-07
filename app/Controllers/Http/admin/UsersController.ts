@@ -1,7 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
 import User from 'App/Models/User'
-import Role from '@ioc:Verful/Permissions/Role'
 import UserSessionFilterService from 'App/Services/UsersSessionFilterService'
 
 export default class DashboardController {
@@ -16,11 +15,8 @@ export default class DashboardController {
     users.baseUrl(Route.builder().make('admin.users.index'))
     users.queryString(payload)
 
-    const roles = await Role.all()
-
     return view.render('admin/users/index', {
-      users,
-      roles
+      users
     })
   }
 }
