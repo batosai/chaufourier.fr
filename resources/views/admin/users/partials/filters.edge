@@ -13,7 +13,9 @@
         @end
       @end
       @slot('actions')
-        @!jrmc.button.link({ text: t('filters.reset'), class: 'hidden sm:flex', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
+        @jrmc.button.link({ 'aria-label': t('filters.reset'), class: 'hidden sm:flex btn-sm btn-circle', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
+          @!svg('akar-icons:cross', { 'aria-hidden': 'true' })
+        @end
       @end
     @end
   </div>
