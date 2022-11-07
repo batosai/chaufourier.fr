@@ -5,6 +5,7 @@ import { column, computed, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 import { Authorizable } from '@ioc:Verful/Permissions/Mixins'
 import { Filterable  } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
+import Role from 'App/Enums/Roles'
 
 const config = {
   permissionsPivotTable: 'user_has_permissions',
@@ -51,11 +52,11 @@ export default class User extends compose(BaseModel, Filterable, Authorizable(co
   // Getters
 
   get isAdmin() {
-    return this.hasRole('admin')
+    return this.hasRole(Role.ADMIN)
   }
 
   get isMember() {
-    return this.hasRole('member')
+    return this.hasRole(Role.MEMBER)
   }
 
   // Hooks

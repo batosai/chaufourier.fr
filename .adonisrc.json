@@ -24,7 +24,8 @@
     "./start/events",
     "./start/mail",
     "./start/validator",
-    "./start/view"
+    "./start/view",
+    "./start/globals"
   ],
   "providers": [
     "./providers/AppProvider",

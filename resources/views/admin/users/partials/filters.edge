@@ -45,7 +45,7 @@
           @jrmc.form.control({ name: 'role' })
             @!jrmc.form.select({ options: [
                 { text: 'All', value: '' },
-                ...roles.map(role => ({ text: capitalCase(role.name), value: role.name })),
+                ...Object.values(Roles).map(role => ({ text: capitalCase(role), value: role })),
               ],
               class: 'input-bordered',
               value: session.get('usersFilter.role') ?? 'all',
