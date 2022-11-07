@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { compose } from '@ioc:Adonis/Core/Helpers'
-import { column, computed, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { column, computed, beforeSave, BaseModel, scope } from '@ioc:Adonis/Lucid/Orm'
 import { Authorizable } from '@ioc:Verful/Permissions/Mixins'
 import { Filterable  } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
@@ -58,6 +58,14 @@ export default class User extends compose(BaseModel, Filterable, Authorizable(co
   get isMember() {
     return this.hasRole(Role.MEMBER)
   }
+
+  // scopes
+
+  public static admin = scope((query: any) => {
+    query.whereHas('roles', query => {
+      query.where('name', Role.ADMIN)
+    })
+  })
 
   // Hooks
 
