@@ -33,22 +33,21 @@
           @end
           @jrmc.form.control({ name: 'status' })
             @!jrmc.form.select({ options: [
-                { text: 'All', value: '' },
-                { text: 'Enabled', value: 'enabled' },
-                { text: 'Disabled', value: 'disabled' },
+                { text: t('filters.users.all'), value: '' },
+                ...Object.values(UserStatus).map(status => ({ text: t("models.user/status."+status), value: status })),
               ],
               class: 'input-bordered',
-              value: session.get('usersFilter.status') ?? 'all',
+              value: session.get('usersFilter.status') ?? '',
               '@change': '$el.closest("form").submit()'
             })
           @end
           @jrmc.form.control({ name: 'role' })
             @!jrmc.form.select({ options: [
-                { text: 'All', value: '' },
-                ...Object.values(Roles).map(role => ({ text: capitalCase(role), value: role })),
+                { text: t('filters.users.all'), value: '' },
+                ...Object.values(Roles).map(role => ({ text: t("models.role/status."+role), value: role })),
               ],
               class: 'input-bordered',
-              value: session.get('usersFilter.role') ?? 'all',
+              value: session.get('usersFilter.role') ?? '',
               '@change': '$el.closest("form").submit()'
             })
           @end

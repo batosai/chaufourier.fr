@@ -2,4 +2,11 @@ user:
   name: Name
   email: Email
   status: Status
-  createdAt: date
+  createdAt: Date
+user/status:
+  enabled: Enabled
+  disabled: Disabled
+role/status:
+    admin: Admin
+    member: Member
+

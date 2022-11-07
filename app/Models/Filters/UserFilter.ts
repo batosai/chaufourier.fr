@@ -1,6 +1,7 @@
 import { BaseModelFilter } from '@ioc:Adonis/Addons/LucidFilter'
 import { ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
 import User from 'App/Models/User'
+import UserStatus from 'App/Enums/UserStatus'
 
 export default class UserFilter extends BaseModelFilter {
   public $query: ModelQueryBuilderContract<typeof User, User>
@@ -27,7 +28,7 @@ export default class UserFilter extends BaseModelFilter {
   status(value: string) {
     this.$query.where(builder => {
       builder
-        .where('disabled', value === 'disabled' ? true : false)
+        .where('disabled', value === UserStatus.DISABLED ? true : false)
     })
   }
 
