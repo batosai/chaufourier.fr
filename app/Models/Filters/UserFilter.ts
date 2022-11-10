@@ -21,7 +21,7 @@ export default class UserFilter extends BaseModelFilter {
   }
 
   order(value: string) {
-    const order = value.split('_')
+    const order = value.split('+')
     this.$query.orderBy(`${(order[0])}`, order[1] === 'asc' ? 'asc' : 'desc')
   }
 

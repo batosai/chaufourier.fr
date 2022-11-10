@@ -63,12 +63,12 @@
       @jrmc.form.control({ name: 'order', class: '!m-0', label: false })
         @!jrmc.form.select({ options: [
             { text: t('filters.order'), value: '' },
-            { text: t('filters.users.firstname_asc'), value: 'firstname_asc' },
-            { text: t('filters.users.firstname_desc'), value: 'firstname_desc' },
-            { text: t('filters.users.email_asc'), value: 'email_asc' },
-            { text: t('filters.users.email_desc'), value: 'email_desc' },
-            { text: t('filters.users.createdAt_asc'), value: 'createdAt_asc' },
-            { text: t('filters.users.createdAt_desc'), value: 'createdAt_desc' },
+            { text: t('filters.users.firstname_asc'), value: 'firstname+asc' },
+            { text: t('filters.users.firstname_desc'), value: 'firstname+desc' },
+            { text: t('filters.users.email_asc'), value: 'email+asc' },
+            { text: t('filters.users.email_desc'), value: 'email+desc' },
+            { text: t('filters.users.createdAt_asc'), value: 'createdAt+asc' },
+            { text: t('filters.users.createdAt_desc'), value: 'createdAt+desc' },
           ],
           class: 'sm:mr-4 bg-neutral',
           value: session.get('usersFilter.order') ?? '',
