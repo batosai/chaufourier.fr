@@ -1,5 +1,6 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import User from 'App/Models/User'
+import Role from 'App/Enums/Roles'
 
 export default class extends BaseSeeder {
   public async run() {
@@ -17,7 +18,7 @@ export default class extends BaseSeeder {
         password: 'supersecret',
       },
     ])
-    await users[0].assignRole('admin')
-    await users[1].assignRole('member')
+    await users[0].assignRole(Role.ADMIN)
+    await users[1].assignRole(Role.MEMBER)
   }
 }
