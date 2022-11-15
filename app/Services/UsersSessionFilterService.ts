@@ -27,7 +27,7 @@ export default class UserSessionFilterService {
         role: schema.string.optional([
           rules.exists({
             table: 'roles',
-            column: 'name',
+            column: 'id',
           }),
         ]),
         status: schema.string.optional(),

@@ -32,9 +32,9 @@ export default class UserFilter extends BaseModelFilter {
     })
   }
 
-  role(value: string) {
-    this.$query.whereHas('roles', query => {
-      query.where('name', value)
+  role(value: number) {
+    this.$query.whereHas('role', query => {
+      query.where('id', value)
     })
   }
 

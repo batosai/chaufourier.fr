@@ -13,16 +13,14 @@ users:
   page: Page
   search: Search
   role: Role
-  admin: Admin
-  member: Member
   status: Status
   enabled: Enabled
   disabled: Disabled
   order: Order
   all: All
-  firstname_asc: Ascending name
-  firstname_desc: Descending name
-  email_asc: Ascending email
-  email_desc: Descending email
-  createdAt_asc: Ascending date
-  createdAt_desc: Descending date
+  firstname+asc: Ascending name
+  firstname+desc: Descending name
+  email+asc: Ascending email
+  email+desc: Descending email
+  createdAt+asc: Ascending date
+  createdAt+desc: Descending date

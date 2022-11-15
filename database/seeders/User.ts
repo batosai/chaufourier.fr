@@ -1,24 +1,24 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import User from 'App/Models/User'
-import Role from 'App/Enums/Roles'
+import Roles from 'App/Enums/Roles'
 
 export default class extends BaseSeeder {
   public async run() {
-    const users = await User.createMany([
+    await User.createMany([
       {
+        role_id: Roles.ADMIN,
         lastname: 'adonis',
         firstname: 'virk',
         email: 'virk@adonisjs.com',
         password: 'secret',
       },
       {
+        role_id: Roles.USER,
         lastname: 'adonis',
         firstname: 'romain',
         email: 'romain@adonisjs.com',
         password: 'supersecret',
       },
     ])
-    await users[0].assignRole(Role.ADMIN)
-    await users[1].assignRole(Role.MEMBER)
   }
 }

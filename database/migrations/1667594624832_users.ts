@@ -1,4 +1,5 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import Roles from 'App/Enums/Roles'
 
 export default class UsersSchema extends BaseSchema {
   protected tableName = 'users'
@@ -6,6 +7,7 @@ export default class UsersSchema extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
+      table.integer('role_id').unsigned().references('id').inTable('roles').defaultTo(Roles.USER)
       table.string('lastname', 255).notNullable()
       table.string('firstname', 255).notNullable()
       table.string('email', 255).notNullable()

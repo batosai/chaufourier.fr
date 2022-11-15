@@ -584,17 +584,6 @@
       ],
       "aliases": [],
       "flags": []
-    },
-    "permissions:pivot-table": {
-      "settings": {
-        "loadApp": true
-      },
-      "commandPath": "@verful/permissions/build/commands/PivotTable",
-      "commandName": "permissions:pivot-table",
-      "description": "Create the pivot table migration for authorizable models",
-      "args": [],
-      "aliases": [],
-      "flags": []
     }
   },
   "aliases": {}

@@ -1,23 +1,21 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { compose } from '@ioc:Adonis/Core/Helpers'
-import { column, computed, beforeSave, afterCreate, BaseModel, scope } from '@ioc:Adonis/Lucid/Orm'
-import { Authorizable } from '@ioc:Verful/Permissions/Mixins'
+import { column, computed, beforeSave, belongsTo, BelongsTo, BaseModel, scope } from '@ioc:Adonis/Lucid/Orm'
 import { Filterable  } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
-import Role from 'App/Enums/Roles'
-
-const config = {
-  permissionsPivotTable: 'user_has_permissions',
-  rolesPivotTable: 'user_has_roles'
-}
-export default class User extends compose(BaseModel, Filterable, Authorizable(config)) {
+import Role from './Role'
+import Roles from 'App/Enums/Roles'
+export default class User extends compose(BaseModel, Filterable) {
   public static $filter = () => UserFilter
 
   // Columns
 
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public roleId: number
 
   @column()
   public firstname: string
@@ -49,25 +47,23 @@ export default class User extends compose(BaseModel, Filterable, Authorizable(co
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  // Getters
-
-  get isAdmin() {
-    return this.hasRole(Role.ADMIN)
-  }
-
-  get isMember() {
-    return this.hasRole(Role.MEMBER)
-  }
+  @belongsTo(() => Role)
+  public role: BelongsTo<typeof Role>
 
   // scopes
 
   public static admin = scope((query: any) => {
     query.whereHas('roles', query => {
-      query.where('name', Role.ADMIN)
+      query.where('name', Roles.ADMIN)
     })
   })
 
   // Hooks
+
+  @computed()
+  public get isAdmin() {
+    return this.roleId === Roles.ADMIN
+  }
 
   @computed()
   public get fullname() {
@@ -79,10 +75,5 @@ export default class User extends compose(BaseModel, Filterable, Authorizable(co
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }
-  }
-
-  @afterCreate()
-  public static async defaultRole(user: User) {
-    user.assignRole(Role.MEMBER)
   }
 }

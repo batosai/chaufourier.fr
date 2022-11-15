@@ -6,7 +6,7 @@ user:
 user/status:
   enabled: Enabled
   disabled: Disabled
-role/status:
-    admin: Admin
-    member: Member
+role/name:
+  admin: Admin
+  user: User
 
