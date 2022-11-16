@@ -10,26 +10,20 @@ test.group('Login page', group => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Should display login page', async ({ assert, page, route, getScreen }) => {
+  test('Should display login page', async ({ assert, page, route }) => {
     await page.goto(route('auth.session.create'))
-    let screen = await getScreen()
 
-    assert.exists(await screen.findByText(/Your email/))
+    assert.exists(await page.getByText(/Your email/))
   })
 
-  test('Should display error message if validation with empty fields', async ({ assert, page, route, getScreen }) => {
+  test('Should display error message if validation with empty fields', async ({ assert, page, route }) => {
     await page.goto(route('auth.session.create'))
-
-    let screen = await getScreen()
-
     await page.locator('text=validate').click()
 
-    screen = await getScreen()
-
-    assert.exists(await screen.findByText(/Invalid credentials/))
+    assert.exists(await page.getByText(/Invalid credentials/))
   })
 
-  test('Should display admin after validation login form', async ({ assert, page, route, getScreen }) => {
+  test('Should display admin after validation login form', async ({ assert, page, route }) => {
     const user = await UserFactory
       .merge({ password: 'secret' })
       .create()
@@ -43,16 +37,14 @@ test.group('Login page', group => {
 
     await page.locator('text=validate').click()
 
-    let screen = await getScreen()
-
     // await page.screenshot({ path: 'screenshot.png', fullPage: true })
 
-    assert.exists(await screen.findByText(
+    assert.exists(await page.getByText(
       I18n.locale(I18n.defaultLocale).formatMessage('form.success.session')
     ))
   })
 
-  test('Should display error message for blocked user', async ({ assert, page, route, getScreen }) => {
+  test('Should display error message for blocked user', async ({ assert, page, route }) => {
     const user = await UserFactory
       .apply('disabled')
       .merge({ password: 'secret',  })
@@ -64,8 +56,6 @@ test.group('Login page', group => {
     await page.getByLabel('Your password').fill('secret')
     await page.locator('text=validate').click()
 
-    let screen = await getScreen()
-
-    assert.exists(await screen.findByText('Your account is disabled'))
+    assert.exists(await page.getByText('Your account is disabled'))
   })
 })

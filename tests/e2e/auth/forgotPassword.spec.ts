@@ -10,17 +10,15 @@ test.group('Forgot password page', group => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Should display error message if validation with empty fields', async ({ assert, page, route, getScreen }) => {
+  test('Should display error message if validation with empty fields', async ({ assert, page, route }) => {
     await page.goto(route('auth.password.create'))
 
     await page.locator('text=validate').click()
 
-    let screen = await getScreen()
-
-    assert.exists(await screen.findByText(/Email field is required/))
+    assert.exists(await page.getByText(/Email field is required/))
   })
 
-  test('Should display success message', async ({ assert, page, route, getScreen }) => {
+  test('Should display success message', async ({ assert, page, route }) => {
     const user = await UserFactory.create()
 
     await page.goto(route('auth.password.create'))
@@ -28,9 +26,7 @@ test.group('Forgot password page', group => {
     await page.getByLabel('Your email').fill(user.email)
     await page.locator('text=validate').click()
 
-    let screen = await getScreen()
-
-    assert.exists(await screen.findByText(
+    assert.exists(await page.getByText(
       I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')
     ))
   })

@@ -7,6 +7,7 @@
 
 import type { Config } from '@japa/runner'
 import TestUtils from '@ioc:Adonis/Core/TestUtils'
+import Database from '@ioc:Adonis/Lucid/Database'
 import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-adonis'
 import { playwrightClient } from './plugins/playwright-client'
 
@@ -56,7 +57,11 @@ export const runnerHooks: Required<Pick<Config, 'setup' | 'teardown'>> = {
   setup: [
     () => TestUtils.ace().loadCommands(),
     () => TestUtils.db().migrate(),
-    () => TestUtils.db().seed()
+    // async () => {
+    //   await Database.beginGlobalTransaction()
+    //   return Database.rollbackGlobalTransaction()
+    // }
+    // () => TestUtils.db().seed()
   ],
   teardown: [],
 }

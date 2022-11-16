@@ -2,13 +2,11 @@
 import type { PluginFn } from '@japa/runner'
 import playwright from 'playwright'
 import type { Browser, Page } from 'playwright'
-import { getDocument, getQueriesForElement, queries } from 'playwright-testing-library'
 
 declare module '@japa/runner' {
   interface TestContext {
     page: Page
     login(email: string, password: string): Promise<void>
-    getScreen(): Promise<ReturnType<typeof getQueriesForElement>>
   }
 }
 
@@ -43,17 +41,10 @@ export function playwrightClient({
             // this may need to be customized depending on the app setup
             test.context.login = async (email, password) => {
               await test.context.page.goto(test.context.route('auth.session.create')) // go to login page
-              const loginDoc = await getDocument(test.context.page)
-              const emailInput = await queries.getByLabelText(loginDoc, 'Your email') // get the email input
-              const passwordInput = await queries.getByLabelText(loginDoc, 'Your password') // get the password input
 
-              await emailInput.fill(email) // enter email arg
-              await passwordInput.fill(password) // enter password arg
-
-              await (await queries.findByText(loginDoc, 'validate')).click() // submit the form
-            }
-            test.context.getScreen = async () => {
-              return getQueriesForElement(await getDocument(test.context.page))
+              await test.context.page.getByLabel('Your email').fill(email)
+              await test.context.page.getByLabel('Your password').fill(password)
+              await test.context.page.locator('text=validate').click()
             }
 
             return async () => {
