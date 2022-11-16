@@ -48,10 +48,29 @@ test.group('Admin users', group => {
     await page.keyboard.press('Enter');
     await sleep(500)
 
-    assert.lengthOf(await page.$$('tbody tr'), 1)
+    assert.equal(await page.locator('tbody tr').count(), 1)
+  })
+
+  test('should change order of list', async ({ assert, login, page,  route }) => {
+    const user = await UserFactory
+    .merge({ password: 'secret', email: 'virk@adonisjs.com', roleId: Roles.ADMIN })
+    .create()
+
+    const user2 = await UserFactory
+    .merge({ email: 'romain@adonisjs.com' })
+    .create()
+
+    await login(user.email, 'secret')
+    await page.goto(route('admin.users.index'))
+
+    await page.locator('select[name="order"]').selectOption('email+asc')
+    await page.keyboard.press('Enter');
+    await sleep(500)
+
+    assert.equal(await page.locator('tbody tr:first-child > td:nth-of-type(1)').innerText(), user2.email)
   })
 })
 // TODO
-// test connexion member, no access (dir auth)
 // test filter
 // test reset filter
+// replace page.$$ by page.locator
