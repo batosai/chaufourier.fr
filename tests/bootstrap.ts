@@ -8,6 +8,7 @@
 import type { Config } from '@japa/runner'
 import TestUtils from '@ioc:Adonis/Core/TestUtils'
 import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-adonis'
+import { tableDrivenHtmlReporter } from 'table-driven-html-reporter'
 import { playwrightClient } from './plugins/playwright-client'
 
 /*
@@ -38,7 +39,7 @@ export const plugins: Config['plugins'] = [
 | of tests on the terminal.
 |
 */
-export const reporters: Config['reporters'] = [specReporter()]
+export const reporters: Config['reporters'] = [specReporter(), tableDrivenHtmlReporter()]
 
 /*
 |--------------------------------------------------------------------------
