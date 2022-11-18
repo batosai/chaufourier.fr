@@ -9,7 +9,6 @@ export default Factory.define(User, ({ faker }) => {
     password: faker.internet.password(),
     disabled: false,
   }
-
 })
-.state('disabled', (user) => user.disabled = true)
-.build()
+  .state('disabled', (user) => (user.disabled = true))
+  .build()

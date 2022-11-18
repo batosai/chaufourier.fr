@@ -16,7 +16,7 @@ export default class DashboardController {
     users.queryString(payload)
 
     return view.render('admin/users/index', {
-      users
+      users,
     })
   }
 }

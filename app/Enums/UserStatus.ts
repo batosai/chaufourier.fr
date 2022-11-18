@@ -1,6 +1,6 @@
 enum UserStatus {
   ENABLED = 'enabled',
-  DISABLED = 'disabled'
+  DISABLED = 'disabled',
 }
 
-export default UserStatus;
+export default UserStatus

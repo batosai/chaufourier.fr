@@ -7,11 +7,11 @@ export default class UserSessionFilterService {
   public static async handle({ request, session }: HttpContextContract): Promise<any> {
     let { page = 1, reset, ...data } = request.qs()
 
-    if(!Object.keys(data).length && session.has('usersFilter')) {
+    if (!Object.keys(data).length && session.has('usersFilter')) {
       data = session.get('usersFilter')
     }
 
-    if(reset) {
+    if (reset) {
       if (reset === 'all') {
         data = {}
         session.forget('usersFilter')
@@ -33,7 +33,7 @@ export default class UserSessionFilterService {
         status: schema.string.optional(),
         order: schema.string.optional(),
       }),
-      data
+      data,
     })
 
     if (Object.keys(data).length) {

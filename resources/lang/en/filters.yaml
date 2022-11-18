@@ -1,13 +1,11 @@
 filter: Filter
 order: Order
 reset: Reset all
-results:
-  "{itemsCount, plural,
-    =0 {no&nbsp;result}
-    one {1&nbsp;result}
-    other {#&nbsp;results}
-  }"
-
+results: '{itemsCount, plural,
+  =0 {no&nbsp;result}
+  one {1&nbsp;result}
+  other {#&nbsp;results}
+  }'
 
 users:
   page: Page

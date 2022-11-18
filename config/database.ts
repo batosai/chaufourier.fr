@@ -37,7 +37,10 @@ const databaseConfig: DatabaseConfig = {
     sqlite: {
       client: 'sqlite',
       connection: {
-        filename: Env.get('NODE_ENV') === 'test' ? Application.tmpPath('db-test.sqlite3') : Application.tmpPath('db.sqlite3'),
+        filename:
+          Env.get('NODE_ENV') === 'test'
+            ? Application.tmpPath('db-test.sqlite3')
+            : Application.tmpPath('db.sqlite3'),
       },
       pool: {
         afterCreate: (conn, cb) => {

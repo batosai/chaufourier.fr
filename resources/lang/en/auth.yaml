@@ -6,7 +6,6 @@ E_INVALID_AUTH_PASSWORD: Invalid credentials
 E_INVALID_DISABLED: Your account is disabled
 E_UNAUTHORIZED_ACCESS: Unauthorized access
 
-
 session:
   forgotLink: Forgot your password?
   loginLink: Login ?

@@ -7,12 +7,12 @@ test.group('Forgot password validator', () => {
       .post(route('auth.password.store'))
       .fields({
         email: '',
-      }).redirects(0).withCsrfToken()
+      })
+      .redirects(0)
+      .withCsrfToken()
 
     response.assertFlashMessage('errors', {
-      email: [
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.required')
-      ]
+      email: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.required')],
     })
   })
 
@@ -21,12 +21,12 @@ test.group('Forgot password validator', () => {
       .post(route('auth.password.store'))
       .fields({
         email: 'no valid email',
-      }).redirects(0).withCsrfToken()
+      })
+      .redirects(0)
+      .withCsrfToken()
 
     response.assertFlashMessage('errors', {
-      email: [
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.email')
-      ]
+      email: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.email')],
     })
   })
 
@@ -35,10 +35,12 @@ test.group('Forgot password validator', () => {
       .post(route('auth.password.store'))
       .fields({
         email: 'jeremy@adonis.com',
-      }).redirects(0).withCsrfToken()
+      })
+      .redirects(0)
+      .withCsrfToken()
 
     response.assertFlashMessage('success', {
-      message: I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')
+      message: I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword'),
     })
   })
 })

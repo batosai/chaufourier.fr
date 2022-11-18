@@ -3,14 +3,17 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import UserFactory from 'Database/factories/UserFactory'
 import I18n from '@ioc:Adonis/Addons/I18n'
 
-test.group('Forgot password page', group => {
-
+test.group('Forgot password page', (group) => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Should display error message if validation with empty fields', async ({ assert, page, route }) => {
+  test('Should display error message if validation with empty fields', async ({
+    assert,
+    page,
+    route,
+  }) => {
     await page.goto(route('auth.password.create'))
 
     await page.locator('text=validate').click()
@@ -26,8 +29,10 @@ test.group('Forgot password page', group => {
     await page.getByLabel('Your email').fill(user.email)
     await page.locator('text=validate').click()
 
-    assert.exists(await page.getByText(
-      I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')
-    ))
+    assert.exists(
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')
+      )
+    )
   })
 })

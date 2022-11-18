@@ -17,7 +17,7 @@ validator.rule('oneLowerCaseAtLeast', (value, _, options) => {
       options.pointer,
       'oneLowerCaseAtLeast',
       'oneLowerCaseAtLeast validation failed',
-      options.arrayExpressionPointer,
+      options.arrayExpressionPointer
     )
   }
 })
@@ -30,7 +30,7 @@ validator.rule('oneUpperCaseAtLeast', (value, _, options) => {
       options.pointer,
       'oneUpperCaseAtLeast',
       'The string must contain at least 1 uppercase alphabetical character',
-      options.arrayExpressionPointer,
+      options.arrayExpressionPointer
     )
   }
 })
@@ -43,7 +43,7 @@ validator.rule('oneNumericAtLeast', (value, _, options) => {
       options.pointer,
       'oneNumericAtLeast',
       'The string must contain at least 1 numeric character',
-      options.arrayExpressionPointer,
+      options.arrayExpressionPointer
     )
   }
 })
@@ -56,7 +56,7 @@ validator.rule('oneSpecialCharacterAtLeast', (value, _, options) => {
       options.pointer,
       'oneSpecialCharacterAtLeast',
       'The string must contain at least one special character',
-      options.arrayExpressionPointer,
+      options.arrayExpressionPointer
     )
   }
 })

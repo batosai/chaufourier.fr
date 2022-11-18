@@ -15,7 +15,7 @@ export function emailUniqueRules(user) {
         : {
             table: 'users',
             column: 'email',
-          },
+          }
     ),
   ]
 }

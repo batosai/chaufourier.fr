@@ -20,9 +20,7 @@ export default class ForgotPasswordMailer extends BaseMailer {
     message
       .from(Env.get('EMAIL_FROM'), 'Adonis')
       .to(this.user.email, this.user.fullname)
-      .subject(
-        I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject'),
-      )
+      .subject(I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject'))
       .htmlView('emails/auth/forgot-password', {
         user: this.user,
         url,

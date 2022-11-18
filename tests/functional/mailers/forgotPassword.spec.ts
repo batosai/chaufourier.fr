@@ -4,7 +4,7 @@ import Mail from '@ioc:Adonis/Addons/Mail'
 import I18n from '@ioc:Adonis/Addons/I18n'
 import UserFactory from 'Database/factories/UserFactory'
 
-test.group('Forgot password mailer', group => {
+test.group('Forgot password mailer', (group) => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
     return () => Database.rollbackGlobalTransaction()
@@ -16,11 +16,15 @@ test.group('Forgot password mailer', group => {
       .post(route('auth.password.store'))
       .fields({
         email: 'jeremy@adonis.com',
-      }).redirects(0).withCsrfToken()
+      })
+      .redirects(0)
+      .withCsrfToken()
 
-      assert.isFalse(mailer.exists(mail => {
+    assert.isFalse(
+      mailer.exists((mail) => {
         return mail.subject === 'Welcome to AdonisJS'
-      }))
+      })
+    )
 
     Mail.restore()
   })
@@ -33,11 +37,15 @@ test.group('Forgot password mailer', group => {
       .post(route('auth.password.store'))
       .fields({
         email: user.email,
-      }).redirects(0).withCsrfToken()
+      })
+      .redirects(0)
+      .withCsrfToken()
 
-    assert.isTrue(mailer.exists({
-      subject: I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject')
-    }))
+    assert.isTrue(
+      mailer.exists({
+        subject: I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject'),
+      })
+    )
 
     Mail.restore()
   })
