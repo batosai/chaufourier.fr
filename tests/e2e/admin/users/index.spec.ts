@@ -26,7 +26,7 @@ test.group('Admin users', (group) => {
     await page.goto(route('admin.users.index'))
     // await page.pause()
 
-    assert.lengthOf(await page.$$('tbody tr'), 10)
+    assert.equal(await page.locator('tbody tr').count(), 10)
 
     await page.goto(
       route('admin.users.index', {
@@ -35,7 +35,7 @@ test.group('Admin users', (group) => {
         },
       })
     )
-    assert.lengthOf(await page.$$('tbody tr'), 3)
+    assert.equal(await page.locator('tbody tr').count(), 3)
   })
 
   test('should find specific user', async ({ assert, login, page, route }) => {
@@ -82,4 +82,3 @@ test.group('Admin users', (group) => {
 // TODO
 // test filter
 // test reset filter
-// replace page.$$ by page.locator
