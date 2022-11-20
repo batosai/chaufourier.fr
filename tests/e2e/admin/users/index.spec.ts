@@ -3,6 +3,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 import { sleep } from '../../../helpers'
+import UserStatus from 'App/Enums/UserStatus'
 
 test.group('Admin users', (group) => {
   group.each.setup(async () => {
@@ -50,11 +51,16 @@ test.group('Admin users', (group) => {
     await login(user.email, 'secret')
     await page.goto(route('admin.users.index'))
 
-    await page.getByPlaceholder('search').fill('virk@adonisjs.com')
+    await page.getByPlaceholder('search').fill(user.email)
     await page.keyboard.press('Enter')
     await sleep(500)
 
     assert.equal(await page.locator('tbody tr').count(), 1)
+
+    assert.equal(
+      await page.locator('tbody tr:first-child > td:nth-of-type(1)').innerText(),
+      user.email
+    )
   })
 
   test('should change order of list', async ({ assert, login, page, route }) => {
@@ -78,7 +84,76 @@ test.group('Admin users', (group) => {
       user2.email
     )
   })
+
+  test('should filter by admin user', async ({ assert, login, page, route }) => {
+    const user = await UserFactory.merge({
+      password: 'secret',
+      email: 'virk@adonisjs.com',
+      roleId: Roles.ADMIN,
+    }).create()
+
+    await UserFactory.createMany(12)
+
+    await login(user.email, 'secret')
+    await page.goto(route('admin.users.index'))
+
+    await page.getByRole('button', { name: 'Filter' }).click()
+    await sleep(500)
+
+    await page.locator('select[name="role"]').selectOption(`${Roles.ADMIN}`)
+    await page.keyboard.press('Enter')
+    await sleep(500)
+
+    assert.equal(await page.locator('tbody tr').count(), 1)
+  })
+
+  test('should filter by disabled status', async ({ assert, login, page, route }) => {
+    const user = await UserFactory.merge({
+      password: 'secret',
+      email: 'virk@adonisjs.com',
+      roleId: Roles.ADMIN,
+    }).create()
+
+    await UserFactory.apply('disabled').createMany(2)
+    await UserFactory.createMany(7)
+
+    await login(user.email, 'secret')
+    await page.goto(route('admin.users.index'))
+
+    assert.equal(await page.locator('tbody tr').count(), 10)
+
+    await page.getByRole('button', { name: 'Filter' }).click()
+    await sleep(500)
+
+    await page.locator('select[name="status"]').selectOption(`${UserStatus.DISABLED}`)
+    await page.keyboard.press('Enter')
+    await sleep(500)
+
+    assert.equal(await page.locator('tbody tr').count(), 2)
+  })
+
+  test('should clear filter', async ({ assert, login, page, route }) => {
+    const user = await UserFactory.merge({
+      password: 'secret',
+      email: 'virk@adonisjs.com',
+      roleId: Roles.ADMIN,
+    }).create()
+
+    await UserFactory.createMany(9)
+
+    await login(user.email, 'secret')
+    await page.goto(route('admin.users.index'))
+
+    assert.equal(await page.locator('tbody tr').count(), 10)
+
+    await page.getByPlaceholder('search').fill(user.email)
+    await page.keyboard.press('Enter')
+    await sleep(500)
+
+    assert.equal(await page.locator('tbody tr').count(), 1)
+
+    await page.getByRole('button', { name: 'Reset all' }).click()
+
+    assert.equal(await page.locator('tbody tr').count(), 10)
+  })
 })
-// TODO
-// test filter
-// test reset filter

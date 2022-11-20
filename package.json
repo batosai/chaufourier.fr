@@ -8,7 +8,7 @@
     "test:dev": "node ace test --watch",
     "test:functional:dev": "node ace test functional --watch",
     "test:e2e:dev": "node ace test e2e --watch",
-    "test:headless": "HEADLESS=0 node ace test e2e",
+    "test:headless": "HEADLESS=0 node ace test e2e --watch",
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
