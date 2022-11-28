@@ -17,5 +17,19 @@
       @include('admin/users/partials/form')
     </div>
 
+    <template x-teleport="#actions-form">
+      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
+        <div class="flex-1">
+          <div class="btn-group">
+            @!jrmc.button.link({ text: 'Delete', class: 'btn-error btn-outline btn-sm' })
+            @!jrmc.button.link({ text: 'Disabled', class: 'btn-warning btn-outline btn-sm' })
+            @!jrmc.button.link({ text: 'Send reset password instructions', class: 'btn-outline btn-sm' })
+          </div>
+        </div>
+        <div class="flex-none">
+          @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_user', class: 'btn-primary btn-outline btn-sm' })
+        </div>
+      </div>
+    </template>
   @end
 @end
