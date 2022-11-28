@@ -9,3 +9,5 @@ sidebar:
   system: System
 table:
   actions: Actions
+action:
+  create: Create

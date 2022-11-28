@@ -11,10 +11,10 @@ users:
   page: Page
   search: Search
   role: Role
-  status: Status
   enabled: Enabled
   disabled: Disabled
   order: Order
+  true: 'On'
   all: All
   firstname+asc: Ascending name
   firstname+desc: Descending name

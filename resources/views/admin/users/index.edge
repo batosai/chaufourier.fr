@@ -46,7 +46,7 @@
                 </div>
                 <div>
                   <div class="font-bold">{{ user.fullname }}</div>
-                  <div class="text-sm opacity-50">{{ user.role.name }}</div>
+                  <div class="text-sm opacity-50">{{ user.role }}</div>
                 </div>
               </div>
             </th>
@@ -77,6 +77,10 @@
       <div class="w-full text-center my-5 sm:hidden">
         @!jrmc.pagination.light({ object: users })
       </div>
+
+      @jrmc.button.link({ href: route('admin.users.create'),class: 'btn-circle fixed bottom-20 lg:bottom-10 right-10' })
+        @svg('fa-solid:plus')
+      @end
     </div>
 
   @end

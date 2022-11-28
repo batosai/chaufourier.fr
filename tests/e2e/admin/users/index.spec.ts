@@ -3,7 +3,6 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 import { sleep } from '../../../helpers'
-import UserStatus from 'App/Enums/UserStatus'
 
 test.group('Admin users', (group) => {
   group.each.setup(async () => {
@@ -17,7 +16,7 @@ test.group('Admin users', (group) => {
     const user = await UserFactory.merge({
       password: 'secret',
       email: 'virk@adonisjs.com',
-      roleId: Roles.ADMIN,
+      role: Roles.ADMIN,
     }).create()
 
     await UserFactory.createMany(12)
@@ -43,7 +42,7 @@ test.group('Admin users', (group) => {
     const user = await UserFactory.merge({
       password: 'secret',
       email: 'virk@adonisjs.com',
-      roleId: Roles.ADMIN,
+      role: Roles.ADMIN,
     }).create()
 
     await UserFactory.createMany(12)
@@ -67,7 +66,7 @@ test.group('Admin users', (group) => {
     const user = await UserFactory.merge({
       password: 'secret',
       email: 'virk@adonisjs.com',
-      roleId: Roles.ADMIN,
+      role: Roles.ADMIN,
     }).create()
 
     const user2 = await UserFactory.merge({ email: 'romain@adonisjs.com' }).create()
@@ -89,7 +88,7 @@ test.group('Admin users', (group) => {
     const user = await UserFactory.merge({
       password: 'secret',
       email: 'virk@adonisjs.com',
-      roleId: Roles.ADMIN,
+      role: Roles.ADMIN,
     }).create()
 
     await UserFactory.createMany(12)
@@ -111,7 +110,7 @@ test.group('Admin users', (group) => {
     const user = await UserFactory.merge({
       password: 'secret',
       email: 'virk@adonisjs.com',
-      roleId: Roles.ADMIN,
+      role: Roles.ADMIN,
     }).create()
 
     await UserFactory.apply('disabled').createMany(2)
@@ -125,7 +124,7 @@ test.group('Admin users', (group) => {
     await page.getByRole('button', { name: 'Filter' }).click()
     await sleep(500)
 
-    await page.locator('select[name="status"]').selectOption(`${UserStatus.DISABLED}`)
+    await page.getByLabel('Disabled').click()
     await page.keyboard.press('Enter')
     await sleep(500)
 
@@ -136,7 +135,7 @@ test.group('Admin users', (group) => {
     const user = await UserFactory.merge({
       password: 'secret',
       email: 'virk@adonisjs.com',
-      roleId: Roles.ADMIN,
+      role: Roles.ADMIN,
     }).create()
 
     await UserFactory.createMany(9)

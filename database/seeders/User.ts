@@ -6,14 +6,14 @@ export default class extends BaseSeeder {
   public async run() {
     await User.createMany([
       {
-        roleId: Roles.ADMIN,
+        role: Roles.ADMIN,
         lastname: 'adonis',
         firstname: 'virk',
         email: 'virk@adonisjs.com',
         password: 'secret',
       },
       {
-        roleId: Roles.USER,
+        role: Roles.USER,
         lastname: 'adonis',
         firstname: 'romain',
         email: 'romain@adonisjs.com',

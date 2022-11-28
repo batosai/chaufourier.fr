@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { validator, schema, rules } from '@ioc:Adonis/Core/Validator'
+import { validator, schema } from '@ioc:Adonis/Core/Validator'
+import Roles from 'App/Enums/Roles'
 
 export default class UserSessionFilterService {
   constructor() {}
@@ -24,13 +25,8 @@ export default class UserSessionFilterService {
     data = await validator.validate({
       schema: schema.create({
         search: schema.string.optional(),
-        role: schema.string.optional([
-          rules.exists({
-            table: 'roles',
-            column: 'id',
-          }),
-        ]),
-        status: schema.string.optional(),
+        role: schema.enum.optional(Object.values(Roles)),
+        disabled: schema.boolean.optional(),
         order: schema.string.optional(),
       }),
       data,

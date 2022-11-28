@@ -1,18 +1,16 @@
 import { DateTime } from 'luxon'
+import { v4 as uuid } from 'uuid'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import {
   column,
   computed,
   beforeSave,
-  belongsTo,
-  BelongsTo,
   BaseModel,
   scope,
 } from '@ioc:Adonis/Lucid/Orm'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
-import Role from './Role'
 import Roles from 'App/Enums/Roles'
 export default class User extends compose(BaseModel, Filterable) {
   public static $filter = () => UserFilter
@@ -23,7 +21,7 @@ export default class User extends compose(BaseModel, Filterable) {
   public id: number
 
   @column()
-  public roleId: number
+  public role: string
 
   @column()
   public firstname: string
@@ -44,7 +42,7 @@ export default class User extends compose(BaseModel, Filterable) {
   public disabled: boolean
 
   @column.dateTime({ autoCreate: false })
-  public disabledOn: DateTime
+  public disabledOn: DateTime | null
 
   @column.dateTime({ autoCreate: false })
   public lastLoginAt: DateTime
@@ -55,22 +53,22 @@ export default class User extends compose(BaseModel, Filterable) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @belongsTo(() => Role)
-  public role: BelongsTo<typeof Role>
-
   // scopes
 
   public static admin = scope((query: any) => {
-    query.whereHas('roles', (query) => {
-      query.where('name', Roles.ADMIN)
-    })
+    query.where('role', Roles.ADMIN)
   })
 
   // Hooks
 
   @computed()
   public get isAdmin() {
-    return this.roleId === Roles.ADMIN
+    return this.role === Roles.ADMIN
+  }
+
+  @computed()
+  public get isUser() {
+    return this.role === Roles.USER
   }
 
   @computed()
@@ -82,6 +80,21 @@ export default class User extends compose(BaseModel, Filterable) {
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
+    }
+    else {
+      user.password = await Hash.make(uuid())
+    }
+  }
+
+  @beforeSave()
+  public static async disabledDate(user: User) {
+    if (user.$dirty.disabled) {
+      if (user.disabled === true) {
+        user.disabledOn = DateTime.local()
+      }
+      else {
+        user.disabledOn = null
+      }
     }
   }
 }
