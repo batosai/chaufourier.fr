@@ -1,0 +1,21 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.users'), link: route('admin.users.index') },
+        { label: t('admin.action.create') }
+      ]
+    })
+
+    <div class="w-full my-4">
+      @include('admin/users/partials/form')
+    </div>
+
+  @end
+@end

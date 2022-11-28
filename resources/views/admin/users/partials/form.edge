@@ -1,0 +1,50 @@
+@jrmc.card({ class: 'bg-base-300' })
+  @jrmc.card.body()
+
+  {{ inspect(flashMessages.all()) }}
+
+    @jrmc.form({ id: 'create_user', action: route('admin.users.store'), error: false })
+      @jrmc.form.control({ name: 'lastname', required: true, hint: '2 characters minimum' })
+        @!jrmc.form.input()
+      @end
+
+      @jrmc.form.control({ name: 'firstname', required: true, hint: '2 characters minimum' })
+        @!jrmc.form.input()
+      @end
+
+      @jrmc.form.control({ name: 'email', required: true })
+        @!jrmc.form.input()
+      @end
+
+      @can('UserPolicy.role')
+        @jrmc.form.control({ name: 'role', required: true })
+          @!jrmc.form.select({ options: [
+              { text: t('models.role/name.user'), value: Roles.USER },
+              { text: t('models.role/name.admin'), value: Roles.ADMIN },
+            ],
+            class: 'input-bordered',
+          })
+        @end
+      @end
+
+      @jrmc.form.control({ name: 'password' })
+        @!jrmc.form.input({ type: 'password' })
+      @end
+
+      @jrmc.form.control({ name: 'password_confirmation' })
+        @!jrmc.form.input({ type: 'password' })
+      @end
+
+      @jrmc.form.control({ name: 'disabled', label: false })
+        @jrmc.form.label({ class: 'cursor-pointer', text: t('models.user/status.disabled') + ':' })
+          @!jrmc.form.toggle({ value: 'true' })
+        @end
+      @end
+
+      @jrmc.form.control({ label: false, class: 'place-items-center' })
+        @!jrmc.button.input({ text: t('form.forgotPassword.validate'), type: 'submit', class: 'btn-primary btn-wide' })
+      @end
+    @end
+
+  @end
+@end
