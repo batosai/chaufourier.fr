@@ -18,7 +18,7 @@ test.group('Forgot password page', (group) => {
 
     await page.locator('text=validate').click()
 
-    assert.exists(await page.getByText(/Email field is required/))
+    assert.equal(await page.getByText(/Email field is required/).count(), 1)
   })
 
   test('Should display success message', async ({ assert, page, route }) => {
@@ -29,10 +29,11 @@ test.group('Forgot password page', (group) => {
     await page.getByLabel('Your email').fill(user.email)
     await page.locator('text=validate').click()
 
-    assert.exists(
+    assert.equal(
       await page.getByText(
         I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')
-      )
+      ).count(),
+      1
     )
   })
 })
