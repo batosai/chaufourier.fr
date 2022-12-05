@@ -1,8 +1,6 @@
 @jrmc.card({ class: 'bg-base-300' })
   @jrmc.card.body()
 
-  {{ inspect(flashMessages.all()) }}
-
     @jrmc.form({ id: 'create_user', action: route('admin.users.store'), error: false })
       @jrmc.form.control({ name: 'lastname', required: true, hint: '2 characters minimum' })
         @!jrmc.form.input()
