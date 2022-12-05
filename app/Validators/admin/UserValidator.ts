@@ -5,20 +5,23 @@ import { passwordRules, PASSWORD_MIN_LENGTH } from '../Rules/Password'
 import { emailUniqueRules } from '../Rules/Email'
 import Roles from 'App/Enums/Roles'
 
+const MIN_LENGTH = 2
+const MAX_LENGTH = 50
+
 export default class UserValidator {
   constructor(protected ctx: HttpContextContract, protected user: User | void) {
     const fields = {
       lastname: schema.string([
         rules.escape(),
         rules.trim(),
-        rules.minLength(2),
-        rules.maxLength(50),
+        rules.minLength(MIN_LENGTH),
+        rules.maxLength(MAX_LENGTH),
       ]),
       firstname: schema.string([
         rules.escape(),
         rules.trim(),
-        rules.minLength(2),
-        rules.maxLength(50),
+        rules.minLength(MIN_LENGTH),
+        rules.maxLength(MAX_LENGTH),
       ]),
       email: schema.string({}, emailUniqueRules(user)),
       password: schema.string.optional(passwordRules()),
@@ -39,6 +42,30 @@ export default class UserValidator {
   public schema
   public messages = {
     ...this.ctx.i18n.validatorMessages('validator.shared'),
+    'firstname.minLength': this.ctx.i18n.formatMessage(
+      'validator.shared.firstname.minLength',
+      {
+        min_length: MIN_LENGTH,
+      },
+    ),
+    'firstname.maxLength': this.ctx.i18n.formatMessage(
+      'validator.shared.firstname.maxLength',
+      {
+        min_length: MAX_LENGTH,
+      },
+    ),
+    'lastname.minLength': this.ctx.i18n.formatMessage(
+      'validator.shared.lastname.minLength',
+      {
+        min_length: MIN_LENGTH,
+      },
+    ),
+    'lastname.maxLength': this.ctx.i18n.formatMessage(
+      'validator.shared.lastname.maxLength',
+      {
+        min_length: MAX_LENGTH,
+      },
+    ),
     'password.minLength': this.ctx.i18n.formatMessage(
       'validator.shared.password.minLength',
       {
