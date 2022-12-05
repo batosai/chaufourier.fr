@@ -12,7 +12,7 @@ test.group('Login page', (group) => {
   test('Should display login page', async ({ assert, page, route }) => {
     await page.goto(route('auth.session.create'))
 
-    assert.exists(await page.getByText(/Your email/))
+    assert.equal(await page.getByText(/Your email/).count(), 1)
   })
 
   test('Should display error message if validation with empty fields', async ({
@@ -23,7 +23,7 @@ test.group('Login page', (group) => {
     await page.goto(route('auth.session.create'))
     await page.locator('text=validate').click()
 
-    assert.exists(await page.getByText(/Invalid credentials/))
+    assert.equal(await page.getByText(/Invalid credentials/).count(), 1)
   })
 
   test('Should display admin after validation login form', async ({ assert, page, route }) => {
@@ -40,8 +40,9 @@ test.group('Login page', (group) => {
 
     // await page.screenshot({ path: 'screenshot.png', fullPage: true })
 
-    assert.exists(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.session'))
+    assert.equal(
+      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.session')).count(),
+      1
     )
   })
 
@@ -54,6 +55,6 @@ test.group('Login page', (group) => {
     await page.getByLabel('Your password').fill('secret')
     await page.locator('text=validate').click()
 
-    assert.exists(await page.getByText('Your account is disabled'))
+    assert.equal(await page.getByText('Your account is disabled').count(), 1)
   })
 })
