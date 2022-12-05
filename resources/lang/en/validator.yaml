@@ -6,8 +6,12 @@ shared:
     exists: Email not exist
   firstname:
     required: Firstname is required
+    minLength: Firstname must be at least { min_length } characters long
+    maxLength: Firstname must be at maximum { min_length } characters long
   lastname:
     required: Lastname is required
+    minLength: Lastname must be at least { min_length } characters long
+    maxLength: Lastname must be at maximum { min_length } characters long
   password:
     required: Password field is required
     minLength: Password must be at least { password_min_length } characters long
