@@ -81,7 +81,7 @@ export default class User extends compose(BaseModel, Filterable) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }
-    else {
+    else if (!user.password) {
       user.password = await Hash.make(uuid())
     }
   }
