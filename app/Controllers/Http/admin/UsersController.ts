@@ -26,7 +26,7 @@ export default class DashboardController {
     return view.render('admin/users/create')
   }
 
-  public async store({ request, response, bouncer }: HttpContextContract) {
+  public async store({ request, response, bouncer, session, i18n }: HttpContextContract) {
     await bouncer.with('UserPolicy').authorize('create')
     // const avatar = request.file('avatar')!
     // /**
@@ -45,7 +45,7 @@ export default class DashboardController {
     // }
     await user.save()
 
-    // await new SignupMailer(user).sendLater()
+    session.flash('success.message', i18n.formatMessage('form.success.user.create'))
 
     response.redirect().toRoute('admin.users.index')
   }
