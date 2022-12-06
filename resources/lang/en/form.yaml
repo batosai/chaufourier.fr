@@ -12,4 +12,6 @@ resetPassword:
 success:
   session: Connecté(e).
   forgotPassword: You will receive an email within a few minutes telling you how to reset your password.
-  resetPassword: Your password is change with success
+  resetPassword: Your password is change with success.
+  user:
+    create: Felicitations, the user is now created.
