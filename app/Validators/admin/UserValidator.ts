@@ -3,7 +3,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import { passwordRules, PASSWORD_MIN_LENGTH } from '../Rules/Password'
 import { emailUniqueRules } from '../Rules/Email'
-import Roles from 'App/Enums/Roles'
+// import Roles from 'App/Enums/Roles'
 
 const MIN_LENGTH = 2
 const MAX_LENGTH = 50
@@ -31,10 +31,10 @@ export default class UserValidator {
       // }),
     }
 
-    if (ctx.auth.user?.isAdmin && ctx.auth.user?.id !== user?.id) {
-      fields['role'] = schema.enum(Object.values(Roles))
-      fields['disabled'] = schema.boolean()
-    }
+    // if (ctx.auth.user?.isAdmin && ctx.auth.user?.id !== user?.id) {
+    //   fields['role'] = schema.enum(Object.values(Roles))
+    //   fields['disabled'] = schema.boolean()
+    // }
 
     this.schema = schema.create(fields)
   }
@@ -51,7 +51,7 @@ export default class UserValidator {
     'firstname.maxLength': this.ctx.i18n.formatMessage(
       'validator.shared.firstname.maxLength',
       {
-        min_length: MAX_LENGTH,
+        max_length: MAX_LENGTH,
       },
     ),
     'lastname.minLength': this.ctx.i18n.formatMessage(
@@ -63,7 +63,7 @@ export default class UserValidator {
     'lastname.maxLength': this.ctx.i18n.formatMessage(
       'validator.shared.lastname.maxLength',
       {
-        min_length: MAX_LENGTH,
+        max_length: MAX_LENGTH,
       },
     ),
     'password.minLength': this.ctx.i18n.formatMessage(
