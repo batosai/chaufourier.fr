@@ -15,3 +15,4 @@ success:
   resetPassword: Your password is change with success.
   user:
     create: Felicitations, the user is now created.
+    edit: Felicitations, the user is now modify.

@@ -49,4 +49,40 @@ export default class DashboardController {
 
     response.redirect().toRoute('admin.users.index')
   }
+
+  public async edit({ request, view, bouncer }: HttpContextContract) {
+    const user = await User.findOrFail(request.param('id'))
+    await bouncer.with('UserPolicy').authorize('update', user)
+
+    user.password = ''
+
+    return view.render('admin/users/edit', {
+      user,
+    })
+  }
+
+  public async update(ctx: HttpContextContract) {
+    const { request, response, auth, bouncer, session, i18n } = ctx
+    const user = await User.findOrFail(request.param('id'))
+
+    await bouncer.with('UserPolicy').authorize('update', user)
+    // const avatar = request.file('avatar')!
+
+    const payload = await request.validate(new UserValidator(ctx, user))
+
+    await user.merge(payload)
+
+    // if (avatar) {
+    //   user.avatar = Attachment.fromFile(avatar)
+    // }
+    await user.save()
+
+    session.flash('success.message', i18n.formatMessage('form.success.user.edit'))
+
+    if (auth.user?.isAdmin) {
+      response.redirect().toRoute('admin.users.index')
+    } else {
+      response.redirect().toRoute('admin.dashboard')
+    }
+  }
 }

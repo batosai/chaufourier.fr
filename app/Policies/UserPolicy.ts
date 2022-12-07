@@ -29,4 +29,8 @@ export default class UserPolicy extends BasePolicy {
   public async role(currentUser: User, user: User) {
     return currentUser.isAdmin && currentUser.id !== user?.id
   }
+
+  public async disabled(currentUser: User, user: User) {
+    return currentUser.isAdmin && currentUser.id !== user?.id
+  }
 }

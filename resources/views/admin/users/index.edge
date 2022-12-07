@@ -61,7 +61,7 @@
             <td>{{ t('app.date', { value: user.createdAt }) }}</td>
             <td>
               @!buttonSelect({ items: [
-                { label: 'Edit', href: '#' },
+                { label: 'Edit', href: route('admin.users.edit', user) },
                 { label: 'Disable', href: '#' },
                 { label: 'Delete', href: '#' },
               ]})

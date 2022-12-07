@@ -11,3 +11,4 @@ table:
   actions: Actions
 action:
   create: Create
+  edit: Edit
