@@ -3,6 +3,7 @@ import Route from '@ioc:Adonis/Core/Route'
 import User from 'App/Models/User'
 import UserSessionFilterService from 'App/Services/UsersSessionFilterService'
 import UserValidator from 'App/Validators/admin/UserValidator'
+import ForgotPasswordMailer from 'App/Mailers/ForgotPasswordMailer'
 
 export default class DashboardController {
   public async index(ctx: HttpContextContract) {
@@ -84,5 +85,40 @@ export default class DashboardController {
     } else {
       response.redirect().toRoute('admin.dashboard')
     }
+  }
+
+  public async destroy({ params, response, bouncer, session, i18n }: HttpContextContract) {
+    const { id } = params
+    const user = await User.findOrFail(id)
+    await bouncer.with('UserPolicy').authorize('delete', user)
+    await user.delete()
+
+    session.flash('success.message', i18n.formatMessage('form.success.user.delete'))
+    response.redirect().back()
+  }
+
+  public async toggleDisabled({ request, response, bouncer, session, i18n }: HttpContextContract) {
+    const user = await User.findOrFail(request.param('id'))
+    await bouncer.with('UserPolicy').authorize('disabled', user)
+
+    user.disabled = !user.disabled
+    await user.save()
+
+    if (user.disabled) {
+      session.flash('success.message', i18n.formatMessage('form.success.user.toggle.disabled'))
+    } else {
+      session.flash('success.message', i18n.formatMessage('form.success.user.toggle.enabled'))
+    }
+    response.redirect().back()
+  }
+
+  public async forgotPassword({ request, response, bouncer, session, i18n }: HttpContextContract) {
+    const user = await User.findOrFail(request.param('id'))
+    await bouncer.with('UserPolicy').authorize('forgot', user)
+
+    await new ForgotPasswordMailer(user).sendLater()
+
+    session.flash('success.message', i18n.formatMessage('form.success.user.forgot'))
+    response.redirect().back()
   }
 }

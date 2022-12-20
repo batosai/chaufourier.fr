@@ -22,15 +22,15 @@ export default class UserPolicy extends BasePolicy {
     return currentUser.isAdmin && currentUser.id !== user.id
   }
 
-  public async lock(currentUser: User, user: User) {
-    return currentUser.isAdmin && currentUser.id !== user.id
-  }
-
   public async role(currentUser: User, user: User) {
     return currentUser.isAdmin && currentUser.id !== user?.id
   }
 
   public async disabled(currentUser: User, user: User) {
     return currentUser.isAdmin && currentUser.id !== user?.id
+  }
+
+  public async forgot(currentUser: User, user: User) {
+    return currentUser.isAdmin && currentUser.id !== user.id
   }
 }

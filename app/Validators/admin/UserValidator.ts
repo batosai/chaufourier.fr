@@ -33,7 +33,6 @@ export default class UserValidator {
 
     if (ctx.auth.user?.isAdmin && ctx.auth.user?.id !== user?.id) {
       fields['role'] = schema.enum(Object.values(Roles))
-      fields['disabled'] = schema.boolean.optional()
     }
 
     this.schema = schema.create(fields)

@@ -28,11 +28,3 @@
 @jrmc.form.control({ name: 'password_confirmation' })
   @!jrmc.form.input({ type: 'password' })
 @end
-
-@can('UserPolicy.disabled', user)
-  @jrmc.form.control({ name: 'disabled', label: false })
-    @jrmc.form.label({ class: 'cursor-pointer', text: t('models.user/status.disabled') + ':' })
-      @!jrmc.form.toggle({ value: 'true' })
-    @end
-  @end
-@end

@@ -60,11 +60,25 @@
             </td>
             <td>{{ t('app.date', { value: user.createdAt }) }}</td>
             <td>
-              @!buttonSelect({ items: [
+              @buttonSelect({ items: [
                 { label: 'Edit', href: route('admin.users.edit', user) },
-                { label: 'Disable', href: '#' },
-                { label: 'Delete', href: '#' },
               ]})
+                @can('UserPolicy.delete', user)
+                  <li>
+                    @include('admin/users/partials/delete')
+                  </li>
+                @end
+                @can('UserPolicy.disabled', user)
+                  <li>
+                    @include('admin/users/partials/disabled')
+                  </li>
+                @end
+                @can('UserPolicy.forgot', user)
+                  <li>
+                    @include('admin/users/partials/forgot')
+                  </li>
+                @end
+              @end
             </td>
           </tr>
           @end~

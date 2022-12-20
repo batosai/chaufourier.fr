@@ -1,19 +1,27 @@
 <div x-data="{ open: false, width: 0, styles: { top: '0', left: '0' } }">
   <div class="btn-group" @keyup.escape.window="open = false" x-init="styles.top = $el.offsetTop+'px' ;styles.left = $el.offsetLeft+'px';">
     <a href="{{ items[0].href }}" class="btn normal-case">{{ items[0].label }}</a>
-    <button @click="open = ! open;styles.top = getBottomPosition($el)+'px' ;styles.left = (getRightPosition($el) - $el.closest('table').parentNode.scrollLeft - width)+'px';" class="btn">
-      @!svg('akar-icons:more-vertical-fill')
-    </button>
+
+    @if(items.length > 1 || await $slots.main())~
+      <button @click="open = ! open;styles.top = getBottomPosition($el)+'px' ;styles.left = (getRightPosition($el) - $el.closest('table').parentNode.scrollLeft - width)+'px';" class="btn">
+        @!svg('akar-icons:more-vertical-fill')
+      </button>
+    @end~
   </div>
-  @if(items.length)~
-  <template x-teleport="body">
-    <ul x-show="open" @click.outside="open = false" class="absolute menu p-2 shadow bg-base-200 rounded-box w-52" x-init="width = $el.offsetWidth" :style="styles">
-      @each((item, index) in items)~
-        @if(index > 0)~
-          <li><a href="{{ item.href }}">{{ item.label }}</a></li>
+
+  @if(items.length > 1 || await $slots.main())~
+    <template x-teleport="body">
+      <ul x-show="open" @click.outside="open = false" class="absolute menu p-2 shadow bg-base-200 rounded-box w-52" x-init="width = $el.offsetWidth" :style="styles">
+        @if(items.length > 1)~
+          @each((item, index) in items)~
+            @if(index > 0)~
+              <li><a href="{{ item.href }}">{{ item.label }}</a></li>
+            @end~
+          @end~
+        @else
+          {{{ await $slots.main() || '' }}}
         @end~
-      @end~
-    </ul>
-  </template>
+      </ul>
+    </template>
   @end~
 </div>

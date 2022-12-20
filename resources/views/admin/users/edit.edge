@@ -31,9 +31,15 @@
       <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
         <div class="flex-1">
           <div class="btn-group">
-            @!jrmc.button.link({ text: 'Delete', class: 'btn-error btn-outline btn-sm' })
-            @!jrmc.button.link({ text: 'Disabled', class: 'btn-warning btn-outline btn-sm' })
-            @!jrmc.button.link({ text: 'Send reset password instructions', class: 'btn-outline btn-sm' })
+            @can('UserPolicy.delete', user)
+              @include('admin/users/partials/delete')
+            @end
+            @can('UserPolicy.disabled', user)
+              @include('admin/users/partials/disabled')
+            @end
+            @can('UserPolicy.forgot', user)
+              @include('admin/users/partials/forgot')
+            @end
           </div>
         </div>
         <div class="flex-none">
