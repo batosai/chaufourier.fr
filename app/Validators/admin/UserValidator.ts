@@ -5,8 +5,8 @@ import { passwordRules, PASSWORD_MIN_LENGTH } from '../Rules/Password'
 import { emailUniqueRules } from '../Rules/Email'
 import Roles from 'App/Enums/Roles'
 
-const MIN_LENGTH = 2
-const MAX_LENGTH = 50
+export const MIN_LENGTH = 2
+export const MAX_LENGTH = 50
 
 export default class UserValidator {
   constructor(protected ctx: HttpContextContract, protected user: User | void) {

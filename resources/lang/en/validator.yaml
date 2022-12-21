@@ -23,3 +23,5 @@ shared:
     required: Password confirmation is required
     confirmed: Password and confirm password does not match.
     minLength: Password must be at least { password_min_length } characters long
+  role:
+    required: Role field is required
