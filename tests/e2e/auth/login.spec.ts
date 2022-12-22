@@ -58,7 +58,7 @@ test.group('Login page', (group) => {
     assert.equal(await page.getByText('Your account is disabled').count(), 1)
   })
 
-  test('Should create cookie after check remember me', async ({ assert, browser, page, route }) => {
+  test('Should create cookie after check remember me', async ({ assert, page, route }) => {
     const user = await UserFactory.merge({ password: 'secret' }).create()
 
     await page.goto(route('auth.session.create'))
