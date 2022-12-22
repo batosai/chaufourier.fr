@@ -36,7 +36,7 @@
         @end
         @slot('body')
           @each(user in users)~
-          <tr class="hover">
+          <tr class="hover" data-test="user-{{ user.id }}">
             <th>
               <div class="flex items-center space-x-3">
                 <div class="avatar">

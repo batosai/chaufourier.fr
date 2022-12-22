@@ -1,5 +1,6 @@
 import { test } from '@japa/runner'
 import Database from '@ioc:Adonis/Lucid/Database'
+import I18n from '@ioc:Adonis/Addons/I18n'
 import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 import { sleep } from '../../../helpers'
@@ -154,5 +155,50 @@ test.group('Admin users', (group) => {
     await page.getByRole('button', { name: 'Reset all' }).click()
 
     assert.equal(await page.locator('tbody tr').count(), 10)
+  })
+
+  test('should print success messages for actions line', async ({ assert, login, page, route }) => {
+    const user = await UserFactory.merge({
+      password: 'secret',
+      email: 'virk@adonisjs.com',
+      role: Roles.ADMIN,
+    }).create()
+
+    const customer = await UserFactory.createMany(9)
+
+    await login(user.email, 'secret')
+    await page.goto(route('admin.users.index'))
+
+    await page.locator('[data-test="user-'+ customer[0].id +'"]').getByRole('button').click()
+    await page.getByRole('button', { name: 'Delete' }).click()
+    await page.getByRole('button', { name: 'ok' }).click()
+    assert.equal(
+      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.delete')).count(),
+      1
+    )
+
+    await page.locator('[data-test="user-'+ customer[1].id +'"]').getByRole('button').click()
+    await page.getByRole('button', { name: 'Disabled' }).click()
+    await page.getByRole('button', { name: 'ok' }).click()
+    assert.equal(
+      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.disabled')).count(),
+      1
+    )
+
+    await page.locator('[data-test="user-'+ customer[1].id +'"]').getByRole('button').click()
+    await page.getByRole('button', { name: 'Enabled' }).click()
+    await page.getByRole('button', { name: 'ok' }).click()
+    assert.equal(
+      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.enabled')).count(),
+      1
+    )
+
+    await page.locator('[data-test="user-'+ customer[2].id +'"]').getByRole('button').click()
+    await page.getByRole('button', { name: 'Send reset password instructions' }).click()
+    await page.getByRole('button', { name: 'ok' }).click()
+    assert.equal(
+      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.forgot')).count(),
+      1
+    )
   })
 })
