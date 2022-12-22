@@ -10,8 +10,9 @@ test.group('Forgot password mailer', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('exist email address', async ({ assert, client, route }) => {
+  test('not exist email address', async ({ assert, client, route }) => {
     const mailer = Mail.fake()
+
     await client
       .post(route('auth.password.store'))
       .fields({
@@ -22,14 +23,14 @@ test.group('Forgot password mailer', (group) => {
 
     assert.isFalse(
       mailer.exists((mail) => {
-        return mail.subject === 'Welcome to AdonisJS'
+        return mail.subject === I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject')
       })
     )
 
     Mail.restore()
   })
 
-  test('not exist email address', async ({ assert, client, route }) => {
+  test('exist email address', async ({ assert, client, route }) => {
     const mailer = Mail.fake()
     const user = await UserFactory.create()
 
