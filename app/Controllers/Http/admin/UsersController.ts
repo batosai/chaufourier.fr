@@ -94,7 +94,7 @@ export default class DashboardController {
     await user.delete()
 
     session.flash('success.message', i18n.formatMessage('form.success.user.delete'))
-    response.redirect().back()
+    response.redirect().toRoute('admin.users.index')
   }
 
   public async toggleDisabled({ request, response, bouncer, session, i18n }: HttpContextContract) {
