@@ -34,7 +34,7 @@ test.group('Login page', (group) => {
     await page.getByLabel('Your email').fill(user.email)
     await page.getByLabel('Your password').fill('secret')
 
-    // await page.pause();
+    // await page.pause()
 
     await page.locator('text=validate').click()
 
@@ -56,5 +56,21 @@ test.group('Login page', (group) => {
     await page.locator('text=validate').click()
 
     assert.equal(await page.getByText('Your account is disabled').count(), 1)
+  })
+
+  test('Should create cookie after check remember me', async ({ assert, browser, page, route }) => {
+    const user = await UserFactory.merge({ password: 'secret' }).create()
+
+    await page.goto(route('auth.session.create'))
+
+    await page.getByLabel('Your email').fill(user.email)
+    await page.getByLabel('Your password').fill('secret')
+    await page.getByLabel('Remember me').click()
+    await page.locator('text=validate').click()
+
+    const cookies = await page.context().cookies()
+    const results = cookies.filter(c => c.name === 'remember_web')
+
+    assert.equal(results.length, 1)
   })
 })

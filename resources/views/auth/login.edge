@@ -31,7 +31,7 @@
 
       @jrmc.form.control({ name: 'remember_me', label: false })
         @jrmc.form.label({ class: 'cursor-pointer', text: t('form.forgotPassword.rememberMe') })
-          @!jrmc.form.toggle()
+          @!jrmc.form.toggle({ value: 'true' })
         @end
       @end
 
