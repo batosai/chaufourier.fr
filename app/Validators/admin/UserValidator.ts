@@ -25,10 +25,10 @@ export default class UserValidator {
       ]),
       email: schema.string({}, emailUniqueRules(user)),
       password: schema.string.optional(passwordRules()),
-      // avatar: schema.file.optional({
-      //   extnames: ['jpg', 'png', 'jpeg', 'heic'],
-      //   size: '10mb',
-      // }),
+      avatar: schema.file.optional({
+        extnames: ['jpg', 'png', 'jpeg', 'heic'],
+        size: '10mb',
+      }),
     }
 
     if (ctx.auth.user?.isAdmin && ctx.auth.user?.id !== user?.id) {

@@ -21,6 +21,19 @@
   @end
 @end
 
+@jrmc.form.control({ name: 'avatar' })
+  @!jrmc.form.file()
+@end
+
+@if(user && user.avatar)
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ user.avatar.url }}"
+    alt=""
+    loading="lazy"
+  />
+@end
+
 @jrmc.form.control({ name: 'password' })
   @!jrmc.form.input({ type: 'password' })
 @end

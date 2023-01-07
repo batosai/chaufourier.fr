@@ -12,6 +12,11 @@ import {
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
 import Roles from 'App/Enums/Roles'
+import {
+  attachment,
+  AttachmentContract
+} from '@ioc:Adonis/Addons/AttachmentLite'
+
 export default class User extends compose(BaseModel, Filterable) {
   public static $filter = () => UserFilter
 
@@ -37,6 +42,9 @@ export default class User extends compose(BaseModel, Filterable) {
 
   @column()
   public rememberMeToken?: string
+
+  @attachment({ folder: 'avatars', preComputeUrl: true })
+  public avatar: AttachmentContract
 
   @column()
   public disabled: boolean

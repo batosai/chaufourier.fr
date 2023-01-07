@@ -20,7 +20,9 @@
             qs: {
               _method: 'PUT'
             }
-          }), error: false, object: user })
+          }),
+          enctype: 'multipart/form-data',
+          error: false, object: user })
             @include('admin/users/partials/form')
           @end
         @end

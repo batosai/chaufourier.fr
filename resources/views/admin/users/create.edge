@@ -16,7 +16,7 @@
     <div class="w-full my-4">
       @jrmc.card({ class: 'bg-base-300' })
         @jrmc.card.body()
-          @jrmc.form({ id: 'create_user', action: route('admin.users.store'), error: false})
+          @jrmc.form({ id: 'create_user', action: route('admin.users.store'), enctype: 'multipart/form-data', error: false})
             @include('admin/users/partials/form')
           @end
         @end

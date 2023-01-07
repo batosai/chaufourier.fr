@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 import User from 'App/Models/User'
 import UserSessionFilterService from 'App/Services/UsersSessionFilterService'
 import UserValidator from 'App/Validators/admin/UserValidator'
@@ -29,7 +30,7 @@ export default class DashboardController {
 
   public async store({ request, response, bouncer, session, i18n }: HttpContextContract) {
     await bouncer.with('UserPolicy').authorize('create')
-    // const avatar = request.file('avatar')!
+    const avatar = request.file('avatar')!
     // /**
     //  * Validate new user account creation form
     //  */
@@ -41,9 +42,9 @@ export default class DashboardController {
     const user = new User()
     await user.fill(payload)
 
-    // if (avatar) {
-    //   user.avatar = Attachment.fromFile(avatar)
-    // }
+    if (avatar) {
+      user.avatar = Attachment.fromFile(avatar)
+    }
     await user.save()
 
     session.flash('success.message', i18n.formatMessage('form.success.user.create'))
@@ -67,15 +68,15 @@ export default class DashboardController {
     const user = await User.findOrFail(request.param('id'))
 
     await bouncer.with('UserPolicy').authorize('update', user)
-    // const avatar = request.file('avatar')!
+    const avatar = request.file('avatar')!
 
     const payload = await request.validate(new UserValidator(ctx, user))
 
     await user.merge(payload)
 
-    // if (avatar) {
-    //   user.avatar = Attachment.fromFile(avatar)
-    // }
+    if (avatar) {
+      user.avatar = Attachment.fromFile(avatar)
+    }
     await user.save()
 
     session.flash('success.message', i18n.formatMessage('form.success.user.edit'))

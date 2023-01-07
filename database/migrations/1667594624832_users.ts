@@ -13,6 +13,7 @@ export default class UsersSchema extends BaseSchema {
       table.string('email', 255).notNullable()
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
+      table.json('avatar')
 
       table.boolean('disabled').notNullable().defaultTo(false)
       table.timestamp('disabled_on', { useTz: true })
