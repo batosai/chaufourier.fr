@@ -7,6 +7,7 @@ import Roles from 'App/Enums/Roles'
 
 export const MIN_LENGTH = 2
 export const MAX_LENGTH = 50
+export const MAX_Size = '10mb'
 
 export default class UserValidator {
   constructor(protected ctx: HttpContextContract, protected user: User | void) {
@@ -27,7 +28,7 @@ export default class UserValidator {
       password: schema.string.optional(passwordRules()),
       avatar: schema.file.optional({
         extnames: ['jpg', 'png', 'jpeg', 'heic'],
-        size: '10mb',
+        size: MAX_Size,
       }),
     }
 
@@ -77,5 +78,12 @@ export default class UserValidator {
         password_min_length: PASSWORD_MIN_LENGTH,
       },
     ),
+    'avatar.file.size': this.ctx.i18n.formatMessage(
+      'validator.shared.avatar.maxSize',
+      {
+        max_size: MAX_Size,
+      }
+    ),
+    'avatar.file.extname': this.ctx.i18n.formatMessage('validator.shared.avatar.extname')
   }
 }

@@ -1,11 +1,13 @@
 import { test } from '@japa/runner'
 import Database from '@ioc:Adonis/Lucid/Database'
 import I18n from '@ioc:Adonis/Addons/I18n'
+import Drive from '@ioc:Adonis/Core/Drive'
+import { file } from '@ioc:Adonis/Core/Helpers'
 import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 import { faker } from '@faker-js/faker'
 import { PASSWORD_MIN_LENGTH } from 'App/Validators/Rules/Password'
-import { MIN_LENGTH, MAX_LENGTH } from 'App/Validators/admin/UserValidator'
+import { MIN_LENGTH, MAX_LENGTH, MAX_Size } from 'App/Validators/admin/UserValidator'
 import User from 'App/Models/User'
 
 
@@ -155,6 +157,66 @@ test.group('user validator', (group) => {
         I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.oneSpecialCharacterAtLeast'),
       ],
     })
+  })
+
+  test('Invalid size avatar', async ({ client, route }) => {
+    Drive.fake()
+
+    const user = await UserFactory.merge({
+      role: Roles.ADMIN,
+    }).create()
+
+    const fakeAvatar = await file.generatePng('20mb')
+
+    const response = await client
+      .put(route('admin.users.update', user))
+      .fields({
+        lastname: faker.name.lastName(),
+        firstname: faker.name.firstName(),
+        email: faker.internet.email(),
+      })
+      .file('avatar', fakeAvatar.contents, { filename: fakeAvatar.name })
+      .redirects(0)
+      .withCsrfToken()
+      .loginAs(user)
+
+    response.assertFlashMessage('errors', {
+      avatar: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.avatar.maxSize', { max_size: MAX_Size }),
+      ],
+    })
+
+    Drive.restore()
+  })
+
+  test('Invalid format avatar', async ({ client, route }) => {
+    Drive.fake()
+
+    const user = await UserFactory.merge({
+      role: Roles.ADMIN,
+    }).create()
+
+    const fakeAvatar = await file.generatePdf('1mb')
+
+    const response = await client
+      .put(route('admin.users.update', user))
+      .fields({
+        lastname: faker.name.lastName(),
+        firstname: faker.name.firstName(),
+        email: faker.internet.email(),
+      })
+      .file('avatar', fakeAvatar.contents, { filename: fakeAvatar.name })
+      .redirects(0)
+      .withCsrfToken()
+      .loginAs(user)
+
+    response.assertFlashMessage('errors', {
+      avatar: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.avatar.extname'),
+      ],
+    })
+
+    Drive.restore()
   })
 
   test('authorize disabled user', async ({ client, route }) => {

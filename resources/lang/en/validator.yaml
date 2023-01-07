@@ -25,3 +25,6 @@ shared:
     minLength: Password must be at least { password_min_length } characters long
   role:
     required: Role field is required
+  avatar:
+    maxSize: Avatar must be at { max_size } maximum
+    extname: Invalid format avatar
