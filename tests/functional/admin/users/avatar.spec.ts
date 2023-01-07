@@ -4,7 +4,6 @@ import Drive from '@ioc:Adonis/Core/Drive'
 import { file } from '@ioc:Adonis/Core/Helpers'
 import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
-import User from 'App/Models/User'
 
 
 test.group('user avatar', (group) => {
