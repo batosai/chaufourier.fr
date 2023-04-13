@@ -13,6 +13,8 @@ import Logger from '@ioc:Adonis/Core/Logger'
 import Application from '@ioc:Adonis/Core/Application'
 import I18n from '@ioc:Adonis/Addons/I18n'
 
+import Audit from "App/Models/Audit";
+
 Event.on('db:query', (query) => {
   if (Application.inProduction) {
     Logger.debug(query.sql)
@@ -22,3 +24,13 @@ Event.on('db:query', (query) => {
 })
 
 Event.on('i18n:missing:translation', I18n.prettyPrint)
+
+Event.on("audit:new", async ({ user_id, action, target, target_id, payload }) => {
+  await Audit.create({
+    user_id,
+    action,
+    target,
+    target_id: String(target_id),
+    payload
+  })
+})

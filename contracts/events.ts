@@ -5,6 +5,8 @@
  * file.
  */
 
+import { ModelObject } from "@ioc:Adonis/Lucid/Orm"
+
 declare module '@ioc:Adonis/Core/Event' {
   /*
   |--------------------------------------------------------------------------
@@ -25,5 +27,16 @@ declare module '@ioc:Adonis/Core/Event' {
   | an instance of the the UserModel only.
   |
   */
-  interface EventsList {}
+
+  interface NewAudit {
+    user_id: string | number
+    action: "CREATE" | "DELETE" | "UPDATE" | "SIGNED IN"
+    target?: "ARTICLE" | "USER"
+    target_id?: string | number
+    payload?: JSON | ModelObject
+  }
+
+  interface EventsList {
+    "audit:new": NewAudit
+  }
 }

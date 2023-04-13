@@ -1,4 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Event from '@ioc:Adonis/Core/Event'
 import { DateTime } from 'luxon'
 
 export default class SessionController {
@@ -29,6 +30,13 @@ export default class SessionController {
       session.clear()
       return response.redirect('/auth/login')
     }
+
+    Event.emit("audit:new", {
+      user_id: auth.user!.id,
+      action: "SIGNED IN",
+      target: "USER",
+      target_id: auth.user!.id,
+    })
 
     session.flash('success.message', i18n.formatMessage('form.success.session'))
 
