@@ -584,6 +584,18 @@
       ],
       "aliases": [],
       "flags": []
+    },
+    "attachment:regenerate": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@jrmc/attachment-advanced/build/commands/Attachment",
+      "commandName": "attachment:regenerate",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": []
     }
   },
   "aliases": {}

@@ -28,10 +28,50 @@
 @if(user && user.avatar)
   <img
     class="object-cover w-40 mt-2"
-    src="{{ user.avatar.url }}"
-    alt=""
+    src="{{ user.avatar.variants?.thumbnail?.url }}"
+    alt="variants?.thumbnail?.url"
     loading="lazy"
   />
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ user.avatar.variant('thumbnail')?.url }}"
+    alt="variant('thumbnail')?.url"
+    loading="lazy"
+  />
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ user.avatar.preview('thumbnail')?.url }}"
+    alt="preview('thumbnail')?.url"
+    loading="lazy"
+  />
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ await user.avatar.getUrl('thumbnail') }}"
+    alt="getUrl('thumbnail')"
+    loading="lazy"
+  />
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ await user.avatar.getSignedUrl({variant: 'thumbnail'}) }}"
+    alt="getSignedUrl('thumbnail')"
+    loading="lazy"
+  />
+
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ await user.avatar.getUrl() }}"
+    alt="getUrl()"
+    loading="lazy"
+  />
+
+  <img
+    class="object-cover w-40 mt-2"
+    src="{{ await user.avatar.getSignedUrl({ expiresIn: '30mins' }) }}"
+    alt="getSignedUrl()"
+    loading="lazy"
+  />
+
+  {{ inspect(user.avatar) }}
 @end
 
 @jrmc.form.control({ name: 'password' })

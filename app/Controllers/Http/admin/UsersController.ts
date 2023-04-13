@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
-import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
+import Event from '@ioc:Adonis/Core/Event'
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import User from 'App/Models/User'
 import UserSessionFilterService from 'App/Services/UsersSessionFilterService'
 import UserValidator from 'App/Validators/admin/UserValidator'
@@ -28,7 +29,7 @@ export default class DashboardController {
     return view.render('admin/users/create')
   }
 
-  public async store({ request, response, bouncer, session, i18n }: HttpContextContract) {
+  public async store({ request, response, bouncer, session, i18n, auth }: HttpContextContract) {
     await bouncer.with('UserPolicy').authorize('create')
     const avatar = request.file('avatar')!
     // /**
@@ -47,6 +48,14 @@ export default class DashboardController {
     }
     await user.save()
 
+    Event.emit("audit:new", {
+      user_id: auth.user!.id,
+      action: "CREATE",
+      target: "USER",
+      target_id: user.id,
+      payload: user.serialize()
+    })
+
     session.flash('success.message', i18n.formatMessage('form.success.user.create'))
 
     response.redirect().toRoute('admin.users.index')
@@ -57,6 +66,15 @@ export default class DashboardController {
     await bouncer.with('UserPolicy').authorize('update', user)
 
     user.password = ''
+
+    // user.avatar = Attachment.regenerate(user.avatar)
+    // user.avatar = Attachment.regenerate(user.avatar, 'medium')
+    // user.avatar = Attachment.regenerate(user.avatar, ['thumbnail', 'large'])
+    // await user.save()
+
+    // await User.attachmentRegenerate()
+    // await User.attachmentRegenerate('medium')
+    // await User.attachmentRegenerate(['thumbnail', 'large'])
 
     return view.render('admin/users/edit', {
       user,
@@ -77,7 +95,16 @@ export default class DashboardController {
     if (avatar) {
       user.avatar = Attachment.fromFile(avatar)
     }
+    const dirty = user.$dirty
     await user.save()
+
+    Event.emit("audit:new", {
+      user_id: auth.user!.id,
+      action: "UPDATE",
+      target: "USER",
+      target_id: user.id,
+      payload: dirty
+    })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.edit'))
 
@@ -88,11 +115,20 @@ export default class DashboardController {
     }
   }
 
-  public async destroy({ params, response, bouncer, session, i18n }: HttpContextContract) {
+  public async destroy({ params, response, bouncer, session, i18n, auth }: HttpContextContract) {
     const { id } = params
     const user = await User.findOrFail(id)
     await bouncer.with('UserPolicy').authorize('delete', user)
+    const payload = user.serialize()
     await user.delete()
+
+    Event.emit("audit:new", {
+      user_id: auth.user!.id,
+      action: "DELETE",
+      target: "USER",
+      target_id: id,
+      payload
+    })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.delete'))
     response.redirect().toRoute('admin.users.index')

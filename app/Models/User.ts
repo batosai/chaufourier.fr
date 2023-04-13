@@ -8,16 +8,16 @@ import {
   beforeSave,
   BaseModel,
   scope,
+  hasMany,
+  HasMany
 } from '@ioc:Adonis/Lucid/Orm'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
 import Roles from 'App/Enums/Roles'
-import {
-  attachment,
-  AttachmentContract
-} from '@ioc:Adonis/Addons/AttachmentLite'
+import { attachment, AttachmentContract, Attachmentable } from '@ioc:Adonis/Addons/AttachmentAdvanced'
+import Audit from './Audit'
 
-export default class User extends compose(BaseModel, Filterable) {
+export default class User extends compose(BaseModel, Attachmentable, Filterable) {
   public static $filter = () => UserFilter
 
   // Columns
@@ -43,6 +43,8 @@ export default class User extends compose(BaseModel, Filterable) {
   @column()
   public rememberMeToken?: string
 
+  // @attachment({ folder: 'avatars', preComputeUrl: true, variants: ['thumbnail', 'medium'] })
+  // @attachment({ folder: 'avatars', preComputeUrl: true, variants: false })
   @attachment({ folder: 'avatars', preComputeUrl: true })
   public avatar: AttachmentContract
 
@@ -60,6 +62,14 @@ export default class User extends compose(BaseModel, Filterable) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  // Relationships
+
+  @hasMany(() => Audit, {
+    foreignKey: "user_id",
+    localKey: "id",
+  })
+  public actions: HasMany<typeof Audit>
 
   // scopes
 

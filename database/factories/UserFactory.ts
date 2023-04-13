@@ -1,7 +1,7 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import Drive from '@ioc:Adonis/Core/Drive'
 import { file } from '@ioc:Adonis/Core/Helpers'
-import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import User from 'App/Models/User'
 
 export default Factory.define(User, async ({ faker }) => {
@@ -12,6 +12,7 @@ export default Factory.define(User, async ({ faker }) => {
     mimeType: 'image/png',
     size: 5 * 1000,
     name: `avatars/${fakeAvatar.name}`,
+    variants: {}
   })
 
   avatar.isPersisted = true
