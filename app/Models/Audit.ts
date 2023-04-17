@@ -1,12 +1,18 @@
 import { DateTime } from "luxon"
-import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm"
+import { v4 as uuid } from 'uuid'
+import { BaseModel, column, belongsTo, BelongsTo, beforeCreate, ModelObject } from "@ioc:Adonis/Lucid/Orm"
 import User from "./User"
 
 export default class Audit extends BaseModel {
+  public static selfAssignPrimaryKey = true
+
   // Columns
 
   @column({ isPrimary: true })
-  public id: number
+  public id: string
+
+  @column()
+  public label: string
 
   @column()
   public user_id: string | number
@@ -21,7 +27,7 @@ export default class Audit extends BaseModel {
   public target_id: string
 
   @column()
-  public payload: JSON
+  public payload: JSON | ModelObject
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -36,4 +42,11 @@ export default class Audit extends BaseModel {
     localKey: "id",
   })
   public user: BelongsTo<typeof User>
+
+  // Hooks
+
+  @beforeCreate()
+  public static assignUuid(user: User) {
+    user.id = uuid()
+  }
 }

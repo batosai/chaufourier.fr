@@ -5,10 +5,11 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("id").primary()
+      table.uuid('id').primary()
 
-      table.string("user_id")
-      table.string("action")
+      table.string("label").notNullable()
+      table.string("user_id").notNullable()
+      table.string("action").notNullable()
       table.string("target")
       table.string("target_id")
       table.jsonb("payload")

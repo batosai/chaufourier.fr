@@ -49,6 +49,7 @@ export default class DashboardController {
     await user.save()
 
     Event.emit("audit:new", {
+      label: 'Create new user',
       user_id: auth.user!.id,
       action: "CREATE",
       target: "USER",
@@ -99,6 +100,7 @@ export default class DashboardController {
     await user.save()
 
     Event.emit("audit:new", {
+      label: 'Update user',
       user_id: auth.user!.id,
       action: "UPDATE",
       target: "USER",
@@ -123,6 +125,7 @@ export default class DashboardController {
     await user.delete()
 
     Event.emit("audit:new", {
+      label: 'Delete user',
       user_id: auth.user!.id,
       action: "DELETE",
       target: "USER",

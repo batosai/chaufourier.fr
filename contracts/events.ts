@@ -29,6 +29,7 @@ declare module '@ioc:Adonis/Core/Event' {
   */
 
   interface NewAudit {
+    label: string
     user_id: string | number
     action: "CREATE" | "DELETE" | "UPDATE" | "SIGNED IN"
     target?: "ARTICLE" | "USER"
