@@ -6,6 +6,7 @@ import {
   column,
   computed,
   beforeSave,
+  beforeCreate,
   BaseModel,
   scope,
   hasMany,
@@ -18,12 +19,13 @@ import { attachment, AttachmentContract, Attachmentable } from '@ioc:Adonis/Addo
 import Audit from './Audit'
 
 export default class User extends compose(BaseModel, Attachmentable, Filterable) {
+  public static selfAssignPrimaryKey = true
   public static $filter = () => UserFilter
 
   // Columns
 
   @column({ isPrimary: true })
-  public id: number
+  public id: string
 
   @column()
   public role: string
@@ -77,7 +79,7 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
     query.where('role', Roles.ADMIN)
   })
 
-  // Hooks
+  // Computed
 
   @computed()
   public get isAdmin() {
@@ -92,6 +94,13 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
   @computed()
   public get fullname() {
     return `${this.firstname} ${this.lastname}`
+  }
+
+  // Hooks
+
+  @beforeCreate()
+  public static assignUuid(user: User) {
+    user.id = uuid()
   }
 
   @beforeSave()

@@ -6,7 +6,7 @@ export default class UsersSchema extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary()
+      table.uuid('id').primary()
       table.enu('role', Object.values(Roles)).notNullable().defaultTo(Roles.USER)
       table.string('lastname', 255).notNullable()
       table.string('firstname', 255).notNullable()
