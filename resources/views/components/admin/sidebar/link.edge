@@ -1,4 +1,4 @@
-<a {{ $props.serializeExcept(['text', 'icon']) }}>
+<a {{ $props.serializeExcept(['text', 'icon']) }} up-target="layout-nav, .layout-content">
   @if(icon)~
   @!svg(icon)
   @end~

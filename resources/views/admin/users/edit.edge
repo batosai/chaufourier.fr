@@ -22,7 +22,9 @@
             }
           }),
           enctype: 'multipart/form-data',
-          error: false, object: user })
+          error: false,
+          object: user,
+          'up-submit': '', 'up-fail-target': 'layout-content' })
             @include('admin/users/partials/form')
           @end
         @end

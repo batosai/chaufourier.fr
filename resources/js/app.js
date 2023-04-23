@@ -1,5 +1,12 @@
+import 'unpoly'
+
+import 'unpoly/unpoly.css'
 import '../css/app.css'
+
 import Alpine from 'alpinejs'
+
+up.fragment.config.mainTargets.push('.layout-content')
+up.link.config.followSelectors.push('a[href]')
 
 Alpine.start()
 

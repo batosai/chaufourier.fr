@@ -23,54 +23,55 @@
   @end
 @end
 
-
-<ul class="menu menu-compact text-base-content rounded-box p-4">
-  <li></li>
-  <li class="menu-title">
-  <span>{{ t('admin.sidebar.content') }}</span>
-  </li>
-  <li>
-    @!admin.sidebar.link({
-      class: request.matchesRoute(['admin.dashboard']) ? 'active' : null,
-      text: t('admin.sidebar.dashboard'),
-      icon: 'akar-icons:dashboard',
-      href: route('admin.dashboard')
-    })
-  </li>
-  <li>
-    @!admin.sidebar.link({
-      class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
-      text: t('admin.sidebar.users'),
-      icon: 'fa-solid:user',
-      href: route('admin.users.index')
-    })
-  </li>
-  <li></li>
-  <li class="menu-title">
-    <span>{{ t('admin.sidebar.settings') }}</span>
-  </li>
-  <li>
-    <a>
-      @!svg('akar-icons:health')
-      {{ t('admin.sidebar.health') }}
-    </a>
-  </li>
-  <li>
-    <a>
-      @!svg('fa-solid:cog')
-      {{ t('admin.sidebar.journal') }}
-    </a>
-  </li>
-  <li>
-    <a>
-      @!svg('fa-solid:cog')
-      {{ t('admin.sidebar.preference') }}
-    </a>
-  </li>
-  <li>
-    <a>
-      @!svg('fa-solid:cogs')
-      {{ t('admin.sidebar.system') }}
-    </a>
-  </li>
-</ul>
+<nav layout-nav>
+  <ul class="menu menu-compact text-base-content rounded-box p-4">
+    <li></li>
+    <li class="menu-title">
+    <span>{{ t('admin.sidebar.content') }}</span>
+    </li>
+    <li>
+      @!admin.sidebar.link({
+        class: request.matchesRoute(['admin.dashboard']) ? 'active' : null,
+        text: t('admin.sidebar.dashboard'),
+        icon: 'akar-icons:dashboard',
+        href: route('admin.dashboard')
+      })
+    </li>
+    <li>
+      @!admin.sidebar.link({
+        class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
+        text: t('admin.sidebar.users'),
+        icon: 'fa-solid:user',
+        href: route('admin.users.index')
+      })
+    </li>
+    <li></li>
+    <li class="menu-title">
+      <span>{{ t('admin.sidebar.settings') }}</span>
+    </li>
+    <li>
+      <a>
+        @!svg('akar-icons:health')
+        {{ t('admin.sidebar.health') }}
+      </a>
+    </li>
+    <li>
+      <a>
+        @!svg('fa-solid:cog')
+        {{ t('admin.sidebar.journal') }}
+      </a>
+    </li>
+    <li>
+      <a>
+        @!svg('fa-solid:cog')
+        {{ t('admin.sidebar.preference') }}
+      </a>
+    </li>
+    <li>
+      <a>
+        @!svg('fa-solid:cogs')
+        {{ t('admin.sidebar.system') }}
+      </a>
+    </li>
+  </ul>
+</nav>

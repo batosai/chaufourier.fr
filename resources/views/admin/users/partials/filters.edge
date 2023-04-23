@@ -28,12 +28,12 @@
   </div>
 @end
 
-@jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('usersFilter') })
+@jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('usersFilter'), 'up-submit': '' })
   <div class="navbar bg-base-100 p-0">
     <div class="flex-1">
       @jrmc.modal({ button: { text: t('filters.filter'), type: 'button' }, mobile: true })
         <h3 class="font-bold text-lg">{{ t('filters.filter') }}</h3>
-        @jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('usersFilter') })
+        @jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('usersFilter'), 'up-submit': '' })
 
           @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
 
@@ -48,7 +48,7 @@
                 { text: t('models.role/name.user'), value: Roles.USER },
               ],
               class: 'input-bordered',
-              '@change': '$el.closest("form").submit()'
+              '@change': 'up.submit($el.closest("form"))'
             })
           @end
           @jrmc.form.control({ name: 'order', label: false, class: 'hidden' })
@@ -59,7 +59,7 @@
             @jrmc.form.label({ class: 'cursor-pointer', text: t('models.user/status.disabled') + ':' })
               @!jrmc.form.toggle({
                 value: 'true',
-                '@change': '$el.closest("form").submit()'
+                '@change': 'up.submit($el.closest("form"))'
               })
             @end
           @end
@@ -78,7 +78,7 @@
             { text: t('filters.users.createdAt+desc'), value: 'createdAt+desc' },
           ],
           class: 'sm:mr-4 bg-neutral',
-          '@change': '$el.closest("form").submit()'
+          'up-autosubmit': ''
         })
       @end
       @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
