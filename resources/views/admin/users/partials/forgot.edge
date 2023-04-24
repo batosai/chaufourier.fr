@@ -9,7 +9,7 @@
     @end
   @end
 
-  @jrmc.form({ id: `forgot_password_user_${user.id}`, action: route('admin.users.forgot.password', user), error: false, object: user, 'up-submit': '' })
+  @jrmc.form({ id: `forgot_password_user_${user.id}`, action: route('admin.users.forgot.password', user), error: false, object: user })
     <h3 class="font-bold text-lg">Are you sure ?</h3>
   @end
 

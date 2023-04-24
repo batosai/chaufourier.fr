@@ -16,20 +16,31 @@
     <div class="w-full my-4">
       @jrmc.card({ class: 'bg-base-300' })
         @jrmc.card.body()
-          @jrmc.form({ id: 'create_user', action: route('admin.users.store'), enctype: 'multipart/form-data', error: false, 'up-submit': '', 'up-fail-target': 'layout-content'})
+          @jrmc.form({ id: 'create_user', action: route('admin.users.store'), enctype: 'multipart/form-data', error: false })
             @include('admin/users/partials/form')
           @end
         @end
       @end
     </div>
 
-    <template x-teleport="#actions-form">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1"></div>
-        <div class="flex-none">
-          @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_user', class: 'btn-primary btn-outline btn-sm' })
+    @if(up.getMode() === 'drawer')
+      <div class="sticky w-full bottom-0 left-0">
+        <div class="navbar bg-base-300 rounded-t-lg min-h-min">
+          <div class="flex-1"></div>
+          <div class="flex-none">
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_user', class: 'btn-primary btn-outline btn-sm' })
+          </div>
         </div>
       </div>
-    </template>
+    @else
+      <template x-teleport="#actions-form">
+        <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
+          <div class="flex-1"></div>
+          <div class="flex-none">
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_user', class: 'btn-primary btn-outline btn-sm' })
+          </div>
+        </div>
+      </template>
+    @end
   @end
 @end
