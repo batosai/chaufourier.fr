@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* override unpoly */
+
+
+up-modal-box, up-drawer-box, up-cover-box, up-popup {
+  @apply bg-base-100;
+}
+
+up-modal-box, up-drawer-box, up-cover-box, up-popup {
+  overflow-x: initial;
+}
+
+up-drawer-box {
+  padding: 0;
+}
+
+up-drawer-dismiss {
+  display: none;
+}
