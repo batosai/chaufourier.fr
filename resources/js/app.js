@@ -7,9 +7,9 @@ import Alpine from 'alpinejs'
 
 up.log.enable()
 
-up.fragment.config.mainTargets.push('.layout-content')
 up.link.config.followSelectors.push('a[href]')
 up.form.config.submitSelectors.push(['form'])
+up.feedback.config.currentClasses.push(['active'])
 
 up.layer.config.drawer.size = 'large'
 up.layer.config.drawer.position = 'right'
