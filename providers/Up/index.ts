@@ -231,4 +231,8 @@ export default class Up {
   public fullReload() {
     return this.setProperty('X-Full-Reload', 'true')
   }
+
+  public isDrawer() {
+    return this.getMode() === 'drawer'
+  }
 }

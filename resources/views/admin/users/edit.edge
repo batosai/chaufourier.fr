@@ -13,7 +13,7 @@
       ]
     })
 
-    <div class="w-full my-4">
+    <div class="w-full px-4 my-4">
       @jrmc.card({ class: 'bg-base-300' })
         @jrmc.card.body()
           @jrmc.form({ id: 'edit_user', action: route('admin.users.update', user, {
@@ -30,7 +30,7 @@
       @end
     </div>
 
-    <template x-teleport="#actions-form">
+    <template x-teleport="[data-actions='form']">
       <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
         <div class="flex-1">
           <div class="btn-group">
