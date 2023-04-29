@@ -42,7 +42,8 @@
         class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
         text: t('admin.sidebar.users'),
         icon: 'fa-solid:user',
-        href: route('admin.users.index')
+        href: route('admin.users.index'),
+        'up-alias': route('admin.users.index') + '*'
       })
     </li>
     <li></li>
