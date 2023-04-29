@@ -4,7 +4,7 @@
     @each(item in $props.items)
       <li>
         @if(item.link)~
-        <a href="{{ item.link }}">
+        <a href="{{ item.link }}" up-layer="root">
         @end~
         {{ item.label }}
         @if(item.link)~

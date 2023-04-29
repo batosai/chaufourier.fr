@@ -33,10 +33,6 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       ctx.up.setTarget(ctx.up.getFailTarget())
     }
 
-    if (!error.status || this.expandedStatusPages[error.status]) {
-      ctx.up.fullReload()
-    }
-
     return super.handle(error, ctx)
   }
 }

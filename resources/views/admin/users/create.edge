@@ -27,7 +27,7 @@
       <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
         <div class="flex-1">
           @if(up.isDrawer())
-            @!jrmc.button.input({ text: 'Cancel', type: 'button', 'x-on:click': 'up.layer.current.dismiss()', class: 'btn-outline btn-sm' })
+            @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
           @else
             @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.users.index'), class: 'btn-outline btn-sm' })
           @end

@@ -20,3 +20,10 @@ up-drawer-box {
 up-drawer-dismiss {
   display: none;
 }
+
+
+/* override edge components */
+
+.modal {
+  z-index: 2000;
+}

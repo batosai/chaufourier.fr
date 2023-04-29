@@ -1,12 +1,12 @@
 @jrmc.drawer({ class: 'drawer-mobile' })
   @jrmc.drawer.content()
-    <section up-main>
+    <main>
       <div class="flex flex-col min-h-screen {{ up.isDrawer() ? 'pb-4' : 'pb-16' }}">
         {{{ await $slots.main() }}}
       </div>
 
       <div data-actions="form{{ up.isDrawer() ? '-drawer' : '' }}" class="{{ up.isDrawer() ? 'sticky' : 'fixed' }} z-30 w-full bottom-0 lg:left-0"></div>
-    </section>
+    </main>
     @!admin.bottomNavigation({ class: 'lg:hidden'})
   @end
 

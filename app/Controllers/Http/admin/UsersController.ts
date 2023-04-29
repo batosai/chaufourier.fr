@@ -29,7 +29,7 @@ export default class DashboardController {
     return view.render('admin/users/create')
   }
 
-  public async store({ request, response, bouncer, session, i18n, auth }: HttpContextContract) {
+  public async store({ request, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
     await bouncer.with('UserPolicy').authorize('create')
     const avatar = request.file('avatar')!
     // /**
@@ -59,6 +59,10 @@ export default class DashboardController {
 
     session.flash('success.message', i18n.formatMessage('form.success.user.create'))
 
+
+    // const events = [ { type: "user:created" } ]
+    // up.setEvents(JSON.stringify(events))
+    up.setDismissLayer('{}')
     response.redirect().toRoute('admin.users.index')
   }
 
@@ -83,7 +87,7 @@ export default class DashboardController {
   }
 
   public async update(ctx: HttpContextContract) {
-    const { request, response, auth, bouncer, session, i18n } = ctx
+    const { request, response, auth, bouncer, session, i18n, up } = ctx
     const user = await User.findOrFail(request.param('id'))
 
     await bouncer.with('UserPolicy').authorize('update', user)
@@ -111,13 +115,14 @@ export default class DashboardController {
     session.flash('success.message', i18n.formatMessage('form.success.user.edit'))
 
     if (auth.user?.isAdmin) {
+      up.setDismissLayer('{}')
       response.redirect().toRoute('admin.users.index')
     } else {
       response.redirect().toRoute('admin.dashboard')
     }
   }
 
-  public async destroy({ params, response, bouncer, session, i18n, auth }: HttpContextContract) {
+  public async destroy({ params, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
     const { id } = params
     const user = await User.findOrFail(id)
     await bouncer.with('UserPolicy').authorize('delete', user)
@@ -134,10 +139,15 @@ export default class DashboardController {
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.delete'))
-    response.redirect().toRoute('admin.users.index')
+
+    if (up.getMode() === 'drawer') {
+      up.setDismissLayer('{}')
+    } else {
+      response.redirect().toRoute('admin.users.index')
+    }
   }
 
-  public async toggleDisabled({ request, response, bouncer, session, i18n }: HttpContextContract) {
+  public async toggleDisabled({ request, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
     const user = await User.findOrFail(request.param('id'))
     await bouncer.with('UserPolicy').authorize('disabled', user)
 
@@ -145,20 +155,52 @@ export default class DashboardController {
     await user.save()
 
     if (user.disabled) {
+      Event.emit("audit:new", {
+        label: 'Disabled user',
+        user_id: auth.user!.id,
+        action: "UPDATE",
+        target: "USER",
+        target_id: user.id,
+      })
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.disabled'))
     } else {
+      Event.emit("audit:new", {
+        label: 'Enabled user',
+        user_id: auth.user!.id,
+        action: "UPDATE",
+        target: "USER",
+        target_id: user.id,
+      })
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.enabled'))
     }
-    response.redirect().back()
+
+    if (up.getMode() === 'drawer') {
+      up.setDismissLayer('{}')
+    } else {
+      response.redirect().back()
+    }
   }
 
-  public async forgotPassword({ request, response, bouncer, session, i18n }: HttpContextContract) {
+  public async forgotPassword({ request, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
     const user = await User.findOrFail(request.param('id'))
     await bouncer.with('UserPolicy').authorize('forgot', user)
 
     await new ForgotPasswordMailer(user).sendLater()
 
+    Event.emit("audit:new", {
+      label: 'Forgot password user',
+      user_id: auth.user!.id,
+      action: "UPDATE",
+      target: "USER",
+      target_id: user.id,
+    })
+
     session.flash('success.message', i18n.formatMessage('form.success.user.forgot'))
-    response.redirect().back()
+
+    if (up.getMode() === 'drawer') {
+      up.setDismissLayer('{}')
+    } else {
+      response.redirect().back()
+    }
   }
 }
