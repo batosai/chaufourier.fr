@@ -59,11 +59,13 @@ export default class DashboardController {
 
     session.flash('success.message', i18n.formatMessage('form.success.user.create'))
 
-
     // const events = [ { type: "user:created" } ]
     // up.setEvents(JSON.stringify(events))
-    up.setDismissLayer('{}')
-    response.redirect().toRoute('admin.users.index')
+    if (up.getMode() === 'drawer') {
+      up.setDismissLayer('{}')
+    } else {
+      response.redirect().toRoute('admin.users.index')
+    }
   }
 
   public async edit({ request, view, bouncer }: HttpContextContract) {
@@ -114,11 +116,14 @@ export default class DashboardController {
 
     session.flash('success.message', i18n.formatMessage('form.success.user.edit'))
 
-    if (auth.user?.isAdmin) {
+    if (up.getMode() === 'drawer') {
       up.setDismissLayer('{}')
-      response.redirect().toRoute('admin.users.index')
     } else {
-      response.redirect().toRoute('admin.dashboard')
+      if (auth.user?.isAdmin) {
+        response.redirect().toRoute('admin.users.index')
+      } else {
+        response.redirect().toRoute('admin.dashboard')
+      }
     }
   }
 
