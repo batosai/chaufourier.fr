@@ -3,14 +3,18 @@
     <ul class="flex flew-row items-center space-x-3 m-2 w-full">
       <li class="avatar online">
         <div class="mask mask-squircle w-12 h-12">
-          <a href="#">
-            <img src="https://daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-          </a>
+          @if (auth.user.avatar)
+            <img src="{{ auth.user.avatar.variants?.thumbnail?.url }}" alt="" />
+          @end
         </div>
       </li>
       <li class="basis-1/2">
-        <div class="font-bold"><a href="#">Jérémy</a></div>
-        <div class="text-sm opacity-50"><a href="#">Chaufourier</a></div>
+        <div class="font-bold">
+          <a href="{{ route('admin.users.edit', auth.user) }}">{{ auth.user.firstname }}</a>
+        </div>
+        <div class="text-sm opacity-50">
+          <a href="{{ route('admin.users.edit', auth.user) }}">{{ auth.user.lastname }}</a>
+        </div>
       </li>
       <li >
         @jrmc.form({ action: route('auth.session.destroy'), error: false })
