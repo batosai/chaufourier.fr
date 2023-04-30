@@ -8,8 +8,9 @@ export default class extends BaseSchema {
       table.uuid('id').primary()
 
       table.string("label").notNullable()
-      table.string("user_id").notNullable()
       table.string("action").notNullable()
+      table.string("username").notNullable()
+      table.string("user_id").notNullable()
       table.string("target")
       table.string("target_id")
       table.jsonb("payload")

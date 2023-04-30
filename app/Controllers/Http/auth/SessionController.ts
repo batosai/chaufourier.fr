@@ -33,10 +33,11 @@ export default class SessionController {
 
     Event.emit("audit:new", {
       label: 'Login user',
-      user_id: auth.user!.id,
+      username: auth.user!.fullname,
+      userId: auth.user!.id,
       action: "SIGNED IN",
       target: "USER",
-      target_id: auth.user!.id,
+      targetId: auth.user!.id,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.session'))

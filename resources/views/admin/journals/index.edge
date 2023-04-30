@@ -1,0 +1,70 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.journals') }
+      ]
+    })
+
+    <div class="w-full px-4 my-4">
+
+      @jrmc.table({ full: true })
+        @slot('header')
+          <tr>
+            <th>{{ t('models.journal.label') }}</th>
+            <th>{{ t('models.journal.action') }}</th>
+            <th>{{ t('models.journal.createdAt') }}</th>
+            <th>{{ t('admin.table.actions') }}</th>
+          </tr>
+        @end
+        @slot('footer')
+          <tr>
+            <th>{{ t('models.journal.label') }}</th>
+            <th>{{ t('models.journal.action') }}</th>
+            <th>{{ t('models.journal.createdAt') }}</th>
+            <th>{{ t('admin.table.actions') }}</th>
+          </tr>
+        @end
+        @slot('body')
+          @each(audit in audits)~
+          <tr class="hover">
+            <td>{{ audit.label }}</td>
+            <td>
+              @if(audit.action === 'CREATE')
+                @!jrmc.badge({ text: audit.action, class: 'badge-success' })
+              @elseif(audit.action === 'UPDATE')
+                @!jrmc.badge({ text: audit.action, class: 'badge-success' })
+              @elseif(audit.action === 'DELETE')
+                @!jrmc.badge({ text: audit.action, class: 'badge-error' })
+              @elseif(audit.action === 'SIGNED IN')
+                @!jrmc.badge({ text: audit.action, class: 'badge-warning' })
+              @end
+            </td>
+            <td>{{ t('app.date', { value: audit.createdAt }) }}</td>
+            <td>
+              @jrmc.button.link({ href: route('admin.journals.show', audit), class: 'btn normal-case', 'up-layer':'new', 'up-mode':'drawer' })
+                SHOW
+              @end
+            </td>
+          </tr>
+          @end~
+        @end
+      @end
+
+      <div class="w-full text-center my-5 hidden sm:block">
+        @!jrmc.pagination({ object: audits })
+      </div>
+      <div class="w-full text-center my-5 sm:hidden">
+        @!jrmc.pagination.light({ object: audits })
+      </div>
+
+    </div>
+
+  @end
+@end

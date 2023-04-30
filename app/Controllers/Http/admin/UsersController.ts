@@ -50,10 +50,11 @@ export default class DashboardController {
 
     Event.emit("audit:new", {
       label: 'Create new user',
-      user_id: auth.user!.id,
+      username: auth.user!.fullname,
+      userId: auth.user!.id,
       action: "CREATE",
       target: "USER",
-      target_id: user.id,
+      targetId: user.id,
       payload: user.serialize()
     })
 
@@ -107,10 +108,11 @@ export default class DashboardController {
 
     Event.emit("audit:new", {
       label: 'Update user',
-      user_id: auth.user!.id,
+      username: auth.user!.fullname,
+      userId: auth.user!.id,
       action: "UPDATE",
       target: "USER",
-      target_id: user.id,
+      targetId: user.id,
       payload: dirty
     })
 
@@ -136,10 +138,11 @@ export default class DashboardController {
 
     Event.emit("audit:new", {
       label: 'Delete user',
-      user_id: auth.user!.id,
+      username: auth.user!.fullname,
+      userId: auth.user!.id,
       action: "DELETE",
       target: "USER",
-      target_id: id,
+      targetId: id,
       payload
     })
 
@@ -162,19 +165,21 @@ export default class DashboardController {
     if (user.disabled) {
       Event.emit("audit:new", {
         label: 'Disabled user',
-        user_id: auth.user!.id,
+        username: auth.user!.fullname,
+        userId: auth.user!.id,
         action: "UPDATE",
         target: "USER",
-        target_id: user.id,
+        targetId: user.id,
       })
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.disabled'))
     } else {
       Event.emit("audit:new", {
         label: 'Enabled user',
-        user_id: auth.user!.id,
+        username: auth.user!.fullname,
+        userId: auth.user!.id,
         action: "UPDATE",
         target: "USER",
-        target_id: user.id,
+        targetId: user.id,
       })
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.enabled'))
     }
@@ -194,10 +199,11 @@ export default class DashboardController {
 
     Event.emit("audit:new", {
       label: 'Forgot password user',
-      user_id: auth.user!.id,
+      username: auth.user!.fullname,
+      userId: auth.user!.id,
       action: "UPDATE",
       target: "USER",
-      target_id: user.id,
+      targetId: user.id,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.forgot'))

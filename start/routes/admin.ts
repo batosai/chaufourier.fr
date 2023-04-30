@@ -6,6 +6,8 @@ Route.group(() => {
   Route.resource('users', 'admin/UsersController').except(['show'])
   Route.patch('users/:id/toggle-disabled', 'admin/UsersController.toggleDisabled').as('users.toggle.disabled')
   Route.post('users/:id/forgot-password', 'admin/UsersController.forgotPassword').as('users.forgot.password')
+
+  Route.resource('journals', 'admin/JournalsController').only(['index', 'show'])
 })
   .prefix('admin')
   .as('admin')

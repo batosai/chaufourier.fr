@@ -15,7 +15,10 @@ export default class Audit extends BaseModel {
   public label: string
 
   @column()
-  public user_id: string | number
+  public username: string | number
+
+  @column()
+  public userId: string | number
 
   @column()
   public action: string
@@ -24,7 +27,7 @@ export default class Audit extends BaseModel {
   public target: string
 
   @column()
-  public target_id: string
+  public targetId: string
 
   @column()
   public payload: JSON | ModelObject

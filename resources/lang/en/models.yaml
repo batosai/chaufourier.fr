@@ -3,6 +3,10 @@ user:
   email: Email
   status: Status
   createdAt: Date
+journal:
+  label: Name
+  action: Event
+  createdAt: Date
 user/status:
   enabled: Enabled
   disabled: Disabled

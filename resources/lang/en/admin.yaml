@@ -4,7 +4,7 @@ sidebar:
   users: Users
   settings: Settings
   health: Health
-  journal: Journal
+  journals: Journals
   preference: Preference
   system: System
 table:
@@ -12,3 +12,4 @@ table:
 action:
   create: Create
   edit: Edit
+  show: Show

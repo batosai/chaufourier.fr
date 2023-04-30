@@ -30,10 +30,11 @@ declare module '@ioc:Adonis/Core/Event' {
 
   interface NewAudit {
     label: string
-    user_id: string | number
+    username: string
+    userId: string | number
     action: "CREATE" | "DELETE" | "UPDATE" | "SIGNED IN"
     target?: "ARTICLE" | "USER"
-    target_id?: string | number
+    targetId?: string | number
     payload?: JSON | ModelObject
   }
 

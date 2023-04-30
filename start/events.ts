@@ -25,13 +25,14 @@ Event.on('db:query', (query) => {
 
 Event.on('i18n:missing:translation', I18n.prettyPrint)
 
-Event.on("audit:new", async ({ label, user_id, action, target, target_id, payload }) => {
+Event.on("audit:new", async ({ label, username, userId, action, target, targetId, payload }) => {
   await Audit.create({
     label,
-    user_id: user_id!,
+    username,
+    userId: userId!,
     action,
     target,
-    target_id: String(target_id),
+    targetId: String(targetId),
     payload
   })
 })

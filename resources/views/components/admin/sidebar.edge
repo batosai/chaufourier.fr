@@ -61,10 +61,13 @@
       </a>
     </li>
     <li>
-      <a>
-        @!svg('fa-solid:cog')
-        {{ t('admin.sidebar.journal') }}
-      </a>
+      @!admin.sidebar.link({
+        class: request.matchesRoute(['admin.journals.index', 'admin.journals.create', 'admin.journals.edit']) ? 'active' : null,
+        text: t('admin.sidebar.journals'),
+        icon: 'fa-solid:cog',
+        href: route('admin.journals.index'),
+        'up-alias': route('admin.journals.index') + '*'
+      })
     </li>
     <li>
       <a>
