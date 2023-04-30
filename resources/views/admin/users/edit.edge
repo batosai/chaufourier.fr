@@ -42,8 +42,12 @@
 
       @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
         @jrmc.card.body()
-          @!jrmc.card.title({ text: 'Disabled' })
-          <p>Deactivating the account blocks access to the application.</p>
+          @!jrmc.card.title({ text: user.disabled ? 'Enabled' : 'Disabled' })
+          @if (user.disabled)
+            <p>Activating the account unblocks access to the application.</p>
+          @else
+            <p>Deactivating the account blocks access to the application.</p>
+          @end
           @jrmc.card.actions()
             @!jrmc.button.link({ text: 'Ok', href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
           @end
