@@ -9,6 +9,7 @@ import Alpine from 'alpinejs'
 
 up.log.enable()
 
+up.fragment.config.mainTargets.push('.toasts')
 up.link.config.followSelectors.push('a[href]')
 up.form.config.submitSelectors.push(['form'])
 up.feedback.config.currentClasses.push(['active'])
@@ -17,6 +18,10 @@ up.feedback.config.navSelectors.push(['nav'])
 up.layer.config.drawer.size = 'large'
 up.layer.config.drawer.position = 'right'
 
+// after drawer closed, refresh toast for flashmessage
+up.on('up:layer:dismissed', function(event) {
+  up.reload(".toasts")
+})
 
 // Alpine
 

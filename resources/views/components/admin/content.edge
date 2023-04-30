@@ -1,6 +1,9 @@
 @jrmc.drawer({ class: 'drawer-mobile' })
   @jrmc.drawer.content()
     <main>
+      <section class="toasts">
+        @include('partials/global-notification')
+      </section>
       <div class="flex flex-col min-h-screen {{ up.isDrawer() ? 'pb-4' : 'pb-16' }}">
         {{{ await $slots.main() }}}
       </div>
