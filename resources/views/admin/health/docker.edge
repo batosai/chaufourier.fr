@@ -1,0 +1,29 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.health')},
+      ]
+    })
+
+    @jrmc.tabs({ class: 'tabs-boxed m-4' })
+      @!jrmc.tabs.tab({ text: 'Application', href: route('admin.health.index'), active: false })
+      @!jrmc.tabs.tab({ text: 'System', href: route('admin.health.system'), active: false })
+      @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: true })
+    @end
+
+    <div class="w-full px-4 mb-auto grid grid-cols-3 gap-4">
+      @jrmc.card({ class: 'bg-base-300 col-span-3' })
+        @jrmc.card.body()
+          {{ inspect(dockerAll) }}
+        @end
+      @end
+    </div>
+  @end
+@end

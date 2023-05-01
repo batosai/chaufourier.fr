@@ -1,0 +1,73 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.health')},
+      ]
+    })
+
+    @jrmc.tabs({ class: 'tabs-boxed m-4' })
+      @!jrmc.tabs.tab({ text: 'Application', href: route('admin.health.index'), active: true })
+      @!jrmc.tabs.tab({ text: 'System', href: route('admin.health.system'), active: false })
+      @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: false })
+    @end
+
+    <div class="w-full px-4 mb-auto grid grid-cols-3 gap-4">
+
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <tbody>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">OpenSSL</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.openssl }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">NodeJS</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.node }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">NPM</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.npm }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Git</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.git }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Docker</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.docker }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Python</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.python3 }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">PIP</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.pip3 }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">JAVA</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.java }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">GCC</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.gcc }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Bash</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.bash }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">MYSQL</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.mysql }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">PostGresql</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.postgresql }}</td>
+            </tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Redis</td>
+              <td class="bg-base-200 border-gray-700">{{ versions.redis }}</td>
+            </tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  @end
+@end

@@ -55,14 +55,17 @@
       <span>{{ t('admin.sidebar.settings') }}</span>
     </li>
     <li>
-      <a>
-        @!svg('akar-icons:health')
-        {{ t('admin.sidebar.health') }}
-      </a>
+      @!admin.sidebar.link({
+        class: request.matchesRoute(['admin.health.index', 'admin.health.system', 'admin.health.docker']) ? 'active' : null,
+        text: t('admin.sidebar.health'),
+        icon: 'akar-icons:health',
+        href: route('admin.health.index'),
+        'up-alias': route('admin.health.index') + '*'
+      })
     </li>
     <li>
       @!admin.sidebar.link({
-        class: request.matchesRoute(['admin.journals.index', 'admin.journals.create', 'admin.journals.edit']) ? 'active' : null,
+        class: request.matchesRoute(['admin.journals.index', 'admin.journals.show']) ? 'active' : null,
         text: t('admin.sidebar.journals'),
         icon: 'fa-solid:cog',
         href: route('admin.journals.index'),

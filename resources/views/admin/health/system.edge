@@ -1,0 +1,334 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.health')},
+      ]
+    })
+
+    @jrmc.tabs({ class: 'tabs-boxed m-4' })
+      @!jrmc.tabs.tab({ text: 'Application', href: route('admin.health.index'), active: false })
+      @!jrmc.tabs.tab({ text: 'System', href: route('admin.health.system'), active: true })
+      @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: false })
+    @end
+
+    <div class="w-full px-4 mb-auto grid grid-cols-3 gap-4">
+
+      <div class="w-full mb-auto col-span-3 grid grid-cols-3 gap-4">
+        <div>
+          @if (currentLoad.currentLoad < 35)
+            CPU
+            @!jrmc.progress({ class: 'progress-success', value: currentLoad.currentLoad })
+          @elseif (currentLoad.currentLoad < 70)
+            CPU
+            @!jrmc.progress({ class: 'progress-warning', value: currentLoad.currentLoad })
+          @else
+            CPU
+            @!jrmc.progress({ class: 'progress-error', value: currentLoad.currentLoad })
+          @end
+        </div>
+
+        <div>
+          @if (mem.used < (mem.total * 0.35))
+            Memory
+            @!jrmc.progress({ class: 'progress-success', value: mem.used, max: mem.total })
+          @elseif (mem.used < (mem.total * 0.7))
+            Memory
+            @!jrmc.progress({ class: 'progress-warning', value: mem.used, max: mem.total })
+          @else
+            Memory
+            @!jrmc.progress({ class: 'progress-error', value: mem.used, max: mem.total })
+          @end
+        </div>
+
+        <div>
+          @if (mem.used < (disks.total * 0.35))
+            Disks
+            @!jrmc.progress({ class: 'progress-success', value: disks.used, max: disks.total })
+          @elseif (mem.used < (disks.total * 0.7))
+            Disks
+            @!jrmc.progress({ class: 'progress-warning', value: disks.used, max: disks.total })
+          @else
+            Disks
+            @!jrmc.progress({ class: 'progress-error', value: disks.used, max: disks.total })
+          @end
+        </div>
+      </div>
+
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Platform</td>
+              <td class="bg-base-200 border-gray-700">{{ osInfo.platform }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Distribution</td>
+              <td class="bg-base-200 border-gray-700">{{ osInfo.distro }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Code name</td>
+              <td class="bg-base-200 border-gray-700">{{ osInfo.codename }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Release</td>
+              <td class="bg-base-200 border-gray-700">{{ osInfo.release }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Architecture</td>
+              <td class="bg-base-200 border-gray-700">{{ osInfo.arch }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">System Virtual</td>
+              <td class="bg-base-200 border-gray-700">{{ system.virtual }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-span-3 xl:col-span-1">
+        <div class="overflow-x-auto">
+          <table class="table w-full">
+            <tbody>
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Current time</td>
+                <td class="bg-base-200 border-gray-700">{{ t('app.date', { value: time.current }) }}</td>
+              </tr>
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Uptime</td>
+                <td class="bg-base-200 border-gray-700">{{ prettyMs(time.uptime*1000) }}</td>
+              </tr>
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Timezone</td>
+                <td class="bg-base-200 border-gray-700">{{ time.timezone }}</td>
+              </tr>
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Timezone name</td>
+                <td class="bg-base-200 border-gray-700">{{ time.timezoneName }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="overflow-x-auto mt-4">
+          <table class="table w-full">
+            <tbody>
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Latency</td>
+                <td class="bg-base-200 border-gray-700">{{ inetLatency }} ms</td>
+              </tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Average Load</td>
+              <td class="bg-base-200 border-gray-700">{{ currentLoad.avgLoad }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">current Load</td>
+              <td class="bg-base-200 border-gray-700">{{ currentLoad.currentLoad.toFixed(2) }} %</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">current Load User</td>
+              <td class="bg-base-200 border-gray-700">{{ currentLoad.currentLoadUser.toFixed(2) }} %</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">current Load System</td>
+              <td class="bg-base-200 border-gray-700">{{ currentLoad.currentLoadSystem.toFixed(2) }} %</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">current Load Nice</td>
+              <td class="bg-base-200 border-gray-700">{{ currentLoad.currentLoadNice.toFixed(2) }} %</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">All cores</td>
+              <td class="bg-base-200 border-gray-700">
+                @jrmc.modal({ button: { text: 'View', class: 'btn-info btn-sm' } })
+                  <div class="w-full px-4 mb-auto">
+                    @each((cpu, index) in currentLoad.cpus)
+                      @if (cpu.load < 35)
+                        CPU {{ index + 1 }}
+                        @!jrmc.progress({ class: 'progress-success', value: cpu.load })
+                      @elseif (cpu.load < 70)
+                        CPU {{ index + 1 }}
+                        @!jrmc.progress({ class: 'progress-warning', value: cpu.load })
+                      @else
+                        CPU {{ index + 1 }}
+                        @!jrmc.progress({ class: 'progress-error', value: cpu.load })
+                      @end
+                    @end
+                  </div>
+                @end
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Manufacturer</td>
+              <td class="bg-base-200 border-gray-700">{{ cpu.manufacturer }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Brand</td>
+              <td class="bg-base-200 border-gray-700">{{ cpu.brand }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">speed</td>
+              <td class="bg-base-200 border-gray-700">{{ cpu.speed }} Ghz</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Cores</td>
+              <td class="bg-base-200 border-gray-700">{{ cpu.physicalCores }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Threads</td>
+              <td class="bg-base-200 border-gray-700">{{ cpu.cores }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Virtualization</td>
+              <td class="bg-base-200 border-gray-700">{{ cpu.virtualization }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700">CPU Temperature</td>
+              <td class="bg-base-200 border-gray-700">{{ cpuTemperature.main }} °C</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Ram</td>
+              <td class="bg-base-200 border-gray-700">{{ prettyBytes(mem.total) }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Used</td>
+              <td class="bg-base-200 border-gray-700">{{ prettyBytes(mem.used) }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Free</td>
+              <td class="bg-base-200 border-gray-700">{{ prettyBytes(mem.free) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            @each(controller in graphics.controllers)
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Vendor</td>
+                <td class="bg-base-200 border-gray-700">{{ controller.vendor }}</td>
+              </tr>
+              <tr>
+                <td class="bg-base-300 border-gray-700" role="columnheader">Model</td>
+                <td class="bg-base-200 border-gray-700">{{ controller.model }}</td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th class="bg-base-300">Process</th>
+              <th class="bg-base-300">PID</th>
+              <th class="bg-base-300">CPU</th>
+              <th class="bg-base-300">MEM</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(process in processLoad)
+              <tr>
+                <td class="bg-base-200 border-gray-700">{{ process.proc }}</td>
+                <td class="bg-base-200 border-gray-700">{{ process.pid }}</td>
+                <td class="bg-base-200 border-gray-700">{{ process.cpu }} %</td>
+                <td class="bg-base-200 border-gray-700">{{ process.mem.toFixed(2) }} %</td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th class="bg-base-300">Device</th>
+              <th class="bg-base-300">Vendor</th>
+              <th class="bg-base-300">Type</th>
+              <th class="bg-base-300">Interface Type</th>
+              <th class="bg-base-300">Serial Number</th>
+              <th class="bg-base-300">Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(disk in diskLayout)
+              <tr>
+                <td class="bg-base-200 border-gray-700">{{ disk.device }}</td>
+                <td class="bg-base-200 border-gray-700">{{ disk.vendor }}</td>
+                <td class="bg-base-200 border-gray-700">{{ disk.type }}</td>
+                <td class="bg-base-200 border-gray-700">{{ disk.interfaceType }}</td>
+                <td class="bg-base-200 border-gray-700">{{ disk.serialNum }}</td>
+                <td class="bg-base-200 border-gray-700">{{ prettyBytes(disk.size) }}</td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th class="bg-base-300">FS</th>
+              <th class="bg-base-300">Mount</th>
+              <th class="bg-base-300">Type</th>
+              <th class="bg-base-300">Size</th>
+              <th class="bg-base-300">Used</th>
+              <th class="bg-base-300">Available</th>
+              <th class="bg-base-300">RW</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(fs in fsSize)
+              @if (fs.size)
+                <tr>
+                  <td class="bg-base-200 border-gray-700">{{ fs.fs }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ fs.mount }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ fs.type }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ prettyBytes(fs.size) }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ prettyBytes(fs.used) }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ prettyBytes(fs.available) }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ fs.rw }}</td>
+                </tr>
+              @end
+            @end
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  @end
+@end
