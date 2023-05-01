@@ -1,0 +1,33 @@
+@jrmc.modal({ button: { text: 'Read more', class: 'btn-info btn-sm' }, class: 'w-11/12 max-w-5xl' })
+  <div class="w-full px-4 mb-auto">
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th class="bg-base-300 !relative">Id</th>
+              <th class="bg-base-300">Container</th>
+              <th class="bg-base-300">OS</th>
+              <th class="bg-base-300">Architecture</th>
+              <th class="bg-base-300">Size</th>
+              <th class="bg-base-300">Docker Version</th>
+              <th class="bg-base-300">Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(image in dockerImages)
+              <tr>
+                <td class="bg-base-200 border-gray-700">{{ image.id }}</td>
+                <td class="bg-base-200 border-gray-700">{{ image.container }}</td>
+                <td class="bg-base-200 border-gray-700">{{ image.os }}</td>
+                <td class="bg-base-200 border-gray-700">{{ image.architecture }}</td>
+                <td class="bg-base-200 border-gray-700">{{ prettyBytes(image.size) }}</td>
+                <td class="bg-base-200 border-gray-700">{{ image.dockerVersion }}</td>
+                <td class="bg-base-200 border-gray-700">{{ inspect(image.repoTags) }}</td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+@end

@@ -59,9 +59,13 @@ export default class HealthController {
   public async docker({ view, bouncer }: HttpContextContract) {
     await bouncer.with('HealthPolicy').authorize('view')
 
+    const dockerInfo = await si.dockerInfo()
+    const dockerImages = await si.dockerImages()
     const dockerAll = await si.dockerAll()
 
     return view.render('admin/health/docker', {
+      dockerInfo,
+      dockerImages,
       dockerAll,
     })
   }

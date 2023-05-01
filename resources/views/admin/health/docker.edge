@@ -18,12 +18,83 @@
       @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: true })
     @end
 
-    <div class="w-full px-4 mb-auto grid grid-cols-3 gap-4">
-      @jrmc.card({ class: 'bg-base-300 col-span-3' })
-        @jrmc.card.body()
-          {{ inspect(dockerAll) }}
-        @end
-      @end
+    <div class="w-full px-4 mb-auto grid gap-4">
+
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <tbody>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Docker ID</td>
+              <td class="bg-base-200 border-gray-700">{{ dockerInfo.id }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">Containers</td>
+              <td class="bg-base-200 border-gray-700">{{ dockerInfo.containers }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">containersRunning</td>
+              <td class="bg-base-200 border-gray-700">{{ dockerInfo.containersRunning }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">containersPaused</td>
+              <td class="bg-base-200 border-gray-700">{{ dockerInfo.containersPaused }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">containersStopped</td>
+              <td class="bg-base-200 border-gray-700">{{ dockerInfo.containersStopped }}</td>
+            </tr>
+            <tr>
+              <td class="bg-base-300 border-gray-700" role="columnheader">images</td>
+              <td class="bg-base-200 border-gray-700">
+                {{ dockerInfo.images }}
+                @include('admin/health/partials/dockerImages')
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              {{--  <th class="bg-base-300"></th>  --}}
+              <th class="bg-base-300 !relative">Name</th>
+              <th class="bg-base-300">Image</th>
+              <th class="bg-base-300">State</th>
+              <th class="bg-base-300">Restart Count</th>
+              <th class="bg-base-300">Started</th>
+              <th class="bg-base-300">Created</th>
+              <th class="bg-base-300"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(docker in dockerAll)
+              <tr>
+                {{--  <td class="bg-base-200 border-gray-700"></td>  --}}
+                <td class="bg-base-200 border-gray-700">{{ docker.name }}</td>
+                <td class="bg-base-200 border-gray-700">{{ docker.image }}</td>
+                <td class="bg-base-200 border-gray-700">
+                  @if(docker.state === 'running')
+                    @!jrmc.badge({ text: docker.state, class: 'badge-success' })
+                  @elseif(docker.state === 'created')
+                    @!jrmc.badge({ text: docker.state, class: 'badge-info' })
+                  @elseif(docker.state === 'exited')
+                    @!jrmc.badge({ text: docker.state, class: 'badge-error' })
+                  @end
+                </td>
+                <td class="bg-base-200 border-gray-700">{{ docker.restartCount }}</td>
+                <td class="bg-base-200 border-gray-700">{{ i18n.formatDate(docker.startedAt, { dateStyle: 'long' }) }}</td>
+                <td class="bg-base-200 border-gray-700">{{ i18n.formatDate(docker.createdAt, { dateStyle: 'long' }) }}</td>
+                <td class="bg-base-200 border-gray-700">
+                  @include('admin/health/partials/docker')
+                </td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+
     </div>
   @end
 @end
