@@ -34,12 +34,14 @@
           <p>
             <span>By </span>
             @!jrmc.badge({ text: audit.username, class: 'badge-info' })
+            <span>id </span>
+            @!jrmc.badge({ text: audit.userId, class: 'badge-secondary' })
           </p>
           <p>
             <span>Entity </span>
             @!jrmc.badge({ text: audit.target, class: 'badge-info' })
             <span>id </span>
-            @!jrmc.badge({ text: audit.targetId, class: 'badge-info' })
+            @!jrmc.badge({ text: audit.targetId, class: 'badge-secondary' })
           </p>
 
           <div class="divider">Modify values</div>
