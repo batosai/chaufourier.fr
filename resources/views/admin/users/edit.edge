@@ -30,36 +30,54 @@
       @end
 
 
-      @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
-        @jrmc.card.body()
-          @!jrmc.card.title({ text: 'Forgot password' })
-          <p>Send a password change link by email to the user .</p>
-          @jrmc.card.actions()
-            @!jrmc.button.link({ text: 'Ok', href: route('admin.users.forgot.password', user), class: 'btn-info', 'data-color-button': 'btn-info', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+      @can('UserPolicy.forgot', user)
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
+          @jrmc.card.body()
+            @!jrmc.card.title({ text: 'Forgot password' })
+            <p>Send a password change link by email to the user .</p>
+            @jrmc.card.actions()
+              @!jrmc.button.link({ text: 'Ok', href: route('admin.users.forgot.password', user), class: 'btn-info', 'data-color-button': 'btn-info', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+            @end
           @end
         @end
       @end
 
-      @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
-        @jrmc.card.body()
-          @!jrmc.card.title({ text: user.disabled ? 'Enabled' : 'Disabled' })
-          @if (user.disabled)
-            <p>Activating the account unblocks access to the application.</p>
-          @else
-            <p>Deactivating the account blocks access to the application.</p>
-          @end
-          @jrmc.card.actions()
-            @!jrmc.button.link({ text: 'Ok', href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
+      @can('UserPolicy.disabled', user)
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
+          @jrmc.card.body()
+            @!jrmc.card.title({ text: user.disabled ? 'Enabled' : 'Disabled' })
+            @if (user.disabled)
+              <p>Activating the account unblocks access to the application.</p>
+            @else
+              <p>Deactivating the account blocks access to the application.</p>
+            @end
+            @jrmc.card.actions()
+              @!jrmc.button.link({ text: 'Ok', href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
+            @end
           @end
         @end
       @end
 
-      @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
-        @jrmc.card.body()
-          @!jrmc.card.title({ text: 'DELETED' })
-          <p>Delete the user account and all its data.</p>
-          @jrmc.card.actions()
-            @!jrmc.button.link({ text: 'Ok', href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+      @can('ImpersonatePolicy.create', user)
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
+          @jrmc.card.body()
+            @!jrmc.card.title({ text: 'IMPERSONATE' })
+            <p>Impersonate the user account.</p>
+            @jrmc.card.actions()
+              @!jrmc.button.link({ text: 'Ok', href: route('impersonate.store', { id: user.id }), class: 'btn-secondary', 'data-color-button': 'btn-secondary', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+            @end
+          @end
+        @end
+      @end
+
+      @can('UserPolicy.delete', user)
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
+          @jrmc.card.body()
+            @!jrmc.card.title({ text: 'DELETED' })
+            <p>Delete the user account and all its data.</p>
+            @jrmc.card.actions()
+              @!jrmc.button.link({ text: 'Ok', href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @end
           @end
         @end
       @end

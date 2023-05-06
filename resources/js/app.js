@@ -23,6 +23,20 @@ up.on('up:layer:dismissed', function(event) {
   up.reload(".toasts")
 })
 
+up.on('up:fragment:loaded', (event) => {
+  const location = event.response.header('X-Up-Location')
+  const fullReload = event.response.header('X-Full-Reload')
+
+  if (fullReload) {
+    // Prevent the fragment update and don't update browser history
+    event.preventDefault()
+    // Make a full page load for the same request.
+    // event.request.loadPage()
+    // window.location.reload()
+    window.location.href = location;
+  }
+})
+
 // Alpine
 
 Alpine.start()

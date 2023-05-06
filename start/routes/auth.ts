@@ -19,3 +19,6 @@ Route.group(() => {
 Route.post('auth/logout', 'auth/SessionController.destroy')
   .as('auth.session.destroy')
   .middleware('auth')
+
+Route.post('/impersonate/:id', 'auth/ImpersonatesController.store').as('impersonate.store').middleware('auth')
+Route.delete('/impersonate', 'auth/ImpersonatesController.destroy').as('impersonate.destroy').middleware('auth')

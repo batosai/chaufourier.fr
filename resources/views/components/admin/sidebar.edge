@@ -17,9 +17,17 @@
         </div>
       </li>
       <li >
-        @jrmc.form({ action: route('auth.session.destroy'), error: false })
-          @jrmc.button({ class: 'w-full btn-ghost justify-center', type: 'submit' })
-            @!svg('akar-icons:sign-out', { width: 20, height: 20 })
+        @if(session.has('impersonatedId'))
+          @jrmc.form({ action: route('impersonate.destroy', { qs: { _method: 'DELETE' }}), error: false })
+            @jrmc.button({ class: 'w-full btn-ghost justify-center', type: 'submit' })
+              @!svg('akar-icons:sign-out', { width: 20, height: 20 })
+            @end
+          @end
+        @else
+          @jrmc.form({ action: route('auth.session.destroy'), error: false })
+            @jrmc.button({ class: 'w-full btn-ghost justify-center', type: 'submit' })
+              @!svg('akar-icons:sign-out', { width: 20, height: 20 })
+            @end
           @end
         @end
       </li>
@@ -41,19 +49,22 @@
         href: route('admin.dashboard')
       })
     </li>
-    <li>
-      @!admin.sidebar.link({
-        class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
-        text: t('admin.sidebar.users'),
-        icon: 'fa-solid:user',
-        href: route('admin.users.index'),
-        'up-alias': route('admin.users.index') + '*'
-      })
-    </li>
+    @can('UserPolicy.viewList', user)
+      <li>
+        @!admin.sidebar.link({
+          class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
+          text: t('admin.sidebar.users'),
+          icon: 'fa-solid:user',
+          href: route('admin.users.index'),
+          'up-alias': route('admin.users.index') + '*'
+        })
+      </li>
+    @end
     <li></li>
     <li class="menu-title">
       <span>{{ t('admin.sidebar.settings') }}</span>
     </li>
+    @can('HealthPolicy.view', user)
     <li>
       @!admin.sidebar.link({
         class: request.matchesRoute(['admin.health.index', 'admin.health.system', 'admin.health.docker']) ? 'active' : null,
@@ -63,6 +74,8 @@
         'up-alias': route('admin.health.index') + '*'
       })
     </li>
+    @end
+    @can('AuditPolicy.viewList', user)
     <li>
       @!admin.sidebar.link({
         class: request.matchesRoute(['admin.journals.index', 'admin.journals.show']) ? 'active' : null,
@@ -72,6 +85,7 @@
         'up-alias': route('admin.journals.index') + '*'
       })
     </li>
+    @end
     <li>
       <a>
         @!svg('fa-solid:cog')
