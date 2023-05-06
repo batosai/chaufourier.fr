@@ -5,6 +5,7 @@ user:
   createdAt: Date
 journal:
   label: Name
+  username: By
   action: Event
   createdAt: Date
 user/status:

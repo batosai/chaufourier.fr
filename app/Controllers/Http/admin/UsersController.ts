@@ -49,7 +49,7 @@ export default class DashboardController {
     await user.save()
 
     Event.emit("audit:new", {
-      label: 'Create new user',
+      label: `Create user ${user!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: "CREATE",
@@ -107,7 +107,7 @@ export default class DashboardController {
     await user.save()
 
     Event.emit("audit:new", {
-      label: 'Update user',
+      label: `Update user ${user!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: "UPDATE",
@@ -134,10 +134,11 @@ export default class DashboardController {
     const user = await User.findOrFail(id)
     await bouncer.with('UserPolicy').authorize('delete', user)
     const payload = user.serialize()
+    const fullname = user!.fullname
     await user.delete()
 
     Event.emit("audit:new", {
-      label: 'Delete user',
+      label: `Delete user ${fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: "DELETE",
@@ -164,7 +165,7 @@ export default class DashboardController {
 
     if (user.disabled) {
       Event.emit("audit:new", {
-        label: 'Disabled user',
+        label: `Disabled user ${user!.fullname}`,
         username: auth.user!.fullname,
         userId: auth.user!.id,
         action: "UPDATE",
@@ -174,7 +175,7 @@ export default class DashboardController {
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.disabled'))
     } else {
       Event.emit("audit:new", {
-        label: 'Enabled user',
+        label: `Enabled user ${user!.fullname}`,
         username: auth.user!.fullname,
         userId: auth.user!.id,
         action: "UPDATE",
@@ -198,7 +199,7 @@ export default class DashboardController {
     await new ForgotPasswordMailer(user).sendLater()
 
     Event.emit("audit:new", {
-      label: 'Forgot password user',
+      label: `Forgot password user ${user!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: "UPDATE",

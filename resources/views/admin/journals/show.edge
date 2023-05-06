@@ -25,7 +25,7 @@
                 @!jrmc.badge({ text: audit.action, class: 'badge-success' })
               @elseif(audit.action === 'DELETE')
                 @!jrmc.badge({ text: audit.action, class: 'badge-error' })
-              @elseif(audit.action === 'SIGNED IN')
+              @elseif(audit.action === 'IMPERSONATE')
                 @!jrmc.badge({ text: audit.action, class: 'badge-warning' })
               @end
            : Create at {{ t('app.date', { value: audit.createdAt }) }}
