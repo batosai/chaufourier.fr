@@ -9,7 +9,7 @@ export default class JournalsController {
     const page = request.input('page', 1)
     const limit = 10
 
-    const audits = await Audit.query().paginate(page, limit)
+    const audits = await Audit.query().orderBy('createdAt', 'desc').paginate(page, limit)
     audits.baseUrl(Route.builder().make('admin.journals.index'))
 
     return view.render('admin/journals/index', {
