@@ -5,11 +5,14 @@
  * file.
  */
 
+// import { join } from 'node:path'
 import type { Config } from '@japa/runner'
 import TestUtils from '@ioc:Adonis/Core/TestUtils'
 import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-adonis'
+import { browserClient } from '@japa/browser-client'
+import { firefox } from 'playwright'
 import { tableDrivenHtmlReporter } from 'table-driven-html-reporter'
-import { playwrightClient } from './plugins/playwright-client'
+import { playwrightLogin } from './plugins/playwright-login'
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,24 @@ export const plugins: Config['plugins'] = [
   assert(),
   runFailedTests(),
   apiClient(),
-  playwrightClient(),
+  playwrightLogin(),
+  browserClient({
+    contextOptions: {
+      // recordVideo: {
+      //   dir: join(__dirname, '../tests/records')
+      // },
+      ignoreHTTPSErrors: true,
+    },
+    runInSuites: ['browser'],
+    async launcher(options) {
+      return firefox.launch({
+        ...options,
+        headless: process.env.HEADLESS === 'true',
+        slowMo: 300,
+      })
+    },
+
+  }),
 ]
 
 /*
@@ -77,7 +97,7 @@ export const configureSuite: Config['configureSuite'] = (suite) => {
   if (suite.name === 'functional') {
     suite.setup(() => TestUtils.httpServer().start())
   }
-  if (suite.name === 'e2e') {
+  if (suite.name === 'browser') {
     suite.setup(() => TestUtils.httpServer().start())
   }
 }

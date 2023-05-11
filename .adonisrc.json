@@ -67,11 +67,11 @@
         "timeout": 60000
       },
       {
-        "name": "e2e",
+        "name": "browser",
         "files": [
-          "tests/e2e/**/*.spec.ts"
+          "tests/browser/**/*.spec.ts"
         ],
-        "timeout": 100000
+        "timeout": 30000
       }
     ]
   },
