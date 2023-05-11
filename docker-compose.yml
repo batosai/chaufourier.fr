@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+
+  # postgres:
+  #   container_name: postgres
+  #   image: postgres:13
+  #   volumes:
+  #     - postgres_volume:/var/lib/postgresql/data
+  #     - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # will setup dev database adonis_app for us
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   ports:
+  #     - 5432:5432
+
+  adonis_app:
+    container_name: adonis_app
+    restart: always
+    # depends_on:
+    #   - postgres
+    build:
+      context: .
+      target: dependencies
+      #target: production
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+      - 8080:8080 # dev
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/node/app # dev
+      - ./tmp:/home/node/app/tmp
+      - /home/node/app/node_modules # dev, node_module container
+    command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0" --encore-args="--host ${HOST} --port 8080"
+
+    logging:
+      driver: loki
+      options:
+        loki-url: http://192.168.1.28:3100/loki/api/v1/push
+        loki-pipeline-stages: |
+          - regex:
+              expression: '(level|lvl|severity)=(?P<level>\w+)'
+          - labels:
+              level:
+
+    # For prod
+    # command: dumb-init node server.js
+
+  # volumes:
+  #   postgres_volume:
