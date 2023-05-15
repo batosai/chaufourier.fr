@@ -3,11 +3,11 @@ import Route from '@ioc:Adonis/Core/Route'
 import Event from '@ioc:Adonis/Core/Event'
 import { Attachment } from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import User from 'App/Models/User'
-import UserSessionFilterService from 'App/Services/UsersSessionFilterService'
+import UserSessionFilterService from 'App/Services/UserSessionFilterService'
 import UserValidator from 'App/Validators/admin/UserValidator'
 import ForgotPasswordMailer from 'App/Mailers/ForgotPasswordMailer'
 
-export default class DashboardController {
+export default class UsersController {
   public async index(ctx: HttpContextContract) {
     const { view, bouncer } = ctx
     await bouncer.with('UserPolicy').authorize('viewList')
@@ -32,14 +32,14 @@ export default class DashboardController {
   public async store({ request, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
     await bouncer.with('UserPolicy').authorize('create')
     const avatar = request.file('avatar')!
-    // /**
-    //  * Validate new user account creation form
-    //  */
+    /**
+     * Validate new user account creation form
+     */
     const payload = await request.validate(UserValidator)
 
-    // /**
-    //  * Create a new user
-    //  */
+    /**
+     * Create a new user
+     */
     const user = new User()
     await user.fill(payload)
 
