@@ -2,6 +2,7 @@ sidebar:
   content: Content
   dashboard: Dashboard
   users: Users
+  tags: Tags
   settings: Settings
   health: Health
   journals: Journals

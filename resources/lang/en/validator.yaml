@@ -12,6 +12,9 @@ shared:
     required: Lastname is required
     minLength: Lastname must be at least { min_length } characters long
     maxLength: Lastname must be at maximum { max_length } characters long
+  name:
+    required: Name is required
+    minLength: Name must be at least { min_length } characters long
   password:
     required: Password field is required
     minLength: Password must be at least { password_min_length } characters long

@@ -7,6 +7,8 @@ Route.group(() => {
   Route.patch('users/:id/toggle-disabled', 'admin/UsersController.toggleDisabled').as('users.toggle.disabled')
   Route.post('users/:id/forgot-password', 'admin/UsersController.forgotPassword').as('users.forgot.password')
 
+  Route.resource('tags', 'admin/TagsController').except(['show'])
+
   Route.resource('journals', 'admin/JournalsController').only(['index', 'show'])
   Route.resource('health', 'admin/HealthController').only(['index'])
   Route.get('health/system', 'admin/HealthController.system').as('health.system')

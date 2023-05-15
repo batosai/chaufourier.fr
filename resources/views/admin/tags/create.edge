@@ -1,0 +1,41 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.tags'), link: route('admin.tags.index') },
+        { label: t('admin.action.create') }
+      ]
+    })
+
+    <div class="w-full px-4 my-4 mb-auto">
+      @jrmc.card({ class: 'bg-base-300' })
+        @jrmc.card.body()
+          @jrmc.form({ id: 'create_tag', action: route('admin.tags.store'), error: false })
+            @include('admin/tags/partials/form')
+          @end
+        @end
+      @end
+    </div>
+
+    <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
+      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
+        <div class="flex-1">
+          @if(up.isDrawer())
+            @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
+          @else
+            @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.tags.index'), class: 'btn-outline btn-sm' })
+          @end
+        </div>
+        <div class="flex-none">
+          @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_tag', class: 'btn-primary btn-outline btn-sm' })
+        </div>
+      </div>
+    </template>
+  @end
+@end

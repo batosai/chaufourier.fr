@@ -49,7 +49,7 @@
         href: route('admin.dashboard')
       })
     </li>
-    @can('UserPolicy.viewList', user)
+    @can('UserPolicy.viewList')
       <li>
         @!admin.sidebar.link({
           class: request.matchesRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) ? 'active' : null,
@@ -60,11 +60,22 @@
         })
       </li>
     @end
+    @can('TagPolicy.viewList')
+      <li>
+        @!admin.sidebar.link({
+          class: request.matchesRoute(['admin.tags.index', 'admin.tags.create', 'admin.tags.edit']) ? 'active' : null,
+          text: t('admin.sidebar.tags'),
+          icon: 'fa-solid:tag',
+          href: route('admin.tags.index'),
+          'up-alias': route('admin.tags.index') + '*'
+        })
+      </li>
+    @end
     <li></li>
     <li class="menu-title">
       <span>{{ t('admin.sidebar.settings') }}</span>
     </li>
-    @can('HealthPolicy.view', user)
+    @can('HealthPolicy.view')
     <li>
       @!admin.sidebar.link({
         class: request.matchesRoute(['admin.health.index', 'admin.health.system', 'admin.health.docker']) ? 'active' : null,
@@ -75,7 +86,7 @@
       })
     </li>
     @end
-    @can('AuditPolicy.viewList', user)
+    @can('AuditPolicy.viewList')
     <li>
       @!admin.sidebar.link({
         class: request.matchesRoute(['admin.journals.index', 'admin.journals.show']) ? 'active' : null,

@@ -21,3 +21,7 @@ success:
       enabled: Felicitations, the user is now enabled.
       disabled: Felicitations, the user is now disabled.
     forgot: An email has been sent with instructions on how to reset passwords
+  tag:
+    create: Felicitations, the tag is now created.
+    edit: Felicitations, the tag is now modify.
+    delete: Felicitations, the tag is now deleted.

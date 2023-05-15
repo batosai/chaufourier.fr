@@ -1,0 +1,61 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.tags'), link: route('admin.tags.index') },
+        { label: t('admin.action.edit') }
+      ]
+    })
+
+    <div class="w-full px-4 my-4 grid grid-cols-3 gap-4">
+      @jrmc.card({ class: 'bg-base-300 col-span-3' })
+        @jrmc.card.body()
+          @jrmc.form({ id: 'edit_tag', action: route('admin.tags.update', tag, {
+            qs: {
+              _method: 'PUT'
+            }
+          }),
+          enctype: 'multipart/form-data',
+          error: false,
+          object: tag  })
+            @include('admin/tags/partials/form')
+          @end
+        @end
+      @end
+
+      @can('TagPolicy.delete', tag)
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
+          @jrmc.card.body()
+            @!jrmc.card.title({ text: 'DELETED' })
+            <p>Delete the tag account and all its data.</p>
+            @jrmc.card.actions()
+              @!jrmc.button.link({ text: 'Ok', href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @end
+          @end
+        @end
+      @end
+
+    </div>
+
+    <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
+      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
+        <div class="flex-1">
+          @if(up.isDrawer())
+            @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
+          @else
+            @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.tags.index'), class: 'btn-outline btn-sm' })
+          @end
+        </div>
+        <div class="flex-none">
+          @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_tag', class: 'btn-primary btn-outline btn-sm' })
+        </div>
+      </div>
+    </template>
+  @end
+@end

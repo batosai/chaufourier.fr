@@ -22,3 +22,12 @@ users:
   email+desc: Descending email
   createdAt+asc: Ascending date
   createdAt+desc: Descending date
+
+tags:
+  page: Page
+  search: Search
+  order: Order
+  name+asc: Ascending name
+  name+desc: Descending name
+  createdAt+asc: Ascending date
+  createdAt+desc: Descending date

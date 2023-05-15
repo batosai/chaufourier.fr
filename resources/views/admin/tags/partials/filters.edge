@@ -1,0 +1,68 @@
+@if(session.has('tagsFilter'))
+  <div class="indicator w-full mb-4">
+    <span class="indicator-item indicator-center indicator-bottom badge badge-primary">{{{ t('filters.results', { itemsCount: tags.total }) }}}</span>
+    @jrmc.alert()
+      @each((filter, index) in session.get('tagsFilter', {}))
+        @if(filter)
+          @jrmc.badge({ as: 'div', class: 'badge-lg badge-info' })
+            {{ t(`filters.tags.${index}`) }}:
+            @if(['search', 'page'].includes(index))
+              {{ filter }}
+            @else
+              {{ t(`filters.tags.${filter}`) }}
+            @end
+            @jrmc.button.link({ class: 'btn-xs btn-ghost', href: route('admin.tags.index', {}, { qs: { reset: index }}) })
+              @!svg('akar-icons:cross', { width: 10, height: 10 })
+            @end
+          @end
+        @end
+      @end
+      @slot('actions')
+        @jrmc.button.link({ 'aria-label': t('filters.reset'), class: 'hidden sm:flex btn-sm btn-circle', href: route('admin.tags.index', {}, { qs: { reset: 'all' }}) })
+          @!svg('akar-icons:cross', { 'aria-hidden': 'true' })
+        @end
+      @end
+    @end
+  </div>
+@end
+
+@jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('tagsFilter') })
+  <div class="navbar bg-base-100 p-0">
+    <div class="flex-1">
+      @jrmc.modal({ button: { text: t('filters.filter'), type: 'button', class: 'md:hidden' }, mobile: true })
+        <h3 class="font-bold text-lg">{{ t('filters.filter') }}</h3>
+        @jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('tagsFilter') })
+          @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.tags.index', {}, { qs: { reset: 'all' }}) })
+
+          @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.tags.search') })
+            @!jrmc.form.input({ class: 'input-bordered' })
+          @end
+
+          @jrmc.form.control({ name: 'order', label: false, class: 'hidden' })
+            @!jrmc.form.input({ type: 'hidden' })
+          @end
+        @end
+      @end
+    </div>
+    <div class="flex-none">
+      @jrmc.form.control({ name: 'order', class: '!m-0', label: false })
+        @!jrmc.form.select({ options: [
+            { text: t('filters.order'), value: '' },
+            { text: t('filters.tags.name+asc'), value: 'name+asc' },
+            { text: t('filters.tags.name+desc'), value: 'name+desc' },
+            { text: t('filters.tags.createdAt+asc'), value: 'createdAt+asc' },
+            { text: t('filters.tags.createdAt+desc'), value: 'createdAt+desc' },
+          ],
+          class: 'sm:mr-4 bg-neutral',
+          'up-autosubmit': ''
+        })
+      @end
+      @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
+        @!jrmc.form.input({
+          placeholder: t('filters.tags.search'),
+          class: 'input-bordered hidden sm:inline-block',
+        })
+      @end
+    </div>
+  </div>
+@end
