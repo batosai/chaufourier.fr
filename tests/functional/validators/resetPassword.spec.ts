@@ -9,7 +9,7 @@ test.group('Reset password validator', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Invalid signature', async ({ client, route }) => {
+  test('invalid signature', async ({ client, route }) => {
     const response = await client
       .get(route('auth.password.reset.create', { email: 'virk@adonisjs.com' }))
       .withCsrfToken()
@@ -19,7 +19,7 @@ test.group('Reset password validator', (group) => {
     )
   })
 
-  test('Empty fields', async ({ client, route }) => {
+  test('empty fields', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.reset.store'))
       .fields({
@@ -38,7 +38,7 @@ test.group('Reset password validator', (group) => {
     })
   })
 
-  test('Invalid email', async ({ client, route }) => {
+  test('invalid email', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.reset.store'))
       .fields({
@@ -57,7 +57,7 @@ test.group('Reset password validator', (group) => {
     })
   })
 
-  test('Missing password', async ({ client, route }) => {
+  test('missing password', async ({ client, route }) => {
     const user = await UserFactory.create()
     const response = await client
       .post(route('auth.password.reset.store'))
@@ -74,7 +74,7 @@ test.group('Reset password validator', (group) => {
     })
   })
 
-  test('Invalid password', async ({ client, route }) => {
+  test('invalid password', async ({ client, route }) => {
     const user = await UserFactory.create()
     const response = await client
       .post(route('auth.password.reset.store'))
@@ -107,7 +107,7 @@ test.group('Reset password validator', (group) => {
     })
   })
 
-  test('Different password', async ({ client, route }) => {
+  test('different password', async ({ client, route }) => {
     const user = await UserFactory.create()
     const response = await client
       .post(route('auth.password.reset.store'))

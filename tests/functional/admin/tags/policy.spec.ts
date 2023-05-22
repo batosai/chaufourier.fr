@@ -6,7 +6,7 @@ import Roles from 'App/Enums/Roles'
 import User from 'App/Models/User'
 
 
-test.group('tag policy actions', (group) => {
+test.group('Tag policy actions', (group) => {
   let user: User | null  = null
   let admin: User | null  = null
 
@@ -24,7 +24,7 @@ test.group('tag policy actions', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('A admin can delete tag', async ({ client, route }) => {
+  test('a admin can delete tag', async ({ client, route }) => {
     const tag = await TagFactory.create()
 
     const response = await client
@@ -35,7 +35,7 @@ test.group('tag policy actions', (group) => {
       response.assertStatus(200)
   })
 
-  test('A user can not delete tag', async ({ client, route }) => {
+  test('a user can not delete tag', async ({ client, route }) => {
     const tag = await TagFactory.create()
 
     const response = await client

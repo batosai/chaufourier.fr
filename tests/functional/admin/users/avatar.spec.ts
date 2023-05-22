@@ -7,13 +7,13 @@ import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 
 
-test.group('user avatar', (group) => {
+test.group('User avatar', (group) => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('A user can create avatar', async ({ client, assert, route }) => {
+  test('user can create avatar', async ({ client, assert, route }) => {
     const fakeDrive = Drive.fake()
 
     const user = await UserFactory.merge({
@@ -39,7 +39,7 @@ test.group('user avatar', (group) => {
     Drive.restore()
   })
 
-  test('A user can update avatar', async ({ client, assert, route }) => {
+  test('user can update avatar', async ({ client, assert, route }) => {
     const fakeDrive = Drive.fake()
 
     const user = await UserFactory.merge({

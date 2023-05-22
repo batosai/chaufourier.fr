@@ -2,7 +2,7 @@ import { test } from '@japa/runner'
 import I18n from '@ioc:Adonis/Addons/I18n'
 
 test.group('Forgot password validator', () => {
-  test('Empty email', async ({ client, route }) => {
+  test('empty email', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.store'))
       .fields({
@@ -16,7 +16,7 @@ test.group('Forgot password validator', () => {
     })
   })
 
-  test('Invalid email', async ({ client, route }) => {
+  test('invalid email', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.store'))
       .fields({
@@ -30,7 +30,7 @@ test.group('Forgot password validator', () => {
     })
   })
 
-  test('Valid email', async ({ client, route }) => {
+  test('valid email', async ({ client, route }) => {
     const response = await client
       .post(route('auth.password.store'))
       .fields({

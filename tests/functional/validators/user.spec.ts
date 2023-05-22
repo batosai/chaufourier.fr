@@ -12,13 +12,13 @@ import User from 'App/Models/User'
 
 
 
-test.group('user validator', (group) => {
+test.group('User validator', (group) => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Invalid required', async ({ client, route }) => {
+  test('invalid required', async ({ client, route }) => {
     const user = await UserFactory.merge({
       role: Roles.ADMIN,
     }).create()
@@ -39,7 +39,7 @@ test.group('user validator', (group) => {
     })
   })
 
-  test('Invalid min lenght lastname and firstname', async ({ client, route }) => {
+  test('invalid min lenght lastname and firstname', async ({ client, route }) => {
     const user = await UserFactory.merge({
       role: Roles.ADMIN,
     }).create()
@@ -62,7 +62,7 @@ test.group('user validator', (group) => {
     })
   })
 
-  test('Invalid max lenght lastname and firstname', async ({ client, route }) => {
+  test('invalid max lenght lastname and firstname', async ({ client, route }) => {
     const user = await UserFactory.merge({
       role: Roles.ADMIN,
     }).create()
@@ -85,7 +85,7 @@ test.group('user validator', (group) => {
     })
   })
 
-  test('Invalid format email', async ({ client, route }) => {
+  test('invalid format email', async ({ client, route }) => {
     const user = await UserFactory.merge({
       role: Roles.ADMIN,
     }).create()
@@ -107,7 +107,7 @@ test.group('user validator', (group) => {
     })
   })
 
-  test('Invalid unique email', async ({ client, route }) => {
+  test('invalid unique email', async ({ client, route }) => {
     const user = await UserFactory.merge({
       role: Roles.ADMIN,
     }).create()
@@ -129,7 +129,7 @@ test.group('user validator', (group) => {
     })
   })
 
-  test('Invalid password', async ({ client, route }) => {
+  test('invalid password', async ({ client, route }) => {
     const user = await UserFactory.merge({
       role: Roles.ADMIN,
     }).create()
@@ -159,7 +159,7 @@ test.group('user validator', (group) => {
     })
   })
 
-  test('Invalid size avatar', async ({ client, route }) => {
+  test('invalid size avatar', async ({ client, route }) => {
     Drive.fake()
 
     const user = await UserFactory.merge({
@@ -189,7 +189,7 @@ test.group('user validator', (group) => {
     Drive.restore()
   })
 
-  test('Invalid format avatar', async ({ client, route }) => {
+  test('invalid format avatar', async ({ client, route }) => {
     Drive.fake()
 
     const user = await UserFactory.merge({

@@ -9,20 +9,20 @@ test.group('Login page', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Should display login page', async ({ visit, route }) => {
+  test('should display login page', async ({ visit, route }) => {
     const page = await visit(route('auth.session.create'))
 
     await page.assertExists('input[name="email"]')
   })
 
-  test('Should display error message if validation with empty fields', async ({ visit, route }) => {
+  test('should display error message if validation with empty fields', async ({ visit, route }) => {
     const page = await visit(route('auth.session.create'))
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(await page.getByText(/Invalid credentials/), 1)
   })
 
-  test('Should display admin after validation login form', async ({ visit, route }) => {
+  test('should display admin after validation login form', async ({ visit, route }) => {
     const user = await UserFactory.merge({ password: 'secret' }).create()
 
     const page = await visit(route('auth.session.create'))
@@ -42,7 +42,7 @@ test.group('Login page', (group) => {
     )
   })
 
-  test('Should display error message for blocked user', async ({ visit, route }) => {
+  test('should display error message for blocked user', async ({ visit, route }) => {
     const user = await UserFactory.apply('disabled').merge({ password: 'secret' }).create()
 
     const page = await visit(route('auth.session.create'))
@@ -54,7 +54,7 @@ test.group('Login page', (group) => {
     await page.assertTextContains('body', 'Your account is disabled')
   })
 
-  test('Should create cookie after check remember me', async ({ visit, route }) => {
+  test('should create cookie after check remember me', async ({ visit, route }) => {
     const user = await UserFactory.merge({ password: 'secret' }).create()
 
     const page = await visit(route('auth.session.create'))

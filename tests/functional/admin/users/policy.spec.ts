@@ -5,7 +5,7 @@ import Roles from 'App/Enums/Roles'
 import User from 'App/Models/User'
 
 
-test.group('user policy actions', (group) => {
+test.group('User policy actions', (group) => {
   let user: User | null  = null
   let admin: User | null  = null
 
@@ -23,7 +23,7 @@ test.group('user policy actions', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('A admin can not auto delete', async ({ client, route }) => {
+  test('admin can not auto delete', async ({ client, route }) => {
     const response = await client
       .delete(route('admin.users.destroy', admin!))
       .withCsrfToken()
@@ -32,7 +32,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(403)
   })
 
-  test('A admin can not auto disabled', async ({ client, route }) => {
+  test('admin can not auto disabled', async ({ client, route }) => {
     const response = await client
       .patch(route('admin.users.toggle.disabled', admin!))
       .withCsrfToken()
@@ -41,7 +41,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(403)
   })
 
-  test('A admin can not auto forgot password', async ({ client, route }) => {
+  test('admin can not auto forgot password', async ({ client, route }) => {
     const response = await client
       .post(route('admin.users.forgot.password', admin!))
       .withCsrfToken()
@@ -50,7 +50,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(403)
   })
 
-  test('A admin can not auto impersonate', async ({ client, route }) => {
+  test('admin can not auto impersonate', async ({ client, route }) => {
     const response = await client
       .post(route('impersonate.store', admin!))
       .withCsrfToken()
@@ -61,7 +61,7 @@ test.group('user policy actions', (group) => {
 
   // -----------------------
 
-  test('A admin can delete user', async ({ client, route }) => {
+  test('admin can delete user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -74,7 +74,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(200)
   })
 
-  test('A admin can disabled user', async ({ client, route }) => {
+  test('admin can disabled user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -87,7 +87,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(200)
   })
 
-  test('A admin can forgot password user', async ({ client, route }) => {
+  test('admin can forgot password user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -100,7 +100,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(200)
   })
 
-  test('A admin can impersonate user', async ({ client, route }) => {
+  test('admin can impersonate user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -115,7 +115,7 @@ test.group('user policy actions', (group) => {
 
   // -----------------------
 
-  test('A user can not delete user', async ({ client, route }) => {
+  test('user can not delete user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -128,7 +128,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(403)
   })
 
-  test('A user can not disabled user', async ({ client, route }) => {
+  test('user can not disabled user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -141,7 +141,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(403)
   })
 
-  test('A user can not forgot password user', async ({ client, route }) => {
+  test('user can not forgot password user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()
@@ -154,7 +154,7 @@ test.group('user policy actions', (group) => {
       response.assertStatus(403)
   })
 
-  test('A user can not impersonate user', async ({ client, route }) => {
+  test('user can not impersonate user', async ({ client, route }) => {
     const customer = await UserFactory.merge({
       role: Roles.USER,
     }).create()

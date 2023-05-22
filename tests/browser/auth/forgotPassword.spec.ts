@@ -9,14 +9,14 @@ test.group('Forgot password page', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('Should display error message if validation with empty fields', async ({ visit, route }) => {
+  test('should display error message if validation with empty fields', async ({ visit, route }) => {
     const page = await visit(route('auth.password.create'))
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(await page.getByText(/Email field is required/), 1)
   })
 
-  test('Should display success message', async ({ visit, route }) => {
+  test('should display success message', async ({ visit, route }) => {
     const user = await UserFactory.create()
 
     const page = await visit(route('auth.password.create'))

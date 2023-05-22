@@ -19,7 +19,7 @@ test.group('Audit event', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
 
-  test('For create User', async ({ assert, client, route }) => {
+  test('create User', async ({ assert, client, route }) => {
     const emitter = Event.fake()
 
     await client
@@ -42,7 +42,7 @@ test.group('Audit event', (group) => {
       Event.restore()
   })
 
-  test('For delete User', async ({ assert, client, route }) => {
+  test('delete User', async ({ assert, client, route }) => {
     const emitter = Event.fake()
 
     const customer = await UserFactory.merge({
@@ -61,7 +61,7 @@ test.group('Audit event', (group) => {
       Event.restore()
   })
 
-  test('For update User', async ({ assert, client, route }) => {
+  test('update User', async ({ assert, client, route }) => {
     const emitter = Event.fake()
 
     const customer = await UserFactory.merge({
@@ -86,7 +86,7 @@ test.group('Audit event', (group) => {
       Event.restore()
   })
 
-  test('For impersonate User', async ({ assert, client, route }) => {
+  test('impersonate User', async ({ assert, client, route }) => {
     const emitter = Event.fake()
 
     const customer = await UserFactory.merge({
