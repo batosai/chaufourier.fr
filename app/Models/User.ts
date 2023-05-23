@@ -17,6 +17,7 @@ import UserFilter from 'App/Models/Filters/UserFilter'
 import Roles from 'App/Enums/Roles'
 import { attachment, AttachmentContract, Attachmentable } from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import Audit from './Audit'
+import Article from './Article'
 
 export default class User extends compose(BaseModel, Attachmentable, Filterable) {
   public static selfAssignPrimaryKey = true
@@ -72,6 +73,9 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
     localKey: "id",
   })
   public actions: HasMany<typeof Audit>
+
+  @hasMany(() => Article)
+  public articles: HasMany<typeof Article>
 
   // scopes
 

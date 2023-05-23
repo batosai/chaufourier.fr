@@ -25,3 +25,7 @@ success:
     create: Felicitations, the tag is now created.
     edit: Felicitations, the tag is now modify.
     delete: Felicitations, the tag is now deleted.
+  article:
+    create: Felicitations, the article is now created.
+    edit: Felicitations, the article is now modify.
+    delete: Felicitations, the article is now deleted.

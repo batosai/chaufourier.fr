@@ -60,6 +60,17 @@
         })
       </li>
     @end
+    @can('ArticlePolicy.viewList')
+      <li>
+        @!admin.sidebar.link({
+          class: request.matchesRoute(['admin.articles.index', 'admin.articles.create', 'admin.articles.edit']) ? 'active' : null,
+          text: t('admin.sidebar.articles'),
+          icon: 'fa-solid:newspaper',
+          href: route('admin.articles.index'),
+          'up-alias': route('admin.articles.index') + '*'
+        })
+      </li>
+    @end
     @can('TagPolicy.viewList')
       <li>
         @!admin.sidebar.link({
@@ -91,7 +102,7 @@
       @!admin.sidebar.link({
         class: request.matchesRoute(['admin.journals.index', 'admin.journals.show']) ? 'active' : null,
         text: t('admin.sidebar.journals'),
-        icon: 'fa-solid:cog',
+        icon: 'fa-solid:road',
         href: route('admin.journals.index'),
         'up-alias': route('admin.journals.index') + '*'
       })

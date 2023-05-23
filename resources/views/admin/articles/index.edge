@@ -1,0 +1,66 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.articles') }
+      ]
+    })
+
+    <div class="w-full px-4 my-4">
+      @include('admin/articles/partials/filters')
+
+      @jrmc.table({ full: true })
+        @slot('header')
+          <tr>
+            <th class="w-12"></th>
+            <th>{{ t('models.article.title') }}</th>
+            <th>{{ t('models.article.createdAt') }}</th>
+            <th>{{ t('admin.table.actions') }}</th>
+          </tr>
+        @end
+        @slot('footer')
+          <tr>
+            <th></th>
+            <th>{{ t('models.article.title') }}</th>
+            <th>{{ t('models.article.createdAt') }}</th>
+            <th>{{ t('admin.table.actions') }}</th>
+          </tr>
+        @end
+        @slot('body')
+          @each(article in articles)~
+          <tr class="hover" data-test="article-{{ article.id }}">
+            <th></th>
+            <td>
+              <span class="font-bold">{{ article.title }}</span>
+            </td>
+            <td>{{ t('app.date', { value: article.createdAt }) }}</td>
+            <td>
+              @jrmc.button.link({ href: route('admin.articles.edit', article), class: 'btn normal-case' })
+                Edit
+              @end
+            </td>
+          </tr>
+          @end~
+        @end
+      @end
+
+      <div class="w-full text-center my-5 hidden sm:block">
+        @!jrmc.pagination({ object: articles })
+      </div>
+      <div class="w-full text-center my-5 sm:hidden">
+        @!jrmc.pagination.light({ object: articles })
+      </div>
+
+      @jrmc.button.link({ href: route('admin.articles.create'), class: 'btn-circle fixed bottom-20 lg:bottom-10 right-10' })
+        @svg('fa-solid:plus')
+      @end
+    </div>
+
+  @end
+@end

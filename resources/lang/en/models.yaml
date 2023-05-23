@@ -18,3 +18,7 @@ role/name:
 tag:
   name: Name
   createdAt: Date
+
+article:
+  title: Title
+  createdAt: Date

@@ -9,6 +9,8 @@ Route.group(() => {
 
   Route.resource('tags', 'admin/TagsController').except(['show'])
 
+  Route.resource('articles', 'admin/ArticlesController').except(['show'])
+
   Route.resource('journals', 'admin/JournalsController').only(['index', 'show'])
   Route.resource('health', 'admin/HealthController').only(['index'])
   Route.get('health/system', 'admin/HealthController.system').as('health.system')

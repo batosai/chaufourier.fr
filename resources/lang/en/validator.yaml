@@ -15,6 +15,9 @@ shared:
   name:
     required: Name is required
     minLength: Name must be at least { min_length } characters long
+  title:
+    required: Title is required
+    minLength: Title must be at least { min_length } characters long
   password:
     required: Password field is required
     minLength: Password must be at least { password_min_length } characters long

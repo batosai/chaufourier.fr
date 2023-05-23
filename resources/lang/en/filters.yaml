@@ -31,3 +31,12 @@ tags:
   name+desc: Descending name
   createdAt+asc: Ascending date
   createdAt+desc: Descending date
+
+articles:
+  page: Page
+  search: Search
+  order: Order
+  name+asc: Ascending name
+  name+desc: Descending name
+  createdAt+asc: Ascending date
+  createdAt+desc: Descending date

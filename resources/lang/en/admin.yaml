@@ -3,6 +3,7 @@ sidebar:
   dashboard: Dashboard
   users: Users
   tags: Tags
+  articles: Articles
   settings: Settings
   health: Health
   journals: Journals
