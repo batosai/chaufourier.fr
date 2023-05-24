@@ -4,10 +4,9 @@ import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 import User from 'App/Models/User'
 
-
 test.group('User policy actions', (group) => {
-  let user: User | null  = null
-  let admin: User | null  = null
+  let user: User | null = null
+  let admin: User | null = null
 
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -29,7 +28,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   test('admin can not auto disabled', async ({ client, route }) => {
@@ -38,7 +37,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   test('admin can not auto forgot password', async ({ client, route }) => {
@@ -47,7 +46,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   test('admin can not auto impersonate', async ({ client, route }) => {
@@ -56,7 +55,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   // -----------------------
@@ -71,7 +70,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(200)
+    response.assertStatus(200)
   })
 
   test('admin can disabled user', async ({ client, route }) => {
@@ -84,7 +83,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(200)
+    response.assertStatus(200)
   })
 
   test('admin can forgot password user', async ({ client, route }) => {
@@ -97,7 +96,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(200)
+    response.assertStatus(200)
   })
 
   test('admin can impersonate user', async ({ client, route }) => {
@@ -110,7 +109,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(200)
+    response.assertStatus(200)
   })
 
   // -----------------------
@@ -125,7 +124,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(user!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   test('user can not disabled user', async ({ client, route }) => {
@@ -138,7 +137,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(user!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   test('user can not forgot password user', async ({ client, route }) => {
@@ -151,7 +150,7 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(user!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 
   test('user can not impersonate user', async ({ client, route }) => {
@@ -164,6 +163,6 @@ test.group('User policy actions', (group) => {
       .withCsrfToken()
       .loginAs(user!)
 
-      response.assertStatus(403)
+    response.assertStatus(403)
   })
 })

@@ -5,10 +5,9 @@ import TagFactory from 'Database/factories/TagFactory'
 import Roles from 'App/Enums/Roles'
 import User from 'App/Models/User'
 
-
 test.group('Tag policy actions', (group) => {
-  let user: User | null  = null
-  let admin: User | null  = null
+  let user: User | null = null
+  let admin: User | null = null
 
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -32,7 +31,7 @@ test.group('Tag policy actions', (group) => {
       .withCsrfToken()
       .loginAs(admin!)
 
-      response.assertStatus(200)
+    response.assertStatus(200)
   })
 
   test('a user can not delete tag', async ({ client, route }) => {
@@ -43,6 +42,6 @@ test.group('Tag policy actions', (group) => {
       .withCsrfToken()
       .loginAs(user!)
 
-      response.assertStatus(404)
+    response.assertStatus(404)
   })
 })

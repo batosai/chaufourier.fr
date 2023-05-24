@@ -33,7 +33,9 @@ test.group('Admin forgot password user', (group) => {
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.forgot')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.forgot')
+      ),
       1
     )
   })

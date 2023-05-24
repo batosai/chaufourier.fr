@@ -33,7 +33,9 @@ test.group('Admin disabled user', (group) => {
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.disabled')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.disabled')
+      ),
       1
     )
 
@@ -41,7 +43,9 @@ test.group('Admin disabled user', (group) => {
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.enabled')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.enabled')
+      ),
       1
     )
   })

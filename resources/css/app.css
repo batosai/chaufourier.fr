@@ -4,12 +4,17 @@
 
 /* override unpoly */
 
-
-up-modal-box, up-drawer-box, up-cover-box, up-popup {
+up-modal-box,
+up-drawer-box,
+up-cover-box,
+up-popup {
   @apply bg-base-100;
 }
 
-up-modal-box, up-drawer-box, up-cover-box, up-popup {
+up-modal-box,
+up-drawer-box,
+up-cover-box,
+up-popup {
   overflow-x: initial;
 }
 
@@ -20,7 +25,6 @@ up-drawer-box {
 up-drawer-dismiss {
   display: none;
 }
-
 
 /* override edge components */
 

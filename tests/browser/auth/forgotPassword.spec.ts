@@ -25,7 +25,9 @@ test.group('Forgot password page', (group) => {
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.forgotPassword')
+      ),
       1
     )
   })

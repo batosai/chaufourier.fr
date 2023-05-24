@@ -10,8 +10,6 @@ import { PASSWORD_MIN_LENGTH } from 'App/Validators/Rules/Password'
 import { MIN_LENGTH, MAX_LENGTH, MAX_Size } from 'App/Validators/admin/UserValidator'
 import User from 'App/Models/User'
 
-
-
 test.group('User validator', (group) => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -32,8 +30,12 @@ test.group('User validator', (group) => {
     // console.log(response.flashMessages())
 
     response.assertFlashMessage('errors', {
-      firstname: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.required')],
-      lastname: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.required')],
+      firstname: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.required'),
+      ],
+      lastname: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.required'),
+      ],
       email: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.required')],
       role: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.role.required')],
     })
@@ -57,8 +59,16 @@ test.group('User validator', (group) => {
       .loginAs(user)
 
     response.assertFlashMessage('errors', {
-      firstname: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.minLength', { min_length: MIN_LENGTH })],
-      lastname: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.minLength', { min_length: MIN_LENGTH })],
+      firstname: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.minLength', {
+          min_length: MIN_LENGTH,
+        }),
+      ],
+      lastname: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.minLength', {
+          min_length: MIN_LENGTH,
+        }),
+      ],
     })
   })
 
@@ -80,8 +90,16 @@ test.group('User validator', (group) => {
       .loginAs(user)
 
     response.assertFlashMessage('errors', {
-      firstname: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.maxLength', { max_length: MAX_LENGTH })],
-      lastname: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.maxLength', { max_length: MAX_LENGTH })],
+      firstname: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.maxLength', {
+          max_length: MAX_LENGTH,
+        }),
+      ],
+      lastname: [
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.maxLength', {
+          max_length: MAX_LENGTH,
+        }),
+      ],
     })
   })
 
@@ -142,7 +160,7 @@ test.group('User validator', (group) => {
         email: faker.internet.email(),
         role: Roles.USER,
         password: '.',
-        password_confirmation: '.'
+        password_confirmation: '.',
       })
       .redirects(0)
       .withCsrfToken()
@@ -150,11 +168,21 @@ test.group('User validator', (group) => {
 
     response.assertFlashMessage('errors', {
       password: [
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.minLength', { password_min_length: PASSWORD_MIN_LENGTH }),
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.oneLowerCaseAtLeast'),
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.oneNumericAtLeast'),
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.oneUpperCaseAtLeast'),
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.oneSpecialCharacterAtLeast'),
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.password.minLength', {
+          password_min_length: PASSWORD_MIN_LENGTH,
+        }),
+        I18n.locale(I18n.defaultLocale).formatMessage(
+          'validator.shared.password.oneLowerCaseAtLeast'
+        ),
+        I18n.locale(I18n.defaultLocale).formatMessage(
+          'validator.shared.password.oneNumericAtLeast'
+        ),
+        I18n.locale(I18n.defaultLocale).formatMessage(
+          'validator.shared.password.oneUpperCaseAtLeast'
+        ),
+        I18n.locale(I18n.defaultLocale).formatMessage(
+          'validator.shared.password.oneSpecialCharacterAtLeast'
+        ),
       ],
     })
   })
@@ -182,7 +210,9 @@ test.group('User validator', (group) => {
 
     response.assertFlashMessage('errors', {
       avatar: [
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.avatar.maxSize', { max_size: MAX_Size }),
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.avatar.maxSize', {
+          max_size: MAX_Size,
+        }),
       ],
     })
 
@@ -211,9 +241,7 @@ test.group('User validator', (group) => {
       .loginAs(user)
 
     response.assertFlashMessage('errors', {
-      avatar: [
-        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.avatar.extname'),
-      ],
+      avatar: [I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.avatar.extname')],
     })
 
     Drive.restore()
@@ -232,7 +260,7 @@ test.group('User validator', (group) => {
       .loginAs(user)
 
     response.assertFlashMessage('success', {
-      message: I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.disabled')
+      message: I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.toggle.disabled'),
     })
   })
 
@@ -289,6 +317,4 @@ test.group('User validator', (group) => {
 
     assert.equal(user.role, Roles.ADMIN)
   })
-
 })
-

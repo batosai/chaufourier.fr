@@ -7,7 +7,7 @@ import User from 'App/Models/User'
 import { faker } from '@faker-js/faker'
 
 test.group('Audit event', (group) => {
-  let user: User | null  = null
+  let user: User | null = null
 
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -30,16 +30,18 @@ test.group('Audit event', (group) => {
         email: faker.internet.email(),
         role: Roles.USER,
         password: 'Secret@123',
-        password_confirmation: 'Secret@123'
+        password_confirmation: 'Secret@123',
       })
       .withCsrfToken()
       .loginAs(user!)
 
-      assert.isTrue(emitter.exists((event) => {
+    assert.isTrue(
+      emitter.exists((event) => {
         return event.name === 'audit:new' && event.data.action === 'CREATE'
-      }))
+      })
+    )
 
-      Event.restore()
+    Event.restore()
   })
 
   test('delete User', async ({ assert, client, route }) => {
@@ -49,16 +51,15 @@ test.group('Audit event', (group) => {
       role: Roles.USER,
     }).create()
 
-    await client
-      .delete(route('admin.users.destroy', customer))
-      .withCsrfToken()
-      .loginAs(user!)
+    await client.delete(route('admin.users.destroy', customer)).withCsrfToken().loginAs(user!)
 
-      assert.isTrue(emitter.exists((event) => {
+    assert.isTrue(
+      emitter.exists((event) => {
         return event.name === 'audit:new' && event.data.action === 'DELETE'
-      }))
+      })
+    )
 
-      Event.restore()
+    Event.restore()
   })
 
   test('update User', async ({ assert, client, route }) => {
@@ -74,16 +75,18 @@ test.group('Audit event', (group) => {
         lastname: faker.person.lastName(),
         firstname: customer.firstname,
         email: customer.email,
-        role: Roles.USER
+        role: Roles.USER,
       })
       .withCsrfToken()
       .loginAs(user!)
 
-      assert.isTrue(emitter.exists((event) => {
+    assert.isTrue(
+      emitter.exists((event) => {
         return event.name === 'audit:new' && event.data.action === 'UPDATE'
-      }))
+      })
+    )
 
-      Event.restore()
+    Event.restore()
   })
 
   test('impersonate User', async ({ assert, client, route }) => {
@@ -93,16 +96,14 @@ test.group('Audit event', (group) => {
       role: Roles.USER,
     }).create()
 
-    await client
-      .post(route('impersonate.store', customer))
-      .withCsrfToken()
-      .loginAs(user!)
+    await client.post(route('impersonate.store', customer)).withCsrfToken().loginAs(user!)
 
-      assert.isTrue(emitter.exists((event) => {
+    assert.isTrue(
+      emitter.exists((event) => {
         return event.name === 'audit:new' && event.data.action === 'IMPERSONATE'
-      }))
+      })
+    )
 
-      Event.restore()
+    Event.restore()
   })
-
 })

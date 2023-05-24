@@ -7,7 +7,7 @@ import { faker } from '@faker-js/faker'
 import User from 'App/Models/User'
 
 test.group('Admin create tag', (group) => {
-  let user: User | null  = null
+  let user: User | null = null
 
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -32,9 +32,11 @@ test.group('Admin create tag', (group) => {
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.name.minLength', {
-        min_length: 2,
-      })),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.name.minLength', {
+          min_length: 2,
+        })
+      ),
       1
     )
   })
@@ -56,7 +58,9 @@ test.group('Admin create tag', (group) => {
 
     await page.assertElementsCount('tbody tr', 1)
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.tag.create')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.tag.create')
+      ),
       1
     )
   })

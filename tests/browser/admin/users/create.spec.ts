@@ -7,7 +7,7 @@ import { faker } from '@faker-js/faker'
 import User from 'App/Models/User'
 
 test.group('Admin create user', (group) => {
-  let user: User | null  = null
+  let user: User | null = null
 
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -24,7 +24,6 @@ test.group('Admin create user', (group) => {
   })
 
   test('should create errors validation fields', async ({ login, visit, route }) => {
-
     await login(user!.email, 'secret')
 
     const page = await visit(route('admin.users.create'))
@@ -35,19 +34,25 @@ test.group('Admin create user', (group) => {
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.minLength', {
-        min_length: 2,
-      })),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.minLength', {
+          min_length: 2,
+        })
+      ),
       1
     )
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.minLength', {
-        min_length: 2,
-      })),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.minLength', {
+          min_length: 2,
+        })
+      ),
       1
     )
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.email')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.email')
+      ),
       1
     )
 
@@ -57,22 +62,27 @@ test.group('Admin create user', (group) => {
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.maxLength', {
-        max_length: 50,
-      })),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.lastname.maxLength', {
+          max_length: 50,
+        })
+      ),
       1
     )
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.maxLength', {
-        max_length: 50,
-      })),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.firstname.maxLength', {
+          max_length: 50,
+        })
+      ),
       1
     )
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.unique')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('validator.shared.email.unique')
+      ),
       1
     )
-
   })
 
   test('should create success', async ({ login, visit, route }) => {
@@ -94,7 +104,9 @@ test.group('Admin create user', (group) => {
 
     await page.assertElementsCount('tbody tr', 2)
     await page.assertElementsCount(
-      await page.getByText(I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.create')),
+      await page.getByText(
+        I18n.locale(I18n.defaultLocale).formatMessage('form.success.user.create')
+      ),
       1
     )
   })

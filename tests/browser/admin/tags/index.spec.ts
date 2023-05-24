@@ -54,7 +54,9 @@ test.group('Admin tags', (group) => {
 
     await page.assertElementsCount('tbody tr', 1)
 
-    await page.assertExists(page.locator('tbody tr:first-child > td:nth-of-type(1)', { hasText: tags[0].name }))
+    await page.assertExists(
+      page.locator('tbody tr:first-child > td:nth-of-type(1)', { hasText: tags[0].name })
+    )
   })
 
   test('should change order of list', async ({ login, visit, route }) => {
@@ -72,7 +74,9 @@ test.group('Admin tags', (group) => {
     await page.locator('select[name="order"]').selectOption('name+desc')
     await page.keyboard.press('Enter')
 
-    await page.assertExists(page.locator('tbody tr:first-child > td:nth-of-type(1)', { hasText: tag.name }))
+    await page.assertExists(
+      page.locator('tbody tr:first-child > td:nth-of-type(1)', { hasText: tag.name })
+    )
   })
 
   test('should clear filter', async ({ login, visit, route }) => {

@@ -23,7 +23,10 @@ test.group('Forgot password mailer', (group) => {
 
     assert.isFalse(
       mailer.exists((mail) => {
-        return mail.subject === I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject')
+        return (
+          mail.subject ===
+          I18n.locale(I18n.defaultLocale).formatMessage('email.forgotPassword.subject')
+        )
       })
     )
 

@@ -6,7 +6,6 @@ import { faker } from '@faker-js/faker'
 import UserFactory from 'Database/factories/UserFactory'
 import Roles from 'App/Enums/Roles'
 
-
 test.group('User avatar', (group) => {
   group.each.setup(async () => {
     await Database.beginGlobalTransaction()
@@ -30,7 +29,7 @@ test.group('User avatar', (group) => {
         lastname: faker.person.lastName(),
         firstname: faker.person.firstName(),
         email: faker.internet.email(),
-        role: Roles.USER
+        role: Roles.USER,
       })
       .file('avatar', fakeAvatar.contents, { filename: fakeAvatar.name })
 

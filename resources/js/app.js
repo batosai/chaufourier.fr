@@ -19,8 +19,8 @@ up.layer.config.drawer.size = 'large'
 up.layer.config.drawer.position = 'right'
 
 // after drawer closed, refresh toast for flashmessage
-up.on('up:layer:dismissed', function(event) {
-  up.reload(".toasts")
+up.on('up:layer:dismissed', function (event) {
+  up.reload('.toasts')
 })
 
 up.on('up:fragment:loaded', (event) => {
@@ -33,7 +33,7 @@ up.on('up:fragment:loaded', (event) => {
     // Make a full page load for the same request.
     // event.request.loadPage()
     // window.location.reload()
-    window.location.href = location;
+    window.location.href = location
   }
 })
 
@@ -50,14 +50,12 @@ window.getRightPosition = (el) => getLeftPosition(el) + el.offsetWidth
 
 // override unpoly up-confirm, add custom modal
 
-
-up.compiler('[up-confirm]', function(element) {
+up.compiler('[up-confirm]', function (element) {
   up.on(element, 'click', (event, element) => {
     event.preventDefault()
     up.confirm(element)
   })
 })
-
 
 up.confirm = function (element) {
   const message = element.getAttribute('up-confirm')
@@ -74,7 +72,9 @@ up.confirm = function (element) {
                   cancel
               </button>
 
-              <button class="btn ${colorButton}" @click="up.navigate({ target: 'main', url: '${element.getAttribute('href')}', method: '${method}' }); $root.remove()">
+              <button class="btn ${colorButton}" @click="up.navigate({ target: 'main', url: '${element.getAttribute(
+    'href'
+  )}', method: '${method}' }); $root.remove()">
                   ok
               </button>
           </div>

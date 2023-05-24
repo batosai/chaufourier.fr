@@ -24,7 +24,6 @@ test.group('Admin edit user', (group) => {
   })
 
   test('should edit success', async ({ login, visit, route }) => {
-
     await login(user!.email, 'secret')
 
     const page = await visit(route('admin.users.edit', user!))

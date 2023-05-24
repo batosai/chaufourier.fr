@@ -45,7 +45,6 @@ export const plugins: Config['plugins'] = [
         slowMo: 300,
       })
     },
-
   }),
 ]
 

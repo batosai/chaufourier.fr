@@ -53,7 +53,9 @@ test.group('Admin users', (group) => {
 
     await page.assertElementsCount('tbody tr', 1)
 
-    await page.assertExists(page.locator('tbody tr:first-child > td:nth-of-type(2)', { hasText: user!.email }))
+    await page.assertExists(
+      page.locator('tbody tr:first-child > td:nth-of-type(2)', { hasText: user!.email })
+    )
   })
 
   test('should change order of list', async ({ login, visit, route }) => {
@@ -65,7 +67,9 @@ test.group('Admin users', (group) => {
     await page.locator('select[name="order"]').selectOption('email+asc')
     await page.keyboard.press('Enter')
 
-    await page.assertExists(page.locator('tbody tr:first-child > td:nth-of-type(2)', { hasText: user2.email }))
+    await page.assertExists(
+      page.locator('tbody tr:first-child > td:nth-of-type(2)', { hasText: user2.email })
+    )
   })
 
   test('should filter by admin user', async ({ login, visit, route }) => {
