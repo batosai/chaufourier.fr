@@ -5,7 +5,7 @@ import Article from 'App/Models/Article'
 import ArticleSessionFilterService from 'App/Services/ArticleSessionFilterService'
 import ArticleValidator from 'App/Validators/admin/ArticleValidator'
 
-export default class ArticlesController  {
+export default class ArticlesController {
   public async index(ctx: HttpContextContract) {
     const { view, bouncer } = ctx
     await bouncer.with('ArticlePolicy').authorize('viewList')
@@ -37,14 +37,14 @@ export default class ArticlesController  {
     article.userId = auth.user!.id
     await article.save()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Create article ${article!.title}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "CREATE",
-      target: "ARTICLE",
+      action: 'CREATE',
+      target: 'ARTICLE',
       targetId: article.id,
-      payload: article.serialize()
+      payload: article.serialize(),
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.article.create'))
@@ -78,14 +78,14 @@ export default class ArticlesController  {
     const dirty = article.$dirty
     await article.save()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Update article ${article!.title}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "UPDATE",
-      target: "ARTICLE",
+      action: 'UPDATE',
+      target: 'ARTICLE',
       targetId: article.id,
-      payload: dirty
+      payload: dirty,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.article.edit'))
@@ -97,7 +97,15 @@ export default class ArticlesController  {
     }
   }
 
-  public async destroy({ params, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
+  public async destroy({
+    params,
+    response,
+    bouncer,
+    session,
+    i18n,
+    auth,
+    up,
+  }: HttpContextContract) {
     const { id } = params
     const article = await Article.findOrFail(id)
     await bouncer.with('ArticlePolicy').authorize('delete')
@@ -105,14 +113,14 @@ export default class ArticlesController  {
     const title = article!.title
     await article.delete()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Delete article ${title}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "DELETE",
-      target: "ARTICLE",
+      action: 'DELETE',
+      target: 'ARTICLE',
       targetId: id,
-      payload
+      payload,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.article.delete'))

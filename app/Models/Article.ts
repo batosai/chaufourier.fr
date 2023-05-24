@@ -36,10 +36,10 @@ export default class Article extends compose(BaseModel, Filterable) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-   // Relationships
+  // Relationships
 
-   @hasOne(() => User)
-   public user: HasOne<typeof User>
+  @hasOne(() => User)
+  public user: HasOne<typeof User>
 
   // Hooks
 

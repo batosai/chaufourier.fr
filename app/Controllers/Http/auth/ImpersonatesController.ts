@@ -9,13 +9,13 @@ export default class ImpersonatesController {
 
     session.put('impersonatedId', params.id)
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Impersonate user ${impersonatedUser!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "IMPERSONATE",
-      target: "USER",
-      targetId: impersonatedUser!.id
+      action: 'IMPERSONATE',
+      target: 'USER',
+      targetId: impersonatedUser!.id,
     })
 
     up.setLocation('/admin')

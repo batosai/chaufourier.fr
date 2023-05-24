@@ -28,10 +28,7 @@ export default class TagValidator {
               }
         ),
       ]),
-      slug: schema.string.optional([
-        rules.escape(),
-        rules.trim(),
-      ]),
+      slug: schema.string.optional([rules.escape(), rules.trim()]),
     }
 
     this.schema = schema.create(fields)
@@ -41,11 +38,8 @@ export default class TagValidator {
 
   public messages = {
     ...this.ctx.i18n.validatorMessages('validator.shared'),
-    'name.minLength': this.ctx.i18n.formatMessage(
-      'validator.shared.name.minLength',
-      {
-        min_length: MIN_LENGTH,
-      },
-    ),
+    'name.minLength': this.ctx.i18n.formatMessage('validator.shared.name.minLength', {
+      min_length: MIN_LENGTH,
+    }),
   }
 }

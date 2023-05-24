@@ -5,7 +5,7 @@
  * file.
  */
 
-import { ModelObject } from "@ioc:Adonis/Lucid/Orm"
+import { ModelObject } from '@ioc:Adonis/Lucid/Orm'
 
 declare module '@ioc:Adonis/Core/Event' {
   /*
@@ -39,6 +39,6 @@ declare module '@ioc:Adonis/Core/Event' {
   }
 
   interface EventsList {
-    "audit:new": NewAudit
+    'audit:new': NewAudit
   }
 }

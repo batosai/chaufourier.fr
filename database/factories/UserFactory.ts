@@ -5,14 +5,13 @@ import { Attachment } from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import User from 'App/Models/User'
 
 export default Factory.define(User, async ({ faker }) => {
-
   const fakeAvatar = await file.generatePng('1mb')
   const avatar = new Attachment({
     extname: 'png',
     mimeType: 'image/png',
     size: 5 * 1000,
     name: `avatars/${fakeAvatar.name}`,
-    variants: {}
+    variants: {},
   })
 
   avatar.isPersisted = true

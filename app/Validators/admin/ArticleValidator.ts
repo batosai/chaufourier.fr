@@ -6,15 +6,8 @@ export const MIN_LENGTH = 2
 export default class ArticleValidator {
   constructor(protected ctx: HttpContextContract) {
     const fields = {
-      title: schema.string([
-        rules.escape(),
-        rules.trim(),
-        rules.minLength(MIN_LENGTH),
-      ]),
-      slug: schema.string.optional([
-        rules.escape(),
-        rules.trim(),
-      ]),
+      title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
+      slug: schema.string.optional([rules.escape(), rules.trim()]),
     }
 
     this.schema = schema.create(fields)
@@ -24,11 +17,8 @@ export default class ArticleValidator {
 
   public messages = {
     ...this.ctx.i18n.validatorMessages('validator.shared'),
-    'title.minLength': this.ctx.i18n.formatMessage(
-      'validator.shared.title.minLength',
-      {
-        min_length: MIN_LENGTH,
-      },
-    ),
+    'title.minLength': this.ctx.i18n.formatMessage('validator.shared.title.minLength', {
+      min_length: MIN_LENGTH,
+    }),
   }
 }

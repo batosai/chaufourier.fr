@@ -36,14 +36,14 @@ export default class TagsController {
     await tag.fill(payload)
     await tag.save()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Create tag ${tag!.name}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "CREATE",
-      target: "TAG",
+      action: 'CREATE',
+      target: 'TAG',
       targetId: tag.id,
-      payload: tag.serialize()
+      payload: tag.serialize(),
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.tag.create'))
@@ -77,14 +77,14 @@ export default class TagsController {
     const dirty = tag.$dirty
     await tag.save()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Update tag ${tag!.name}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "UPDATE",
-      target: "TAG",
+      action: 'UPDATE',
+      target: 'TAG',
       targetId: tag.id,
-      payload: dirty
+      payload: dirty,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.tag.edit'))
@@ -96,7 +96,15 @@ export default class TagsController {
     }
   }
 
-  public async destroy({ params, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
+  public async destroy({
+    params,
+    response,
+    bouncer,
+    session,
+    i18n,
+    auth,
+    up,
+  }: HttpContextContract) {
     const { id } = params
     const tag = await Tag.findOrFail(id)
     await bouncer.with('TagPolicy').authorize('delete')
@@ -104,14 +112,14 @@ export default class TagsController {
     const name = tag!.name
     await tag.delete()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Delete tag ${name}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "DELETE",
-      target: "TAG",
+      action: 'DELETE',
+      target: 'TAG',
       targetId: id,
-      payload
+      payload,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.tag.delete'))

@@ -48,14 +48,14 @@ export default class UsersController {
     }
     await user.save()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Create user ${user!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "CREATE",
-      target: "USER",
+      action: 'CREATE',
+      target: 'USER',
       targetId: user.id,
-      payload: user.serialize()
+      payload: user.serialize(),
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.create'))
@@ -106,14 +106,14 @@ export default class UsersController {
     const dirty = user.$dirty
     await user.save()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Update user ${user!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "UPDATE",
-      target: "USER",
+      action: 'UPDATE',
+      target: 'USER',
       targetId: user.id,
-      payload: dirty
+      payload: dirty,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.edit'))
@@ -129,7 +129,15 @@ export default class UsersController {
     }
   }
 
-  public async destroy({ params, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
+  public async destroy({
+    params,
+    response,
+    bouncer,
+    session,
+    i18n,
+    auth,
+    up,
+  }: HttpContextContract) {
     const { id } = params
     const user = await User.findOrFail(id)
     await bouncer.with('UserPolicy').authorize('delete', user)
@@ -137,14 +145,14 @@ export default class UsersController {
     const fullname = user!.fullname
     await user.delete()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Delete user ${fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "DELETE",
-      target: "USER",
+      action: 'DELETE',
+      target: 'USER',
       targetId: id,
-      payload
+      payload,
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.user.delete'))
@@ -156,7 +164,15 @@ export default class UsersController {
     }
   }
 
-  public async toggleDisabled({ request, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
+  public async toggleDisabled({
+    request,
+    response,
+    bouncer,
+    session,
+    i18n,
+    auth,
+    up,
+  }: HttpContextContract) {
     const user = await User.findOrFail(request.param('id'))
     await bouncer.with('UserPolicy').authorize('disabled', user)
 
@@ -164,22 +180,22 @@ export default class UsersController {
     await user.save()
 
     if (user.disabled) {
-      Event.emit("audit:new", {
+      Event.emit('audit:new', {
         label: `Disabled user ${user!.fullname}`,
         username: auth.user!.fullname,
         userId: auth.user!.id,
-        action: "UPDATE",
-        target: "USER",
+        action: 'UPDATE',
+        target: 'USER',
         targetId: user.id,
       })
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.disabled'))
     } else {
-      Event.emit("audit:new", {
+      Event.emit('audit:new', {
         label: `Enabled user ${user!.fullname}`,
         username: auth.user!.fullname,
         userId: auth.user!.id,
-        action: "UPDATE",
-        target: "USER",
+        action: 'UPDATE',
+        target: 'USER',
         targetId: user.id,
       })
       session.flash('success.message', i18n.formatMessage('form.success.user.toggle.enabled'))
@@ -192,18 +208,26 @@ export default class UsersController {
     }
   }
 
-  public async forgotPassword({ request, response, bouncer, session, i18n, auth, up }: HttpContextContract) {
+  public async forgotPassword({
+    request,
+    response,
+    bouncer,
+    session,
+    i18n,
+    auth,
+    up,
+  }: HttpContextContract) {
     const user = await User.findOrFail(request.param('id'))
     await bouncer.with('UserPolicy').authorize('forgot', user)
 
     await new ForgotPasswordMailer(user).sendLater()
 
-    Event.emit("audit:new", {
+    Event.emit('audit:new', {
       label: `Forgot password user ${user!.fullname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
-      action: "UPDATE",
-      target: "USER",
+      action: 'UPDATE',
+      target: 'USER',
       targetId: user.id,
     })
 

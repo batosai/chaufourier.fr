@@ -10,12 +10,16 @@ import {
   BaseModel,
   scope,
   hasMany,
-  HasMany
+  HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import UserFilter from 'App/Models/Filters/UserFilter'
 import Roles from 'App/Enums/Roles'
-import { attachment, AttachmentContract, Attachmentable } from '@ioc:Adonis/Addons/AttachmentAdvanced'
+import {
+  attachment,
+  AttachmentContract,
+  Attachmentable,
+} from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import Audit from './Audit'
 import Article from './Article'
 
@@ -69,8 +73,8 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
   // Relationships
 
   @hasMany(() => Audit, {
-    foreignKey: "user_id",
-    localKey: "id",
+    foreignKey: 'user_id',
+    localKey: 'id',
   })
   public actions: HasMany<typeof Audit>
 
@@ -111,8 +115,7 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
-    }
-    else if (!user.password) {
+    } else if (!user.password) {
       user.password = await Hash.make(uuid())
     }
   }
@@ -122,8 +125,7 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
     if (user.$dirty.disabled) {
       if (user.disabled === true) {
         user.disabledOn = DateTime.local()
-      }
-      else {
+      } else {
         user.disabledOn = null
       }
     }

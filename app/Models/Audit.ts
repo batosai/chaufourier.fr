@@ -1,7 +1,14 @@
-import { DateTime } from "luxon"
+import { DateTime } from 'luxon'
 import { v4 as uuid } from 'uuid'
-import { BaseModel, column, belongsTo, BelongsTo, beforeCreate, ModelObject } from "@ioc:Adonis/Lucid/Orm"
-import User from "./User"
+import {
+  BaseModel,
+  column,
+  belongsTo,
+  BelongsTo,
+  beforeCreate,
+  ModelObject,
+} from '@ioc:Adonis/Lucid/Orm'
+import User from './User'
 
 export default class Audit extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -41,8 +48,8 @@ export default class Audit extends BaseModel {
   // Relationships
 
   @belongsTo(() => User, {
-    foreignKey: "user_id",
-    localKey: "id",
+    foreignKey: 'user_id',
+    localKey: 'id',
   })
   public user: BelongsTo<typeof User>
 

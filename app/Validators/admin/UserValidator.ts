@@ -42,48 +42,30 @@ export default class UserValidator {
   public schema
   public messages = {
     ...this.ctx.i18n.validatorMessages('validator.shared'),
-    'firstname.minLength': this.ctx.i18n.formatMessage(
-      'validator.shared.firstname.minLength',
-      {
-        min_length: MIN_LENGTH,
-      },
-    ),
-    'firstname.maxLength': this.ctx.i18n.formatMessage(
-      'validator.shared.firstname.maxLength',
-      {
-        max_length: MAX_LENGTH,
-      },
-    ),
-    'lastname.minLength': this.ctx.i18n.formatMessage(
-      'validator.shared.lastname.minLength',
-      {
-        min_length: MIN_LENGTH,
-      },
-    ),
-    'lastname.maxLength': this.ctx.i18n.formatMessage(
-      'validator.shared.lastname.maxLength',
-      {
-        max_length: MAX_LENGTH,
-      },
-    ),
-    'password.minLength': this.ctx.i18n.formatMessage(
-      'validator.shared.password.minLength',
-      {
-        password_min_length: PASSWORD_MIN_LENGTH,
-      },
-    ),
+    'firstname.minLength': this.ctx.i18n.formatMessage('validator.shared.firstname.minLength', {
+      min_length: MIN_LENGTH,
+    }),
+    'firstname.maxLength': this.ctx.i18n.formatMessage('validator.shared.firstname.maxLength', {
+      max_length: MAX_LENGTH,
+    }),
+    'lastname.minLength': this.ctx.i18n.formatMessage('validator.shared.lastname.minLength', {
+      min_length: MIN_LENGTH,
+    }),
+    'lastname.maxLength': this.ctx.i18n.formatMessage('validator.shared.lastname.maxLength', {
+      max_length: MAX_LENGTH,
+    }),
+    'password.minLength': this.ctx.i18n.formatMessage('validator.shared.password.minLength', {
+      password_min_length: PASSWORD_MIN_LENGTH,
+    }),
     'password_confirmation.minLength': this.ctx.i18n.formatMessage(
       'validator.shared.password_confirmation.minLength',
       {
         password_min_length: PASSWORD_MIN_LENGTH,
-      },
-    ),
-    'avatar.file.size': this.ctx.i18n.formatMessage(
-      'validator.shared.avatar.maxSize',
-      {
-        max_size: MAX_Size,
       }
     ),
-    'avatar.file.extname': this.ctx.i18n.formatMessage('validator.shared.avatar.extname')
+    'avatar.file.size': this.ctx.i18n.formatMessage('validator.shared.avatar.maxSize', {
+      max_size: MAX_Size,
+    }),
+    'avatar.file.extname': this.ctx.i18n.formatMessage('validator.shared.avatar.extname'),
   }
 }

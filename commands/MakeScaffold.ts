@@ -13,8 +13,7 @@ export default class MakeScaffold extends BaseCommand {
   /**
    * Command description is displayed in the "help" output
    */
-  public static description =
-    'Make a new HTTP controller / Lucid model / view template'
+  public static description = 'Make a new HTTP controller / Lucid model / view template'
 
   public static settings = {
     /**

@@ -5,10 +5,12 @@ export default class HealthController {
   public async index({ view, bouncer }: HttpContextContract) {
     await bouncer.with('HealthPolicy').authorize('view')
 
-    const versions = await si.versions('openssl,node,npm,git,mysql,redis,docker,postgresql,python3,pip3,java,gcc,bash')
+    const versions = await si.versions(
+      'openssl,node,npm,git,mysql,redis,docker,postgresql,python3,pip3,java,gcc,bash'
+    )
 
     return view.render('admin/health/index', {
-      versions
+      versions,
     })
   }
 
@@ -26,13 +28,13 @@ export default class HealthController {
     const osInfo = await si.osInfo()
     const diskLayout = await si.diskLayout()
     const fsSize = await si.fsSize()
-    const processLoad = await si.processLoad('node,docker')// add containerName
+    const processLoad = await si.processLoad('node,docker') // add containerName
 
     const disks = {
       total: 0,
-      used: 0
+      used: 0,
     }
-    fsSize.forEach(disk => {
+    fsSize.forEach((disk) => {
       if (disk.size) {
         disks.total += disk.size
         disks.used += disk.used
