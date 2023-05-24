@@ -27,8 +27,8 @@ test.group('User avatar', (group) => {
       .withCsrfToken()
       .loginAs(user)
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: faker.internet.email(),
         role: Roles.USER
       })

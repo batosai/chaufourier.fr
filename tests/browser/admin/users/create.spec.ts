@@ -86,8 +86,8 @@ test.group('Admin create user', (group) => {
 
     await page.goto(route('admin.users.create'))
 
-    await page.locator('input[name="lastname"]').fill(faker.name.lastName())
-    await page.locator('input[name="firstname"]').fill(faker.name.firstName())
+    await page.locator('input[name="lastname"]').fill(faker.person.lastName())
+    await page.locator('input[name="firstname"]').fill(faker.person.firstName())
     await page.locator('input[name="email"]').fill(faker.internet.email())
     await page.locator('text=validate').click()
     // await page.pause()

@@ -93,8 +93,8 @@ test.group('User validator', (group) => {
     const response = await client
       .post(route('admin.users.store'))
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: 'jeremadonis.com',
         role: Roles.USER,
       })
@@ -115,8 +115,8 @@ test.group('User validator', (group) => {
     const response = await client
       .post(route('admin.users.store'))
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: user.email,
         role: Roles.USER,
       })
@@ -137,8 +137,8 @@ test.group('User validator', (group) => {
     const response = await client
       .post(route('admin.users.store'))
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: faker.internet.email(),
         role: Roles.USER,
         password: '.',
@@ -171,8 +171,8 @@ test.group('User validator', (group) => {
     const response = await client
       .put(route('admin.users.update', user))
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: faker.internet.email(),
       })
       .file('avatar', fakeAvatar.contents, { filename: fakeAvatar.name })
@@ -201,8 +201,8 @@ test.group('User validator', (group) => {
     const response = await client
       .put(route('admin.users.update', user))
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: faker.internet.email(),
       })
       .file('avatar', fakeAvatar.contents, { filename: fakeAvatar.name })

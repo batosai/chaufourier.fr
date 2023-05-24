@@ -29,7 +29,7 @@ test.group('Admin edit user', (group) => {
 
     const page = await visit(route('admin.users.edit', user!))
 
-    await page.locator('input[name="lastname"]').fill(faker.name.lastName())
+    await page.locator('input[name="lastname"]').fill(faker.person.lastName())
     await page.locator('text=validate').click()
 
     await page.assertElementsCount(

@@ -20,8 +20,8 @@ export default Factory.define(User, async ({ faker }) => {
   await Drive.put(avatar.name, fakeAvatar.contents)
 
   return {
-    lastname: faker.name.lastName(),
-    firstname: faker.name.firstName(),
+    lastname: faker.person.lastName(),
+    firstname: faker.person.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
     disabled: false,

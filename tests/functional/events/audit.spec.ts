@@ -25,8 +25,8 @@ test.group('Audit event', (group) => {
     await client
       .post(route('admin.users.store'))
       .fields({
-        lastname: faker.name.lastName(),
-        firstname: faker.name.firstName(),
+        lastname: faker.person.lastName(),
+        firstname: faker.person.firstName(),
         email: faker.internet.email(),
         role: Roles.USER,
         password: 'Secret@123',
@@ -71,7 +71,7 @@ test.group('Audit event', (group) => {
     await client
       .put(route('admin.users.update', customer))
       .fields({
-        lastname: faker.name.lastName(),
+        lastname: faker.person.lastName(),
         firstname: customer.firstname,
         email: customer.email,
         role: Roles.USER
