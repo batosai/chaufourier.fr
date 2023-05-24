@@ -5,15 +5,15 @@ import Article from 'App/Models/Article'
 export default class ArticleFilter extends BaseModelFilter {
   public $query: ModelQueryBuilderContract<typeof Article, Article>
 
-  name(value: string) {
+  title(value: string) {
     this.$query.where((builder) => {
-      builder.whereLike('name', `%${value}%`)
+      builder.whereLike('title', `%${value}%`)
     })
   }
 
   search(value: string) {
     this.$query.where((builder) => {
-      builder.whereLike('name', `%${value}%`)
+      builder.whereLike('title', `%${value}%`)
     })
   }
 

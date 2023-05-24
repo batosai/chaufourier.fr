@@ -36,7 +36,7 @@ articles:
   page: Page
   search: Search
   order: Order
-  name+asc: Ascending name
-  name+desc: Descending name
+  title+asc: Ascending title
+  title+desc: Descending title
   createdAt+asc: Ascending date
   createdAt+desc: Descending date
