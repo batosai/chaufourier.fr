@@ -14,20 +14,18 @@
     })
 
     <div class="w-full px-4 my-4 grid grid-cols-3 gap-4">
-      @jrmc.card({ class: 'bg-base-300 col-span-3' })
-        @jrmc.card.body()
-          @jrmc.form({ id: 'edit_article', action: route('admin.articles.update', article, {
-            qs: {
-              _method: 'PUT'
-            }
-          }),
-          enctype: 'multipart/form-data',
-          error: false,
-          object: article  })
-            @include('admin/articles/partials/form')
-          @end
-        @end
+
+      @jrmc.form({ id: 'edit_article', class: 'col-span-3', action: route('admin.articles.update', article, {
+        qs: {
+          _method: 'PUT'
+        }
+      }),
+      enctype: 'multipart/form-data',
+      error: false,
+      object: article  })
+        @include('admin/articles/partials/form')
       @end
+
 
       @can('ArticlePolicy.delete', article)
         @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })

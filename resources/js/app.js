@@ -4,6 +4,7 @@ import 'unpoly/unpoly.css'
 import '../css/app.css'
 
 import Alpine from 'alpinejs'
+import EditorJS from '@editorjs/editorjs'
 
 // Unpoly
 
@@ -83,3 +84,10 @@ up.confirm = function (element) {
 
   document.querySelector('body').append(dialog)
 }
+
+// editor.js
+
+const editor = new EditorJS({
+  autofocus: true,
+  placeholder: 'Type text or paste a link'
+})
