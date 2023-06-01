@@ -1,34 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./unpoly.css";
+@import "./editorjs.css";
 
 ::selection {
   @apply bg-primary;
   color: hsl(var(--pc));
-}
-
-/* override unpoly */
-
-up-modal-box,
-up-drawer-box,
-up-cover-box,
-up-popup {
-  @apply bg-base-100;
-}
-
-up-modal-box,
-up-drawer-box,
-up-cover-box,
-up-popup {
-  overflow-x: initial;
-}
-
-up-drawer-box {
-  padding: 0;
-}
-
-up-drawer-dismiss {
-  display: none;
 }
 
 /* override edge components */
@@ -37,103 +15,3 @@ up-drawer-dismiss {
   z-index: 2000;
 }
 
-/* editorjs */
-
-.codex-editor a {
-  @apply link;
-}
-
-.ce-block--selected .ce-block__content {
-  @apply bg-base-100;
-}
-
-/* toolbar */
-
-.ce-toolbar__plus,
-.ce-toolbar__settings-btn {
-  color: inherit;
-  @apply bg-base-100;
-  @apply border-base-100;
-}
-
-.ce-toolbar__plus:hover,
-.ce-toolbar__settings-btn:hover {
-  @apply bg-base-100;
-  @apply border-base-100;
-}
-
-/* inline toolbar */
-
-.ce-inline-toolbar {
-  @apply bg-base-100;
-  @apply border-base-100;
-}
-
-.ce-inline-tool:hover {
-  @apply bg-base-200;
-}
-
-.ce-inline-tool--active {
-  @apply text-primary;
-}
-
-
-/* popover */
-
-.ce-popover {
-  --color-background: hsl(var(--b1));
-  --color-border: hsl(var(--b1));
-  --color-background-item-hover: hsl(var(--b2));
-  --color-border-icon: hsl(var(--b2));
-  --color-background-icon-focus: hsl(var(--b2));
-  /* --border-radius: 6px;
-  --width: 200px;
-  --max-height: 270px;
-  --padding: 6px;
-  --offset-from-target: 8px;
-  --color-border: #e8e8eb;
-  --color-shadow: rgba(13,20,33,.13);
-  --color-background: white;
-  --color-text-primary: black;
-  --color-text-secondary: #707684;
-  --color-border-icon: rgba(201, 201, 204, .48);
-  --color-border-icon-disabled: #EFF0F1;
-  --color-text-icon-active: #388AE5;
-  --color-background-icon-active: rgba(56, 138, 229, .1);
-  --color-background-item-focus: rgba(34, 186, 255, .08);
-  --color-shadow-item-focus: rgba(7, 161, 227, .08);
-  --color-background-item-hover: #eff2f5;
-  --color-background-item-confirm: #E24A4A;
-  --color-background-item-confirm-hover: #CE4343; */
-  @apply z-40;
-}
-
-.ce-popover-item {
-  color: inherit;
-}
-
-.ce-popover-item__icon {
-  @apply bg-base-200;
-}
-
-.cdx-search-field {
-  color: inherit;
-  background-color: inherit;
-}
-
-.cdx-search-field input:focus-visible {
-  outline: none;
-}
-
-.ce-popover-item--confirmation:not(.ce-popover-item--no-hover):hover,
-.ce-popover-item--confirmation {
-  @apply bg-error;
-}
-
-.ce-popover-item--confirmation .ce-popover-item__title {
-  @apply text-error-content;
-}
-
-.ce-popover-item--confirmation .ce-popover-item__icon {
-  @apply text-error;
-}

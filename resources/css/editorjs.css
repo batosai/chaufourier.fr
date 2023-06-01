@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* editorjs */
+
+.codex-editor a {
+  @apply link;
+}
+
+/* tailwind/typographie */
+.ce-block__content {
+  @apply prose;
+}
+
+.ce-block--selected .ce-block__content {
+  @apply bg-primary;
+  @apply text-primary-content;
+}
+
+/* form */
+
+.cdx-input {
+  @apply !input;
+}
+
+/* table */
+
+.tc-toolbox__toggler svg rect {
+  fill: hsl(var(--b1)) !important;
+}
+
+.tc-toolbox__toggler:hover svg{
+  fill: hsl(var(--bc)) !important;
+}
+
+.tc-table, .tc-row, .tc-row::after, .tc-cell, .tc-add-column {
+  @apply !border-base-100;
+}
+
+.tc-add-column:hover, .tc-add-row:hover, .tc-add-row:hover::before {
+  @apply !bg-base-100;
+}
+
+.tc-cell--selected, .tc-row--selected, .tc-row--selected::after {
+  @apply !bg-primary;
+  @apply !text-primary-content;
+}
+
+.tc-popover {
+  @apply !bg-base-100;
+  @apply !border-base-100;
+}
+
+.tc-popover__item:hover {
+  @apply !bg-primary;
+  @apply !text-primary-content;
+}
+
+.tc-popover__item-icon {
+  @apply !bg-base-200;
+  @apply !border-base-200;
+  @apply !text-base-content;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* toolbar */
+
+.ce-toolbar__plus,
+.ce-toolbar__settings-btn {
+  color: inherit;
+  @apply bg-base-100;
+  @apply border-base-100;
+}
+
+.ce-toolbar__plus:hover,
+.ce-toolbar__settings-btn:hover {
+  @apply bg-base-100;
+  @apply border-base-100;
+}
+
+/* inline toolbar */
+
+.ce-inline-toolbar {
+  @apply bg-base-100;
+  @apply border-base-100;
+}
+
+.ce-inline-tool:hover {
+  @apply bg-base-200;
+}
+
+.ce-inline-tool--active {
+  @apply text-primary;
+}
+
+.ce-inline-toolbar__dropdown:hover {
+  @apply bg-base-200;
+}
+
+
+/* popover */
+
+.ce-popover {
+  --color-background: hsl(var(--b1));
+  --color-border: hsl(var(--b1));
+  --color-background-item-hover: hsl(var(--b2));
+  --color-border-icon: hsl(var(--b2));
+  --color-background-icon-focus: hsl(var(--b2));
+  /* --border-radius: 6px;
+  --width: 200px;
+  --max-height: 270px;
+  --padding: 6px;
+  --offset-from-target: 8px;
+  --color-border: #e8e8eb;
+  --color-shadow: rgba(13,20,33,.13);
+  --color-background: white;
+  --color-text-primary: black;
+  --color-text-secondary: #707684;
+  --color-border-icon: rgba(201, 201, 204, .48);
+  --color-border-icon-disabled: #EFF0F1;
+  --color-text-icon-active: #388AE5;
+  --color-background-icon-active: rgba(56, 138, 229, .1);
+  --color-background-item-focus: rgba(34, 186, 255, .08);
+  --color-shadow-item-focus: rgba(7, 161, 227, .08);
+  --color-background-item-hover: #eff2f5;
+  --color-background-item-confirm: #E24A4A;
+  --color-background-item-confirm-hover: #CE4343; */
+  @apply z-40;
+}
+
+.ce-popover-item {
+  color: inherit;
+}
+
+.ce-popover-item__icon {
+  @apply bg-base-200;
+}
+
+.cdx-search-field {
+  color: inherit;
+  background-color: inherit;
+}
+
+.cdx-search-field input:focus-visible {
+  outline: none;
+}
+
+.ce-popover-item--confirmation:not(.ce-popover-item--no-hover):hover,
+.ce-popover-item--confirmation {
+  @apply bg-error;
+}
+
+.ce-popover-item--confirmation .ce-popover-item__title {
+  @apply text-error-content;
+}
+
+.ce-popover-item--confirmation .ce-popover-item__icon {
+  @apply text-error;
+}
+
+/* .ce-conversion-toolbar */
+
+.ce-conversion-toolbar {
+  @apply bg-base-100;
+  @apply border-base-100;
+}
+
+.ce-conversion-tool--focused,
+.ce-conversion-tool:hover {
+  @apply !bg-primary;
+  @apply text-primary-content;
+}
+
+.ce-conversion-tool__icon {
+  @apply bg-base-200;
+  @apply text-base-content;
+  box-shadow: 0 0 0 1px hsl(var(--b1));
+  width: 24px;
+  height: 24px;
+}

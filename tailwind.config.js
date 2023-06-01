@@ -4,7 +4,7 @@ const dark = require('daisyui/src/colors/themes')['[data-theme=dark]']
 module.exports = {
   mode: 'jit',
   content: ['./resources/views/**/*.edge', ...edgeComponent.content],
-  plugins: [...edgeComponent.plugins],
+  plugins: [...edgeComponent.plugins, require('@tailwindcss/typography')],
   daisyui: {
     themes: [
       {
