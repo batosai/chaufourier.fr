@@ -9,7 +9,7 @@ import Table from '@editorjs/table'
 import Marker from '@editorjs/marker'
 import InlineCode from '@editorjs/inline-code'
 import Underline from '@editorjs/underline'
-import editorjsCodeflask from '@calumk/editorjs-codeflask'
+import CodeBox from '@bomdi/codebox'
 import Hyperlink from 'editorjs-hyperlink'
 
 import DragDrop from 'editorjs-drag-drop'
@@ -18,8 +18,9 @@ import Undo from 'editorjs-undo'
 // editor.js
 
 const editor = new EditorJS({
-  autofocus: true,
+  // autofocus: true,
   placeholder: 'Type text or paste a link',
+  data: JSON.parse(document.querySelector('[name="body"]').value),
   onReady: () => {
     new Undo({
       editor,
@@ -31,6 +32,13 @@ const editor = new EditorJS({
       // }
     })
     new DragDrop(editor)
+  },
+  onChange: (api, event) => {
+    editor.save().then((outputData) => {
+      document.querySelector('[name="body"]').value = JSON.stringify(outputData)
+    }).catch((error) => {
+      console.log('Saving failed: ', error)
+    })
   },
   tools: {
     // paragraph: {
@@ -99,7 +107,14 @@ const editor = new EditorJS({
       shortcut: 'CMD+SHIFT+C',
     },
     underline: Underline,
-    code : editorjsCodeflask,
+    codeBox : {
+      class: CodeBox,
+      // config: {
+      //   themeURL: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css', // Optional
+      //   themeName: 'atom-one-dark', // Optional
+      //   useDefaultTheme: 'light' // Optional. This also determines the background color of the language select drop-down
+      // }
+    },
     hyperlink: {
       class: Hyperlink,
       // config: {

@@ -89,7 +89,7 @@
     "@adonisjs/session": "^6.4.0",
     "@adonisjs/shield": "^7.1.0",
     "@adonisjs/view": "^6.2.0",
-    "@calumk/editorjs-codeflask": "^1.0.9",
+    "@bomdi/codebox": "^2.0.0",
     "@editorjs/editorjs": "^2.27.0",
     "@editorjs/embed": "^2.5.3",
     "@editorjs/header": "^2.7.0",
