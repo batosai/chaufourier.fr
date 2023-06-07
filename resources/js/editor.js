@@ -17,115 +17,97 @@ import Undo from 'editorjs-undo'
 
 // editor.js
 
-const editor = new EditorJS({
-  // autofocus: true,
-  placeholder: 'Type text or paste a link',
-  data: JSON.parse(document.querySelector('[name="body"]').value),
-  onReady: () => {
-    new Undo({
-      editor,
-      // config: {
-      //   shortcuts: {
-      //     undo: 'CMD+Z',
-      //     redo: 'CMD+SHIFT+Z'
-      //   }
-      // }
-    })
-    new DragDrop(editor)
-  },
-  onChange: (api, event) => {
-    editor.save().then((outputData) => {
-      document.querySelector('[name="body"]').value = JSON.stringify(outputData)
-    }).catch((error) => {
-      console.log('Saving failed: ', error)
-    })
-  },
-  tools: {
-    // paragraph: {
-    //   class: Paragraph,
-    //   inlineToolbar: true,
-    // },
-    header: {
-      class: Header,
-      shortcut: 'CMD+SHIFT+H',
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Enter a header',
-        // levels: [2, 3, 4],
-        defaultLevel: 3
+// todo preview @editorjs/link
+
+
+export default () => ({
+  id: 'editorjs',
+  editor: null,
+
+  init() {
+    this.$refs.data.style.display = 'none'
+    this.editor = new EditorJS({
+      holderId : this.id,
+      // autofocus: true,
+      placeholder: 'Type text or paste a link',
+      data: JSON.parse(this.$refs.data.value),
+      onReady: () => {
+        new Undo({
+          editor: this.editor
+        })
+        new DragDrop(this.editor)
+      },
+      onChange: (api, event) => {
+        this.editor.save().then((outputData) => {
+          this.$refs.data.value = JSON.stringify(outputData)
+        }).catch((error) => {
+          console.log('Saving failed: ', error)
+        })
+      },
+      tools: {
+        header: {
+          class: Header,
+          shortcut: 'CMD+SHIFT+H',
+          inlineToolbar: true,
+          config: {
+            placeholder: 'Enter a header',
+            levels: [1, 2, 3, 4],
+            defaultLevel: 3
+          }
+        },
+        quote: {
+          class: Quote,
+          inlineToolbar: true,
+          shortcut: 'CMD+SHIFT+O',
+          config: {
+            quotePlaceholder: 'Enter a quote',
+            captionPlaceholder: 'Quote\'s author',
+          },
+        },
+        warning: {
+          class: Warning,
+          inlineToolbar: true,
+          shortcut: 'CMD+SHIFT+W',
+          config: {
+            titlePlaceholder: 'Title',
+            messagePlaceholder: 'Message',
+          },
+        },
+        list: {
+          class: NestedList,
+          inlineToolbar: true,
+          config: {
+            defaultStyle: 'unordered'
+          },
+        },
+        table: {
+          class: Table,
+          inlineToolbar: true,
+        },
+        Marker: {
+          class: Marker,
+          shortcut: 'CMD+SHIFT+M',
+        },
+        inlineCode: {
+          class: InlineCode,
+          shortcut: 'CMD+SHIFT+C',
+        },
+        embed: Embed,
+        underline: Underline,
+        delimiter: Delimiter,
+        codeBox : CodeBox,
+        hyperlink: {
+          class: Hyperlink,
+          // config: {
+          //   shortcut: 'CMD+L',
+          //   target: '_blank',
+          //   rel: 'nofollow',
+          //   availableTargets: ['_blank', '_self'],
+          //   availableRels: ['author', 'noreferrer'],
+          //   validate: false,
+          // }
+        },
       }
-    },
-    quote: {
-      class: Quote,
-      inlineToolbar: true,
-      shortcut: 'CMD+SHIFT+O',
-      config: {
-        quotePlaceholder: 'Enter a quote',
-        captionPlaceholder: 'Quote\'s author',
-      },
-    },
-    warning: {
-      class: Warning,
-      inlineToolbar: true,
-      shortcut: 'CMD+SHIFT+W',
-      config: {
-        titlePlaceholder: 'Title',
-        messagePlaceholder: 'Message',
-      },
-    },
-    delimiter: Delimiter,
-    list: {
-      class: NestedList,
-      inlineToolbar: true,
-      config: {
-        defaultStyle: 'unordered'
-      },
-    },
-    embed: {
-      class: Embed,
-      // config: {
-      //   services: {
-      //     youtube: true,
-      //     coub: true
-      //   }
-      // }
-    },
-    table: {
-      class: Table,
-      inlineToolbar: true,
-      // config: {
-      //   rows: 2,
-      //   cols: 3,
-      // },
-    },
-    Marker: {
-      class: Marker,
-      shortcut: 'CMD+SHIFT+M',
-    },
-    inlineCode: {
-      class: InlineCode,
-      shortcut: 'CMD+SHIFT+C',
-    },
-    underline: Underline,
-    codeBox : {
-      class: CodeBox,
-      // config: {
-      //   themeURL: 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css', // Optional
-      //   themeName: 'atom-one-dark', // Optional
-      //   useDefaultTheme: 'light' // Optional. This also determines the background color of the language select drop-down
-      // }
-    },
-    hyperlink: {
-      class: Hyperlink,
-      // config: {
-      //   shortcut: 'CMD+L',
-      //   target: '_blank',
-      //   rel: 'nofollow',
-      //   availableTargets: ['_blank', '_self'],
-      //   availableRels: ['author', 'noreferrer'],
-      //   validate: false,
-      // }
-    },
+    })
   }
 })
-// todo preview @editorjs/link

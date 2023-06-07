@@ -1,6 +1,10 @@
 import Alpine from 'alpinejs'
 
+import editor from './editor'
+
 // Alpine
+
+Alpine.data('editor', editor);
 
 Alpine.start()
 

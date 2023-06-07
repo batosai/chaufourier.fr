@@ -1,0 +1,7 @@
+
+<div x-data="editor">
+  <div :id="id"></div>
+  @jrmc.form.control({ name: 'body', label: false })
+    @!jrmc.form.textarea({ 'x-ref': 'data' })
+  @end
+</div>

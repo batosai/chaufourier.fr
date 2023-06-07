@@ -12,11 +12,6 @@
 
 @jrmc.card({ class: 'bg-base-300 mt-4' })
   @jrmc.card.body()
-    <div id="editorjs"></div>
-    @jrmc.form.control({ name: 'body', label: false })
-      @!jrmc.form.input({ type: 'hidden' })
-    @end
+    @!admin.editor()
   @end
 @end
-todo mobile z-index
-todo unpoly load editor
