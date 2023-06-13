@@ -7,7 +7,8 @@ export default class TagSessionFilterService {
   public static async handle({ request, session }: HttpContextContract): Promise<any> {
     let { page = 1, reset, ...data } = request.qs()
 
-    if (!Object.keys(data).length && session.has('tagsFilter')) {
+    //!\ Not use session for ajax request
+    if (!Object.keys(data).length && session.has('tagsFilter') && !request.ajax()) {
       data = session.get('tagsFilter')
     }
 
@@ -28,6 +29,11 @@ export default class TagSessionFilterService {
       }),
       data,
     })
+
+    //!\ Not modify session for ajax request
+    if (request.ajax()) {
+      return data
+    }
 
     if (Object.keys(data).length) {
       data.page = page

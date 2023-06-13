@@ -10,6 +10,7 @@ export default class TagValidator {
       name: schema.string([
         rules.escape(),
         rules.trim(),
+        rules.lowerCase(),
         rules.minLength(MIN_LENGTH),
         rules.unique(
           tag

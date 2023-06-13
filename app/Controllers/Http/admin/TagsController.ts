@@ -3,11 +3,13 @@ import Route from '@ioc:Adonis/Core/Route'
 import Event from '@ioc:Adonis/Core/Event'
 import Tag from 'App/Models/Tag'
 import TagSessionFilterService from 'App/Services/TagSessionFilterService'
-import TagValidator from 'App/Validators/admin/TagValidator'
+import TagValidator, { MIN_LENGTH } from 'App/Validators/admin/TagValidator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
+
 
 export default class TagsController {
   public async index(ctx: HttpContextContract) {
-    const { view, bouncer } = ctx
+    const { request, view, bouncer } = ctx
     await bouncer.with('TagPolicy').authorize('viewList')
 
     const limit = 10
@@ -17,9 +19,14 @@ export default class TagsController {
     tags.baseUrl(Route.builder().make('admin.tags.index'))
     tags.queryString(payload)
 
-    return view.render('admin/tags/index', {
-      tags,
-    })
+    switch (request.accepts(['html', 'json'])) {
+      case 'html':
+        return view.render('admin/tags/index', { tags })
+      case 'json':
+        return tags
+      default:
+        return view.render('admin/tags/index', { tags })
+    }
   }
 
   public async create({ view, bouncer }: HttpContextContract) {
@@ -129,5 +136,43 @@ export default class TagsController {
     } else {
       response.redirect().toRoute('admin.tags.index')
     }
+  }
+
+  public async find({
+    request,
+    response,
+    bouncer,
+    auth,
+  }: HttpContextContract) {
+    await bouncer.with('TagPolicy').authorize('find')
+
+    const tagSchema = schema.create({
+      name: schema.string([
+        rules.escape(),
+        rules.trim(),
+        rules.lowerCase(),
+        rules.minLength(MIN_LENGTH),
+      ])
+    })
+
+    const payload = await request.validate({ schema: tagSchema })
+    // const body = request.only(['name'])
+
+    const tag = await Tag.firstOrCreate(payload, {})
+
+    if (!tag.$isLocal) {
+      Event.emit('audit:new', {
+        label: `Create tag ${tag!.name}`,
+        username: auth.user!.fullname,
+        userId: auth.user!.id,
+        action: 'CREATE',
+        target: 'TAG',
+        targetId: tag.id,
+        payload: tag.serialize(),
+      })
+    }
+
+    response.type('json')
+    return tag
   }
 }

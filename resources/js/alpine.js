@@ -1,10 +1,12 @@
 import Alpine from 'alpinejs'
 
 import editor from './editor'
+import autocomplete from './autocomplete'
 
 // Alpine
 
-Alpine.data('editor', editor);
+Alpine.data('editor', editor)
+Alpine.data('autocomplete', autocomplete)
 
 Alpine.start()
 

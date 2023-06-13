@@ -12,6 +12,7 @@ Route.group(() => {
   )
 
   Route.resource('tags', 'admin/TagsController').except(['show'])
+  Route.post('tags/find', 'admin/TagsController.find').as('tags.find')
 
   Route.resource('articles', 'admin/ArticlesController').except(['show'])
 

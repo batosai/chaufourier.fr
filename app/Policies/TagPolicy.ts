@@ -14,6 +14,10 @@ export default class TagPolicy extends BasePolicy {
     return currentUser.isAdmin
   }
 
+  public async find(currentUser: User) {
+    return currentUser.isAdmin
+  }
+
   public async delete(currentUser: User) {
     return currentUser.isAdmin
   }
