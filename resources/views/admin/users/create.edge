@@ -25,7 +25,7 @@
 
     <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
       <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1">
+        <div class="flex-1{{ up.isDrawer() ? '' : ' lg:pl-80' }}">
           @if(up.isDrawer())
             @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
           @else

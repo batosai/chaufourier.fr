@@ -19,14 +19,10 @@
       @end
     </div>
 
-    <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
+    <template x-teleport="[data-actions='form']">
       <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1">
-          @if(up.isDrawer())
-            @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
-          @else
-            @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.articles.index'), class: 'btn-outline btn-sm' })
-          @end
+        <div class="flex-1 lg:pl-80">
+          @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.articles.index'), class: 'btn-outline btn-sm' })
         </div>
         <div class="flex-none">
           @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_article', class: 'btn-primary btn-outline btn-sm' })

@@ -13,7 +13,7 @@
       ]
     })
 
-    <div class="w-full px-4 my-4 grid grid-cols-3 gap-4">
+    <div class="w-full px-4 my-4 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
       @jrmc.card({ class: 'bg-base-300 col-span-3' })
         @jrmc.card.body()
           @jrmc.form({ id: 'edit_tag', action: route('admin.tags.update', tag, {
@@ -30,7 +30,7 @@
       @end
 
       @can('TagPolicy.delete', tag)
-        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 col-span-3 xl:col-span-1' })
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
           @jrmc.card.body()
             @!jrmc.card.title({ text: 'DELETED' })
             <p>Delete the tag account and all its data.</p>
@@ -45,7 +45,7 @@
 
     <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
       <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1">
+        <div class="flex-1{{ up.isDrawer() ? '' : ' lg:pl-80' }}">
           @if(up.isDrawer())
             @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
           @else
