@@ -37,6 +37,11 @@ export default class ArticlesController {
     article.userId = auth.user!.id
     await article.save()
 
+    if (payload.tags) {
+      await article.related('tags').attach(payload.tags)
+      await article.save()
+    }
+
     Event.emit('audit:new', {
       label: `Create article ${article!.title}`,
       username: auth.user!.fullname,
@@ -58,6 +63,7 @@ export default class ArticlesController {
 
   public async edit({ request, view, bouncer }: HttpContextContract) {
     const article = await Article.findOrFail(request.param('id'))
+    await article.load('tags')
     await bouncer.with('ArticlePolicy').authorize('update')
 
     return view.render('admin/articles/edit', {
@@ -74,6 +80,11 @@ export default class ArticlesController {
     const payload = await request.validate(ArticleValidator)
 
     await article.merge(payload)
+    if (payload.tags) {
+      await article.related('tags').sync(payload.tags)
+    } else {
+      await article.related('tags').detach()
+    }
 
     const dirty = article.$dirty
     await article.save()

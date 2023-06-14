@@ -30,7 +30,7 @@ export default () => ({
       holderId : this.id,
       // autofocus: true,
       placeholder: 'Type text or paste a link',
-      data: JSON.parse(this.$refs.data.value),
+      data: this.$refs.data.value ? JSON.parse(this.$refs.data.value) : {},
       onReady: () => {
         new Undo({
           editor: this.editor

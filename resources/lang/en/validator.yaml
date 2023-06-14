@@ -34,3 +34,5 @@ shared:
   avatar:
     maxSize: Avatar must be at { max_size } maximum
     extname: Invalid format avatar
+  tags:
+    exists: Tag not exist

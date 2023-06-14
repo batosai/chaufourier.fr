@@ -160,7 +160,7 @@ export default class TagsController {
 
     const tag = await Tag.firstOrCreate(payload, {})
 
-    if (!tag.$isLocal) {
+    if (tag.$isLocal) {
       Event.emit('audit:new', {
         label: `Create tag ${tag!.name}`,
         username: auth.user!.fullname,

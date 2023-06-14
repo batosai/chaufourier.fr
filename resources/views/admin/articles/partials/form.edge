@@ -12,7 +12,9 @@
 
 @jrmc.card({ class: 'bg-base-300 mt-4' })
   @jrmc.card.body()
-    @!admin.autocomplete()
+    @!admin.autocomplete({
+      tags: article ? article.tags : ''
+    })
   @end
 @end
 

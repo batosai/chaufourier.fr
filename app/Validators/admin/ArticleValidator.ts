@@ -8,7 +8,11 @@ export default class ArticleValidator {
     const fields = {
       title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
       slug: schema.string.optional([rules.escape(), rules.trim()]),
-      body: schema.string()
+      body: schema.string.optional(),
+      tags: schema.array.optional()
+        .members(schema.string([
+          rules.exists({ table: 'tags', column: 'id' })
+        ]))
     }
 
     this.schema = schema.create(fields)
