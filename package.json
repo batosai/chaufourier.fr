@@ -99,7 +99,7 @@
     "@iconify-json/akar-icons": "^1.1.17",
     "@iconify-json/fa-solid": "^1.1.4",
     "@jrmc/attachment-advanced": "^1.0.2",
-    "@jrmc/edge-components": "^1.5.1",
+    "@jrmc/edge-components": "^1.6.1",
     "adonis-lucid-filter": "^4.1.0",
     "edge-iconify": "^1.0.1",
     "editorjs-drag-drop": "^1.1.13",

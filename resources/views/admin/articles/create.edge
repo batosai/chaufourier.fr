@@ -13,7 +13,7 @@
       ]
     })
 
-    <div class="w-full px-4 my-4 mb-auto">
+    <div class="w-screen md:w-full px-4 my-4 mb-auto">
       @jrmc.form({ id: 'create_article', action: route('admin.articles.store'), error: false })
         @include('admin/articles/partials/form')
       @end

@@ -12,10 +12,10 @@
       ]
     })
 
-    <div class="w-full px-4 my-4">
+    <div class="w-screen md:w-full px-4 my-4">
       @include('admin/users/partials/filters')
 
-      @jrmc.table({ full: true })
+      @jrmc.table({ full: true, pinCols: true })
         @slot('header')
           <tr>
             <th class="w-12"></th>
@@ -40,19 +40,19 @@
           @each(user in users)~
           <tr class="hover" data-test="user-{{ user.id }}">
             <th>
-                <div class="avatar">
-                  <div class="mask mask-squircle w-12 h-12">
-                    @if (user.avatar)
-                      <img src="{{ user.avatar.variants?.thumbnail?.url }}" alt="Avatar Tailwind CSS Component" />
-                    @end
-                  </div>
+              <div class="avatar">
+                <div class="mask mask-squircle w-12 h-12">
+                  @if (user.avatar)
+                    <img src="{{ user.avatar.variants?.thumbnail?.url }}" alt="Avatar Tailwind CSS Component" />
+                  @end
                 </div>
+              </div>
             </th>
             <td>
-                <div>
-                  <div class="font-bold">{{ user.fullname }}</div>
-                  <div class="text-sm opacity-50">{{ user.role }}</div>
-                </div>
+              <div>
+                <div class="font-bold">{{ user.fullname }}</div>
+                <div class="text-sm opacity-50">{{ user.role }}</div>
+              </div>
             </td>
             <td>{{ user.email }}</td>
             <td>
@@ -73,16 +73,8 @@
         @end
       @end
 
-      <div class="w-full text-center my-5 hidden sm:block">
-        @!jrmc.pagination({ object: users })
-      </div>
-      <div class="w-full text-center my-5 sm:hidden">
-        @!jrmc.pagination.light({ object: users })
-      </div>
-
-      @jrmc.button.link({ href: route('admin.users.create'), class: 'btn-circle fixed bottom-20 lg:bottom-10 right-10', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
-        @svg('fa-solid:plus')
-      @end
+      @!admin.pagination({ object: users })
+      @!admin.button.create({ href: route('admin.users.create'), mode: 'drawer' })
     </div>
 
   @end

@@ -1,4 +1,4 @@
-@jrmc.drawer({ class: 'drawer-mobile' })
+@jrmc.drawer({ class: 'drawer-mobile lg:drawer-open' })
   @jrmc.drawer.content()
     <main>
       <section class="toasts">
@@ -13,7 +13,7 @@
     @!admin.bottomNavigation({ class: 'lg:hidden'})
   @end
 
-  @jrmc.drawer.side({ class: 'overflow-y-auto w-80 bg-base-200' })
+  @jrmc.drawer.side({ class: 'overflow-y-auto h-full w-80 bg-base-200' })
     @!admin.sidebar()
     @!admin.bottomNavigation({ class: 'hidden lg:flex'})
   @end

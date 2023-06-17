@@ -13,7 +13,7 @@
       ]
     })
 
-    <div class="w-full px-4 my-4 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
+    <div class="w-screen md:w-full px-4 my-4 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
       @jrmc.card({ class: 'bg-base-300 xl:col-span-3' })
         @jrmc.card.body()
           @jrmc.form({ id: 'edit_user', action: route('admin.users.update', user, {
@@ -32,7 +32,7 @@
       <div class="divider xl:col-span-3"></div>
 
       @can('UserPolicy.forgot', user)
-        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 mt-4 xl:mt-0 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
           @jrmc.card.body()
             @!jrmc.card.title({ text: 'Forgot password' })
             <p>Send a password change link by email to the user .</p>
@@ -44,7 +44,7 @@
       @end
 
       @can('UserPolicy.disabled', user)
-        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 mt-4 xl:mt-0 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
           @jrmc.card.body()
             @!jrmc.card.title({ text: user.disabled ? 'Enabled' : 'Disabled' })
             @if (user.disabled)
@@ -60,7 +60,7 @@
       @end
 
       @can('ImpersonatePolicy.create', user)
-        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 mt-4 xl:mt-0 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
           @jrmc.card.body()
             @!jrmc.card.title({ text: 'IMPERSONATE' })
             <p>Impersonate the user account.</p>
@@ -72,7 +72,7 @@
       @end
 
       @can('UserPolicy.delete', user)
-        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
+        @jrmc.card({ class: up.isDrawer() ? 'bg-base-300 mt-4 xl:mt-0 col-span-3' : 'bg-base-300 mt-4 xl:mt-0' })
           @jrmc.card.body()
             @!jrmc.card.title({ text: 'DELETED' })
             <p>Delete the user account and all its data.</p>
