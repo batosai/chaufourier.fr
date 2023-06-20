@@ -20,6 +20,7 @@ Route.group(() => {
   Route.resource('health', 'admin/HealthController').only(['index'])
   Route.get('health/system', 'admin/HealthController.system').as('health.system')
   Route.get('health/docker', 'admin/HealthController.docker').as('health.docker')
+  Route.get('health/update', 'admin/HealthController.update').as('health.update')
 })
   .prefix('admin')
   .as('admin')

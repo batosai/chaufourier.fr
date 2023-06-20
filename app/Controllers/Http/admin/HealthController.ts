@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import si from 'systeminformation'
+import execa from 'execa'
 
 export default class HealthController {
   public async index({ view, bouncer }: HttpContextContract) {
@@ -9,8 +10,17 @@ export default class HealthController {
       'openssl,node,npm,git,mysql,redis,docker,postgresql,python3,pip3,java,gcc,bash'
     )
 
+    let packages = { dependencies: {}, devDependencies: {} }
+    try {
+      const { stdout } =  await execa('npm', ['ls', '-l', '--json'])
+      packages = JSON.parse(stdout)
+    } catch (error) {
+      console.log(error)
+    }
+
     return view.render('admin/health/index', {
       versions,
+      packages
     })
   }
 
@@ -69,6 +79,22 @@ export default class HealthController {
       dockerInfo,
       dockerImages,
       dockerAll,
+    })
+  }
+
+  public async update({ view, bouncer }: HttpContextContract) {
+    await bouncer.with('HealthPolicy').authorize('view')
+
+    let packages = { dependencies: {}, devDependencies: {} }
+    try {
+      const { stdout } =  await execa('npm', ['outdated', '--json'])
+      packages = JSON.parse(stdout)
+    } catch (error) {
+      packages = JSON.parse(error.stdout)
+    }
+
+    return view.render('admin/health/update', {
+      packages
     })
   }
 }

@@ -1,0 +1,51 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.health')},
+      ]
+    })
+
+    @jrmc.tabs({ class: 'tabs-boxed m-4' })
+      @!jrmc.tabs.tab({ text: 'Application', href: route('admin.health.index'), active: false })
+      @!jrmc.tabs.tab({ text: 'System', href: route('admin.health.system'), active: false })
+      @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: false })
+      @!jrmc.tabs.tab({ text: 'Update', href: route('admin.health.update'), active: true })
+    @end
+
+    <div class="w-screen md:w-full px-4 mb-auto">
+
+      <div class="overflow-x-auto">
+        <table class="table w-full table-pin-rows table-pin-cols">
+          <thead>
+            <th>Package Name</th>
+            <td>Current version</td>
+            <td>Wanted version</td>
+            <td>Latest version</td>
+          </thead>
+          <tbody>
+            @each((package, name) in packages)~
+              <tr>
+                <th class="bg-base-300 border-gray-700" role="columnheader">{{ name }}</th>
+                <td class="bg-base-200 border-gray-700">{{ package.current }}</td>
+                <td class="bg-base-200 border-gray-700">
+                  @!jrmc.badge({ text: package.wanted, class: 'badge-primary' })
+                </td>
+                <td class="bg-base-200 border-gray-700">
+                  @!jrmc.badge({ text: package.latest, class: 'badge-error' })
+                </td>
+              </tr>
+            @end~
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  @end
+@end

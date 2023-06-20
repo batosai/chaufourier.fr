@@ -16,6 +16,7 @@
       @!jrmc.tabs.tab({ text: 'Application', href: route('admin.health.index'), active: true })
       @!jrmc.tabs.tab({ text: 'System', href: route('admin.health.system'), active: false })
       @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: false })
+      @!jrmc.tabs.tab({ text: 'Update', href: route('admin.health.update'), active: false })
     @end
 
     <div class="w-screen md:w-full px-4 mb-auto grid grid-cols-3 gap-4">
@@ -68,7 +69,35 @@
         </table>
       </div>
 
-      TODO list package npm and versions installed
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            @each((package, name) in packages.dependencies)~
+              @if(name in packages.devDependencies === false)
+                <tr>
+                  <td class="bg-base-300 border-gray-700" role="columnheader">{{ name }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ package.version }}</td>
+                </tr>
+              @end~
+            @end~
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overflow-x-auto col-span-3 xl:col-span-1">
+        <table class="table w-full">
+          <tbody>
+            @each((package, name) in packages.dependencies)~
+              @if(name in packages.devDependencies)
+                <tr>
+                  <td class="bg-base-300 border-gray-700" role="columnheader">{{ name }}</td>
+                  <td class="bg-base-200 border-gray-700">{{ package.version }}</td>
+                </tr>
+              @end~
+            @end~
+          </tbody>
+        </table>
+      </div>
 
     </div>
   @end
