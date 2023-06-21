@@ -79,6 +79,13 @@ export default driveConfig({
       */
       basePath: '/uploads',
     },
+    cache: {
+      driver: 'local',
+      visibility: 'private',
+      root: Application.tmpPath(),
+      serveFiles: true,
+      basePath: '/cache',
+    },
 
     /*
     |--------------------------------------------------------------------------

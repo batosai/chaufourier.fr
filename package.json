@@ -100,6 +100,7 @@
     "@iconify-json/fa-solid": "^1.1.4",
     "@jrmc/attachment-advanced": "^1.0.2",
     "@jrmc/edge-components": "^1.6.1",
+    "@melchyore/adonis-cache": "^1.0.6",
     "adonis-lucid-filter": "^4.1.0",
     "edge-iconify": "^1.0.1",
     "editorjs-drag-drop": "^1.1.13",
