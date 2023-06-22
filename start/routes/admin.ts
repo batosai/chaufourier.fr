@@ -17,10 +17,15 @@ Route.group(() => {
   Route.resource('articles', 'admin/ArticlesController').except(['show'])
 
   Route.resource('journals', 'admin/JournalsController').only(['index', 'show'])
+
   Route.resource('health', 'admin/HealthController').only(['index'])
   Route.get('health/system', 'admin/HealthController.system').as('health.system')
   Route.get('health/docker', 'admin/HealthController.docker').as('health.docker')
   Route.get('health/update', 'admin/HealthController.update').as('health.update')
+
+  Route.delete('caches', 'admin/CachesController.destroy').as('caches.destroy')
+
+  Route.resource('system', 'admin/SystemController').only(['index'])
 })
   .prefix('admin')
   .as('admin')

@@ -115,10 +115,13 @@
       </a>
     </li>
     <li>
-      <a>
-        @!svg('fa-solid:cogs')
-        {{ t('admin.sidebar.system') }}
-      </a>
+      @!admin.sidebar.link({
+        class: request.matchesRoute(['admin.system.index']) ? 'active' : null,
+        text: t('admin.sidebar.system'),
+        icon: 'fa-solid:cogs',
+        href: route('admin.system.index'),
+        'up-alias': route('admin.system.index') + '*'
+      })
     </li>
   </ul>
 </nav>

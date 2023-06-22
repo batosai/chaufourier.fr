@@ -1,4 +1,4 @@
-<div x-data="autocomplete" data-tags='{{ $props.tags ? JSON.stringify($props.tags) : '' }}'>
+<div x-data="autocomplete" data-tags='{{ $props.tags ? stringify($props.tags) : '' }}'>
   <div x-init="init('parentEl')" @click.away="clearSearch()" @keydown.escape="clearSearch()">
     <div class="relative" @keydown.enter.prevent="addTag(textInput)">
       <input x-model="textInput" x-ref="textInput" @input="search($event.target.value)" class="input w-full" placeholder="Enter some tags">
