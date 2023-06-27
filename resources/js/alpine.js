@@ -1,11 +1,13 @@
 import Alpine from 'alpinejs'
 
 import editor from './editor'
+import uppy from './uppy'
 import autocomplete from './autocomplete'
 
 // Alpine
 
 Alpine.data('editor', editor)
+Alpine.data('uploader', uppy)
 Alpine.data('autocomplete', autocomplete)
 
 Alpine.start()

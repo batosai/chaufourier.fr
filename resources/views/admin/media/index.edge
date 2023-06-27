@@ -1,0 +1,19 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+
+  @admin.content()
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.media') }
+      ]
+    })
+
+    @!admin.button.create({ href: route('admin.media.create') })
+
+  @end
+
+@end

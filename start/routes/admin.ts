@@ -16,6 +16,8 @@ Route.group(() => {
 
   Route.resource('articles', 'admin/ArticlesController').except(['show'])
 
+  Route.resource('media', 'admin/MediaController').except(['show'])
+
   Route.resource('journals', 'admin/JournalsController').only(['index', 'show'])
 
   Route.resource('health', 'admin/HealthController').only(['index'])

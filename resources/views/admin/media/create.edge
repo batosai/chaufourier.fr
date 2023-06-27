@@ -1,0 +1,16 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+
+  @admin.content()
+    <div class="w-screen md:w-full px-4 my-4">
+      @!admin.uploader({
+        'data-endpoint': route('admin.media.store'),
+        'data-field-name': 'file',
+      })
+    </div>
+  @end
+
+@end

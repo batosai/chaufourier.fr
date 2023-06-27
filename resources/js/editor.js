@@ -19,9 +19,11 @@ import Undo from 'editorjs-undo'
 
 // todo preview @editorjs/link
 
+const id = 'editorjs'
+
 
 export default () => ({
-  id: 'editorjs',
+  id,
   editor: null,
 
   init() {

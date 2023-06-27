@@ -63,6 +63,17 @@
     @can('ArticlePolicy.viewList')
       <li>
         @!admin.sidebar.link({
+          class: request.matchesRoute(['admin.media.index', 'admin.media.create', 'admin.media.edit']) ? 'active' : null,
+          text: t('admin.sidebar.media'),
+          icon: 'fa-solid:photo-video',
+          href: route('admin.media.index'),
+          'up-alias': route('admin.media.index') + '*'
+        })
+      </li>
+    @end
+    @can('ArticlePolicy.viewList')
+      <li>
+        @!admin.sidebar.link({
           class: request.matchesRoute(['admin.articles.index', 'admin.articles.create', 'admin.articles.edit']) ? 'active' : null,
           text: t('admin.sidebar.articles'),
           icon: 'fa-solid:newspaper',

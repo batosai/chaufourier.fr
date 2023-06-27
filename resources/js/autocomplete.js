@@ -9,12 +9,12 @@ export default () => ({
     search: '/admin/tags?search='
   },
   init() {
-    const data = this.$el.parentNode.getAttribute('data-tags')
+    const data = this.$el.parentNode.dataset.tags
     if (data) {
       this.tags = JSON.parse(data)
     }
 
-    const dataMinLength = this.$el.parentNode.getAttribute('data-minLength')
+    const dataMinLength = this.$el.parentNode.dataset.minLength
     if (dataMinLength) {
       this.minLength = dataMinLength
     }

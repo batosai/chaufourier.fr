@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import "./unpoly.css";
 @import "./editorjs.css";
+@import "./uppy.css";
 
 ::selection {
   @apply bg-primary;
