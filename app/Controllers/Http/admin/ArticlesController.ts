@@ -64,7 +64,7 @@ export default class ArticlesController {
   public async edit({ request, view, bouncer }: HttpContextContract) {
     const article = await Article.findOrFail(request.param('id'))
     await article.load('tags')
-    await bouncer.with('ArticlePolicy').authorize('update')
+    await bouncer.with('ArticlePolicy').authorize('update', article)
 
     return view.render('admin/articles/edit', {
       article,
@@ -75,7 +75,7 @@ export default class ArticlesController {
     const { request, response, auth, bouncer, session, i18n, up } = ctx
     const article = await Article.findOrFail(request.param('id'))
 
-    await bouncer.with('ArticlePolicy').authorize('update')
+    await bouncer.with('ArticlePolicy').authorize('update', article)
 
     const payload = await request.validate(ArticleValidator)
 
@@ -119,7 +119,7 @@ export default class ArticlesController {
   }: HttpContextContract) {
     const { id } = params
     const article = await Article.findOrFail(id)
-    await bouncer.with('ArticlePolicy').authorize('delete')
+    await bouncer.with('ArticlePolicy').authorize('delete', article)
     const payload = article.serialize()
     const title = article!.title
     await article.delete()
