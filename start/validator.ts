@@ -64,7 +64,7 @@ validator.rule('oneSpecialCharacterAtLeast', (value, _, options) => {
 // to lowercase
 validator.rule('lowerCase', (value, _, { mutate }) => {
   if (typeof value !== 'string') {
-    return;
+    return
   }
 
   mutate(value.toLowerCase())

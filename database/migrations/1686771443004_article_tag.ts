@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class extends BaseSchema {
   protected tableName = 'article_tag'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('article_id').references('articles.id').onDelete('CASCADE')
       table.uuid('tag_id').references('tags.id')
@@ -14,7 +14,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

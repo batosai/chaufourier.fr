@@ -11,26 +11,27 @@ export default () => ({
   uppy: null,
 
   init() {
-    this.uppy = new Uppy().use(Dashboard, {
-      inline: true,
-      width: '100%',
-      height: 'calc(100vh - 96px)',
-      target: this.$el,
-      showProgressDetails: true,
-      theme: 'auto',
-      locale: {
-        strings: {
-          poweredBy: ''
-        }
-      }
-    })
-    .use(ImageEditor, { target: Dashboard })
-    .use(XHR, {
-      endpoint: this.$el.dataset.endpoint,
-      fieldName: this.$el.dataset.fieldName,
-      headers: () => ({
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+    this.uppy = new Uppy()
+      .use(Dashboard, {
+        inline: true,
+        width: '100%',
+        height: 'calc(100vh - 96px)',
+        target: this.$el,
+        showProgressDetails: true,
+        theme: 'auto',
+        locale: {
+          strings: {
+            poweredBy: '',
+          },
+        },
       })
-    })
-  }
+      .use(ImageEditor, { target: Dashboard })
+      .use(XHR, {
+        endpoint: this.$el.dataset.endpoint,
+        fieldName: this.$el.dataset.fieldName,
+        headers: () => ({
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+        }),
+      })
+  },
 })

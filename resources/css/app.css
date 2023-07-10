@@ -1,9 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./unpoly.css";
-@import "./editorjs.css";
-@import "./uppy.css";
+@import './unpoly.css';
+@import './editorjs.css';
+@import './uppy.css';
 
 ::selection {
   @apply bg-primary;
@@ -15,4 +15,3 @@
 .modal {
   z-index: 2000;
 }
-

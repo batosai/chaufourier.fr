@@ -34,7 +34,6 @@ up.on('up:fragment:loaded', (event) => {
   }
 })
 
-
 // override unpoly up-confirm, add custom modal
 
 up.compiler('[up-confirm]', function (element) {

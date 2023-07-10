@@ -6,7 +6,7 @@ export default () => ({
   minLength: 2,
   urls: {
     find: '/admin/tags/find',
-    search: '/admin/tags?search='
+    search: '/admin/tags?search=',
   },
   init() {
     const data = this.$el.parentNode.dataset.tags
@@ -21,15 +21,15 @@ export default () => ({
   },
   async addTag(tag) {
     tag = tag.trim()
-    if (tag != "" && !this.hasTag(tag) && tag.length >= this.minLength) {
+    if (tag != '' && !this.hasTag(tag) && tag.length >= this.minLength) {
       const response = await fetch(this.urls.find, {
         method: 'POST',
         body: JSON.stringify({ name: tag }),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        }
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+        },
       })
 
       this.tags.push(await response.json())
@@ -38,7 +38,7 @@ export default () => ({
     this.$refs.textInput.focus()
   },
   hasTag(tag) {
-    var tag = this.tags.find(e => {
+    var tag = this.tags.find((e) => {
       return e.name.toLowerCase() === tag.toLowerCase()
     })
     return tag != undefined
@@ -48,7 +48,7 @@ export default () => ({
       return true
     }
 
-    var tag = this.results.find(e => {
+    var tag = this.results.find((e) => {
       return e.name.toLowerCase() === tag.toLowerCase()
     })
     return tag != undefined
@@ -61,16 +61,16 @@ export default () => ({
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'X-Requested-With': 'xmlhttprequest'
-      }
+        'X-Requested-With': 'xmlhttprequest',
+      },
     })
 
     if (response.ok) {
       this.results = (await response.json()).data
     }
 
-    if ( q.includes(",") ) {
-      q.split(",").forEach(async (val) => {
+    if (q.includes(',')) {
+      q.split(',').forEach(async (val) => {
         this.addTag(val)
       }, this)
     }
@@ -83,7 +83,5 @@ export default () => ({
   },
   toggleSearch() {
     this.open = this.textInput != ''
-  }
+  },
 })
-
-

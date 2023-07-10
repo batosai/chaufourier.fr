@@ -6,7 +6,6 @@ import TagSessionFilterService from 'App/Services/TagSessionFilterService'
 import TagValidator, { MIN_LENGTH } from 'App/Validators/admin/TagValidator'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
-
 export default class TagsController {
   public async index(ctx: HttpContextContract) {
     const { request, view, bouncer } = ctx
@@ -138,12 +137,7 @@ export default class TagsController {
     }
   }
 
-  public async find({
-    request,
-    response,
-    bouncer,
-    auth,
-  }: HttpContextContract) {
+  public async find({ request, response, bouncer, auth }: HttpContextContract) {
     await bouncer.with('TagPolicy').authorize('find')
 
     const tagSchema = schema.create({
@@ -152,7 +146,7 @@ export default class TagsController {
         rules.trim(),
         rules.lowerCase(),
         rules.minLength(MIN_LENGTH),
-      ])
+      ]),
     })
 
     const payload = await request.validate({ schema: tagSchema })

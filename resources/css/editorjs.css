@@ -32,19 +32,27 @@
   fill: hsl(var(--b1)) !important;
 }
 
-.tc-toolbox__toggler:hover svg{
+.tc-toolbox__toggler:hover svg {
   fill: hsl(var(--bc)) !important;
 }
 
-.tc-table, .tc-row, .tc-row::after, .tc-cell, .tc-add-column {
+.tc-table,
+.tc-row,
+.tc-row::after,
+.tc-cell,
+.tc-add-column {
   @apply !border-base-100;
 }
 
-.tc-add-column:hover, .tc-add-row:hover, .tc-add-row:hover::before {
+.tc-add-column:hover,
+.tc-add-row:hover,
+.tc-add-row:hover::before {
   @apply !bg-base-100;
 }
 
-.tc-cell--selected, .tc-row--selected, .tc-row--selected::after {
+.tc-cell--selected,
+.tc-row--selected,
+.tc-row--selected::after {
   @apply !bg-primary;
   @apply !text-primary-content;
 }
@@ -100,7 +108,6 @@
 .ce-inline-toolbar__dropdown:hover {
   @apply bg-base-200;
 }
-
 
 /* popover */
 
@@ -186,4 +193,3 @@
 .codeBoxHolder {
   overflow: initial;
 }
-

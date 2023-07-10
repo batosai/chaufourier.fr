@@ -10,7 +10,7 @@ export default class HealthController {
 
     return view.render('admin/health/index', {
       versions,
-      packages
+      packages,
     })
   }
 
@@ -46,7 +46,7 @@ export default class HealthController {
     const packages = await HealthCacheService.outdated()
 
     return view.render('admin/health/update', {
-      packages
+      packages,
     })
   }
 }

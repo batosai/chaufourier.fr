@@ -4,39 +4,39 @@
   border: none;
 }
 
-
-[data-uppy-theme="dark"] .uppy-Dashboard-inner {
+[data-uppy-theme='dark'] .uppy-Dashboard-inner {
   @apply bg-base-200;
 }
 
-[data-uppy-theme="dark"] .uppy-DashboardContent-bar,
-[data-uppy-theme="dark"] .uppy-StatusBar.is-waiting .uppy-StatusBar-actions,
-[data-uppy-theme="dark"] .uppy-StatusBar {
+[data-uppy-theme='dark'] .uppy-DashboardContent-bar,
+[data-uppy-theme='dark'] .uppy-StatusBar.is-waiting .uppy-StatusBar-actions,
+[data-uppy-theme='dark'] .uppy-StatusBar {
   @apply bg-base-200;
 }
 
-[data-uppy-theme="dark"] .uppy-Dashboard-browse {
+[data-uppy-theme='dark'] .uppy-Dashboard-browse {
   @apply !text-primary;
 }
 
-[data-uppy-theme="dark"] .uppy-DashboardContent-back, [data-uppy-theme="dark"] .uppy-DashboardContent-save {
+[data-uppy-theme='dark'] .uppy-DashboardContent-back,
+[data-uppy-theme='dark'] .uppy-DashboardContent-save {
   @apply btn;
   @apply btn-sm;
   @apply btn-outline;
 }
 
-[data-uppy-theme="dark"] .uppy-DashboardContent-addMore {
+[data-uppy-theme='dark'] .uppy-DashboardContent-addMore {
   @apply !btn;
   @apply !btn-sm;
   @apply !btn-outline;
 }
 
-[data-uppy-theme="dark"] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload {
+[data-uppy-theme='dark'] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload {
   @apply btn;
   @apply btn-primary;
 }
 
-[data-uppy-theme="dark"] .uppy-StatusBar-actionBtn--done {
+[data-uppy-theme='dark'] .uppy-StatusBar-actionBtn--done {
   @apply !btn;
   @apply !btn-sm;
   @apply !btn-primary;

@@ -5,33 +5,30 @@ import execa from 'execa'
 export default class HealthCacheService {
   constructor() {}
 
-  public static async versions(): Promise<Object|undefined> {
-    return Cache.remember('si_versions', null, async () =>
-      await si.versions(
-        'openssl,node,npm,git,mysql,redis,docker,postgresql,python3,pip3,java,gcc,bash'
-      )
+  public static async versions(): Promise<Object | undefined> {
+    return Cache.remember(
+      'si_versions',
+      null,
+      async () =>
+        await si.versions(
+          'openssl,node,npm,git,mysql,redis,docker,postgresql,python3,pip3,java,gcc,bash'
+        )
     )
   }
 
-  public static async dockerInfo(): Promise<Object|undefined> {
-    return Cache.remember('si_docker_info', null, async () =>
-      await si.dockerInfo()
-    )
+  public static async dockerInfo(): Promise<Object | undefined> {
+    return Cache.remember('si_docker_info', null, async () => await si.dockerInfo())
   }
 
-  public static async dockerImages(): Promise<Object|undefined> {
-    return Cache.remember('si_docker_images', null, async () =>
-      await si.dockerImages()
-    )
+  public static async dockerImages(): Promise<Object | undefined> {
+    return Cache.remember('si_docker_images', null, async () => await si.dockerImages())
   }
 
-  public static async dockerAll(): Promise<Object|undefined> {
-    return Cache.remember('si_docker_all', null, async () =>
-      await si.dockerAll()
-    )
+  public static async dockerAll(): Promise<Object | undefined> {
+    return Cache.remember('si_docker_all', null, async () => await si.dockerAll())
   }
 
-  public static async system(): Promise<Object|undefined> {
+  public static async system(): Promise<Object | undefined> {
     return Cache.remember('si_system', null, async () => {
       return await {
         system: await si.system(),
@@ -42,7 +39,7 @@ export default class HealthCacheService {
     })
   }
 
-  public static async systemPerf(): Promise<Object|undefined> {
+  public static async systemPerf(): Promise<Object | undefined> {
     return Cache.remember('si_system_perf', 60 * 2, async () => {
       const fsSize = await si.fsSize()
       const disks = {
@@ -70,11 +67,11 @@ export default class HealthCacheService {
     })
   }
 
-  public static async packages(): Promise<Object|undefined> {
+  public static async packages(): Promise<Object | undefined> {
     return Cache.remember('npm_packages', null, async () => {
       let packages = { dependencies: {}, devDependencies: {} }
       try {
-        const { stdout } =  await execa('npm', ['ls', '-l', '--json'])
+        const { stdout } = await execa('npm', ['ls', '-l', '--json'])
         packages = JSON.parse(stdout)
       } catch (error) {
         console.log(error)
@@ -83,10 +80,10 @@ export default class HealthCacheService {
     })
   }
 
-  public static async outdated(): Promise<JSON|undefined> {
+  public static async outdated(): Promise<JSON | undefined> {
     return Cache.remember('npm_outdated', null, async () => {
       try {
-        const { stdout } =  await execa('npm', ['outdated', '--json'])
+        const { stdout } = await execa('npm', ['outdated', '--json'])
         return JSON.parse(stdout)
       } catch (error) {
         return JSON.parse(error.stdout)

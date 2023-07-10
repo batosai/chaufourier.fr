@@ -1,6 +1,14 @@
 import { DateTime } from 'luxon'
 import { v4 as uuid } from 'uuid'
-import { BaseModel, column, beforeCreate, hasOne, HasOne, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  beforeCreate,
+  hasOne,
+  HasOne,
+  manyToMany,
+  ManyToMany,
+} from '@ioc:Adonis/Lucid/Orm'
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
@@ -43,10 +51,9 @@ export default class Article extends compose(BaseModel, Filterable) {
   public user: HasOne<typeof User>
 
   @manyToMany(() => Tag, {
-    pivotTimestamps: true
+    pivotTimestamps: true,
   })
   public tags: ManyToMany<typeof Tag>
-
 
   // Hooks
 

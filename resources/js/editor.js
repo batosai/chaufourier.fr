@@ -21,7 +21,6 @@ import Undo from 'editorjs-undo'
 
 const id = 'editorjs'
 
-
 export default () => ({
   id,
   editor: null,
@@ -29,22 +28,25 @@ export default () => ({
   init() {
     this.$refs.data.style.display = 'none'
     this.editor = new EditorJS({
-      holderId : this.id,
+      holderId: this.id,
       // autofocus: true,
       placeholder: 'Type text or paste a link',
       data: this.$refs.data.value ? JSON.parse(this.$refs.data.value) : {},
       onReady: () => {
         new Undo({
-          editor: this.editor
+          editor: this.editor,
         })
         new DragDrop(this.editor)
       },
       onChange: (api, event) => {
-        this.editor.save().then((outputData) => {
-          this.$refs.data.value = JSON.stringify(outputData)
-        }).catch((error) => {
-          console.log('Saving failed: ', error)
-        })
+        this.editor
+          .save()
+          .then((outputData) => {
+            this.$refs.data.value = JSON.stringify(outputData)
+          })
+          .catch((error) => {
+            console.log('Saving failed: ', error)
+          })
       },
       tools: {
         header: {
@@ -54,8 +56,8 @@ export default () => ({
           config: {
             placeholder: 'Enter a header',
             levels: [1, 2, 3, 4],
-            defaultLevel: 3
-          }
+            defaultLevel: 3,
+          },
         },
         quote: {
           class: Quote,
@@ -63,7 +65,7 @@ export default () => ({
           shortcut: 'CMD+SHIFT+O',
           config: {
             quotePlaceholder: 'Enter a quote',
-            captionPlaceholder: 'Quote\'s author',
+            captionPlaceholder: "Quote's author",
           },
         },
         warning: {
@@ -79,7 +81,7 @@ export default () => ({
           class: NestedList,
           inlineToolbar: true,
           config: {
-            defaultStyle: 'unordered'
+            defaultStyle: 'unordered',
           },
         },
         table: {
@@ -97,7 +99,7 @@ export default () => ({
         embed: Embed,
         underline: Underline,
         delimiter: Delimiter,
-        codeBox : CodeBox,
+        codeBox: CodeBox,
         hyperlink: {
           class: Hyperlink,
           // config: {
@@ -109,7 +111,7 @@ export default () => ({
           //   validate: false,
           // }
         },
-      }
+      },
     })
-  }
+  },
 })

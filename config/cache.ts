@@ -33,7 +33,7 @@ export default cacheConfig({
     */
     file: {
       driver: 'file',
-      disk: 'cache'
+      disk: 'cache',
     },
   },
 
@@ -59,6 +59,6 @@ export default cacheConfig({
     'cache:hit': true,
     'cache:missed': true,
     'cache:key_written': true,
-    'cache:key_forgotten': true
-  }
+    'cache:key_forgotten': true,
+  },
 })
