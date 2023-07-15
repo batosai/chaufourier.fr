@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="manifest" href="/site.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @if(env('NODE_ENV') === 'development')~
+    <meta name="mode" content="{{ env('NODE_ENV') }}">
+  @end~
   <title>{{ title }}</title>
   {{ csrfMeta() }}
   @entryPointStyles('app')
