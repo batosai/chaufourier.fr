@@ -45,7 +45,11 @@ export const csp: ShieldConfig['csp'] = {
   |
   */
   directives: {
-    defaultSrc: ['self', '@nonce'],
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    imgSrc: ["'self'", 'data:', 'blob:'], // data: for mask-image ex: avatar, blob: for uppy
+    scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+    // connectSrc: ["*"]
   },
 
   /*
