@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('title', 255).notNullable()
       table.string('slug', 255).notNullable()
       table.jsonb('body')
-      table.string('user_id').notNullable().references('users.id').onDelete('CASCADE')
+      table.uuid('user_id').notNullable().references('users.id').onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

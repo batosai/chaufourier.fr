@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.string('alt').nullable()
       table.string('title').nullable()
       table.string('description').nullable()
-      table.string('user_id').notNullable().references('users.id').onDelete('CASCADE')
+      table.uuid('user_id').notNullable().references('users.id').onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
