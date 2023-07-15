@@ -1,4 +1,4 @@
-<a {{ $props.serializeExcept(['text', 'icon']) }}>
+<a {{ $props.serializeExcept(['text', 'icon']) }} @click="open = false">
   @if(icon)~
   @!svg(icon)
   @end~

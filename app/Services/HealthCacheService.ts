@@ -1,4 +1,5 @@
 import Cache from '@ioc:Adonis/Addons/Cache'
+import Env from '@ioc:Adonis/Core/Env'
 import si from 'systeminformation'
 import execa from 'execa'
 
@@ -71,11 +72,16 @@ export default class HealthCacheService {
     return Cache.remember('npm_packages', null, async () => {
       let packages = { dependencies: {}, devDependencies: {} }
       try {
-        const { stdout } = await execa('npm', ['ls', '-l', '--json'])
+        const { stdout } = await execa('npm', ['ls', '-l', (Env.get('NODE_ENV') === 'production' ? '--omit=dev' : ''), '--json'])
         packages = JSON.parse(stdout)
       } catch (error) {
         console.log(error)
       }
+
+      if(!packages.devDependencies) {
+        packages.devDependencies = {}
+      }
+
       return packages
     })
   }

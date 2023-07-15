@@ -4,7 +4,9 @@ import 'unpoly/unpoly.css'
 
 // Unpoly
 
-up.log.enable()
+if (document.querySelector('meta[name="mode"]')) {
+  up.log.enable()
+}
 
 up.fragment.config.mainTargets.push('.toasts')
 up.link.config.followSelectors.push('a[href]')
@@ -35,13 +37,15 @@ up.on('up:fragment:loaded', (event) => {
 })
 
 // override unpoly up-confirm, add custom modal
-
-up.compiler('[up-confirm]', function (element) {
-  up.on(element, 'click', (event, element) => {
-    event.preventDefault()
-    up.confirm(element)
+window.upConfirmCompiler = () => {
+  up.compiler('[up-confirm]', function (element) {
+    up.on(element, 'click', (event, element) => {
+      event.preventDefault()
+      up.confirm(element)
+    })
   })
-})
+}
+upConfirmCompiler()
 
 up.confirm = function (element) {
   const message = element.getAttribute('up-confirm')

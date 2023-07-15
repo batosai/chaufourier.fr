@@ -8,7 +8,7 @@
         {{{ await $slots.main() }}}
       </div>
 
-      <div data-actions="form{{ up.isDrawer() ? '-drawer' : '' }}" class="{{ up.isDrawer() ? 'sticky' : 'fixed' }} z-30 w-full bottom-0 lg:left-0"></div>
+      <div data-actions="form{{ up.isDrawer() ? '-drawer' : '' }}" class="{{ up.isDrawer() ? 'sticky' : 'fixed' }} z-30 lg:z-0 w-full bottom-0 lg:left-0"></div>
     </main>
     @!admin.bottomNavigation({ class: 'lg:hidden'})
   @end

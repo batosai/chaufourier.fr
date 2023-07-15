@@ -22,11 +22,11 @@
   @auth.content()
     @jrmc.form({ action: route('auth.session.store'), error: false })
       @jrmc.form.control({ name: 'email', label: t('form.forgotPassword.email')})
-        @!jrmc.form.input({ class: 'input-bordered' })
+        @!jrmc.form.input({ class: 'input-bordered bg-neutral' })
       @end
 
       @jrmc.form.control({ name: 'password', label: t('form.forgotPassword.password') })
-        @!jrmc.form.input({ type:'password', class: 'input-bordered' })
+        @!jrmc.form.input({ type:'password', class: 'input-bordered bg-neutral' })
       @end
 
       @jrmc.form.control({ name: 'remember_me', label: false })

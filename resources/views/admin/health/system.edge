@@ -12,7 +12,7 @@
       ]
     })
 
-    @jrmc.tabs({ class: 'tabs-boxed m-4' })
+    @admin.tabs()
       @!jrmc.tabs.tab({ text: 'Application', href: route('admin.health.index'), active: false })
       @!jrmc.tabs.tab({ text: 'System', href: route('admin.health.system'), active: true })
       @!jrmc.tabs.tab({ text: 'Docker', href: route('admin.health.docker'), active: false })
@@ -332,7 +332,7 @@
     </div>
 
     <template x-teleport="[data-actions='form']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
+      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
         <div class="flex-1 lg:pl-80"></div>
         <div class="flex-none">
           @!jrmc.button.link({
