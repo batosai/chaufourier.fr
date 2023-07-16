@@ -10,10 +10,10 @@
       </li>
       <li class="basis-1/2">
         <div class="font-bold">
-          <a href="{{ route('admin.users.edit', auth.user) }}">{{ auth.user.firstname }}</a>
+          <a href="{{ route('admin.users.edit', auth.user) }}" @click="open = false">{{ auth.user.firstname }}</a>
         </div>
         <div class="text-sm opacity-50">
-          <a href="{{ route('admin.users.edit', auth.user) }}">{{ auth.user.lastname }}</a>
+          <a href="{{ route('admin.users.edit', auth.user) }}" @click="open = false">{{ auth.user.lastname }}</a>
         </div>
       </li>
       <li >
