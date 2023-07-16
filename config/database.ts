@@ -36,7 +36,7 @@ const databaseConfig: DatabaseConfig = {
         naturalSort: true,
         disableRollbacksInProduction: true,
       },
-      healthCheck: false,
+      healthCheck: Env.get('NODE_ENV') === 'production',
       debug: Env.get('NODE_ENV') === 'development',
     },
     sqlite: {
@@ -56,7 +56,7 @@ const databaseConfig: DatabaseConfig = {
         naturalSort: true,
       },
       useNullAsDefault: true,
-      healthCheck: false,
+      healthCheck: Env.get('NODE_ENV') === 'development',
       debug: Env.get('NODE_ENV') === 'development',
     },
   },
