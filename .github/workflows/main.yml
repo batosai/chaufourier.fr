@@ -1,0 +1,134 @@
+name: Main
+
+on: [push]
+# on:
+#   push:
+#     branches:
+#       - 'main'
+
+env:
+  success: ✅
+  failure: 🔴
+  cancelled: ❌
+  skipped: ⭕
+  node_version: 18
+  true: ✅
+  false: 🔴
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node_version }}
+          registry-url: https://registry.npmjs.org/
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create tmp
+        run: mkdir tmp
+
+      - name: Run tests
+        run: npm test
+
+      - name: Notification
+        if: ${{ always() }}
+        uses: appleboy/telegram-action@master
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          to: ${{ secrets.CHAT_ID }}
+          disable_web_page_preview: true
+          message: |
+            Test ${{ env[job.status] }} by ${{ github.actor }} for commit in ${{ github.ref_name }} branch:
+            ${{ github.event.commits[0].message }}
+
+            Repository: ${{ github.repository }}
+            See changes: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
+            Github action: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  deploy:
+    name: Deploy
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node_version }}
+          registry-url: https://registry.npmjs.org/
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Copy repository content
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "build"
+          target: "${{ secrets.APP_PATH }}/source"
+
+      - name: Install Dependencies production
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ${{ secrets.APP_PATH }}/source/build
+            ln -s ${{ secrets.APP_PATH }}/shared/tmp ${{ secrets.APP_PATH }}/source/build/
+            ln -s ${{ secrets.APP_PATH }}/shared/.env ${{ secrets.APP_PATH }}/source/build/
+            npm ci --silent --no-progress --production
+            node ace migration:run --force
+
+      - name: Notification
+        if: ${{ always() && job.status == 'failure' }}
+        uses: appleboy/telegram-action@master
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          to: ${{ secrets.CHAT_ID }}
+          disable_web_page_preview: true
+          message: |
+            Deploy ${{ env[job.status] }} by ${{ github.actor }} for ${{ github.ref_name }} branch:
+
+            Repository: ${{ github.repository }}
+            Github action: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  reload:
+    name: Reload
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reload by API
+        run: curl -X POST --basic --user '${{ secrets.API_KEY }}:' ${{ secrets.API_URL }}
+
+      - name: Notification
+        uses: appleboy/telegram-action@master
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          to: ${{ secrets.CHAT_ID }}
+          disable_web_page_preview: true
+          message: |
+            Deploy ${{ env[job.status] }} by ${{ github.actor }} for ${{ github.ref_name }} branch:
+
+            Repository: ${{ github.repository }}
+            Github action: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
