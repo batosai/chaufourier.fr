@@ -6,7 +6,6 @@
 @import './uppy.css';
 
 html, body {
-  @apply h-full;
   overscroll-behavior-y: none;
 }
 
@@ -30,4 +29,8 @@ html, body {
 [data-actions=form-drawer].sticky {
   padding-bottom: env(safe-area-inset-bottom);
   @apply bg-base-300;
+}
+
+.breadcrumbs {
+  @apply pt-safe;
 }

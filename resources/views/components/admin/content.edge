@@ -6,14 +6,15 @@
       </section>
       <div class="flex flex-col min-h-screen {{ up.isDrawer() ? 'pb-4' : 'pb-16' }}">
         {{{ await $slots.main() }}}
+        @!admin.bottomNavigation({ class: 'lg:hidden'})
       </div>
 
       <div data-actions="form{{ up.isDrawer() ? '-drawer' : '' }}" class="{{ up.isDrawer() ? 'sticky' : 'fixed' }} z-30 lg:z-0 w-full bottom-0 lg:left-0"></div>
     </main>
-    @!admin.bottomNavigation({ class: 'lg:hidden'})
+
   @end
 
-  @jrmc.drawer.side({ class: 'overflow-y-auto h-full w-80 bg-base-200' })
+  @jrmc.drawer.side({ class: 'overflow-y-auto h-full w-80 bg-base-200 pt-safe' })
     @!admin.sidebar()
     @!admin.bottomNavigation({ class: 'hidden lg:flex'})
   @end
