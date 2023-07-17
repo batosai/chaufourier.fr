@@ -10,7 +10,6 @@
     "test:browser:dev": "node ace test browser --watch",
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
-    "postbuild": "ln -s ~/Développements/chaufourier.fr/tmp ~/Développements/chaufourier.fr/build/ && ln -s ~/Développements/chaufourier.fr/.env ~/Développements/chaufourier.fr/build/ && cd build && npm ci --silent --no-progress --production",
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
