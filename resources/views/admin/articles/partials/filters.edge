@@ -26,12 +26,12 @@
   </div>
 @end
 
-@jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('articlesFilter') })
+@jrmc.form({ method: 'GET', action: route('admin.articles.index'), error: false, csrf: false, object: session.get('articlesFilter') })
   <div class="navbar bg-base-100 p-0">
     <div class="flex-1">
       @jrmc.modal({ button: { text: t('filters.filter'), type: 'button', class: 'md:hidden' }, mobile: true })
         <h3 class="font-bold text-lg">{{ t('filters.filter') }}</h3>
-        @jrmc.form({ method: 'GET', error: false, csrf: false, object: session.get('articlesFilter') })
+        @jrmc.form({ method: 'GET', action: route('admin.articles.index'), error: false, csrf: false, object: session.get('articlesFilter') })
           @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.articles.index', {}, { qs: { reset: 'all' }}) })
 
           @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.articles.search') })
