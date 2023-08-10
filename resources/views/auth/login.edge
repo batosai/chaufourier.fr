@@ -6,7 +6,7 @@
   @super
   @if(flashMessages.has('auth.error'))
     @jrmc.toast({
-      class: ['toast-top', 'toast-end'],
+      class: ['toast-top', 'toast-end', 'mt-safe'],
       'x-data': '{ open: true }',
       'x-show': 'open',
       'x-transition.duration.500ms': '',
