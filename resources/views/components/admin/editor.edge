@@ -2,6 +2,6 @@
 <div x-data="editor">
   <div :id="id"></div>
   @jrmc.form.control({ name: 'body', label: false })
-    @!jrmc.form.textarea({ 'x-ref': 'data', value: ($context.object[jrmc.getName($props)] ? $context.object[jrmc.getName($props)].toString() : '') })
+    @!jrmc.form.textarea({ 'x-ref': 'data', value: ($context.object && $context.object['body'] ? (typeof $context.object['body'] === 'string' ? $context.object['body'] : stringify($context.object['body'])) : '') })
   @end
 </div>
