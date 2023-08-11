@@ -5,7 +5,8 @@
 @import './editorjs.css';
 @import './uppy.css';
 
-html, body {
+/* remove bounce effet */
+html, body, up-drawer * {
   overscroll-behavior-y: none;
 }
 
