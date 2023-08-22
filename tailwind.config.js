@@ -1,4 +1,5 @@
 const edgeComponent = require('@jrmc/edge-components/build/tailwind.config').default
+const light = require('daisyui/src/theming/themes')['[data-theme=light]']
 const dark = require('daisyui/src/theming/themes')['[data-theme=dark]']
 
 module.exports = {
@@ -8,6 +9,13 @@ module.exports = {
   daisyui: {
     themes: [
       {
+        light: {
+          ...light,
+          primary: light.accent,
+          accent: light.primary,
+        },
+      },
+      {
         dark: {
           ...dark,
           primary: dark.accent,
@@ -15,5 +23,6 @@ module.exports = {
         },
       },
     ],
+    darkTheme: "dark",
   },
 }
