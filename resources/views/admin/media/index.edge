@@ -12,6 +12,32 @@
       ]
     })
 
+    <div class="w-screen md:w-full px-4 my-4">
+
+      <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 2xl:grid-cols-6">
+
+      @each(m in media)~
+        <li class="relative">
+          <div class="card card-compact bg-base-200 shadow-xl focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-4 focus-within:ring-offset-base-100">
+            <figure class="aspect-h-6 aspect-w-10">
+              <img src="{{ m.file.preview('thumbnail')?.url }}" alt="" />
+            </figure>
+            <div class="card-body">
+              <a href="{{ route('admin.media.show', m) }}" class="mt-2 block truncate text-sm" up-layer="new" up-mode="drawer" up-on-dismissed="up.reload('table')">
+                {{ m.file.name }}
+                <span class="absolute inset-0"></span>
+              </a>
+              <p class="pointer-events-none block text-sm font-medium text-gray-500">{{ prettyBytes(m.file.size, { unitSeparator: ' ' }) }}</p>
+            </div>
+          </div>
+        </li>
+      @end~
+
+
+      </ul>
+
+    </div>
+
     @!admin.button.create({ href: route('admin.media.create') })
 
   @end

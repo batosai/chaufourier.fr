@@ -1,15 +1,19 @@
 import { DateTime } from 'luxon'
 import { v4 as uuid } from 'uuid'
-import { BaseModel, column, beforeCreate } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, beforeCreate, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import {
   attachment,
   AttachmentContract,
   Attachmentable,
 } from '@ioc:Adonis/Addons/AttachmentAdvanced'
+import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
+import MediaFilter from 'App/Models/Filters/MediaFilter'
+import User from './User'
 
-export default class Media extends compose(BaseModel, Attachmentable) {
+export default class Media extends compose(BaseModel, Attachmentable, Filterable) {
   public static selfAssignPrimaryKey = true
+  public static $filter = () => MediaFilter
 
   // Columns
 
@@ -18,6 +22,15 @@ export default class Media extends compose(BaseModel, Attachmentable) {
 
   @column()
   public type: string
+
+  @column()
+  public title: string
+
+  @column()
+  public description: string
+
+  @column()
+  public alt: string
 
   @column()
   public userId: string
@@ -32,6 +45,12 @@ export default class Media extends compose(BaseModel, Attachmentable) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  // Relationships
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
+
 
   // Hooks
 
