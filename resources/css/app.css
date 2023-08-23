@@ -35,3 +35,21 @@ html, body, up-drawer * {
 .breadcrumbs {
   @apply pt-safe;
 }
+
+
+/* override form */
+
+.input {
+  @apply input-bordered;
+  @apply bg-base-200;
+}
+
+.file-input {
+  @apply file-input-bordered;
+  @apply bg-base-200;
+}
+
+.textarea {
+  @apply textarea-bordered;
+  @apply bg-base-200;
+}
