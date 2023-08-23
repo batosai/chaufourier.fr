@@ -1,0 +1,13 @@
+@jrmc.form.control({ name: 'title', required: true })
+  @!jrmc.form.input()
+@end
+
+@jrmc.form.control({ name: 'alt', label: 'Alternate text' })
+  @!jrmc.form.input()
+@end
+
+@jrmc.form.control({ name: 'description'})
+  @!jrmc.form.textarea()
+@end
+
+@!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_media', class: 'btn-primary btn-wide btn-sm' })

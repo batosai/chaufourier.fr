@@ -9,15 +9,20 @@
       items: [
         { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
         { label: t('admin.sidebar.media'), link: route('admin.media.index') },
-        { label: t('admin.action.create') }
+        { label: t('admin.action.edit') }
       ]
     })
 
     <div class="w-screen md:w-full px-4 my-4">
-      @!admin.uploader({
-        'data-endpoint': route('admin.media.store'),
-        'data-field-name': 'file',
-      })
+          @jrmc.form({ id: 'edit_media', action: route('admin.media.update', media, {
+            qs: {
+              _method: 'PUT'
+            }
+          }),
+          error: false,
+          object: media  })
+            @include('admin/media/partials/form')
+          @end
     </div>
   @end
 

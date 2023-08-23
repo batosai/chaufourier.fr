@@ -29,5 +29,9 @@ success:
     create: Felicitations, the article is now created.
     edit: Felicitations, the article is now modify.
     delete: Felicitations, the article is now deleted.
+  media:
+    create: Felicitations, the media is now created.
+    edit: Felicitations, the media is now modify.
+    delete: Felicitations, the media is now deleted.
   cache:
     clear: Felicitations, the cache is clear.

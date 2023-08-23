@@ -22,3 +22,8 @@ tag:
 article:
   title: Title
   createdAt: Date
+
+media:
+  title: Title
+  alt: Alternate text
+  description: Description

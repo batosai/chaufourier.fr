@@ -235,4 +235,20 @@ export default class Up {
   public isDrawer() {
     return this.getMode() === 'drawer'
   }
+
+  public isRoot() {
+    return this.getMode() === 'root'
+  }
+
+  public isModal() {
+    return this.getMode() === 'modal'
+  }
+
+  public isPopup() {
+    return this.getMode() === 'popup'
+  }
+
+  public isCover() {
+    return this.getMode() === 'cover'
+  }
 }
