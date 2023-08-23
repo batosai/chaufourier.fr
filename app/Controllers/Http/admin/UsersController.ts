@@ -104,10 +104,11 @@ export default class UsersController {
       user.avatar = Attachment.fromFile(avatar)
     }
     const dirty = user.$dirty
+    const original = user.$original
     await user.save()
 
     Event.emit('audit:new', {
-      label: `Update user ${user!.fullname}`,
+      label: `Update user ${original!.firstname} ${original!.lastname}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: 'UPDATE',

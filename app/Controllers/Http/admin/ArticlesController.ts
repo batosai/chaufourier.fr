@@ -87,10 +87,11 @@ export default class ArticlesController {
     }
 
     const dirty = article.$dirty
+    const original = article.$original
     await article.save()
 
     Event.emit('audit:new', {
-      label: `Update article ${article!.title}`,
+      label: `Update article ${original!.title}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: 'UPDATE',

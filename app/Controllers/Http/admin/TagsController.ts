@@ -81,10 +81,11 @@ export default class TagsController {
     await tag.merge(payload)
 
     const dirty = tag.$dirty
+    const original = tag.$original
     await tag.save()
 
     Event.emit('audit:new', {
-      label: `Update tag ${tag!.name}`,
+      label: `Update tag ${original!.name}`,
       username: auth.user!.fullname,
       userId: auth.user!.id,
       action: 'UPDATE',
