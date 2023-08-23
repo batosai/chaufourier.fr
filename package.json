@@ -62,6 +62,7 @@
     "@japa/preset-adonis": "^1.2.0",
     "@japa/runner": "^2.5.1",
     "@symfony/webpack-encore": "^4.3.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "@uppy/core": "^3.2.1",
     "@uppy/dashboard": "^3.4.1",
