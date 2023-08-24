@@ -14,7 +14,7 @@ export default class TagsController {
     const limit = 10
     const { page = 1, ...payload } = await TagSessionFilterService.handle(ctx)
 
-    const tags = await Tag.filter(payload).paginate(page, limit)
+    const tags = await Tag.filter(payload).orderBy('createdAt', 'desc').paginate(page, limit)
     tags.baseUrl(Route.builder().make('admin.tags.index'))
     tags.queryString(payload)
 

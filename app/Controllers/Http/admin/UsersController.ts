@@ -15,7 +15,7 @@ export default class UsersController {
     const limit = 10
     const { page = 1, ...payload } = await UserSessionFilterService.handle(ctx)
 
-    const users = await User.filter(payload).paginate(page, limit)
+    const users = await User.filter(payload).orderBy('createdAt', 'desc').paginate(page, limit)
     users.baseUrl(Route.builder().make('admin.users.index'))
     users.queryString(payload)
 

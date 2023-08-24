@@ -13,7 +13,9 @@ export default class ArticlesController {
     const limit = 10
     const { page = 1, ...payload } = await ArticleSessionFilterService.handle(ctx)
 
-    const articles = await Article.filter(payload).paginate(page, limit)
+    const articles = await Article.filter(payload)
+      .orderBy('createdAt', 'desc')
+      .paginate(page, limit)
     articles.baseUrl(Route.builder().make('admin.articles.index'))
     articles.queryString(payload)
 
