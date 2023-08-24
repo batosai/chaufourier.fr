@@ -72,13 +72,18 @@ export default class HealthCacheService {
     return Cache.remember('npm_packages', null, async () => {
       let packages = { dependencies: {}, devDependencies: {} }
       try {
-        const { stdout } = await execa('npm', ['ls', '-l', (Env.get('NODE_ENV') === 'production' ? '--omit=dev' : ''), '--json'])
+        const { stdout } = await execa('npm', [
+          'ls',
+          '-l',
+          Env.get('NODE_ENV') === 'production' ? '--omit=dev' : '',
+          '--json',
+        ])
         packages = JSON.parse(stdout)
       } catch (error) {
         console.log(error)
       }
 
-      if(!packages.devDependencies) {
+      if (!packages.devDependencies) {
         packages.devDependencies = {}
       }
 

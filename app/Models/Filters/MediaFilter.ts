@@ -5,9 +5,20 @@ import Media from 'App/Models/Media'
 export default class TagFilter extends BaseModelFilter {
   public $query: ModelQueryBuilderContract<typeof Media, Media>
 
+  name(value: string) {
+    this.$query.where((builder) => {
+      builder.whereLike('title', `%${value}%`)
+    })
+  }
+
   search(value: string) {
     this.$query.where((builder) => {
       builder.whereLike('title', `%${value}%`)
     })
+  }
+
+  order(value: string) {
+    const order = value.split('+')
+    this.$query.orderBy(`${order[0]}`, order[1] === 'asc' ? 'asc' : 'desc')
   }
 }

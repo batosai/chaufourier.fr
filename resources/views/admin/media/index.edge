@@ -13,6 +13,7 @@
     })
 
     <div class="w-screen md:w-full px-4 my-4">
+      @include('admin/media/partials/filters')
 
       <ul role="list" id="content-list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 2xl:grid-cols-6">
 
@@ -38,7 +39,8 @@
 
     </div>
 
-    @!admin.button.create({ href: route('admin.media.create') })
+    @!admin.pagination({ object: media })
+    @!admin.button.create({ href: route('admin.media.create'), mode: 'drawer', 'up-on-dismissed': 'up.reload("#content-list")'  })
 
   @end
 

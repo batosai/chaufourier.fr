@@ -85,7 +85,7 @@
               @else
                 <p class="text-sm italic">{{ media.alt }}</p>
               @end
-              @jrmc.button.link({ href: route('admin.media.edit', media), class: 'btn btn-ghost btn-circle', 'up-layer':'new', 'up-mode':'modal', 'up-on-dismissed': 'up.reload("#content-edit");up.reload("#content-list")' })
+              @jrmc.button.link({ href: route('admin.media.edit', media), class: 'btn btn-ghost btn-circle', 'up-layer':'new', 'up-mode':'modal', 'up-on-dismissed': 'up.reload("#content-edit")' })
                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                 </svg>
@@ -109,7 +109,7 @@
         </div>
         <div class="flex-none">
           <div class="flex gap-x-4">
-            @jrmc.button.link({ href: '#', class: 'btn btn-sm btn-primary flex-1 normal-case' })
+            @jrmc.button.link({ href: route('admin.media.download', media), class: 'btn btn-sm btn-primary flex-1 normal-case', download })
               Download
             @end
 

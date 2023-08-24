@@ -51,7 +51,6 @@ export default class Media extends compose(BaseModel, Attachmentable, Filterable
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
-
   // Hooks
 
   @beforeCreate()

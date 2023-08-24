@@ -6,7 +6,9 @@
 @import './uppy.css';
 
 /* remove bounce effet */
-html, body, up-drawer * {
+html,
+body,
+up-drawer * {
   overscroll-behavior-y: none;
 }
 
@@ -27,7 +29,7 @@ html, body, up-drawer * {
   height: calc(3rem + env(safe-area-inset-bottom));
 }
 
-[data-actions=form-drawer].sticky {
+[data-actions='form-drawer'].sticky {
   padding-bottom: env(safe-area-inset-bottom);
   @apply bg-base-300;
 }
@@ -35,7 +37,6 @@ html, body, up-drawer * {
 .breadcrumbs {
   @apply pt-safe;
 }
-
 
 /* override form */
 

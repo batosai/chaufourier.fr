@@ -16,7 +16,6 @@ env:
   false: 🔴
 
 jobs:
-
   test:
     name: Test
     runs-on: ubuntu-22.04
@@ -83,8 +82,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          source: "build"
-          target: "${{ secrets.APP_PATH }}/source"
+          source: 'build'
+          target: '${{ secrets.APP_PATH }}/source'
 
       - name: Install Dependencies production
         uses: appleboy/ssh-action@v0.1.10

@@ -6,6 +6,7 @@ import Media from 'App/Models/Media'
 import MediaSessionFilterService from 'App/Services/MediaSessionFilterService'
 import MediaDataValidator from 'App/Validators/admin/MediaDataValidator'
 import MediaValidator from 'App/Validators/admin/MediaValidator'
+import Application from '@ioc:Adonis/Core/Application'
 
 export default class MediaController {
   public async index(ctx: HttpContextContract) {
@@ -15,21 +16,21 @@ export default class MediaController {
     const limit = 24
     const { page = 1, ...payload } = await MediaSessionFilterService.handle(ctx)
 
-    const media = await Media.filter(payload).paginate(page, limit)
-    media.baseUrl(Route.builder().make('admin.users.index'))
+    const media = await Media.filter(payload).orderBy('createdAt', 'desc').paginate(page, limit)
+    media.baseUrl(Route.builder().make('admin.media.index'))
     media.queryString(payload)
 
     return view.render('admin/media/index', {
-      media
+      media,
     })
   }
 
   public async show({ request, view, bouncer }: HttpContextContract) {
     const media = await Media.findOrFail(request.param('id'))
     await media.load('user')
-    // await bouncer.with('MediaPolicy').authorize('show')
+    await bouncer.with('MediaPolicy').authorize('show', media)
     return view.render('admin/media/show', {
-      media
+      media,
     })
   }
 
@@ -139,5 +140,23 @@ export default class MediaController {
     } else {
       response.redirect().toRoute('admin.media.index')
     }
+  }
+
+  public async download({ params, response, bouncer }: HttpContextContract) {
+    const { id } = params
+    const media = await Media.findOrFail(id)
+    await bouncer.with('MediaPolicy').authorize('show', media)
+
+    const filePath = Application.tmpPath(`uploads/${media.file.name}`)
+
+    response.attachment(filePath, 'foo.jpg')
+
+    // response.download(filePath, true, (error) => {
+    //   if (error.code === 'ENOENT') {
+    //     return ['File does not exists', 404]
+    //   }
+
+    //   return ['Cannot download file', 400]
+    // })
   }
 }
