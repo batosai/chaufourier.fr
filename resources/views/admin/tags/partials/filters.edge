@@ -35,7 +35,7 @@
           @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.tags.index', {}, { qs: { reset: 'all' }}) })
 
           @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.tags.search') })
-            @!jrmc.form.input({ class: 'input-bordered' })
+            @!jrmc.form.input()
           @end
 
           @jrmc.form.control({ name: 'order', label: false, class: 'hidden' })
@@ -53,14 +53,14 @@
             { text: t('filters.tags.createdAt+asc'), value: 'createdAt+asc' },
             { text: t('filters.tags.createdAt+desc'), value: 'createdAt+desc' },
           ],
-          class: 'sm:mr-4 bg-neutral',
+          class: 'sm:mr-4',
           'up-autosubmit': ''
         })
       @end
       @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
         @!jrmc.form.input({
           placeholder: t('filters.tags.search'),
-          class: 'input-bordered hidden sm:inline-block',
+          class: 'hidden sm:inline-block',
         })
       @end
     </div>

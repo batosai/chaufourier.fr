@@ -54,3 +54,8 @@ up-drawer * {
   @apply textarea-bordered;
   @apply bg-base-200;
 }
+
+.select {
+  @apply select-bordered;
+  @apply bg-base-200;
+}

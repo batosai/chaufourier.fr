@@ -38,7 +38,7 @@
           @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
 
           @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.users.search') })
-            @!jrmc.form.input({ class: 'input-bordered' })
+            @!jrmc.form.input()
           @end
 
           @jrmc.form.control({ name: 'role' })
@@ -47,7 +47,6 @@
                 { text: t('models.role/name.admin'), value: Roles.ADMIN },
                 { text: t('models.role/name.user'), value: Roles.USER },
               ],
-              class: 'input-bordered',
               '@change': 'up.submit($el.closest("form"))'
             })
           @end
@@ -77,14 +76,14 @@
             { text: t('filters.users.createdAt+asc'), value: 'createdAt+asc' },
             { text: t('filters.users.createdAt+desc'), value: 'createdAt+desc' },
           ],
-          class: 'sm:mr-4 bg-neutral',
+          class: 'sm:mr-4',
           'up-autosubmit': ''
         })
       @end
       @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
         @!jrmc.form.input({
           placeholder: t('filters.users.search'),
-          class: 'input-bordered hidden sm:inline-block',
+          class: 'hidden sm:inline-block',
         })
       @end
 
