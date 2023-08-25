@@ -11,6 +11,7 @@ export default () => ({
   uppy: null,
 
   init() {
+    const csrf = this.$el.closest('form').querySelector('[name="_csrf"]').value ?? document.querySelector('meta[name="csrf-token"]').content
     this.uppy = new Uppy()
       .use(Dashboard, {
         inline: true,
@@ -30,7 +31,7 @@ export default () => ({
         endpoint: this.$el.dataset.endpoint,
         fieldName: this.$el.dataset.fieldName,
         headers: () => ({
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+          'X-CSRF-TOKEN': csrf,
         }),
       })
   },
