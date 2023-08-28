@@ -35,7 +35,7 @@ up-drawer * {
 }
 
 .breadcrumbs {
-  @apply pt-safe;
+  padding-top: calc(0.5rem + env(safe-area-inset-top));
 }
 
 /* override form */
