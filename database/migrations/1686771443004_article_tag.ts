@@ -6,7 +6,7 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('article_id').references('articles.id').onDelete('CASCADE')
-      table.uuid('tag_id').references('tags.id')
+      table.uuid('tag_id').references('tags.id').onDelete('CASCADE')
       table.unique(['article_id', 'tag_id'])
 
       table.timestamp('created_at', { useTz: true })
