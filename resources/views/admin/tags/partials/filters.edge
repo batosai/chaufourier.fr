@@ -1,68 +1,68 @@
-@if(session.has('tagsFilter'))
-  <div class="indicator w-full mb-4">
-    <span class="indicator-item indicator-center indicator-bottom badge badge-primary">{{{ t('filters.results', { itemsCount: tags.total }) }}}</span>
-    @jrmc.alert()
+<div x-data="{ open: false }">
+  @jrmc.form({ method: 'GET', action: route('admin.tags.index'), error: false, csrf: false, object: session.get('tagsFilter') })
+    <div class="flex flex-col sm:flex-row bg-base-100 p-2 items-center">
+      @if(session.has('tagsFilter'))
+        <div class="flex items-center">
+          @jrmc.button({ type: 'button', class: 'btn-ghost normal-case', '@click': 'open = !open', 'aria-label': t('filters.reset') })
+            @svg('fa-solid:filter')
+            @if(session.has('tagsFilter'))
+              {{ Object.keys(session.get('tagsFilter', {})).length }}
+            @end
+            Filters
+          @end
+
+          <div aria-hidden="true" class="h-5 w-px bg-gray-300 mx-4"></div>
+
+          @jrmc.button.link({ class: 'btn-ghost normal-case', href: route('admin.tags.index', {}, { qs: { reset: 'all' }}), 'aria-label': t('filters.reset') })
+            {{ t('filters.reset') }}
+          @end
+        </div>
+      @end
+
+      <div class="flex-1"></div>
+
+      <div class="flex flex-col order-first sm:flex-none sm:flex-row sm:order-none">
+        @jrmc.form.control({ name: 'order', class: '!m-0 w-full', label: false })
+          @!jrmc.form.select({ options: [
+              { text: t('filters.order'), value: '' },
+              { text: t('filters.tags.name+asc'), value: 'name+asc' },
+              { text: t('filters.tags.name+desc'), value: 'name+desc' },
+              { text: t('filters.tags.createdAt+asc'), value: 'createdAt+asc' },
+              { text: t('filters.tags.createdAt+desc'), value: 'createdAt+desc' },
+            ],
+            class: 'sm:mr-4',
+            'up-autosubmit': ''
+          })
+        @end
+
+        <div class="join w-full my-2 sm:my-0">
+          @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
+            @!jrmc.form.input({
+              placeholder: t('filters.tags.search'),
+              class: 'join-item',
+            })
+          @end
+          @!jrmc.button.input({ text: 'Search', type: 'submit', class: 'btn-neutral join-item' })
+        </div>
+      </div>
+
+    </div>
+  @end
+
+  @if(session.has('tagsFilter'))
+    <div class="pb-3" x-show="open">
       @each((filter, index) in session.get('tagsFilter', {}))
         @if(filter)
-          @jrmc.badge({ as: 'div', class: 'badge-lg badge-info' })
+          @admin.badge({ action: route('admin.tags.index', {}, { qs: { reset: index }}) })
             {{ t(`filters.tags.${index}`) }}:
             @if(['search', 'page'].includes(index))
               {{ filter }}
             @else
               {{ t(`filters.tags.${filter}`) }}
             @end
-            @jrmc.button.link({ class: 'btn-xs btn-ghost', href: route('admin.tags.index', {}, { qs: { reset: index }}) })
-              @!svg('akar-icons:cross', { width: 10, height: 10 })
-            @end
-          @end
-        @end
-      @end
-      @slot('actions')
-        @jrmc.button.link({ 'aria-label': t('filters.reset'), class: 'hidden sm:flex btn-sm btn-circle', href: route('admin.tags.index', {}, { qs: { reset: 'all' }}) })
-          @!svg('akar-icons:cross', { 'aria-hidden': 'true' })
-        @end
-      @end
-    @end
-  </div>
-@end
-
-@jrmc.form({ method: 'GET', action: route('admin.tags.index'), error: false, csrf: false, object: session.get('tagsFilter') })
-  <div class="navbar bg-base-100 p-0">
-    <div class="flex-1">
-      @jrmc.modal({ button: { text: t('filters.filter'), type: 'button', class: 'md:hidden' }, mobile: true })
-        <h3 class="font-bold text-lg">{{ t('filters.filter') }}</h3>
-        @jrmc.form({ method: 'GET', action: route('admin.tags.index'), error: false, csrf: false, object: session.get('tagsFilter') })
-          @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.tags.index', {}, { qs: { reset: 'all' }}) })
-
-          @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.tags.search') })
-            @!jrmc.form.input()
-          @end
-
-          @jrmc.form.control({ name: 'order', label: false, class: 'hidden' })
-            @!jrmc.form.input({ type: 'hidden' })
           @end
         @end
       @end
     </div>
-    <div class="flex-none">
-      @jrmc.form.control({ name: 'order', class: '!m-0', label: false })
-        @!jrmc.form.select({ options: [
-            { text: t('filters.order'), value: '' },
-            { text: t('filters.tags.name+asc'), value: 'name+asc' },
-            { text: t('filters.tags.name+desc'), value: 'name+desc' },
-            { text: t('filters.tags.createdAt+asc'), value: 'createdAt+asc' },
-            { text: t('filters.tags.createdAt+desc'), value: 'createdAt+desc' },
-          ],
-          class: 'sm:mr-4',
-          'up-autosubmit': ''
-        })
-      @end
-      @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
-        @!jrmc.form.input({
-          placeholder: t('filters.tags.search'),
-          class: 'hidden sm:inline-block',
-        })
-      @end
-    </div>
-  </div>
-@end
+  @end
+</div>

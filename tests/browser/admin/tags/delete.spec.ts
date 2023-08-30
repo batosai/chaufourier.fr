@@ -34,7 +34,7 @@ test.group('Admin delete tag', (group) => {
 
     await page.goto(route('admin.tags.edit', tag))
 
-    await page.getByRole('button', { name: 'Ok' }).nth(0).click()
+    await page.getByRole('button', { name: 'yes, delete this tag' }).nth(0).click()
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertElementsCount(

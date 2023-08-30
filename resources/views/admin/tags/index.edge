@@ -17,7 +17,7 @@
 
       @jrmc.table({ full: true })
         @slot('header')
-          <tr>
+          <tr class="bg-base-300">
             <th class="w-12"></th>
             <th>{{ t('models.tag.name') }}</th>
             <th>{{ t('models.tag.createdAt') }}</th>
@@ -25,23 +25,20 @@
           </tr>
         @end
         @slot('footer')
-          <tr>
-            <th></th>
-            <th>{{ t('models.tag.name') }}</th>
-            <th>{{ t('models.tag.createdAt') }}</th>
-            <th>{{ t('admin.table.actions') }}</th>
+          <tr class="bg-base-300">
+            <th colspan="4">{{{ t('filters.results', { itemsCount: tags.total }) }}}</th>
           </tr>
         @end
         @slot('body')
           @each(tag in tags)~
-          <tr class="hover" data-test="tag-{{ tag.id }}">
+          <tr class="bg-base-200 divide-y divide-white/5" data-test="tag-{{ tag.id }}">
             <th></th>
             <td>
               <span class="font-bold">{{ tag.name }}</span>
             </td>
             <td>{{ t('app.date', { value: tag.createdAt }) }}</td>
             <td>
-              @jrmc.button.link({ href: route('admin.tags.edit', tag), class: 'btn normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
+              @jrmc.button.link({ href: route('admin.tags.edit', tag), class: 'btn btn-neutral normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
                 Edit
               @end
             </td>

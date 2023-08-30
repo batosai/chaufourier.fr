@@ -1,6 +1,6 @@
 filter: Filter
 order: Order
-reset: Reset all
+reset: Clear all
 results: '{itemsCount, plural,
   =0 {no&nbsp;result}
   one {1&nbsp;result}

@@ -13,41 +13,31 @@
       ]
     })
 
-      <div class="divide-y divide-white/5 @container">
-        <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 @2xl:grid-cols-3 lg:px-8">
-          <div>
-            <h2 class="text-base font-semibold leading-7 text-white">Edit Tag</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-400">Update your tag.</p>
-          </div>
-
-          @jrmc.form({ id: 'edit_tag', action: route('admin.tags.update', tag, {
-            qs: {
-              _method: 'PUT'
-            }
-          }),
-          enctype: 'multipart/form-data',
-          error: false,
-          object: tag  })
-            @include('admin/tags/partials/form')
-            <div class="mt-8 flex">
-              @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_tag', class: 'btn-primary btn-sm' })
-            </div>
-          @end
-        </div>
-
-        @can('TagPolicy.delete', tag)
-          <div class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 @2xl:grid-cols-3 lg:px-8">
-            <div>
-              <h2 class="text-base font-semibold leading-7 text-white">Delete tag</h2>
-              <p class="mt-1 text-sm leading-6 text-gray-400">Its deletion will result in its withdrawal from all entities using it.</p>
-            </div>
-
-            <div class="flex items-start md:col-span-2">
-              @!jrmc.button.link({ text: 'Yes, delete this tag', href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error btn-sm', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
-            </div>
+    @admin.section()
+      @admin.section.content({ title: 'Edit Tag', description: 'Update your tag.'})
+        @jrmc.form({ id: 'edit_tag', action: route('admin.tags.update', tag, {
+          qs: {
+            _method: 'PUT'
+          }
+        }),
+        enctype: 'multipart/form-data',
+        error: false,
+        object: tag  })
+          @include('admin/tags/partials/form')
+          <div class="mt-8 flex">
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_tag', class: 'btn-primary btn-sm' })
           </div>
         @end
-      </div>
+      @end
+
+      @can('TagPolicy.delete', tag)~
+        @admin.section.content({ title: 'Delete Tag', description: 'Its deletion will result in its withdrawal from all entities using it.'})
+          <div class="flex items-start md:col-span-2">
+            @!jrmc.button.link({ text: 'Yes, delete this tag', href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error btn-sm', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+          </div>
+        @end
+      @end~
+    @end
 
   @end
 @end
