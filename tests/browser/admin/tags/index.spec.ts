@@ -98,7 +98,7 @@ test.group('Admin tags', (group) => {
 
     await page.assertElementsCount('tbody tr', 1)
 
-    await page.getByRole('button', { name: 'Reset all' }).click()
+    await page.getByText('Clear all').click()
 
     await page.assertElementsCount('tbody tr', 2)
   })
