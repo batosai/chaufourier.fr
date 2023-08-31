@@ -22,7 +22,9 @@ export default () => ({
   async addTag(tag) {
     tag = tag.trim()
     if (tag != '' && !this.hasTag(tag) && tag.length >= this.minLength) {
-      const csrf = this.$el.closest('form').querySelector('[name="_csrf"]').value ?? document.querySelector('meta[name="csrf-token"]').content
+      const csrf =
+        this.$el.closest('form').querySelector('[name="_csrf"]').value ??
+        document.querySelector('meta[name="csrf-token"]').content
       const response = await fetch(this.urls.find, {
         method: 'POST',
         body: JSON.stringify({ name: tag }),
