@@ -32,7 +32,7 @@
 
     @if(session.has(`${name}Filter`))
       <div class="pb-3" x-show="open">
-        <div class="grid grid-cols-2 divide-x">
+        <div class="grid sm:grid-cols-2 divide-x divide-neutral">
           @if($slots.extra !== undefined)~
             <div class="px-4">
               {{{ await $slots.extra() }}}

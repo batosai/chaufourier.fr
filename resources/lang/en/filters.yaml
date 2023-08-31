@@ -22,6 +22,9 @@ users:
   email+desc: Descending email
   createdAt+asc: Ascending date
   createdAt+desc: Descending date
+  #roles
+  admin: Admin
+  user: User
 
 tags:
   page: Page

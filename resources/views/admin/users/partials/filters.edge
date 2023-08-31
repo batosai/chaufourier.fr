@@ -1,98 +1,47 @@
-@if(session.has('usersFilter'))
-  <div class="indicator w-full mb-4">
-    <span class="indicator-item indicator-center indicator-bottom badge badge-primary">{{{ t('filters.results', { itemsCount: users.total }) }}}</span>
-    @jrmc.alert()
-      @each((filter, index) in session.get('usersFilter', {}))
-        @if(filter)
-          @jrmc.badge({ as: 'div', class: 'badge-lg badge-info' })
-            {{ t(`filters.users.${index}`) }}:
-            @if(['search', 'page'].includes(index))
-              {{ filter }}
-            @elseif(index == 'role')
-              {{ capitalCase(filter) }}
-            @else
-              {{ t(`filters.users.${filter}`) }}
-            @end
-            @jrmc.button.link({ class: 'btn-xs btn-ghost', href: route('admin.users.index', {}, { qs: { reset: index }}) })
-              @!svg('akar-icons:cross', { width: 10, height: 10 })
-            @end
-          @end
-        @end
-      @end
-      @slot('actions')
-        @jrmc.button.link({ 'aria-label': t('filters.reset'), class: 'hidden sm:flex btn-sm btn-circle', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
-          @!svg('akar-icons:cross', { 'aria-hidden': 'true' })
-        @end
+@admin.filter({ name: 'users' })
+  @jrmc.form.control({ name: 'order', class: '!m-0 w-full', label: false })
+    @!jrmc.form.select({ options: [
+        { text: t('filters.order'), value: '' },
+        { text: t('filters.users.firstname+asc'), value: 'firstname+asc' },
+        { text: t('filters.users.firstname+desc'), value: 'firstname+desc' },
+        { text: t('filters.users.email+asc'), value: 'email+asc' },
+        { text: t('filters.users.email+desc'), value: 'email+desc' },
+        { text: t('filters.users.createdAt+asc'), value: 'createdAt+asc' },
+        { text: t('filters.users.createdAt+desc'), value: 'createdAt+desc' },
+      ],
+      class: 'sm:mr-4',
+      'up-autosubmit': ''
+    })
+  @end
+
+  <div class="join w-full my-2 sm:my-0">
+    @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
+      @!jrmc.form.input({
+        placeholder: t('filters.users.search'),
+        class: 'join-item',
+      })
+    @end
+    @!jrmc.button.input({ text: 'Search', type: 'submit', class: 'btn-neutral join-item' })
+  </div>
+
+  @slot('extra')
+    @jrmc.form.control({ name: 'role' })
+      @!jrmc.form.select({ options: [
+          { text: t('filters.users.all'), value: '' },
+          { text: t('models.role/name.admin'), value: Roles.ADMIN },
+          { text: t('models.role/name.user'), value: Roles.USER },
+        ],
+        '@change': 'up.submit($el.closest("form"))'
+      })
+    @end
+
+    @jrmc.form.control({ name: 'disabled', label: false })
+      @jrmc.form.label({ class: 'cursor-pointer', text: t('models.user/status.disabled') + ':' })
+        @!jrmc.form.toggle({
+          value: 'true',
+          '@change': 'up.submit($el.closest("form"))'
+        })
       @end
     @end
-  </div>
-@end
-
-@jrmc.form({ method: 'GET', action: route('admin.users.index'), error: false, csrf: false, object: session.get('usersFilter') })
-  <div class="navbar bg-base-100 p-0">
-    <div class="flex-1">
-      @jrmc.modal({ button: { text: t('filters.filter'), type: 'button' }, mobile: true })
-        <h3 class="font-bold text-lg">{{ t('filters.filter') }}</h3>
-        @jrmc.form({ method: 'GET', action: route('admin.users.index'), error: false, csrf: false, object: session.get('usersFilter') })
-
-          @!jrmc.button.link({ text: t('filters.reset'), class: 'btn-sm btn-block mt-4 sm:hidden', href: route('admin.users.index', {}, { qs: { reset: 'all' }}) })
-
-          @jrmc.form.control({ name: 'search', id: 'mobile-search', class: 'sm:hidden', label: t('filters.users.search') })
-            @!jrmc.form.input()
-          @end
-
-          @jrmc.form.control({ name: 'role' })
-            @!jrmc.form.select({ options: [
-                { text: t('filters.users.all'), value: '' },
-                { text: t('models.role/name.admin'), value: Roles.ADMIN },
-                { text: t('models.role/name.user'), value: Roles.USER },
-              ],
-              '@change': 'up.submit($el.closest("form"))'
-            })
-          @end
-          @jrmc.form.control({ name: 'order', label: false, class: 'hidden' })
-            @!jrmc.form.input({ type: 'hidden' })
-          @end
-
-          @jrmc.form.control({ name: 'disabled', label: false })
-            @jrmc.form.label({ class: 'cursor-pointer', text: t('models.user/status.disabled') + ':' })
-              @!jrmc.form.toggle({
-                value: 'true',
-                '@change': 'up.submit($el.closest("form"))'
-              })
-            @end
-          @end
-        @end
-      @end
-    </div>
-    <div class="flex-none">
-      @jrmc.form.control({ name: 'order', class: '!m-0', label: false })
-        @!jrmc.form.select({ options: [
-            { text: t('filters.order'), value: '' },
-            { text: t('filters.users.firstname+asc'), value: 'firstname+asc' },
-            { text: t('filters.users.firstname+desc'), value: 'firstname+desc' },
-            { text: t('filters.users.email+asc'), value: 'email+asc' },
-            { text: t('filters.users.email+desc'), value: 'email+desc' },
-            { text: t('filters.users.createdAt+asc'), value: 'createdAt+asc' },
-            { text: t('filters.users.createdAt+desc'), value: 'createdAt+desc' },
-          ],
-          class: 'sm:mr-4',
-          'up-autosubmit': ''
-        })
-      @end
-      @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
-        @!jrmc.form.input({
-          placeholder: t('filters.users.search'),
-          class: 'hidden sm:inline-block',
-        })
-      @end
-
-      @jrmc.form.control({ name: 'disabled', label: false, class: 'hidden' })
-        @!jrmc.form.input({ type: 'hidden' })
-      @end
-      @jrmc.form.control({ name: 'role', label: false, class: 'hidden' })
-        @!jrmc.form.input({ type: 'hidden' })
-      @end
-    </div>
-  </div>
+  @end
 @end

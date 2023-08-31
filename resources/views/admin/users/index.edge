@@ -17,7 +17,7 @@
 
       @jrmc.table({ full: true, pinCols: true })
         @slot('header')
-          <tr>
+          <tr class="bg-base-300">
             <th class="w-12"></th>
             <th>{{ t('models.user.name') }}</th>
             <th>{{ t('models.user.email') }}</th>
@@ -27,18 +27,13 @@
           </tr>
         @end
         @slot('footer')
-          <tr>
-            <th></th>
-            <th>{{ t('models.user.name') }}</th>
-            <th>{{ t('models.user.email') }}</th>
-            <th>{{ t('models.user.status') }}</th>
-            <th>{{ t('models.user.createdAt') }}</th>
-            <th>{{ t('admin.table.actions') }}</th>
+          <tr class="bg-base-300">
+            <th colspan="6">{{{ t('filters.results', { itemsCount: users.total }) }}}</th>
           </tr>
         @end
         @slot('body')
           @each(user in users)~
-          <tr class="hover" data-test="user-{{ user.id }}">
+          <tr class="bg-base-200 divide-y divide-white/5" data-test="user-{{ user.id }}">
             <th>
               <div class="avatar">
                 <div class="mask mask-squircle w-12 h-12">
@@ -64,7 +59,7 @@
             </td>
             <td>{{ t('app.date', { value: user.createdAt }) }}</td>
             <td>
-              @jrmc.button.link({ href: route('admin.users.edit', user), class: 'btn normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
+              @jrmc.button.link({ href: route('admin.users.edit', user), class: 'btn btn-neutral normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
                 Edit
               @end
             </td>
