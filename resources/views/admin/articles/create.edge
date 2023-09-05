@@ -13,21 +13,16 @@
       ]
     })
 
-    <div class="w-screen md:w-full px-4 my-4 mb-auto">
-      @jrmc.form({ id: 'create_article', action: route('admin.articles.store'), error: false })
-        @include('admin/articles/partials/form')
+    @jrmc.form({ id: 'create_article', action: route('admin.articles.store'), error: false })
+      @admin.section()
+        @admin.section.content()
+          @include('admin/articles/partials/form')
+          <div class="mt-8 flex">
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_article', class: 'btn-primary' })
+          </div>
+        @end
       @end
-    </div>
+    @end
 
-    <template x-teleport="[data-actions='form']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1 lg:pl-80">
-          @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.articles.index'), class: 'btn-outline btn-sm' })
-        </div>
-        <div class="flex-none">
-          @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_article', class: 'btn-primary btn-outline btn-sm' })
-        </div>
-      </div>
-    </template>
   @end
 @end

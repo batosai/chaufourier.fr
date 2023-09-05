@@ -17,7 +17,7 @@
 
       @jrmc.table({ full: true })
         @slot('header')
-          <tr class="bg-base-300">
+          <tr>
             <th class="w-12"></th>
             <th>{{ t('models.article.title') }}</th>
             <th>{{ t('models.article.createdAt') }}</th>
@@ -25,13 +25,13 @@
           </tr>
         @end
         @slot('footer')
-          <tr class="bg-base-300">
+          <tr>
             <th colspan="4">{{{ t('filters.results', { itemsCount: articles.total }) }}}</th>
           </tr>
         @end
         @slot('body')
           @each(article in articles)~
-          <tr class="bg-base-200 divide-y divide-white/5" data-test="article-{{ article.id }}">
+          <tr class="divide-y divide-white/5" data-test="article-{{ article.id }}">
             <th></th>
             <td>
               <span class="font-bold">{{ article.title }}</span>

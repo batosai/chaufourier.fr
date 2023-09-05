@@ -18,7 +18,7 @@
         @jrmc.form({ id: 'create_tag', action: route('admin.tags.store'), error: false })
           @include('admin/tags/partials/form')
           <div class="mt-8 flex">
-            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_tag', class: 'btn-primary btn-sm' })
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_tag', class: 'btn-primary' })
           </div>
         @end
       @end

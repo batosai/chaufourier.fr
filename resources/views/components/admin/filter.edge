@@ -5,7 +5,7 @@
 <div x-data="{ open: false }">
   @jrmc.form({ method: 'GET', action: route(`admin.${name}.index`), error: false, csrf: false, object: session.get(`${name}Filter`) })
     <div class="flex flex-col sm:flex-row bg-base-100 p-2 items-center">
-      @if(session.has(`${name}Filter`))
+      @if(($props.has('showBlank') && $props.showBlank) || session.has(`${name}Filter`))
         <div class="flex items-center">
           @jrmc.button({ type: 'button', class: 'btn-ghost normal-case', '@click': 'open = !open', 'aria-label': t('filters.reset') })
             @svg('fa-solid:filter')
@@ -15,11 +15,13 @@
             Filters
           @end
 
-          <div aria-hidden="true" class="h-5 w-px bg-gray-300 mx-4"></div>
+          @if(session.has(`${name}Filter`))~
+            <div aria-hidden="true" class="h-5 w-px bg-gray-300 mx-4"></div>
 
-          @jrmc.button.link({ class: 'btn-ghost normal-case', href: route(`admin.${name}.index`, {}, { qs: { reset: 'all' }}), 'aria-label': t('filters.reset') })
-            {{ t('filters.reset') }}
-          @end
+            @jrmc.button.link({ class: 'btn-ghost normal-case', href: route(`admin.${name}.index`, {}, { qs: { reset: 'all' }}), 'aria-label': t('filters.reset') })
+              {{ t('filters.reset') }}
+            @end
+          @end~
         </div>
       @end
 
@@ -30,31 +32,29 @@
       </div>
     </div>
 
-    @if(session.has(`${name}Filter`))
-      <div class="pb-3" x-show="open">
-        <div class="grid sm:grid-cols-2 divide-x divide-neutral">
-          @if($slots.extra !== undefined)~
-            <div class="px-4">
-              {{{ await $slots.extra() }}}
-            </div>
-          @endif~
-
+    <div class="pb-3" x-show="open">
+      <div class="grid sm:grid-cols-2 divide-x divide-neutral">
+        @if($slots.extra !== undefined)~
           <div class="px-4">
-            @each((filter, index) in session.get(`${name}Filter`, {}))
-              @if(filter)
-                @admin.badge({ action: route(`admin.${name}.index`, {}, { qs: { reset: index }}) })
-                  {{ t(`filters.${name}.${index}`) }}:
-                  @if(['search', 'page'].includes(index))
-                    {{ filter }}
-                  @else
-                    {{ t(`filters.${name}.${filter}`) }}
-                  @end
+            {{{ await $slots.extra() }}}
+          </div>
+        @endif~
+
+        <div class="px-4">
+          @each((filter, index) in session.get(`${name}Filter`, {}))
+            @if(filter)
+              @admin.badge({ action: route(`admin.${name}.index`, {}, { qs: { reset: index }}) })
+                {{ t(`filters.${name}.${index}`) }}:
+                @if(['search', 'page'].includes(index))
+                  {{ filter }}
+                @else
+                  {{ t(`filters.${name}.${filter}`) }}
                 @end
               @end
             @end
-          </div>
+          @end
         </div>
       </div>
-    @end
+    </div>
   @end
 </div>

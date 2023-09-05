@@ -17,7 +17,7 @@
 
       @jrmc.table({ full: true, pinCols: true })
         @slot('header')
-          <tr class="bg-base-300">
+          <tr>
             <th class="w-12"></th>
             <th>{{ t('models.user.name') }}</th>
             <th>{{ t('models.user.email') }}</th>
@@ -27,7 +27,7 @@
           </tr>
         @end
         @slot('footer')
-          <tr class="bg-base-300">
+          <tr>
             <th colspan="6">{{{ t('filters.results', { itemsCount: users.total }) }}}</th>
           </tr>
         @end

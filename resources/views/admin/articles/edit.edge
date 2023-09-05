@@ -13,7 +13,6 @@
       ]
     })
 
-    <div class="w-screen md:w-full px-4 my-4 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
 
       @jrmc.form({ id: 'edit_article', class: 'xl:col-span-3', action: route('admin.articles.update', article, {
         qs: {
@@ -23,34 +22,27 @@
       enctype: 'multipart/form-data',
       error: false,
       object: article  })
-        @include('admin/articles/partials/form')
-      @end
-
-      <div class="divider xl:col-span-3"></div>
-
-      @can('ArticlePolicy.delete', article)
-        @jrmc.card({ class: 'bg-base-300 mt-4 xl:mt-0' })
-          @jrmc.card.body()
-            @!jrmc.card.title({ text: 'DELETED' })
-            <p>Delete the article account and all its data.</p>
-            @jrmc.card.actions()
-              @!jrmc.button.link({ text: 'Ok', href: route('admin.articles.destroy', article, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
-            @end
+        @admin.section()
+          @admin.section.content()
+            @include('admin/articles/partials/form')
+            <div class="mt-8 flex">
+              @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_article', class: 'btn-primary' })
+            </div>
           @end
         @end
       @end
 
-    </div>
 
-    <template x-teleport="[data-actions='form']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1 lg:pl-80">
-          @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.articles.index'), class: 'btn-outline btn-sm' })
-        </div>
-        <div class="flex-none">
-          @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_article', class: 'btn-primary btn-outline btn-sm' })
-        </div>
-      </div>
-    </template>
+      @can('ArticlePolicy.delete', article)
+        @admin.section()
+          <div></div>
+          @admin.section.content({ title: 'Delete article', description: 'Delete the article account and all its data.'})
+            <div class="mt-8 flex">
+              @!jrmc.button.link({ text: 'Yes, delete', href: route('admin.articles.destroy', article, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            </div>
+          @end
+        @end
+      @end
+
   @end
 @end

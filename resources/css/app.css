@@ -59,3 +59,18 @@ up-drawer * {
   @apply select-bordered;
   @apply bg-base-200;
 }
+
+/* override daisyUI */
+
+thead tr,
+tfoot tr {
+  @apply bg-base-300;
+}
+
+.table :where(.table-pin-cols tr th) {
+  background-color: inherit;
+}
+
+tbody tr {
+  @apply bg-base-200;
+}

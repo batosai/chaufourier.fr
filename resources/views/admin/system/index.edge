@@ -12,21 +12,18 @@
       ]
     })
 
-    <div class="w-screen md:w-full px-4 my-4 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
+    @admin.section()
 
       @can('CachePolicy.clear')
-        @jrmc.card({ class: 'bg-base-300 mt-4 xl:mt-0' })
-          @jrmc.card.body()
-            @!jrmc.card.title({ text: 'Cache clear' })
-            <p>Clear all cache.</p>
-            @jrmc.card.actions()
-              @!jrmc.button.link({ text: 'Ok', href: route('admin.caches.destroy', { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE'})
-            @end
-          @end
+        @admin.section.content({ title: 'Cache clear', description: 'Clear all cache.'})
+          <div class="flex items-start md:col-span-2">
+            @!jrmc.button.link({ text: 'Yes, clear all', href: route('admin.caches.destroy', { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE'})
+          </div>
         @end
       @end
 
-    </div>
+    @end
+
 
   @end
 
