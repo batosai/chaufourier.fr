@@ -13,6 +13,8 @@
       ]
     })
 
+    @!admin.button.back({ href: route('admin.tags.index') })
+
     @admin.section()
       @admin.section.content({ title: 'Create Tag', description: 'Create your tag.'})
         @jrmc.form({ id: 'create_tag', action: route('admin.tags.store'), error: false })

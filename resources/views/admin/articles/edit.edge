@@ -13,6 +13,8 @@
       ]
     })
 
+    @!admin.button.back({ href: route('admin.articles.index') })
+
     @admin.section()
       @admin.section.content({ title: 'Edit article', description: 'Edit this article.'})
         @jrmc.form({ id: 'edit_article', class: 'md:col-span-2', action: route('admin.articles.update', article, {

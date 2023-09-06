@@ -13,6 +13,8 @@
       ]
     })
 
+    @!admin.button.back({ href: route('admin.users.index') })
+
     @admin.section()
       @admin.section.content({ title: 'Create User', description: 'Create a user.'})
         @jrmc.form({ id: 'create_user', class: 'md:col-span-2', action: route('admin.users.store'), enctype: 'multipart/form-data', error: false })

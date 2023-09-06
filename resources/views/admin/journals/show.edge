@@ -13,55 +13,43 @@
       ]
     })
 
+    @!admin.button.back({ href: route('admin.journals.index') })
+
     <div class="w-screen md:w-full px-4 my-4 mb-auto">
-      @jrmc.card({ class: 'bg-base-300' })
-        @jrmc.card.body()
-          <div class="divider text-primary">{{ audit.label }}</div>
 
-          <p>
-              @if(audit.action === 'CREATE')
-                @!jrmc.badge({ text: audit.action, class: 'badge-success' })
-              @elseif(audit.action === 'UPDATE')
-                @!jrmc.badge({ text: audit.action, class: 'badge-success' })
-              @elseif(audit.action === 'DELETE')
-                @!jrmc.badge({ text: audit.action, class: 'badge-error' })
-              @elseif(audit.action === 'IMPERSONATE')
-                @!jrmc.badge({ text: audit.action, class: 'badge-warning' })
-              @end
-           : Create at {{ t('app.date', { value: audit.createdAt }) }}
-          </p>
+      <div class="divider text-primary">{{ audit.label }}</div>
 
-          <p>
-            <span>By </span>
-            @!jrmc.badge({ text: audit.username, class: 'badge-info' })
-            <span>id </span>
-            @!jrmc.badge({ text: audit.userId, class: 'badge-secondary' })
-          </p>
-          <p>
-            <span>Entity </span>
-            @!jrmc.badge({ text: audit.target, class: 'badge-info' })
-            <span>id </span>
-            @!jrmc.badge({ text: audit.targetId, class: 'badge-secondary' })
-          </p>
+      <p class="mb-2">
+          @if(audit.action === 'CREATE')
+            @!jrmc.badge({ text: audit.action, class: 'badge-success' })
+          @elseif(audit.action === 'UPDATE')
+            @!jrmc.badge({ text: audit.action, class: 'badge-success' })
+          @elseif(audit.action === 'DELETE')
+            @!jrmc.badge({ text: audit.action, class: 'badge-error' })
+          @elseif(audit.action === 'IMPERSONATE')
+            @!jrmc.badge({ text: audit.action, class: 'badge-warning' })
+          @end
+        : Create at {{ t('app.date', { value: audit.createdAt }) }}
+      </p>
 
-          <div class="divider">Modify values</div>
+      <p class="mb-2">
+        <span>By </span>
+        @!jrmc.badge({ text: audit.username, class: 'badge-info' })
+        <span>id </span>
+        @!jrmc.badge({ text: audit.userId, class: 'badge-secondary' })
+      </p>
+      <p>
+        <span>Entity </span>
+        @!jrmc.badge({ text: audit.target, class: 'badge-info' })
+        <span>id </span>
+        @!jrmc.badge({ text: audit.targetId, class: 'badge-secondary' })
+      </p>
 
-          <code>{{ inspect(audit.payload) }}</code>
-        @end
-      @end
+      <div class="divider">Modify values</div>
+
+      <code>{{ inspect(audit.payload) }}</code>
+
     </div>
 
-    <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1">
-          @if(up.isDrawer())
-            @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
-          @else
-            @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.journals.index'), class: 'btn-outline btn-sm' })
-          @end
-        </div>
-        <div class="flex-none"></div>
-      </div>
-    </template>
   @end
 @end
