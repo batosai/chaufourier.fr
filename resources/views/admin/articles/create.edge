@@ -13,13 +13,15 @@
       ]
     })
 
-    @jrmc.form({ id: 'create_article', action: route('admin.articles.store'), error: false })
-      @admin.section()
-        @admin.section.content()
+    @admin.section()
+      @admin.section.content({ title: 'Create article', description: 'Create an article.'})
+        @jrmc.form({ id: 'create_article', class: 'md:col-span-2', action: route('admin.articles.store'), error: false })
+
           @include('admin/articles/partials/form')
-          <div class="mt-8 flex">
+          @admin.section.action()
             @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_article', class: 'btn-primary' })
-          </div>
+          @end
+
         @end
       @end
     @end

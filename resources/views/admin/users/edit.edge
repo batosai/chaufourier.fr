@@ -15,7 +15,7 @@
 
     @admin.section()
       @admin.section.content({ title: 'Edit Tag', description: 'Update a user.'})
-        @jrmc.form({ id: 'edit_user', action: route('admin.users.update', user, {
+        @jrmc.form({ id: 'edit_user', class: 'md:col-span-2', action: route('admin.users.update', user, {
           qs: {
             _method: 'PUT'
           }
@@ -24,41 +24,41 @@
         error: false,
         object: user  })
           @include('admin/users/partials/form')
-          <div class="mt-8 flex">
+          @admin.section.action()
             @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_user', class: 'btn-primary' })
-          </div>
+          @end
         @end
       @end
 
       @can('UserPolicy.forgot', user)
         @admin.section.content({ title: 'Forgot password', description: 'Send a password change link by email to the user.'})
-          <div class="flex items-start md:col-span-2">
+          @admin.section.action()
             @!jrmc.button.link({ text: 'Yes, forgot', href: route('admin.users.forgot.password', user), class: 'btn-info', 'data-color-button': 'btn-info', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
-          </div>
+          @end
         @end
       @end
 
       @can('UserPolicy.disabled', user)
         @admin.section.content({ title: user.disabled ? 'Enabled' : 'Disabled', description: user.disabled ? 'Activating the account unblocks access to the application' : 'Deactivating the account blocks access to the application'})
-          <div class="flex items-start md:col-span-2">
+          @admin.section.action()
             @!jrmc.button.link({ text: `Yes, ${user.disabled ? 'Enabled' : 'Disabled'}`, href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
-          </div>
+          @end
         @end
       @end
 
       @can('ImpersonatePolicy.create', user)
         @admin.section.content({ title: 'Impersonate', description: 'Impersonate the user account.'})
-          <div class="flex items-start md:col-span-2">
+          @admin.section.action()
             @!jrmc.button.link({ text: 'Yes, impersonate', href: route('impersonate.store', { id: user.id }), class: 'btn-secondary', 'data-color-button': 'btn-secondary', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
-          </div>
+          @end
         @end
       @end
 
       @can('UserPolicy.delete', user)
         @admin.section.content({ title: 'Deleted', description: 'Delete the user account and all its data.'})
-          <div class="flex items-start md:col-span-2">
+          @admin.section.action()
             @!jrmc.button.link({ text: 'yes, delete', href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
-          </div>
+          @end
         @end
       @end
 

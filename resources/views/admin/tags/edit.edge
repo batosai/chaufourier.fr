@@ -24,17 +24,17 @@
         error: false,
         object: tag  })
           @include('admin/tags/partials/form')
-          <div class="mt-8 flex">
+          @admin.section.action()
             @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_tag', class: 'btn-primary' })
-          </div>
+          @end
         @end
       @end
 
       @can('TagPolicy.delete', tag)~
         @admin.section.content({ title: 'Delete Tag', description: 'Its deletion will result in its withdrawal from all entities using it.'})
-          <div class="flex items-start md:col-span-2">
+          @admin.section.action()
             @!jrmc.button.link({ text: 'Yes, delete this tag', href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
-          </div>
+          @end
         @end
       @end~
     @end

@@ -17,9 +17,9 @@
       @admin.section.content({ title: 'Create Tag', description: 'Create your tag.'})
         @jrmc.form({ id: 'create_tag', action: route('admin.tags.store'), error: false })
           @include('admin/tags/partials/form')
-          <div class="mt-8 flex">
+          @admin.section.action()
             @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_tag', class: 'btn-primary' })
-          </div>
+          @end
         @end
       @end
     @end

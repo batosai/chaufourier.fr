@@ -16,9 +16,9 @@
 
       @can('CachePolicy.clear')
         @admin.section.content({ title: 'Cache clear', description: 'Clear all cache.'})
-          <div class="flex items-start md:col-span-2">
+          @admin.section.action()
             @!jrmc.button.link({ text: 'Yes, clear all', href: route('admin.caches.destroy', { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE'})
-          </div>
+          @end
         @end
       @end
 

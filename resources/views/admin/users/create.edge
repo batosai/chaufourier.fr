@@ -15,11 +15,11 @@
 
     @admin.section()
       @admin.section.content({ title: 'Create User', description: 'Create a user.'})
-        @jrmc.form({ id: 'create_user', action: route('admin.users.store'), enctype: 'multipart/form-data', error: false })
+        @jrmc.form({ id: 'create_user', class: 'md:col-span-2', action: route('admin.users.store'), enctype: 'multipart/form-data', error: false })
           @include('admin/users/partials/form')
-          <div class="mt-8 flex">
+          @admin.section.action()
             @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_user', class: 'btn-primary' })
-          </div>
+          @end
         @end
       @end
     @end

@@ -13,36 +13,32 @@
       ]
     })
 
-
-      @jrmc.form({ id: 'edit_article', class: 'xl:col-span-3', action: route('admin.articles.update', article, {
-        qs: {
-          _method: 'PUT'
-        }
-      }),
-      enctype: 'multipart/form-data',
-      error: false,
-      object: article  })
-        @admin.section()
-          @admin.section.content()
-            @include('admin/articles/partials/form')
-            <div class="mt-8 flex">
-              @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_article', class: 'btn-primary' })
-            </div>
+    @admin.section()
+      @admin.section.content({ title: 'Edit article', description: 'Edit this article.'})
+        @jrmc.form({ id: 'edit_article', class: 'md:col-span-2', action: route('admin.articles.update', article, {
+          qs: {
+            _method: 'PUT'
+          }
+        }),
+        enctype: 'multipart/form-data',
+        error: false,
+        object: article  })
+          @include('admin/articles/partials/form')
+          @admin.section.action()
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_article', class: 'btn-primary' })
           @end
         @end
       @end
-
 
       @can('ArticlePolicy.delete', article)
-        @admin.section()
-          <div></div>
-          @admin.section.content({ title: 'Delete article', description: 'Delete the article account and all its data.'})
-            <div class="mt-8 flex">
-              @!jrmc.button.link({ text: 'Yes, delete', href: route('admin.articles.destroy', article, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
-            </div>
+        @admin.section.content({ title: 'Delete article', description: 'Delete the article account and all its data.'})
+          @admin.section.action()
+            @!jrmc.button.link({ text: 'Yes, delete', href: route('admin.articles.destroy', article, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
         @end
       @end
+
+    @end
 
   @end
 @end

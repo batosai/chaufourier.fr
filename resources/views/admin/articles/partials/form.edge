@@ -1,22 +1,18 @@
 
-    <div>
-      <h2 class="text-base font-semibold leading-7 text-white">Create article</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-400">Create your article.</p>
-      <div class="divider"></div>
+@jrmc.form.control({ name: 'title', required: true, hint: '2 characters minimum' })
+  @!jrmc.form.input()
+@end
 
-      @jrmc.form.control({ name: 'title', required: true, hint: '2 characters minimum' })
-        @!jrmc.form.input()
-      @end
+@jrmc.form.control({ name: 'slug' })
+  @!jrmc.form.input()
+@end
 
-      @jrmc.form.control({ name: 'slug' })
-        @!jrmc.form.input()
-      @end
+@!admin.autocomplete({
+  tags: article ? article.tags : ''
+})
 
-      @!admin.autocomplete({
-        tags: article ? article.tags : ''
-      })
-    </div>
-    <div class="col-span-2">
-      @!admin.editor()
-    </div>
+<div class="divider"></div>
+
+@!admin.editor()
+
 
