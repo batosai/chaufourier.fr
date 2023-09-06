@@ -78,7 +78,7 @@ test.group('Admin users', (group) => {
     await login(user!.email, 'secret')
     const page = await visit(route('admin.users.index'))
 
-    await page.getByRole('button', { name: 'Filter' }).click()
+    await page.getByRole('button', { name: 'Filters' }).click()
 
     await page.locator('select[name="role"]').selectOption(`${Roles.ADMIN}`)
     await page.keyboard.press('Enter')

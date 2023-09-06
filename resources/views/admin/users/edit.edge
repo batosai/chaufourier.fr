@@ -25,7 +25,7 @@
         object: user  })
           @include('admin/users/partials/form')
           @admin.section.action()
-            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_user', class: 'btn-primary' })
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_user', class: 'btn-primary normal-case' })
           @end
         @end
       @end
@@ -33,7 +33,7 @@
       @can('UserPolicy.forgot', user)
         @admin.section.content({ title: 'Forgot password', description: 'Send a password change link by email to the user.'})
           @admin.section.action()
-            @!jrmc.button.link({ text: 'Yes, forgot', href: route('admin.users.forgot.password', user), class: 'btn-info', 'data-color-button': 'btn-info', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+            @!jrmc.button.link({ text: 'Yes, forget', href: route('admin.users.forgot.password', user), class: 'btn-info normal-case', 'data-color-button': 'btn-info', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
           @end
         @end
       @end
@@ -41,7 +41,7 @@
       @can('UserPolicy.disabled', user)
         @admin.section.content({ title: user.disabled ? 'Enabled' : 'Disabled', description: user.disabled ? 'Activating the account unblocks access to the application' : 'Deactivating the account blocks access to the application'})
           @admin.section.action()
-            @!jrmc.button.link({ text: `Yes, ${user.disabled ? 'Enabled' : 'Disabled'}`, href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
+            @!jrmc.button.link({ text: `Yes, ${user.disabled ? 'Enabled' : 'Disabled'}`, href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning normal-case', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
           @end
         @end
       @end
@@ -49,7 +49,7 @@
       @can('ImpersonatePolicy.create', user)
         @admin.section.content({ title: 'Impersonate', description: 'Impersonate the user account.'})
           @admin.section.action()
-            @!jrmc.button.link({ text: 'Yes, impersonate', href: route('impersonate.store', { id: user.id }), class: 'btn-secondary', 'data-color-button': 'btn-secondary', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+            @!jrmc.button.link({ text: 'Yes, impersonate', href: route('impersonate.store', { id: user.id }), class: 'btn-secondary normal-case', 'data-color-button': 'btn-secondary', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
           @end
         @end
       @end
@@ -57,7 +57,7 @@
       @can('UserPolicy.delete', user)
         @admin.section.content({ title: 'Deleted', description: 'Delete the user account and all its data.'})
           @admin.section.action()
-            @!jrmc.button.link({ text: 'yes, delete', href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: 'yes, delete', href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
         @end
       @end

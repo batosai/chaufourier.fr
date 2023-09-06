@@ -28,7 +28,7 @@ test.group('Admin impersonate user', (group) => {
 
     const page = await visit(route('admin.users.edit', customer))
 
-    await page.getByRole('button', { name: 'Ok' }).nth(2).click()
+    await page.getByRole('button', { name: 'Yes, impersonate' }).click()
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertTextContains('body', customer.firstname)

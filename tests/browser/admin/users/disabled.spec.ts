@@ -29,7 +29,7 @@ test.group('Admin disabled user', (group) => {
 
     const page = await visit(route('admin.users.edit', customer))
 
-    await page.getByRole('button', { name: 'Ok' }).nth(1).click()
+    await page.getByRole('button', { name: 'Yes, disabled' }).click()
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertElementsCount(
@@ -39,7 +39,7 @@ test.group('Admin disabled user', (group) => {
       1
     )
 
-    await page.getByRole('button', { name: 'Ok' }).nth(1).click()
+    await page.getByRole('button', { name: 'Yes, enabled' }).click()
     await page.locator('.modal').getByRole('button', { name: 'ok' }).click()
 
     await page.assertElementsCount(

@@ -25,7 +25,7 @@
         object: tag  })
           @include('admin/tags/partials/form')
           @admin.section.action()
-            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_tag', class: 'btn-primary' })
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_tag', class: 'btn-primary normal-case' })
           @end
         @end
       @end
@@ -33,7 +33,7 @@
       @can('TagPolicy.delete', tag)~
         @admin.section.content({ title: 'Delete Tag', description: 'Its deletion will result in its withdrawal from all entities using it.'})
           @admin.section.action()
-            @!jrmc.button.link({ text: 'Yes, delete this tag', href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: 'Yes, delete this tag', href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
         @end
       @end~

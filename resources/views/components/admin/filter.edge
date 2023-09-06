@@ -7,7 +7,7 @@
     <div class="flex flex-col sm:flex-row bg-base-100 p-2 items-center">
       @if(($props.has('showBlank') && $props.showBlank) || session.has(`${name}Filter`))
         <div class="flex items-center">
-          @jrmc.button({ type: 'button', class: 'btn-ghost normal-case', '@click': 'open = !open', 'aria-label': t('filters.reset') })
+          @jrmc.button({ type: 'button', class: 'btn-ghost normal-case', '@click': 'open = !open', 'aria-label': 'filters' })
             @svg('fa-solid:filter')
             @if(session.has(`${name}Filter`))
               {{ Object.keys(session.get(`${name}Filter`, {})).length }}
