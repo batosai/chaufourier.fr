@@ -13,6 +13,9 @@
 
 <div class="divider"></div>
 
-@!admin.editor()
-
+@jrmc.card({ class: 'bg-base-200 xl:col-span-3 mb-4' })
+  @jrmc.card.body()
+    @!admin.editor()
+  @end
+@end
 
