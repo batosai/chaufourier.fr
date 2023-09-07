@@ -13,10 +13,8 @@
       ]
     })
 
-    @!admin.button.back({ href: route('admin.articles.index') })
-
     @admin.section()
-      @admin.section.content({ title: 'Create article', description: 'Create an article.'})
+      @admin.section.content({ title: 'Create article', description: 'Create an article.', href: route('admin.articles.index')})
         @jrmc.form({ id: 'create_article', class: 'md:col-span-2', action: route('admin.articles.store'), error: false })
 
           @include('admin/articles/partials/form')

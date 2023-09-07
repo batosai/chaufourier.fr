@@ -13,10 +13,8 @@
       ]
     })
 
-    @!admin.button.back({ href: route('admin.tags.index') })
-
     @admin.section()
-      @admin.section.content({ title: 'Edit Tag', description: 'Update your tag.'})
+      @admin.section.content({ title: 'Edit Tag', description: 'Update your tag.', href: route('admin.tags.index') })
         @jrmc.form({ id: 'edit_tag', action: route('admin.tags.update', tag, {
           qs: {
             _method: 'PUT'
