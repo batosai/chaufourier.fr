@@ -14,8 +14,8 @@
     })
   @end
 
-  <div class="join w-full my-2 sm:my-0">
-    @jrmc.form.control({ name: 'search', class: '!m-0', label: false })
+  <div class="join my-2 sm:my-0">
+    @jrmc.form.control({ name: 'search', class: '!m-0 w-full sm:w-auto', label: false })
       @!jrmc.form.input({
         placeholder: t('filters.users.search'),
         class: 'join-item',
