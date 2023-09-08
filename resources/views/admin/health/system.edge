@@ -19,6 +19,20 @@
       @!jrmc.tabs.tab({ text: 'Update', href: route('admin.health.update'), active: false })
     @end
 
+    <div class="navbar min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
+      <div class="flex-1 lg:pl-80"></div>
+      <div class="flex-none">
+        @!jrmc.button.link({
+          text: 'Cache clear',
+          href: route('admin.caches.destroy', { qs: { _method: 'DELETE', keys: [ 'si_system', 'si_system_perf' ] } }),
+          class: 'btn-error btn-outline btn-sm',
+          'data-color-button': 'btn-error',
+          'up-confirm': 'Are you sur?',
+          'up-method': 'DELETE'
+        })
+      </div>
+    </div>
+
     <div class="w-screen md:w-full px-4 mb-auto grid grid-cols-3 gap-4">
 
       <div class="w-full mb-auto col-span-3 grid grid-cols-3 gap-4">
@@ -331,20 +345,5 @@
 
     </div>
 
-    <template x-teleport="[data-actions='form']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
-        <div class="flex-1 lg:pl-80"></div>
-        <div class="flex-none">
-          @!jrmc.button.link({
-            text: 'Cache clear',
-            href: route('admin.caches.destroy', { qs: { _method: 'DELETE', keys: [ 'si_system', 'si_system_perf' ] } }),
-            class: 'btn-error btn-outline btn-sm',
-            'data-color-button': 'btn-error',
-            'up-confirm': 'Are you sur?',
-            'up-method': 'DELETE'
-          })
-        </div>
-      </div>
-    </template>
   @end
 @end

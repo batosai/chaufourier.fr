@@ -19,6 +19,20 @@
       @!jrmc.tabs.tab({ text: 'Update', href: route('admin.health.update'), active: false })
     @end
 
+    <div class="navbar min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
+      <div class="flex-1 lg:pl-80"></div>
+      <div class="flex-none">
+        @!jrmc.button.link({
+          text: 'Cache clear',
+          href: route('admin.caches.destroy', { qs: { _method: 'DELETE', keys: [ 'si_docker_info', 'si_docker_images', 'si_docker_all' ] } }),
+          class: 'btn-error btn-outline btn-sm',
+          'data-color-button': 'btn-error',
+          'up-confirm': 'Are you sur?',
+          'up-method': 'DELETE'
+        })
+      </div>
+    </div>
+
     <div class="w-screen md:w-full px-4 mb-auto grid gap-4">
 
       <div class="overflow-x-auto">
@@ -71,7 +85,7 @@
           </thead>
           <tbody>
             @each(docker in dockerAll)
-              <tr>
+              <tr class="divide-y dark:divide-white/10">
                 {{--  <td class="bg-base-200 border-gray-700"></td>  --}}
                 <td class="bg-base-200 border-gray-700">{{ docker.name }}</td>
                 <td class="bg-base-200 border-gray-700">{{ docker.image }}</td>
@@ -97,21 +111,5 @@
       </div>
 
     </div>
-
-    <template x-teleport="[data-actions='form']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
-        <div class="flex-1 lg:pl-80"></div>
-        <div class="flex-none">
-          @!jrmc.button.link({
-            text: 'Cache clear',
-            href: route('admin.caches.destroy', { qs: { _method: 'DELETE', keys: [ 'si_docker_info', 'si_docker_images', 'si_docker_all' ] } }),
-            class: 'btn-error btn-outline btn-sm',
-            'data-color-button': 'btn-error',
-            'up-confirm': 'Are you sur?',
-            'up-method': 'DELETE'
-          })
-        </div>
-      </div>
-    </template>
   @end
 @end

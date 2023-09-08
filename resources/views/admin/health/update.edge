@@ -19,49 +19,49 @@
       @!jrmc.tabs.tab({ text: 'Update', href: route('admin.health.update'), active: true })
     @end
 
-    <div class="w-screen md:w-full px-4 mb-auto">
 
-      <div class="overflow-x-auto">
-        <table class="table w-full table-pin-rows table-pin-cols">
-          <thead>
-            <th>Package Name</th>
-            <td>Current version</td>
-            <td>Wanted version</td>
-            <td>Latest version</td>
-          </thead>
-          <tbody>
-            @each((package, name) in packages)~
-              <tr>
-                <th class="bg-base-300 border-gray-700" role="columnheader">{{ name }}</th>
-                <td class="bg-base-200 border-gray-700">{{ package.current }}</td>
-                <td class="bg-base-200 border-gray-700">
-                  @!jrmc.badge({ text: package.wanted, class: 'badge-primary' })
-                </td>
-                <td class="bg-base-200 border-gray-700">
-                  @!jrmc.badge({ text: package.latest, class: 'badge-error' })
-                </td>
-              </tr>
-            @end~
-          </tbody>
-        </table>
+    <div class="navbar min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
+      <div class="flex-1 lg:pl-80"></div>
+      <div class="flex-none">
+        @!jrmc.button.link({
+          text: 'Cache clear',
+          href: route('admin.caches.destroy', { qs: { _method: 'DELETE', keys: [ 'npm_outdated' ] } }),
+          class: 'btn-error btn-outline btn-sm',
+          'data-color-button': 'btn-error',
+          'up-confirm': 'Are you sur?',
+          'up-method': 'DELETE'
+        })
       </div>
+    </div>
+
+    <div class="w-screen md:w-full px-4">
+
+      @jrmc.table({ full: true, pinCols: true, pinRows: true })
+        @slot('header')
+          <tr>
+            <th>Package Name</th>
+            <th>Current version</th>
+            <th>Wanted version</th>
+            <th>Latest version</th>
+          </tr>
+        @end
+        @slot('body')
+          @each((package, name) in packages)~
+            <tr class="divide-y dark:divide-white/10">
+              <th role="columnheader">{{ name }}</th>
+              <td>{{ package.current }}</td>
+              <td class="bg-base-200 border-gray-700">
+                @!jrmc.badge({ text: package.wanted, class: 'badge-primary' })
+              </td>
+              <td class="bg-base-200 border-gray-700">
+                @!jrmc.badge({ text: package.latest, class: 'badge-error' })
+              </td>
+            </tr>
+          @end~
+        @end
+      @end
 
     </div>
 
-    <template x-teleport="[data-actions='form']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5 hidden lg:flex" x-init="upConfirmCompiler()">
-        <div class="flex-1 lg:pl-80"></div>
-        <div class="flex-none">
-          @!jrmc.button.link({
-            text: 'Cache clear',
-            href: route('admin.caches.destroy', { qs: { _method: 'DELETE', keys: [ 'npm_outdated' ] } }),
-            class: 'btn-error btn-outline btn-sm',
-            'data-color-button': 'btn-error',
-            'up-confirm': 'Are you sur?',
-            'up-method': 'DELETE'
-          })
-        </div>
-      </div>
-    </template>
   @end
 @end
