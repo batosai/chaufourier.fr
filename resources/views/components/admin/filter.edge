@@ -4,7 +4,7 @@
 
 <div x-data="{ open: false }">
   @jrmc.form({ method: 'GET', action: route(`admin.${name}.index`), error: false, csrf: false, object: session.get(`${name}Filter`) })
-    <div class="flex flex-col sm:flex-row bg-base-100 p-2 items-center">
+    <div class="flex flex-col md:flex-row bg-base-100 py-2 items-center">
       @if(($props.has('showBlank') && $props.showBlank) || session.has(`${name}Filter`))
         <div class="flex items-center">
           @jrmc.button({ type: 'button', class: 'btn-ghost normal-case', '@click': 'open = !open', 'aria-label': 'filters' })
@@ -16,7 +16,7 @@
           @end
 
           @if(session.has(`${name}Filter`))~
-            <div aria-hidden="true" class="h-5 w-px bg-gray-300 mx-4"></div>
+            <div aria-hidden="true" class="h-5 w-px bg-gray-300"></div>
 
             @jrmc.button.link({ class: 'btn-ghost normal-case', href: route(`admin.${name}.index`, {}, { qs: { reset: 'all' }}), 'aria-label': t('filters.reset') })
               {{ t('filters.reset') }}
@@ -27,20 +27,20 @@
 
       <div class="flex-1"></div>
 
-      <div class="flex flex-col w-full sm:w-auto order-first sm:flex-none sm:flex-row sm:order-none">
+      <div class="flex flex-col w-full sm:w-auto md:flex-row">
         {{{ await $slots.main() }}}
       </div>
     </div>
 
     <div class="pb-3" x-show="open">
-      <div class="grid sm:grid-cols-2 divide-x divide-neutral">
+      <div class="grid sm:grid-cols-2 sm:divide-x dark:divide-white/10 divide-neutral">
         @if($slots.extra !== undefined)~
-          <div class="px-4">
+          <div class="md:px-4">
             {{{ await $slots.extra() }}}
           </div>
         @endif~
 
-        <div class="px-4">
+        <div class="md:px-4">
           @each((filter, index) in session.get(`${name}Filter`, {}))
             @if(filter)
               @admin.badge({ action: route(`admin.${name}.index`, {}, { qs: { reset: index }}) })

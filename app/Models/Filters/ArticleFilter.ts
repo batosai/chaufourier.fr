@@ -5,6 +5,8 @@ import Article from 'App/Models/Article'
 export default class ArticleFilter extends BaseModelFilter {
   public $query: ModelQueryBuilderContract<typeof Article, Article>
 
+  // TODO whereILike Not found in SQLite
+
   title(value: string) {
     this.$query.where((builder) => {
       builder.whereLike('title', `%${value}%`)
