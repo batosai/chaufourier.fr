@@ -139,6 +139,10 @@
   @apply z-40;
 }
 
+.ce-popover__items {
+  @apply z-40;
+}
+
 .ce-popover-item {
   color: inherit;
 }
