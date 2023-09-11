@@ -9,12 +9,12 @@
         { text: t('filters.users.createdAt+asc'), value: 'createdAt+asc' },
         { text: t('filters.users.createdAt+desc'), value: 'createdAt+desc' },
       ],
-      class: 'md:mr-4',
+      class: 'sm:mr-4',
       'up-autosubmit': ''
     })
   @end
 
-  <div class="join my-2 md:my-0">
+  <div class="join my-2 sm:my-0">
     @jrmc.form.control({ name: 'search', class: '!m-0 w-full sm:w-auto', label: false })
       @!jrmc.form.input({
         placeholder: t('filters.users.search'),
@@ -25,7 +25,7 @@
   </div>
 
   @slot('extra')
-    <div class="grid gap-4 grid-cols-1 md:grid-cols-3">
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-3">
       @jrmc.form.control({ name: 'role', class: 'col-span-2' })
         @!jrmc.form.select({ options: [
             { text: t('filters.users.all'), value: '' },

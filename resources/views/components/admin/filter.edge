@@ -4,7 +4,7 @@
 
 <div x-data="{ open: false }">
   @jrmc.form({ method: 'GET', action: route(`admin.${name}.index`), error: false, csrf: false, object: session.get(`${name}Filter`) })
-    <div class="flex flex-col md:flex-row bg-base-100 py-2 items-center">
+    <div class="flex flex-col sm:flex-row bg-base-100 py-2 items-center">
       @if(($props.has('showBlank') && $props.showBlank) || session.has(`${name}Filter`))
         <div class="flex items-center">
           @jrmc.button({ type: 'button', class: 'btn-ghost normal-case', '@click': 'open = !open', 'aria-label': 'filters' })
@@ -27,7 +27,7 @@
 
       <div class="flex-1"></div>
 
-      <div class="flex flex-col w-full sm:w-auto md:flex-row">
+      <div class="flex flex-col sm:flex-none w-full sm:w-auto sm:flex-none sm:flex-row">
         {{{ await $slots.main() }}}
       </div>
     </div>
