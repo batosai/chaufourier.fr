@@ -1,9 +1,3 @@
-@if(up.isDrawer())~
-  <div class="divide-y dark:divide-white/10 @container">
-    {{{ await $slots.main() }}}
-  </div>
-@else~
-  <div class="divide-y dark:divide-white/10">
-    {{{ await $slots.main() }}}
-  </div>
-@end~
+<div class="divide-y dark:divide-white/10">
+  {{{ await $slots.main() }}}
+</div>

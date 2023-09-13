@@ -10,7 +10,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('tailwindcss-safe-area'),
     require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/container-queries'),
   ],
   daisyui: {
     themes: [
