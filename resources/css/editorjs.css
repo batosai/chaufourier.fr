@@ -3,7 +3,7 @@
 /* up position z-index toolbox, admin action bar z-index 30 */
 .ce-scroll-locked .codex-editor,
 .codex-editor.codex-editor--toolbox-opened {
-  z-index: 40;
+  @apply z-40;
 }
 
 .codex-editor a {
