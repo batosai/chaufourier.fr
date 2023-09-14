@@ -26,6 +26,13 @@ up.on('up:fragment:loaded', (event) => {
   const location = event.response.header('X-Up-Location')
   const fullReload = event.response.header('X-Full-Reload')
 
+  const pattern = /name='csrf-token'\scontent='(.+?)'/
+  const matches = event.response.text.match(pattern)
+  console.info(matches[1])
+  if (matches) {
+    document.querySelector('meta[name="csrf-token"]').setAttribute('content', matches[1])
+  }
+
   if (fullReload) {
     // Prevent the fragment update and don't update browser history
     event.preventDefault()
