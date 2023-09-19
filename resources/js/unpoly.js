@@ -28,7 +28,6 @@ up.on('up:fragment:loaded', (event) => {
 
   const pattern = /name='csrf-token'\scontent='(.+?)'/
   const matches = event.response.text.match(pattern)
-  console.info(matches[1])
   if (matches) {
     document.querySelector('meta[name="csrf-token"]').setAttribute('content', matches[1])
   }
