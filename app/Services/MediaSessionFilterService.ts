@@ -24,6 +24,7 @@ export default class MediaSessionFilterService {
     data = await validator.validate({
       schema: schema.create({
         search: schema.string.optional(),
+        order: schema.string.optional(),
       }),
       data,
     })

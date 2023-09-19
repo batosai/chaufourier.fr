@@ -11,12 +11,12 @@ export default () => ({
   uppy: null,
 
   init() {
-    const csrf = this.$el.closest('form').querySelector('[name="_csrf"]').value ?? document.querySelector('meta[name="csrf-token"]').content
+    const csrf = document.querySelector('meta[name="csrf-token"]').content
     this.uppy = new Uppy()
       .use(Dashboard, {
         inline: true,
         width: '100%',
-        height: 'calc(100vh - 96px)',
+        // height: 'calc(100vh - 96px)',
         target: this.$el,
         showProgressDetails: true,
         theme: 'auto',

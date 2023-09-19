@@ -40,7 +40,7 @@
     </div>
 
     @!admin.pagination({ object: media })
-    @!admin.button.create({ href: route('admin.media.create'), mode: 'drawer', 'up-on-dismissed': 'up.reload("#content-list")'  })
+    @!admin.button.create({ href: route('admin.media.create'), mode: 'modal', 'up-on-dismissed': 'up.reload("#content-list")'  })
 
   @end
 

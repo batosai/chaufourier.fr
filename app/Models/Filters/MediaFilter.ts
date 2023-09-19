@@ -5,7 +5,7 @@ import Media from 'App/Models/Media'
 export default class TagFilter extends BaseModelFilter {
   public $query: ModelQueryBuilderContract<typeof Media, Media>
 
-  name(value: string) {
+  title(value: string) {
     this.$query.where((builder) => {
       builder.whereLike('title', `%${value}%`)
     })
