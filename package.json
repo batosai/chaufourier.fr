@@ -108,7 +108,7 @@
     "@bomdi/codebox": "^2.0.0",
     "@iconify-json/akar-icons": "^1.1.19",
     "@iconify-json/fa-solid": "^1.1.5",
-    "@jrmc/attachment-advanced": "^1.0.3",
+    "@jrmc/attachment-advanced": "^1.1.0",
     "@jrmc/edge-components": "^1.6.2",
     "@melchyore/adonis-cache": "^1.0.6",
     "adonis-lucid-filter": "^4.1.1",
