@@ -15,3 +15,7 @@ up-drawer-box {
 up-drawer-dismiss {
   display: none;
 }
+
+up-drawer[size=grow] up-drawer-box {
+  width: 1024px;
+}

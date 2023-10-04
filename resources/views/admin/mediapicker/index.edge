@@ -1,0 +1,35 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+
+  @admin.content()
+
+    <div class="w-screen md:w-full px-4 my-4">
+
+      <ul role="list" id="content-list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4">
+
+      @each(m in media)~
+        <li class="relative">
+          <div class="shadow-xl truncate rounded-lg focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-4 focus-within:ring-offset-base-100">
+            <figure class="aspect-h-6 aspect-w-10">
+              <img src="{{ m.file.preview('thumbnail')?.url }}" alt="" />
+            </figure>
+            <a href="#">
+              <span class="absolute inset-0"></span>
+            </a>
+          </div>
+        </li>
+      @end~
+
+
+      </ul>
+
+    </div>
+
+    @!admin.pagination({ object: media })
+
+  @end
+
+@end

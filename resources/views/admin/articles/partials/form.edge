@@ -7,15 +7,21 @@
   @!jrmc.form.input()
 @end
 
-@!admin.autocomplete({
-  tags: article ? article.tags : ''
-})
+@jrmc.form.control({ name: 'image' })
+  @!admin.form.upload({ formats: ['jpg', 'png', 'webp'], size: 1024*1024*10 })
+@end
+
+@jrmc.form.control({ name: 'tags' })
+  @!admin.form.autocomplete({
+    tags: article ? article.tags : ''
+  })
+@end
 
 <div class="divider"></div>
 
 @jrmc.card({ class: 'bg-base-200 xl:col-span-3 mb-4' })
   @jrmc.card.body()
-    @!admin.editor()
+    @!admin.form.editor()
   @end
 @end
 
