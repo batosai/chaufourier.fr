@@ -13,16 +13,15 @@
       ]
     })
 
-    <div id="content-edit" class="w-screen md:w-full px-4 my-4">
-
-      <div class="h-full overflow-y-auto p-8">
-        <div class="space-y-6 pb-16">
+    @admin.section()
+      @admin.section.content({ title: 'Show Media', description: 'Show a media.', href: route('admin.media.index')})
+        <div id="content-edit">
           <div>
             <div class="aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg">
               <img src="{{ media.file.preview('large')?.url }}" alt="" class="object-cover" />
             </div>
             <div class="mt-4 justify-between">
-              <h2 class="text-base font-semibold leading-6 text-neutral-content"><span class="sr-only">Details for </span>{{ media.file.name }}</h2>
+              <h2 class="text-base font-semibold leading-6 text-neutral-content"><span class="sr-only">Details for </span>{{ media.file.originalName }}</h2>
               <p class="text-sm font-medium text-neutral-content">{{ prettyBytes(media.file.size, { unitSeparator: ' ' }) }}</p>
             </div>
           </div>
@@ -43,7 +42,24 @@
               </div>
               <div class="flex justify-between py-3 text-sm font-medium">
                 <dt class="text-base-content">Dimensions</dt>
-                <dd class="text-neutral-content">{{ media.file.width }} x {{ media.file.height }}</dd>
+                <dd class="text-neutral-content">
+                  {{ media.file.width }} x {{ media.file.height }}
+                  @jrmc.dropdown({ class: 'dropdown-end' })
+                    @slot('button')
+                      @jrmc.button.label({ class: 'btn-ghost btn-circle btn-xs text-info' })
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                      @end
+                    @end
+                    @jrmc.card({ class: 'card-compact dropdown-content shadow bg-base-300 rounded-box w-64' })
+                      @jrmc.card.body()
+                        @!jrmc.card.title({ as: 'h3', text: 'Other dimensions' })
+                        @each(v in media.file.variants)~
+                          <p>{{ v.width }} x {{ v.height }}</p>
+                        @end~
+                      @end
+                    @end
+                  @end
+                </dd>
               </div>
             </dl>
           </div>
@@ -55,7 +71,7 @@
               @else
                 <p class="text-sm italic">{{ media.title }}</p>
               @end
-              @jrmc.button.link({ href: route('admin.media.edit', media), class: 'btn btn-ghost btn-circle', 'up-layer':'new', 'up-mode':'modal', 'up-on-dismissed': 'up.reload("#content-edit");up.reload("#content-list")' })
+              @jrmc.button.link({ href: route('admin.media.edit', media), class: 'btn btn-ghost btn-circle', 'up-layer':'new', 'up-mode':'modal', 'up-on-dismissed': 'up.reload("#content-edit");' })
                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                 </svg>
@@ -70,7 +86,7 @@
               @else
                 <p class="text-sm italic">{{ media.description }}</p>
               @end
-              @jrmc.button.link({ href: route('admin.media.edit', media), class: 'btn btn-ghost btn-circle', 'up-layer':'new', 'up-mode':'modal', 'up-on-dismissed': 'up.reload("#content-edit");up.reload("#content-list")' })
+              @jrmc.button.link({ href: route('admin.media.edit', media), class: 'btn btn-ghost btn-circle', 'up-layer':'new', 'up-mode':'modal', 'up-on-dismissed': 'up.reload("#content-edit");' })
                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                 </svg>
@@ -94,32 +110,17 @@
           </div>
 
         </div>
-      </div>
+      @end
 
-    </div>
-
-    <template x-teleport="[data-actions='form{{ up.isDrawer() ? '-drawer' : '' }}']">
-      <div class="navbar bg-base-300 lg:bg-base-200 min-h-min px-5">
-        <div class="flex-1{{ up.isDrawer() ? '' : ' lg:pl-80' }}">
-          @if(up.isDrawer())
-            @!jrmc.button({ text: 'Cancel', 'up-dismiss': '', class: 'btn-outline btn-sm' })
-          @else
-            @!jrmc.button.link({ text: 'Cancel', 'href': route('admin.users.index'), class: 'btn-outline btn-sm' })
+      @can('MediaPolicy.delete', user)
+        @admin.section.content({ title: 'Deleted', description: 'Delete this media.'})
+          @admin.section.action()
+            @!jrmc.button.link({ text: 'yes, delete', href: route('admin.media.destroy', media, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
-        </div>
-        <div class="flex-none">
-          <div class="flex gap-x-4">
-            @jrmc.button.link({ href: route('admin.media.download', media), class: 'btn btn-sm btn-primary flex-1 normal-case', download })
-              Download
-            @end
+        @end
+      @end
 
-            @can('MediaPolicy.delete', user)
-              @!jrmc.button.link({ text: 'Delete', href: route('admin.media.destroy', media, { qs: { _method: 'DELETE' } }), class: 'btn btn-sm btn-error flex-1 normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
-            @end
-          </div>
-        </div>
-      </div>
-    </template>
+    @end
 
   @end
 

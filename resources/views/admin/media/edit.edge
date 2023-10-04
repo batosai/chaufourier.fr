@@ -13,16 +13,16 @@
       ]
     })
 
-    <div class="w-screen md:w-full px-4 my-4">
-          @jrmc.form({ id: 'edit_media', action: route('admin.media.update', media, {
-            qs: {
-              _method: 'PUT'
-            }
-          }),
-          error: false,
-          object: media  })
-            @include('admin/media/partials/form')
-          @end
+    <div class="w-full px-4 my-4">
+      @jrmc.form({ id: 'edit_media', action: route('admin.media.update', media, {
+        qs: {
+          _method: 'PUT'
+        }
+      }),
+      error: false,
+      object: media  })
+        @include('admin/media/partials/form')
+      @end
     </div>
   @end
 

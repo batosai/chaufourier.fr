@@ -20,6 +20,10 @@ const attachmentConfig: AttachmentConfig = {
         resize: 1024,
         format: 'jpg',
       },
+      large: {
+        resize: 1500,
+        format: 'jpg',
+      },
     },
   },
   pdf: {
