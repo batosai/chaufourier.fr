@@ -19,7 +19,7 @@ Route.group(() => {
   Route.resource('media', 'admin/MediaController')
   Route.get('media/:id/download', 'admin/MediaController.download').as('media.download')
 
-  Route.resource('mediapicker', 'admin/MediaPickerController').only(['index', 'store'])
+  Route.resource('mediapicker', 'admin/MediaPickerController').only(['index', 'show'])
 
   Route.resource('journals', 'admin/JournalsController').only(['index', 'show'])
 

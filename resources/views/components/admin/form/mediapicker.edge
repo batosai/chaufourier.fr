@@ -1,0 +1,32 @@
+<div class="flex items-center gap-x-8 media">
+  @!jrmc.avatar({
+    url: $props.media ? $props.media.file.preview('thumbnail')?.url : '',
+    placeholder: $props.media ? null : '',
+    class: 'bg-neutral w-24 mask rounded'
+  })
+  @!jrmc.form.input({ type: 'hidden', value: $props.media ? $props.media.id : '' })
+  <div>
+    @!jrmc.button.link({
+      text: $props.media ? 'Change media' : 'Add media',
+      href: route('admin.mediapicker.index'),
+      class: 'btn-primary btn-sm normal-case',
+      'up-layer':'new',
+      'up-mode':'drawer',
+      'up-size':'grow',
+      'up-accept-location':'/admin/mediapicker/:id',
+      'up-on-accepted': "up.render('.media', { response: event.response })"
+    })
+    @if($props.media)~
+      @!jrmc.button({
+        text: 'Delete',
+        type: 'button',
+        class: 'btn-link btn-xs text-error normal-case',
+      })
+    @end~
+    @if($props.hint)~
+      <p class="mt-2 text-xs leading-5 text-warning">
+        {{ $props.hint }}
+      </p>
+    @end~
+  </div>
+</div>

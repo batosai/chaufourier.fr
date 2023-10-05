@@ -1,0 +1,11 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+
+  @admin.content()
+    @!admin.form.mediapicker({ hint: 'jpg, png or webp. 1O MB max.', media })
+  @end
+
+@end

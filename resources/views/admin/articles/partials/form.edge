@@ -8,7 +8,7 @@
 @end
 
 @jrmc.form.control({ name: 'image' })
-  @!admin.form.upload({ formats: ['jpg', 'png', 'webp'], size: 1024*1024*10 })
+  @!admin.form.mediapicker({ hint: 'jpg, png or webp. 1O MB max.' })
 @end
 
 @jrmc.form.control({ name: 'tags' })
