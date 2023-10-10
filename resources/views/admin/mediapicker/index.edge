@@ -16,7 +16,11 @@
             <figure class="aspect-h-6 aspect-w-10">
               <img src="{{ m.file.preview('thumbnail')?.url }}" alt="" />
             </figure>
-            <a href="{{ route('admin.mediapicker.show', m) }}">
+            <a href="{{ route('admin.mediapicker.show', m, {
+        qs: {
+          entity: request.qs().entity
+        }
+      }) }}">
               <span class="absolute inset-0"></span>
             </a>
           </div>

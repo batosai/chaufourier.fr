@@ -27,7 +27,6 @@ export default class MediaController {
 
   public async show({ request, view, bouncer }: HttpContextContract) {
     const media = await Media.findOrFail(request.param('id'))
-    await media.load('user')
     await bouncer.with('MediaPolicy').authorize('show', media)
     return view.render('admin/media/show', {
       media,

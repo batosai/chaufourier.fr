@@ -5,7 +5,7 @@
 @section('body')
 
   @admin.content()
-    @!admin.form.mediapicker({ hint: 'jpg, png or webp. 1O MB max.', media })
+    @!admin.form.mediapicker({ hint: 'jpg, png or webp. 1O MB max.', media, entity: request.qs().entity })
   @end
 
 @end
