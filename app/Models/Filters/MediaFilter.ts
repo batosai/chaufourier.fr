@@ -11,6 +11,12 @@ export default class TagFilter extends BaseModelFilter {
     })
   }
 
+  type(values: [string]) {
+    this.$query.where((builder) => {
+      builder.whereIn('type', values)
+    })
+  }
+
   search(value: string) {
     this.$query.where((builder) => {
       builder.whereLike('title', `%${value}%`)

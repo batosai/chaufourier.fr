@@ -10,7 +10,8 @@
       text: $props.media ? 'Change media' : 'Add media',
       href: route('admin.mediapicker.index', {
         qs: {
-          entity: $props.entity
+          entity: $props.entity,
+          types: $props.types
         }
       }),
       class: 'btn-primary btn-sm normal-case',

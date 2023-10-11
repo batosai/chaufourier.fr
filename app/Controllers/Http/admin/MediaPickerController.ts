@@ -10,8 +10,9 @@ export default class MediaPickerController {
 
     const limit = 24
     const page = request.input('page', 1)
+    const type = request.input('types', [])
 
-    const media = await Media.query().orderBy('createdAt', 'desc').paginate(page, limit)
+    const media = await Media.query().filter({ type }).orderBy('createdAt', 'desc').paginate(page, limit)
     media.baseUrl(Route.builder().make('admin.media.index'))
 
     return view.render('admin/mediapicker/index', {
