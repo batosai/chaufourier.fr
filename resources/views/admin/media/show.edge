@@ -112,6 +112,14 @@
         </div>
       @end
 
+      @can('MediaPolicy.download', user)
+        @admin.section.content({ title: 'Download', description: 'Download this media.'})
+          @admin.section.action()
+            @!jrmc.button.link({ text: 'yes, download', href: route('admin.media.download', media), class: 'btn-warning normal-case', download: true, 'data-color-button': 'btn-warning' })
+          @end
+        @end
+      @end
+
       @can('MediaPolicy.delete', user)
         @admin.section.content({ title: 'Deleted', description: 'Delete this media.'})
           @admin.section.action()

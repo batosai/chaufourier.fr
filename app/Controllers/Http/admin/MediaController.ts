@@ -145,18 +145,10 @@ export default class MediaController {
   public async download({ params, response, bouncer }: HttpContextContract) {
     const { id } = params
     const media = await Media.findOrFail(id)
-    await bouncer.with('MediaPolicy').authorize('show', media)
+    await bouncer.with('MediaPolicy').authorize('download', media)
 
     const filePath = Application.tmpPath(`uploads/${media.file.name}`)
 
-    response.attachment(filePath, 'foo.jpg')
-
-    // response.download(filePath, true, (error) => {
-    //   if (error.code === 'ENOENT') {
-    //     return ['File does not exists', 404]
-    //   }
-
-    //   return ['Cannot download file', 400]
-    // })
+    response.attachment(filePath, media.file.originalName)
   }
 }

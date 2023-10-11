@@ -18,4 +18,7 @@ export default class MediaPolicy extends BasePolicy {
   public async delete(currentUser: User, media: Media) {
     return currentUser.isAdmin || currentUser.id === media.userId
   }
+  public async download(currentUser: User, media: Media) {
+    return currentUser.isAdmin || currentUser.id === media.userId
+  }
 }
