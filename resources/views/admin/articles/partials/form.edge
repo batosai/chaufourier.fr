@@ -7,8 +7,13 @@
   @!jrmc.form.input()
 @end
 
-@jrmc.form.control({ name: 'image' })
-  @!admin.form.mediapicker({ hint: 'jpg, png or webp. 1O MB max.', types: ['image/jpeg', 'image/png'], entity: 'articles' })
+@jrmc.form.control({ name: 'imageId' })
+  @!admin.form.mediapicker({
+    hint: 'jpg, png or webp. 1O MB max.',
+    types: ['image/jpeg', 'image/png'],
+    entity: 'articles',
+    media: article && article.image ? article.image : null
+  })
 @end
 
 @jrmc.form.control({ name: 'tags' })

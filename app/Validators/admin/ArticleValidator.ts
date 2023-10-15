@@ -12,6 +12,13 @@ export default class ArticleValidator {
       tags: schema.array
         .optional()
         .members(schema.string([rules.exists({ table: 'tags', column: 'id' })])),
+      imageId: schema.string.optional([
+        rules.trim(),
+        rules.exists({
+          table: 'media',
+          column: 'id',
+        }),
+      ]),
     }
 
     this.schema = schema.create(fields)

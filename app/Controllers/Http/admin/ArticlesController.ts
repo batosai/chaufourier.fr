@@ -66,6 +66,7 @@ export default class ArticlesController {
   public async edit({ request, view, bouncer }: HttpContextContract) {
     const article = await Article.findOrFail(request.param('id'))
     await article.load('tags')
+    await article.load('image')
     await bouncer.with('ArticlePolicy').authorize('update', article)
 
     return view.render('admin/articles/edit', {
@@ -86,6 +87,10 @@ export default class ArticlesController {
       await article.related('tags').sync(payload.tags)
     } else {
       await article.related('tags').detach()
+    }
+
+    if (!payload.imageId) {
+      article.imageId = null
     }
 
     const dirty = article.$dirty

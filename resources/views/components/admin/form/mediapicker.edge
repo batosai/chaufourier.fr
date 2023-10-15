@@ -11,7 +11,8 @@
       href: route('admin.mediapicker.index', {
         qs: {
           entity: $props.entity,
-          types: $props.types
+          types: $props.types,
+          name: jrmc.getName($props, $context),
         }
       }),
       class: 'btn-primary btn-sm normal-case',

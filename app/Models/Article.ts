@@ -6,6 +6,8 @@ import {
   beforeCreate,
   hasOne,
   HasOne,
+  belongsTo,
+  BelongsTo,
   manyToMany,
   ManyToMany,
 } from '@ioc:Adonis/Lucid/Orm'
@@ -15,6 +17,7 @@ import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 import ArticleFilter from 'App/Models/Filters/ArticleFilter'
 import User from './User'
 import Tag from './Tag'
+import Media from './Media'
 
 export default class Article extends compose(BaseModel, Filterable) {
   public static selfAssignPrimaryKey = true
@@ -39,6 +42,9 @@ export default class Article extends compose(BaseModel, Filterable) {
   @column()
   public userId: string
 
+  @column()
+  public imageId: string | null
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -49,6 +55,11 @@ export default class Article extends compose(BaseModel, Filterable) {
 
   @hasOne(() => User)
   public user: HasOne<typeof User>
+
+  @belongsTo(() => Media, {
+    foreignKey: 'imageId',
+  })
+  public image: BelongsTo<typeof Media>
 
   @manyToMany(() => Tag, {
     pivotTimestamps: true,

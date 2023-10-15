@@ -18,7 +18,8 @@
             </figure>
             <a href="{{ route('admin.mediapicker.show', m, {
         qs: {
-          entity: request.qs().entity
+          entity: request.qs().entity,
+          inputName
         }
       }) }}">
               <span class="absolute inset-0"></span>
