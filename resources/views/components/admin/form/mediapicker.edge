@@ -1,4 +1,4 @@
-<div class="flex items-center gap-x-8 media">
+<div class="flex items-center gap-x-8 {{ $props.target ? $props.target : 'media' }}">
   @!jrmc.avatar({
     url: $props.media ? $props.media.file.preview('thumbnail')?.url : '',
     placeholder: $props.media ? null : '',
@@ -10,6 +10,7 @@
       text: $props.media ? 'Change media' : 'Add media',
       href: route('admin.mediapicker.index', {
         qs: {
+          target: $props.target ? $props.target : 'media',
           entity: $props.entity,
           types: $props.types,
           name: jrmc.getName($props, $context),
@@ -20,14 +21,20 @@
       'up-mode': 'drawer',
       'up-size': 'grow',
       'up-accept-location': `/admin/mediapicker/*`,
-      'up-on-accepted': "up.render('.media', { response: event.response })"
+      'up-on-accepted': `up.render('.${ $props.target ? $props.target : "media" }', { response: event.response })`,
+      'up-history': 'false'
     })
     @if($props.media && $props.entity)~
       @!jrmc.button.link({
         text: 'Delete',
-        href: route(`admin.${$props.entity}.create`),
+        href: route('admin.mediapicker.create', {
+          qs: {
+            target: $props.target ? $props.target : 'media',
+            entity: $props.entity,
+          }
+        }),
         class: 'btn-link btn-xs text-error normal-case',
-        'up-target': '.media'
+        'up-target': $props.target ? `.${$props.target}` : '.media'
       })
     @end~
     @if($props.hint)~

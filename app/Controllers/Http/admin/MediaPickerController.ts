@@ -22,6 +22,11 @@ export default class MediaPickerController {
     })
   }
 
+  public async create({ view, bouncer }: HttpContextContract) {
+    await bouncer.with('MediaPolicy').authorize('create')
+    return view.render('admin/mediapicker/create')
+  }
+
   public async show({ request, view, bouncer }: HttpContextContract) {
     const media = await Media.findOrFail(request.param('id'))
     await bouncer.with('MediaPolicy').authorize('show', media)

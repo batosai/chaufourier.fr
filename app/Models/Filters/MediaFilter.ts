@@ -12,9 +12,11 @@ export default class TagFilter extends BaseModelFilter {
   }
 
   type(values: [string]) {
-    this.$query.where((builder) => {
-      builder.whereIn('type', values)
-    })
+    if (values.length) {
+      this.$query.where((builder) => {
+        builder.whereIn('type', values)
+      })
+    }
   }
 
   search(value: string) {

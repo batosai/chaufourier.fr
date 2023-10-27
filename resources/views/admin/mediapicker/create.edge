@@ -1,0 +1,13 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+
+  @admin.content()
+    @jrmc.form.control({ name: request.qs().target })
+      @!admin.form.mediapicker({ hint: 'jpg, png or webp. 1O MB max.', target: request.qs().target, entity: request.qs().entity })
+    @end
+  @end
+
+@end

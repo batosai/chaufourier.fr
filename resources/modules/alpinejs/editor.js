@@ -15,6 +15,8 @@ import Hyperlink from 'editorjs-hyperlink'
 import DragDrop from 'editorjs-drag-drop'
 import Undo from 'editorjs-undo'
 
+import ImagePicker from '../editorjs/imagePicker'
+
 // editor.js
 
 // todo preview @editorjs/link
@@ -49,6 +51,7 @@ export default () => ({
           })
       },
       tools: {
+        image: ImagePicker,
         header: {
           class: Header,
           shortcut: 'CMD+SHIFT+H',

@@ -18,6 +18,7 @@
             </figure>
             <a href="{{ route('admin.mediapicker.show', m, {
         qs: {
+          target: request.qs().target,
           entity: request.qs().entity,
           inputName
         }

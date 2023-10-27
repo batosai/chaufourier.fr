@@ -1,8 +1,8 @@
 import Alpine from 'alpinejs'
 
-import editor from './editor'
-import uppy from './uppy'
-import autocomplete from './autocomplete'
+import editor from '../modules/alpinejs/editor'
+import uppy from '../modules/alpinejs/uppy'
+import autocomplete from '../modules/alpinejs/autocomplete'
 
 // Alpine
 
