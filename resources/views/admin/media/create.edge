@@ -17,6 +17,7 @@
       @!admin.uploader({
         'data-endpoint': route('admin.media.store'),
         'data-field-name': 'file',
+        'data-types': request.qs().types ? request.qs().types.join(',') : null,
       })
     </div>
   @end

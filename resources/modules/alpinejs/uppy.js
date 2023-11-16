@@ -16,7 +16,12 @@ export default () => ({
 
   init() {
     const csrf = document.querySelector('meta[name="csrf-token"]').content
-    this.uppy = new Uppy()
+
+    this.uppy = new Uppy({
+      restrictions: {
+        allowedFileTypes: this.$el.dataset.types ? this.$el.dataset.types.split(',') : ['*']
+      }
+    })
     // .use(DragDrop, { target: this.$el })
     // .use(StatusBar, {
     //   target: this.$el,
