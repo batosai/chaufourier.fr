@@ -8,6 +8,8 @@ up-popup {
   overflow-x: initial;
 }
 
+/* drawer */
+
 up-drawer-box {
   padding: 0;
 }
@@ -19,3 +21,10 @@ up-drawer-dismiss {
 up-drawer[size=grow] up-drawer-box {
   width: 1024px;
 }
+
+/* modal */
+
+up-modal[nesting="0"] up-modal-viewport {
+  padding: calc(25px + env(safe-area-inset-top)) 15px;
+}
+
