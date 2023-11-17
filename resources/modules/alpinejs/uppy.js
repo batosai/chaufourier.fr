@@ -19,7 +19,7 @@ export default () => ({
 
     this.uppy = new Uppy({
       restrictions: {
-        allowedFileTypes: this.$el.dataset.types ? this.$el.dataset.types.split(',') : ['*']
+        allowedFileTypes: this.$el.dataset.types ? this.$el.dataset.types.split(',') : null
       }
     })
     // .use(DragDrop, { target: this.$el })
