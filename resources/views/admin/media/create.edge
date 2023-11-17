@@ -5,19 +5,22 @@
 @section('body')
 
   @admin.content()
-    @!admin.breadcrumb({
-      items: [
-        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
-        { label: t('admin.sidebar.media'), link: route('admin.media.index') },
-        { label: t('admin.action.create') }
-      ]
-    })
 
-    <div class="px-4 my-4">
+    @unless(up.isModal())~
+      @!admin.breadcrumb({
+        items: [
+          { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+          { label: t('admin.sidebar.media'), link: route('admin.media.index') },
+          { label: t('admin.action.create') }
+        ]
+      })
+    @end~
+
+    <div class="w-full px-4 my-4">
       @!admin.uploader({
         'data-endpoint': route('admin.media.store'),
         'data-field-name': 'file',
-        'data-types': request.qs().types ? request.qs().types.join(',') : null,
+        'data-types': request.qs().types ? request.qs().types.join(',') : '',
       })
     </div>
   @end

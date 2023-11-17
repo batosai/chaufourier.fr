@@ -41,3 +41,16 @@
   @apply !btn-sm;
   @apply !btn-primary;
 }
+
+.uppy-Dashboard-AddFiles {
+  flex-direction: initial;
+  @apply sm:flex-col;
+}
+
+.uppy-Dashboard-AddFiles-title {
+  font-size: 21px;
+  font-weight: 400;
+  margin-top: 5px;
+  max-width: 480px;
+  padding: 0 35px;
+}
