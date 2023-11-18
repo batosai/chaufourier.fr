@@ -30,7 +30,7 @@ up-modal[nesting="0"] up-modal-viewport {
 }
 
 up-modal-dismiss {
-  top: calc(10px + env(safe-area-inset-top));
+  top: calc(0px + env(safe-area-inset-top));
   @apply text-5xl;
   @apply z-10;
 }
