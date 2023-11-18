@@ -31,7 +31,7 @@ export default () => ({
       .use(Dashboard, {
         inline: true,
         width: '100%',
-        // height: 'calc(100vh - 96px)',
+        height: 'calc(100vh - 140px)',
         target: this.$el,
         showProgressDetails: true,
         theme: 'auto',

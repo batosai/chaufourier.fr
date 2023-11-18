@@ -38,4 +38,5 @@ up-modal-dismiss {
 up-modal-box {
   @apply h-screen;
   @apply sm:h-auto;
+  padding-top: calc(20px + env(safe-area-inset-top));
 }
