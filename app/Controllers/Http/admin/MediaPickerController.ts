@@ -1,4 +1,3 @@
-
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
 import Media from 'App/Models/Media'
@@ -13,12 +12,15 @@ export default class MediaPickerController {
     const type = request.input('types', [])
     const inputName = request.input('name', 'mediaId')
 
-    const media = await Media.query().filter({ type }).orderBy('createdAt', 'desc').paginate(page, limit)
+    const media = await Media.query()
+      .filter({ type })
+      .orderBy('createdAt', 'desc')
+      .paginate(page, limit)
     media.baseUrl(Route.builder().make('admin.media.index'))
 
     return view.render('admin/mediapicker/index', {
       media,
-      inputName
+      inputName,
     })
   }
 

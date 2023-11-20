@@ -1,5 +1,3 @@
-
-
 export const getFramentHTML = async ({ url, target }) => {
   const response = await fetch(url)
   const html = await response.text()

@@ -10,7 +10,10 @@ export const MAX_LENGTH = 50
 export const MAX_Size = '10mb'
 
 export default class UserValidator {
-  constructor(protected ctx: HttpContextContract, protected user: User | void) {
+  constructor(
+    protected ctx: HttpContextContract,
+    protected user: User | void
+  ) {
     const fields = {
       lastname: schema.string([
         rules.escape(),

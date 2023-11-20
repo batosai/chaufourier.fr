@@ -5,7 +5,10 @@ import Tag from 'App/Models/Tag'
 export const MIN_LENGTH = 2
 
 export default class TagValidator {
-  constructor(protected ctx: HttpContextContract, protected tag: Tag | void) {
+  constructor(
+    protected ctx: HttpContextContract,
+    protected tag: Tag | void
+  ) {
     const fields = {
       name: schema.string([
         rules.escape(),

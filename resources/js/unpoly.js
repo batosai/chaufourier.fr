@@ -69,8 +69,8 @@ up.confirm = function (element) {
               </button>
 
               <button class="btn ${colorButton}" @click="up.navigate({ target: 'main', url: '${element.getAttribute(
-    'href'
-  )}', method: '${method}' }); $root.remove()">
+                'href'
+              )}', method: '${method}' }); $root.remove()">
                   ok
               </button>
           </div>

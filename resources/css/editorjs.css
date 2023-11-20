@@ -24,7 +24,7 @@
 }
 
 /* Daisy */
-.ce-block__content .btn:not(:where([class~="btn-link"])) {
+.ce-block__content .btn:not(:where([class~='btn-link'])) {
   text-decoration: none;
 }
 

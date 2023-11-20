@@ -19,15 +19,15 @@ export default () => ({
 
     this.uppy = new Uppy({
       restrictions: {
-        allowedFileTypes: this.$el.dataset.types ? this.$el.dataset.types.split(',') : null
-      }
+        allowedFileTypes: this.$el.dataset.types ? this.$el.dataset.types.split(',') : null,
+      },
     })
-    // .use(DragDrop, { target: this.$el })
-    // .use(StatusBar, {
-    //   target: this.$el,
-    //   hideAfterFinish: false,
-    //   showProgressDetails: true
-    // })
+      // .use(DragDrop, { target: this.$el })
+      // .use(StatusBar, {
+      //   target: this.$el,
+      //   hideAfterFinish: false,
+      //   showProgressDetails: true
+      // })
       .use(Dashboard, {
         inline: true,
         width: '100%',
@@ -50,15 +50,15 @@ export default () => ({
         }),
       })
 
-      this.uppy.on("complete", (result) => {
-        if (result.failed.length === 0) {
-          // console.log("Upload successful üòÄ")
-          up.layer.current.dismiss()
-        } else {
-          // console.warn("Upload failed üòû")
-        }
-        // console.log("successful files:", result.successful)
-        // console.log("failed files:", result.failed)
-      })
+    this.uppy.on('complete', (result) => {
+      if (result.failed.length === 0) {
+        // console.log("Upload successful üòÄ")
+        up.layer.current.dismiss()
+      } else {
+        // console.warn("Upload failed üòû")
+      }
+      // console.log("successful files:", result.successful)
+      // console.log("failed files:", result.failed)
+    })
   },
 })
