@@ -26,11 +26,12 @@ up.on('up:fragment:loaded', (event) => {
   const location = event.response.header('X-Up-Location')
   const fullReload = event.response.header('X-Full-Reload')
 
-  const pattern = /name='csrf-token'\scontent='(.+?)'/
-  const matches = event.response.text.match(pattern)
-  if (matches) {
-    document.querySelector('meta[name="csrf-token"]').setAttribute('content', matches[1])
-  }
+  // Obsolete in unpoly 3.5
+  // const pattern = /name='csrf-token'\scontent='(.+?)'/
+  // const matches = event.response.text.match(pattern)
+  // if (matches) {
+  //   document.querySelector('meta[name="csrf-token"]').setAttribute('content', matches[1])
+  // }
 
   if (fullReload) {
     // Prevent the fragment update and don't update browser history
