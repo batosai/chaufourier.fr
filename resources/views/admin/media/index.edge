@@ -20,9 +20,15 @@
       @each(m in media)~
         <li class="relative">
           <div class="card card-compact bg-base-300 shadow-xl focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-4 focus-within:ring-offset-base-100">
-            <figure class="aspect-h-6 aspect-w-10">
-              <img src="{{ m.file.preview('thumbnail')?.url }}" class="object-cover" alt="" />
-            </figure>
+            @if(m.file.preview('thumbnail')?.url)~
+              <figure class="aspect-h-6 aspect-w-10">
+                <img src="{{ m.file.preview('thumbnail')?.url }}" class="object-cover" alt="" />
+              </figure>
+            @else~
+              <figure class="aspect-h-4 aspect-w-10 m-5">
+                @!admin.icons.media({ type: m.type })
+              </figure>
+            @endif~
             <div class="card-body">
               <a href="{{ route('admin.media.show', m) }}" class="mt-2 block truncate text-sm" up-layer="new" up-mode="drawer" up-on-dismissed="up.reload('#content-list')">
                 {{ m.title }}

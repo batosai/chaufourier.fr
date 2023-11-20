@@ -1,0 +1,11 @@
+@if($props.type.includes('zip') || $props.type.includes('rar') || $props.type.includes('gz') || $props.type.includes('7zip'))
+  @!svg('fa-solid:file-archive', { color: 'yellow'})
+@elseif($props.type.includes('heif'))
+  @!svg('fa-solid:image', { color: 'orange'})
+@elseif($props.type.includes('exe') || $props.type.includes('dmg') || $props.type.includes('iso') || $props.type.includes('deb'))
+  @!svg('fa-solid:terminal', { color: 'white'})
+@elseif($props.type.includes('js') || $props.type.includes('ts') || $props.type.includes('php') || $props.type.includes('rb'))
+  @!svg('fa-solid:code', { color: 'white'})
+@else
+  @!svg('fa-solid:file')
+@endif

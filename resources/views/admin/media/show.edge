@@ -17,9 +17,15 @@
       @admin.section.content({ title: 'Show Media', description: 'Show a media.', href: route('admin.media.index')})
         <div id="content-edit">
           <div>
-            <div class="aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg">
-              <img src="{{ media.file.preview('large')?.url }}" alt="" class="object-cover" />
-            </div>
+            @if(media.file.preview('thumbnail')?.url)~
+              <div class="aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg">
+                <img src="{{ media.file.preview('large')?.url }}" alt="" class="object-cover" />
+              </div>
+            @else~
+              <div class="aspect-h-3 aspect-w-10 block w-full overflow-hidden rounded-lg m-5">
+                @!admin.icons.media({ type: media.type })
+              </div>
+            @endif~
             <div class="mt-4 justify-between">
               <h2 class="text-base font-semibold leading-6 text-neutral-content"><span class="sr-only">Details for </span>{{ media.file.originalName }}</h2>
               <p class="text-sm font-medium text-neutral-content">{{ prettyBytes(media.file.size, { unitSeparator: ' ' }) }}</p>
