@@ -8,7 +8,8 @@ if (document.querySelector('meta[name="mode"]')) {
   up.log.enable()
 }
 
-up.fragment.config.mainTargets.push('.toasts')
+// Obsolete in unpoly 3.5, use up-flashes
+// up.fragment.config.mainTargets.push('.toasts')
 up.link.config.followSelectors.push('a[href]')
 up.form.config.submitSelectors.push(['form'])
 up.feedback.config.currentClasses.push(['active'])
@@ -17,10 +18,11 @@ up.feedback.config.navSelectors.push(['nav'])
 up.layer.config.drawer.size = 'large'
 up.layer.config.drawer.position = 'right'
 
+// Obsolete in unpoly 3.5, use up-flashes
 // after drawer closed, refresh toast for flashmessage
-up.on('up:layer:dismissed', function (event) {
-  up.reload('.toasts')
-})
+// up.on('up:layer:dismissed', function (event) {
+//   up.reload('.toasts')
+// })
 
 up.on('up:fragment:loaded', (event) => {
   const location = event.response.header('X-Up-Location')
