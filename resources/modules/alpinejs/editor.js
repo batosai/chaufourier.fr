@@ -105,14 +105,14 @@ export default () => ({
         codeBox: CodeBox,
         hyperlink: {
           class: Hyperlink,
-          // config: {
-          //   shortcut: 'CMD+L',
-          //   target: '_blank',
-          //   rel: 'nofollow',
-          //   availableTargets: ['_blank', '_self'],
-          //   availableRels: ['author', 'noreferrer'],
-          //   validate: false,
-          // }
+          config: {
+            shortcut: 'CMD+L',
+            target: '_blank',
+            rel: 'nofollow',
+            availableTargets: ['_blank', '_self'],
+            // availableRels: ['author', 'noreferrer'],
+            validate: true,
+          }
         },
       },
     })
