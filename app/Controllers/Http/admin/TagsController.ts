@@ -19,6 +19,8 @@ export default class TagsController {
     tags.queryString(payload)
 
     switch (request.accepts(['html', 'json'])) {
+      case 'html':
+        return view.render('admin/tags/index', { tags })
       case 'json':
         return tags
       default:
