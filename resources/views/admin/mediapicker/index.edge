@@ -27,7 +27,7 @@
         <li class="relative">
           <div class="shadow-xl truncate rounded-lg focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-4 focus-within:ring-offset-base-100">
             <figure class="aspect-h-6 aspect-w-10">
-              <img src="{{ m.file.preview('thumbnail')?.url }}" alt="" />
+              <img src="{{ m.file.preview('thumbnail')?.url }}" class="object-cover" alt="" />
             </figure>
             <a href="{{ route('admin.mediapicker.show', m, {
         qs: {
