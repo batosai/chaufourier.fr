@@ -15,6 +15,7 @@ Route.group(() => {
   Route.post('tags/find', 'admin/TagsController.find').as('tags.find')
 
   Route.resource('articles', 'admin/ArticlesController').except(['show'])
+  Route.resource('links', 'admin/LinksController').only(['index'])
 
   Route.resource('media', 'admin/MediaController')
   Route.get('media/:id/download', 'admin/MediaController.download').as('media.download')
