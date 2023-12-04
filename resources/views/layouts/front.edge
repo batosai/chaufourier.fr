@@ -10,10 +10,20 @@
   {{ csrfMeta() }}
   @entryPointStyles('app')
   @entryPointScripts('app')
+  @!section('script')
 </head>
-<body>
+<body
+  x-data="global()"
+  x-init="themeInit()"
+  :class="isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''"
+  class="dark:bg-primary"
+>
 
-  @!section('body')
+  <div id="main">
+    @include('front/partials/header')
+    @!section('body')
+    @include('front/partials/footer')
+  </div>
 
 </body>
 </html>

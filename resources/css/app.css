@@ -2,11 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply font-body antialiased;
+}
+
 /* remove bounce effet */
 html,
 body,
 up-drawer * {
   overscroll-behavior-y: none;
 }
+
+.container {
+  max-width: 600px;
+
+  @screen sm {
+    max-width: 700px;
+  }
+
+  @screen md {
+    max-width: 850px;
+  }
+}
+
+.twitter-card {
+  @apply mt-8 mb-8 rounded bg-yellow-lighter px-6 py-8 sm:mt-10 sm:mb-10 md:px-10;
+}
+
+.twitter-card .twitter-card-title {
+  @apply mt-0 font-body text-lg font-normal text-blue-dark dark:text-blue-dark sm:text-xl;
+}
+
+.twitter-card .twitter-card-source {
+  @apply block pt-2 font-body text-sm font-light text-blue-dark underline;
+}
+
+.twitter-card .twitter-card-btn {
+  @apply mt-8 mb-0 inline-block border border-blue-dark px-5 py-2 font-body font-semibold text-blue-dark no-underline transition-colors hover:bg-primary hover:text-white sm:mb-4;
+}
+
 
 @config "../../tailwind.front.config.js";

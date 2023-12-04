@@ -21,15 +21,12 @@
 import Route from '@ioc:Adonis/Core/Route'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 
-Route.get('/', async ({ view }) => {
-  return view.render('index')
-})
-
 Route.get('health', async ({ response }) => {
   const report = await HealthCheck.getReport()
 
   return report.healthy ? response.ok(report) : response.badRequest(report)
 })
 
+import './routes/front'
 import './routes/auth'
 import './routes/admin'
