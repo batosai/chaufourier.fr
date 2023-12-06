@@ -1,0 +1,16 @@
+<div>
+  <div class="flex items-center justify-center w-8 h-8 mb-4">
+    <img src="{{ image.src }}" alt="{{ image.alt }}" />
+  </div>
+  @if(title)~
+    <h3 class="mb-2 text-base font-semibold leading-tight text-primary dark:text-white">
+      {{ title }}
+    </h3>
+  @end~
+  @if(description)~
+    <p class="text-sm text-primary dark:text-white">
+      {{{ description }}}
+    </p>
+  @end~
+
+</div>

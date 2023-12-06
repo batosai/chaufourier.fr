@@ -7,6 +7,6 @@ Route.group(() => {
   Route.get('blog/:slug', 'front/ArticlesController.show').as('articles.show')
 
   Route.get('uses', 'front/PagesController.uses').as('pages.uses')
-  Route.get('contact', 'front/PagesController.contact').as('pages.contact')
+  // Route.get('contact', 'front/PagesController.contact').as('pages.contact')
 })
   .as('front')
