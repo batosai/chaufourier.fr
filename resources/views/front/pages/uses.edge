@@ -1,5 +1,13 @@
 @layout('layouts/front')
 
+@section('script')
+<!-- in your header -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+<!-- in your body -->
+
+@end
+
 @section('body')
   <div>
     <div class="container mx-auto">
@@ -11,489 +19,80 @@
           /uses
         </h1>
 
+
         <div class="pt-16 lg:pt-20">
-          <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            Techno utilisé
-          </h3>
+          <h2 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
+            En ce moment
+          </h2>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
-            @!front.techno({
-              image: {
-                src: '/logos/ror.svg',
-                alt: 'ruby on rails'
-              },
-              title: 'Ruby on Rails',
-              description: 'est un Framework web écrit en Ruby. Il propose une structure qui permet de développer rapidement et intuitivement.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'adonis'
-              },
-              title: 'Adonis',
-              description: 'est une plateforme logicielle libre en JavaScript, orientée vers les applications réseau événementielles hautement concurrentes qui doivent pouvoir monter en charge.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'nodejs'
-              },
-              title: 'Node.js',
-              description: 'est une plateforme logicielle libre en JavaScript, orientée vers les applications réseau événementielles hautement concurrentes qui doivent pouvoir monter en charge.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/wp.svg',
-                alt: 'wordpress'
-              },
-              title: 'Wordpress',
-              description: 'est un système de gestion de contenu(CMS).<br /> Ce logiciel est écrit en PHP.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/svelte.svg',
-                alt: 'svelte'
-              },
-              title: 'Svelte',
-              description: 'est un framework JavaScript permettant de créer simplement des composants réactifs.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'tailwind'
-              },
-              title: 'Tailwind',
-              description: 'est une plateforme logicielle libre en JavaScript, orientée vers les applications réseau événementielles hautement concurrentes qui doivent pouvoir monter en charge.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'japa'
-              },
-              title: 'Japa',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'payright'
-              },
-              title: 'Payright',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'edge'
-              },
-              title: 'Edge',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'pg'
-              },
-              title: 'pg',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'mysql'
-              },
-              title: 'mysql',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'typescript'
-              },
-              title: 'Typescript',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'unpoly'
-              },
-              title: 'Unpoly',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'alpine'
-              },
-              title: 'Alpine',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'hotwire'
-              },
-              title: 'Hotwire',
-              description: ''
-            })
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
+            @!front.techno({ iconName: 'rails', title: 'Ruby on Rails' })
+            @!front.techno({ iconName: 'adonisjs', title: 'Adonis' })
+            @!front.techno({ iconName: 'wordpress', title: 'Wordpress', classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'svelte', title: 'Svelte' })
+            @!front.techno({ iconName: 'tailwindcss', title: 'Tailwind' })
+            @!front.techno({ iconName: 'playwright', title: 'Playwright' })
+            @!front.techno({ iconName: 'typescript', title: 'Typescript' })
+            @!front.techno({ iconName: 'unpoly', title: 'Unpoly', classes: 'bg-black dark:bg-transparent' })
+            @!front.techno({ iconName: 'alpine', title: 'Alpine' })
+            @!front.techno({ iconName: 'stimulus', title: 'Stimulus', classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'turbo', title: 'Turbo', classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'webpack', title: 'Webpack' })
+            @!front.techno({ iconName: 'debian', title: 'debian' })
+            @!front.techno({ iconName: 'ubuntu', title: 'Ubuntu' })
+            @!front.techno({ iconName: 'apache', title: 'Apache' })
+            @!front.techno({ iconName: 'nginx', title: 'Nginx' })
+            @!front.techno({ iconName: 'docker', title: 'Docker' })
 
           </div>
 
           <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            Techno utilisé par le passé
+            Testé
           </h3>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
-            @!front.techno({
-              image: {
-                src: '/logos/magento.svg',
-                alt: 'magento'
-              },
-              title: 'Magento',
-              description: 'est une plateforme de commerce électronique.<br /> Ce logiciel est écrit en PHP.'
-            })
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
 
-            @!front.techno({
-              image: {
-                src: '/logos/react.svg',
-                alt: 'react native'
-              },
-              title: 'React Native',
-              description: 'est un framework d\'applications mobiles open source créé par Facebook.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/preact.svg',
-                alt: 'react'
-              },
-              title: 'React',
-              description: 'est un framework d\'applications open source créé par Facebook.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'ionic'
-              },
-              title: 'Ionic',
-              description: 'permet de créer un code multisupport en utilisant des outils Web comme HTML, CSS, JavaScript, afin de générer des applications iOS, Android et bien d\'autres.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'angular'
-              },
-              title: 'Angular',
-              description: 'v1.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'cordova'
-              },
-              title: 'Cordova',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'drupal'
-              },
-              title: 'Drupal',
-              description: 'v6 et v7'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'symfony'
-              },
-              title: 'Symfony',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'zend'
-              },
-              title: 'Zend',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'mongodb'
-              },
-              title: 'Mongo db',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'express'
-              },
-              title: 'Express',
-              description: ''
-            })
+            @!front.techno({ iconName: 'vuejs', title: 'VueJS' })
+            @!front.techno({ iconName: 'directus', title: 'Directus', classes: 'bg-black dark:bg-transparent' })
+            @!front.techno({ iconName: 'strapi', title: 'Strapi' })
+            @!front.techno({ iconName: 'deno', title: 'Deno', classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'laravel', title: 'Laravel' })
+            @!front.techno({ iconName: 'nextjs', title: 'Next', classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'nuxtjs', title: 'Nuxt' })
+            @!front.techno({ iconName: 'vite', title: 'Vite' })
+            @!front.techno({ iconName: 'prometheus', title: 'Prometheus' })
+            @!front.techno({ iconName: 'ansible', title: 'Ansible' })
 
           </div>
 
-          <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            Techno testé
-          </h3>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
-            @!front.techno({
-              image: {
-                src: '/logos/preact.svg',
-                alt: 'preact'
-              },
-              title: 'Preact',
-              description: 'est une bibliothèque javascript inspiré de React de seulement 3 ko.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/preact.svg',
-                alt: 'vueJS'
-              },
-              title: 'VueJS',
-              description: ''
-            })
-
-
-            @!front.techno({
-              image: {
-                src: '/logos/directus.svg',
-                alt: 'directus'
-              },
-              title: 'Directus',
-              description: 'est un CMS Headless open source avec la flexibilité et la puissance d\'une API de données'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/directus.svg',
-                alt: 'strapi'
-              },
-              title: 'Strapi',
-              description: 'est un CMS Headless open source avec la flexibilité et la puissance d\'une API de données'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'deno'
-              },
-              title: 'Deno',
-              description: 'est un runtime pour JavaScript et TypeScript basé sur le moteur JavaScript V8 et le langage de programmation Rust.'
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/ionic.svg',
-                alt: 'laravel'
-              },
-              title: 'Laravel',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'next'
-              },
-              title: 'Next',
-              description: ''
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'nuxt'
-              },
-              title: 'Nuxt',
-              description: ''
-            })
-
-          </div>
 
           <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            Language sans description
+            Par le passé
           </h3>
 
-          <div class="grid grid-cols-1 grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'html'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'css'
-              }
-            })
-
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'javascript'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'php'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'ruby'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'objective-c'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'swift'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/deno.svg',
-                alt: 'java'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'webpack'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'vite'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'sass'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'less'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'stylus'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'gulp'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'debian'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'ubuntu'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'prometheus'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'apache'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'nginx'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'pm2'
-              }
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'docker'
-              },
-              title: 'Docker',
-              description: ''
-            })
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-x-16 lg:gap-x-24 gap-y-20">
+            @!front.techno({ iconName: 'magento', small: true })
+            @!front.techno({ iconName: 'react', small: true })
+            @!front.techno({ iconName: 'ionic', small: true })
+            @!front.techno({ iconName: 'angularjs', small: true })
+            @!front.techno({ iconName: 'cordova', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'symfony', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'zend', small: true })
+            @!front.techno({ iconName: 'mongodb', small: true })
+            @!front.techno({ iconName: 'express', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'objectivec', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'swift', small: true })
+            @!front.techno({ iconName: 'java', small: true })
+            @!front.techno({ iconName: 'sass', small: true })
+            @!front.techno({ iconName: 'less', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'stylus', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'gulp', small: true })
+            @!front.techno({ iconName: 'electron', small: true, classes: 'dark:bg-white' })
+            @!front.techno({ iconName: 'graphql', small: true })
+            @!front.techno({ iconName: 'jasmine', small: true })
+            @!front.techno({ iconName: 'jest', small: true })
+            @!front.techno({ iconName: 'woocommerce', small: true })
+            @!front.techno({ iconName: 'rspec', small: true })
           </div>
 
         </div>

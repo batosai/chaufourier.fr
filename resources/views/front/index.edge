@@ -13,9 +13,6 @@
         <p class="pt-3 font-body text-xl font-light text-primary dark:text-white">
           A software engineer and open-source advocate enjoying the sunny life in Barcelona, Spain.
         </p>
-        <a href="/" class="mt-12 block bg-secondary px-10 py-4 text-center font-body text-xl font-semibold text-white transition-colors hover:bg-green sm:inline-block sm:text-left sm:text-2xl">
-          Say Hello!
-        </a>
       </div>
 
       <div class="border-b border-grey-lighter py-16 lg:py-20">
@@ -81,32 +78,11 @@
             />
           </a>
         </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-16 lg:gap-x-24 gap-y-20">
-            @!front.techno({
-              image: {
-                src: '/logos/ror.svg',
-                alt: 'ruby on rails'
-              },
-              title: 'Ruby on Rails',
-            })
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'adonis'
-              },
-              title: 'Adonis',
-            })
-
-
-            @!front.techno({
-              image: {
-                src: '/logos/node.svg',
-                alt: 'tailwind'
-              },
-              title: 'Tailwind',
-            })
-
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
+            @!front.techno({ iconName: 'rails', title: 'Ruby on Rails' })
+            @!front.techno({ iconName: 'adonisjs', title: 'Adonis' })
+            @!front.techno({ iconName: 'tailwindcss', title: 'Tailwind' })
+            @!front.techno({ iconName: 'svelte', title: 'Svelte' })
           </div>
       </div>
     </div>

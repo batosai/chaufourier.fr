@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0.0001 0 47.2227 47.3933" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.3333332538604736, 0, 0, -1.3333332538604736, -1149.5345458984375, 683.101318359375)" id="g10">
+    <path d="m 897.568,486.967 v 25.359 h -3.935 v -23.294 l -13.774,-7.902 -13.773,7.902 v 23.294 h -3.935 v -25.359 l 17.708,-10.186 17.709,10.186" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1" id="path40"/>
+    <path d="m 885.763,508.75 v -19.696 l 3.934,2.257 v 17.439 h -3.934" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1" id="path42"/>
+    <path d="m 877.893,504.062 v -17.266 l 1.966,-1.129 1.969,1.129 v 17.266 h -3.935" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1" id="path44"/>
+    <path d="m 870.021,499 v -7.689 l 3.936,-2.257 V 499 h -3.936" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1" id="path46"/>
+  </g>
+</svg>

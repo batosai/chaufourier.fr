@@ -1,8 +1,8 @@
-<div>
-  <div class="flex items-center justify-center w-8 h-8 mb-4">
-    <img src="{{ image.src }}" alt="{{ image.alt }}" />
+<div class="flex flex-col items-center">
+  <div class="mb-4 {{ classes ? classes : '' }}">
+    <img src="/logos/{{ iconName }}.svg" class="m-2" width="{{ small ? '30' : '55' }}" loading="lazy" alt="{{ small ? iconName : '' }}" />
   </div>
-  @if(title)~
+  @if(title && small === undefined)~
     <h3 class="mb-2 text-base font-semibold leading-tight text-primary dark:text-white">
       {{ title }}
     </h3>
