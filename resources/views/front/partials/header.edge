@@ -69,12 +69,13 @@
           >
         </li>
 
-        <li>
-          <i
-            class="bx cursor-pointer text-3xl text-primary dark:text-white"
-            @click="themeSwitch()"
-            :class="isDarkMode ? 'bxs-sun' : 'bxs-moon'"
-          ></i>
+        <li class="cursor-pointer text-3xl">
+          <span @click="themeSwitch()" x-show="isDarkMode">
+            @!front.icons.sun()
+          </span>
+          <span @click="themeSwitch()" x-show="! isDarkMode">
+            @!front.icons.moon()
+          </span>
         </li>
       </ul>
     </div>
