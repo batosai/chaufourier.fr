@@ -5,7 +5,7 @@
     <div class="container mx-auto">
       <div class="border-b border-grey-lighter py-16 lg:py-20">
         <div>
-          <img src="https://0.gravatar.com/avatar/6ba72ff545c3b544725784e1e67eea3f3a0da79c12d6eb79bacb96fbc7b0d00c?size=256" class="h-16 w-16 rounded-full" alt="author" loading="lazy" />
+          <img src="/avatar.jpg" class="h-16 w-16 rounded-full" alt="" loading="lazy" />
         </div>
         <h1 class="pt-3 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-5xl">
           Jérémy Chaufourier.
@@ -56,10 +56,9 @@
           </a>
         </div>
         <div class="pt-8">
-          @!front.post()
-          @!front.post()
-          @!front.post()
-          @!front.post()
+          @each(article in articles)~
+            @!front.post({ article })
+          @end~
         </div>
       </div>
 

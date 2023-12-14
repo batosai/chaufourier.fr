@@ -19,12 +19,9 @@
         </div>
 
         <div class="pt-5">
-          @!front.post()
-          @!front.post()
-          @!front.post()
-          @!front.post()
-          @!front.post()
-          @!front.post()
+          @each(article in articles)~
+            @!front.post({ article })
+          @end~
         </div>
 
         <div class="flex pt-8 lg:pt-16">

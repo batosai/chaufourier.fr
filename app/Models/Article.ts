@@ -10,6 +10,7 @@ import {
   BelongsTo,
   manyToMany,
   ManyToMany,
+  scope
 } from '@ioc:Adonis/Lucid/Orm'
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
@@ -65,6 +66,20 @@ export default class Article extends compose(BaseModel, Filterable) {
     pivotTimestamps: true,
   })
   public tags: ManyToMany<typeof Tag>
+
+   // Scope
+
+   public static visibleTo = scope((query, user: User) => {
+    if (user.isAdmin) {
+      return
+    }
+
+    query.where('userId', 'user.id')
+  })
+
+  public static published = scope(query => {
+    // query.where('state', 'publish')
+  })
 
   // Hooks
 
