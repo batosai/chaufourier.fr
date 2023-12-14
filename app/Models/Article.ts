@@ -77,7 +77,7 @@ export default class Article extends compose(BaseModel, Filterable) {
     query.where('userId', 'user.id')
   })
 
-  public static published = scope(query => {
+  public static published = scope(() => {
     // query.where('state', 'publish')
   })
 
