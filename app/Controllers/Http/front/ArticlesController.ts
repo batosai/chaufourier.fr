@@ -15,7 +15,9 @@ export default class ArticlesController {
     return view.render('front/articles/index', { articles })
   }
 
-  public async show({ view }: HttpContextContract) {
-    return view.render('front/articles/show')
+  public async show({ view, params }: HttpContextContract) {
+    const article = await Article.findByOrFail('slug', params['slug'])
+    await article.load('tags')
+    return view.render('front/articles/show', { article })
   }
 }

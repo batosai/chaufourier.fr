@@ -1,0 +1,15 @@
+@if(content.length)~
+  <table>
+    @each((rows, index) in content)~
+      <tr>
+        @each(col in rows)~
+          @if(withHeadings && index === 0)~
+          <th>{{ col }}</th>
+          @else~
+          <td>{{ col }}</td>
+          @end~
+        @end~
+      </tr>
+    @end~
+  </table>
+@end~

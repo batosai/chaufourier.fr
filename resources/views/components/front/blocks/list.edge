@@ -1,0 +1,12 @@
+@if(items.length)~
+  <{{ style === 'unordered' ? 'ul' : 'ol' }}>
+    @each(item in items)~
+      <li>
+        {{ item.content }}
+        @if(item.items.length)~
+          @!front.blocks.list({ style, items: item.items })
+        @end~
+      </li>
+    @end~
+  </{{ style === 'unordered' ? 'ul' : 'ol' }}>
+@end~
