@@ -9,6 +9,13 @@ export default class AppProvider {
 
   public async boot() {
     // IoC container is ready
+
+    const Server = this.app.container.resolveBinding('Adonis/Core/Server')
+    const MediaService = this.app.container.use('App/Services/MediaService')
+
+    Server.hooks.before(async (ctx) => {
+      ctx.view.share({ media: new MediaService.default() })
+    })
   }
 
   public async ready() {

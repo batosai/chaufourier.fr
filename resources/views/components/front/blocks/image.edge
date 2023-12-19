@@ -1,0 +1,13 @@
+<picture>
+  @if(media.file.preview('large'))~
+  <source media="(min-width:421px)" srcset="{{ media.file.preview('large')?.url }}" />
+  @end~
+  @if(media.file.preview('large2x'))~
+  <source media="(min-width:421px)" type="image/webp" srcset="{{ media.file.preview('large2x')?.url }} 2x" />
+  @end~
+  @if(media.file.preview('medium2x'))~
+  <source media="(max-width:420px)" type="image/webp" srcset="{{ media.file.preview('medium2x')?.url }} 2x" />
+  @end~
+
+  <img src="{{ media.file.preview('medium')?.url }}" alt="{{ media.alt ?? '' }}" width="100%" loading="lazy" />
+</picture>

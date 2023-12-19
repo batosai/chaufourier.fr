@@ -26,16 +26,16 @@
 
         <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
 
-          <p><img src="/img/post-image-01.png" alt="Image" /></p>
-
 
           @each(block in JSON.parse(article.body).blocks)~
-            @if(block.type === 'paragraph')
+            @if(block.type === 'header')
+              @!front.blocks.title({ ...block.data })
+            @elseif(block.type === 'paragraph')
               @!front.blocks.p({ ...block.data })
+            @elseif(block.type === 'image')
+              @!front.blocks.image({ media: (await media.get(block.data.id)) })
             @elseif(block.type === 'warning')
               @!front.blocks.note({ ...block.data })
-            @elseif(block.type === 'header')
-              @!front.blocks.title({ ...block.data })
             @elseif(block.type === 'list')
               @!front.blocks.list({ ...block.data })
             @elseif(block.type === 'quote')
@@ -49,7 +49,6 @@
             @else
               {{ inspect(block) }}
             @end
-
           @end~
 
         </div>

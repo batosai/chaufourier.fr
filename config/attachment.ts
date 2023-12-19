@@ -1,5 +1,4 @@
 import { AttachmentConfig } from '@ioc:Adonis/Addons/AttachmentAdvanced'
-import sharp from 'sharp'
 
 const attachmentConfig: AttachmentConfig = {
   document: {
@@ -38,69 +37,28 @@ const attachmentConfig: AttachmentConfig = {
   // pdf: false,
   image: {
     variants: {
-      square: {
-        resize: {
-          width: 200,
-          height: 200,
-          fit: sharp.fit.cover,
-          position: sharp.strategy.entropy,
-        },
-      },
-      bg: {
-        resize: {
-          width: 200,
-          height: 300,
-          kernel: sharp.kernel.nearest,
-          fit: 'contain',
-          position: 'right top',
-          background: { r: 255, g: 0, b: 0, alpha: 0.5 },
-        },
-      },
       thumbnail: {
-        resize: 300,
+        resize: 250,
         format: 'jpg',
       },
       medium: {
-        resize: {
-          width: 500,
-          fit: 'contain',
-          position: 'right top',
-        },
-        format: [
-          'jpg',
-          {
-            quality: 10,
-            progressive: true,
-          },
-        ],
+        resize: 345,
+        format: 'jpg',
+      },
+      medium2x: {
+        resize: 690,
+        format: 'webp',
       },
       large: {
-        resize: 1500,
+        resize: 800,
         format: 'jpg',
+      },
+      large2x: {
+        resize: 1600,
+        format: 'webp',
       },
     },
   },
 }
 
 export default attachmentConfig
-/*
-TODO
-
-- Fork and pull request attachment-lite
-
------ temps 2
-
-- geoloc
-
-- from buffer
-
-- test minio
-- test by docker for ffmpeg, poppler, libreoffice
-
-
-
-      'application/epub',
-      'application/x-mobipocket-ebook', // mobi
-      'application/vnd.comicbook-rar', // cbr
-      'application/vnd.comicbook', // cbz
-*/
