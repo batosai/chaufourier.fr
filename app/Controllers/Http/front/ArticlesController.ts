@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
+import { types } from '@ioc:Adonis/Core/Helpers'
 import Article from 'App/Models/Article'
 
 export default class ArticlesController {
@@ -18,6 +19,10 @@ export default class ArticlesController {
   public async show({ view, params }: HttpContextContract) {
     const article = await Article.findByOrFail('slug', params['slug'])
     await article.load('tags')
-    return view.render('front/articles/show', { article })
+
+    // string for sqlite db
+    const blocks = types.isString(article.body) ? JSON.parse(article.body).blocks : article.body['blocks']
+
+    return view.render('front/articles/show', { article, blocks })
   }
 }

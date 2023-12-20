@@ -27,7 +27,7 @@
         <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
 
 
-          @each(block in JSON.parse(article.body).blocks)~
+          @each(block in blocks)~
             @if(block.type === 'header')
               @!front.blocks.title({ ...block.data })
             @elseif(block.type === 'paragraph')
