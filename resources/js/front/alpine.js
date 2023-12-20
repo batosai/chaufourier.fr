@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import Clipboard from "@ryangjchandler/alpine-clipboard"
 
 function global() {
   return {
@@ -34,5 +35,7 @@ function global() {
 }
 
 Alpine.data('global', global)
+
+Alpine.plugin(Clipboard)
 
 Alpine.start()

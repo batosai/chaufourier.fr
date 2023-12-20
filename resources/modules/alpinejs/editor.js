@@ -1,4 +1,5 @@
 import EditorJS from '@editorjs/editorjs'
+import CodeTool from '@editorjs/code'
 import Header from '@editorjs/header'
 import Quote from '@editorjs/quote'
 import Warning from '@editorjs/warning'
@@ -9,7 +10,6 @@ import Table from '@editorjs/table'
 import Marker from '@editorjs/marker'
 import InlineCode from '@editorjs/inline-code'
 import Underline from '@editorjs/underline'
-import CodeBox from '@bomdi/codebox'
 import Hyperlink from 'editorjs-hyperlink'
 
 import DragDrop from 'editorjs-drag-drop'
@@ -102,7 +102,7 @@ export default () => ({
         embed: Embed,
         underline: Underline,
         delimiter: Delimiter,
-        codeBox: CodeBox,
+        code: CodeTool,
         hyperlink: {
           class: Hyperlink,
           config: {

@@ -44,7 +44,7 @@
               @!front.blocks.delimiter()
             @elseif(block.type === 'table')
               @!front.blocks.table({ ...block.data })
-            @elseif(block.type === 'codeBox')
+            @elseif(block.type === 'code')
               @!front.blocks.code({ ...block.data })
             @else
               {{ inspect(block) }}

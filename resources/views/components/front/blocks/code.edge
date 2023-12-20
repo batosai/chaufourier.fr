@@ -1,3 +1,8 @@
 @if(code)~
-{{{ code }}}
+<div class="relative">
+  <button type="button" class="absolute top-5 right-5" x-clipboard.raw="{{ code }}">
+  @!front.icons.copy()
+  </button>
+  <pre class="m-0"><code>{{{ code }}}</code></pre>
+</div>
 @end~

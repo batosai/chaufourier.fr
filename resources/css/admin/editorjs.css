@@ -198,6 +198,9 @@
   height: 24px;
 }
 
-.codeBoxHolder {
-  overflow: initial;
+
+/* .ce-code */
+
+.ce-code textarea {
+  @apply text-base-content;
 }
