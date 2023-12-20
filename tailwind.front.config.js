@@ -39,6 +39,7 @@ module.exports = {
       "grey-lighter": "#eceef1",
       "grey-light": "#ccd7e0",
       grey: "#adb6c4",
+      "red-900": "rgb(127 29 29)"
     },
 
     border: {
