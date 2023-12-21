@@ -36,6 +36,7 @@ export default class ArticlesController {
 
     const article = new Article()
     await article.fill(payload)
+    article.visible = payload.visible === undefined ? false : true
     article.userId = auth.user!.id
     await article.save()
 
@@ -82,7 +83,7 @@ export default class ArticlesController {
 
     const payload = await request.validate(ArticleValidator)
 
-    await article.merge(payload)
+    await article.merge({ ...payload, visible: payload.visible === undefined ? false : true })
     if (payload.tags) {
       await article.related('tags').sync(payload.tags)
     } else {

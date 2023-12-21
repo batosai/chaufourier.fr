@@ -1,4 +1,14 @@
 
+@jrmc.form.control({ name: 'visible', label: false })
+  @!jrmc.form.toggle({ class: 'toggle-primary', value: '1' })
+@end
+
+@jrmc.form.control({ name: 'publishedOn' })
+  @!jrmc.form.input({ type: 'date', value: article.publishedOn ? article.publishedOn.toISODate() : '' })
+@end
+
+<div class="divider"></div>
+
 @jrmc.form.control({ name: 'title', required: true, hint: '2 characters minimum' })
   @!jrmc.form.input()
 @end

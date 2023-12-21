@@ -19,6 +19,10 @@ export default class ArticleValidator {
           column: 'id',
         }),
       ]),
+      visible: schema.boolean.nullableAndOptional(),
+      publishedOn: schema.date.optional(
+        { format: 'sql' }
+      ),
     }
 
     this.schema = schema.create(fields)

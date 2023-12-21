@@ -46,6 +46,12 @@ export default class Article extends compose(BaseModel, Filterable) {
   @column()
   public imageId: string | null
 
+  @column()
+  public visible: boolean
+
+  @column.dateTime()
+  public publishedOn: DateTime
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -77,8 +83,8 @@ export default class Article extends compose(BaseModel, Filterable) {
     query.where('userId', 'user.id')
   })
 
-  public static published = scope(() => {
-    // query.where('state', 'publish')
+  public static published = scope((query) => {
+    query.where('visible', true).andWhere('publishedOn', '<=', DateTime.utc().toSQL())
   })
 
   // Hooks
