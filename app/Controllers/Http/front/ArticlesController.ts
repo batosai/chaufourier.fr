@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
 import Article from 'App/Models/Article'
