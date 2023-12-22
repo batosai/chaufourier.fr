@@ -8,6 +8,10 @@
         {{ $props.title ? $props.title : '' }}
       </h2>
       <p class="mt-1 text-sm leading-6 text-gray-400">{{ $props.description ? $props.description : '' }}</p>
+
+      @if($slots.side)~
+        {{{ await $slots.side() }}}
+      @end~
     </div>
   @end
 

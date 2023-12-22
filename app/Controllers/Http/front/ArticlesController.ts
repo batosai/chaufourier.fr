@@ -1,6 +1,6 @@
+import { DateTime } from 'luxon'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
-import { types } from '@ioc:Adonis/Core/Helpers'
 import Article from 'App/Models/Article'
 
 export default class ArticlesController {
@@ -16,13 +16,23 @@ export default class ArticlesController {
     return view.render('front/articles/index', { articles })
   }
 
-  public async show({ view, params }: HttpContextContract) {
+  public async show({ view, params, response }: HttpContextContract) {
     const article = await Article.findByOrFail('slug', params['slug'])
     await article.load('tags')
 
-    // string for sqlite db
-    const blocks = types.isString(article.body) ? JSON.parse(article.body).blocks : article.body['blocks']
+    if (!article.isVisibled()) {
+      response.redirect('/blog')
+    }
 
-    return view.render('front/articles/show', { article, blocks })
+    return view.render('front/articles/show', { article })
+  }
+
+  public async preview({ view, params, bouncer }: HttpContextContract) {
+    const article = await Article.findByOrFail('slug', params['slug'])
+    await article.load('tags')
+
+    await bouncer.with('ArticlePolicy').authorize('preview', article)
+
+    return view.render('front/articles/show', { article })
   }
 }

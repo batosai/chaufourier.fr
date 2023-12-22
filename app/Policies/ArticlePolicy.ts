@@ -18,4 +18,8 @@ export default class ArticlePolicy extends BasePolicy {
   public async delete(currentUser: User, article: Article) {
     return currentUser.isAdmin || currentUser.id === article.userId
   }
+
+  public async preview(currentUser: User, article: Article) {
+    return currentUser.isAdmin || currentUser.id === article.userId
+  }
 }

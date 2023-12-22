@@ -22,6 +22,7 @@ import {
 } from '@ioc:Adonis/Addons/AttachmentAdvanced'
 import Audit from './Audit'
 import Article from './Article'
+import Media from './Media'
 
 export default class User extends compose(BaseModel, Attachmentable, Filterable) {
   public static selfAssignPrimaryKey = true
@@ -80,6 +81,9 @@ export default class User extends compose(BaseModel, Attachmentable, Filterable)
 
   @hasMany(() => Article)
   public articles: HasMany<typeof Article>
+
+  @hasMany(() => Media)
+  public media: HasMany<typeof Media>
 
   // scopes
 

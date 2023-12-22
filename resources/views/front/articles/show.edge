@@ -17,17 +17,19 @@
             {{ article.title }}
           </h2>
 
+          @if(article.publishedOn)
           <div class="flex items-center pt-5 sm:pt-8">
             <p class="pr-2 font-body font-light text-primary dark:text-white">
-              {{ t('app.date', { value: article.createdAt }) }}
+              {{ t('app.date', { value: article.publishedOn }) }}
             </p>
           </div>
+          @end
         </div>
 
         <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
 
 
-          @each(block in blocks)~
+          @each(block in article.blocks)~
             @if(block.type === 'header')
               @!front.blocks.title({ ...block.data })
             @elseif(block.type === 'paragraph')

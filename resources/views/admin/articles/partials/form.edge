@@ -4,7 +4,7 @@
 @end
 
 @jrmc.form.control({ name: 'publishedOn' })
-  @!jrmc.form.input({ type: 'date', value: article.publishedOn ? article.publishedOn.toISODate() : '' })
+  @!jrmc.form.input({ type: 'date', class: 'w-full', value: article?.publishedOn ? article.publishedOn.toISODate() : '' })
 @end
 
 <div class="divider"></div>

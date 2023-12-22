@@ -3,15 +3,15 @@ import { v4 as uuid } from 'uuid'
 import {
   BaseModel,
   column,
+  computed,
   beforeCreate,
-  hasOne,
-  HasOne,
   belongsTo,
   BelongsTo,
   manyToMany,
   ManyToMany,
   scope
 } from '@ioc:Adonis/Lucid/Orm'
+import { types } from '@ioc:Adonis/Core/Helpers'
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { Filterable } from '@ioc:Adonis/Addons/LucidFilter'
 import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
@@ -19,6 +19,7 @@ import ArticleFilter from 'App/Models/Filters/ArticleFilter'
 import User from './User'
 import Tag from './Tag'
 import Media from './Media'
+import Seo from './Seo'
 
 export default class Article extends compose(BaseModel, Filterable) {
   public static selfAssignPrimaryKey = true
@@ -41,13 +42,16 @@ export default class Article extends compose(BaseModel, Filterable) {
   public body: JSON
 
   @column()
+  public visible: boolean
+
+  @column()
   public userId: string
 
   @column()
   public imageId: string | null
 
   @column()
-  public visible: boolean
+  public seoId: string | null
 
   @column.dateTime()
   public publishedOn: DateTime
@@ -58,15 +62,35 @@ export default class Article extends compose(BaseModel, Filterable) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+ // Computed
+
+  @computed()
+  public get blocks() {
+    if (this.body) { // string for sqlite db
+      return types.isString(this.body) ? JSON.parse(this.body).blocks : this.body['blocks']
+    }
+    return {}
+  }
+
+  public isVisibled() {
+    if (!this.visible || (this.publishedOn && this.publishedOn.toMillis() > DateTime.utc().toMillis())) {
+      return false
+    }
+    return true
+  }
+
   // Relationships
 
-  @hasOne(() => User)
-  public user: HasOne<typeof User>
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 
   @belongsTo(() => Media, {
     foreignKey: 'imageId',
   })
   public image: BelongsTo<typeof Media>
+
+  @belongsTo(() => Seo)
+  public seo: BelongsTo<typeof Seo>
 
   @manyToMany(() => Tag, {
     pivotTimestamps: true,

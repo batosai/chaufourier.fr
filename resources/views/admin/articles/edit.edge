@@ -15,6 +15,20 @@
 
     @admin.section()
       @admin.section.content({ title: 'Edit article', description: 'Edit this article.', href: route('admin.articles.index') })
+
+        @slot('side')~
+          <br />
+          @if(article.visible)~
+            @jrmc.button.link({ href: route('front.articles.show', article), target: '_blanck', class: 'btn btn-neutral btn-sm normal-case' })
+              View
+            @end
+          @else~
+            @jrmc.button.link({ href: route('front.articles.preview', article), target: '_blanck', class: 'btn btn-neutral btn-sm normal-case' })
+              Preview
+            @end
+          @end~
+        @end~
+
         @jrmc.form({ id: 'edit_article', class: 'md:col-span-2', action: route('admin.articles.update', article, {
           qs: {
             _method: 'PUT'
