@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { v4 as uuid } from 'uuid'
 import { BaseModel, column, beforeCreate, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import Media from './Media'
+import Article from './Article'
 
 export default class Seo extends BaseModel {
   public static table = 'seo'
@@ -27,6 +28,9 @@ export default class Seo extends BaseModel {
   @column()
   public imageId: string | null
 
+  @column()
+  public articleId: string | null
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -39,6 +43,12 @@ export default class Seo extends BaseModel {
     foreignKey: 'imageId',
   })
   public image: BelongsTo<typeof Media>
+
+
+  @belongsTo(() => Article, {
+    foreignKey: 'articleId',
+  })
+  public article: BelongsTo<typeof Article>
 
   // Hooks
 

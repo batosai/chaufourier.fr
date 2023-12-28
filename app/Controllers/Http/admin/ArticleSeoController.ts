@@ -18,10 +18,7 @@ export default class ArticleSeoController {
 
     const payload = await request.validate(ArticleSeoValidator)
 
-    const seo = new Seo()
-    await seo.fill(payload)
-    await seo.save()
-    await article.related('seo').associate(seo)
+    const seo = await article.related('seo').create(payload)
 
     Event.emit('audit:new', {
       label: `Create seo ${seo!.title}`,

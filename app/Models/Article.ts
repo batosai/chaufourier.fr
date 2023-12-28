@@ -9,7 +9,9 @@ import {
   BelongsTo,
   manyToMany,
   ManyToMany,
-  scope
+  scope,
+  hasOne,
+  HasOne
 } from '@ioc:Adonis/Lucid/Orm'
 import { types } from '@ioc:Adonis/Core/Helpers'
 import { compose } from '@ioc:Adonis/Core/Helpers'
@@ -89,8 +91,8 @@ export default class Article extends compose(BaseModel, Filterable) {
   })
   public image: BelongsTo<typeof Media>
 
-  @belongsTo(() => Seo)
-  public seo: BelongsTo<typeof Seo>
+  @hasOne(() => Seo)
+  public seo: HasOne<typeof Seo>
 
   @manyToMany(() => Tag, {
     pivotTimestamps: true,
