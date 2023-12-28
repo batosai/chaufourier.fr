@@ -46,13 +46,15 @@
       @end
 
       @can('ArticlePolicy.seo', article)
-        @admin.section.content({ title: 'SEO', description: 'Edit SEO informations'})
+        @admin.section.content({ title: 'SEO', description: 'Edit SEO informations' })
           @admin.section.action()
+            <span data-section="btn-seo">
             @if(article.seo)~
-              @!jrmc.button.link({ text: 'Edit', href: route('admin.articles.seo.edit', { id: article.seo.id, article_id: article.id }), class: 'btn-warning normal-case', 'up-layer':'new', 'up-mode':'drawer' })
+              @!jrmc.button.link({ text: 'Edit', href: route('admin.articles.seo.edit', { id: article.seo.id, article_id: article.id }), class: 'btn-warning normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-history': 'false' })
             @else~
-              @!jrmc.button.link({ text: 'Edit', href: route('admin.articles.seo.create', { article_id: article.id }), class: 'btn-warning normal-case', 'up-layer':'new', 'up-mode':'drawer' })
+              @!jrmc.button.link({ text: 'Edit', href: route('admin.articles.seo.create', { article_id: article.id }), class: 'btn-warning normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-history': 'false', 'up-on-dismissed': 'up.reload("[data-section=btn-seo]")' })
             @end~
+            </span>
           @end
         @end
       @end
