@@ -14,16 +14,16 @@ export default class Seo extends BaseModel {
   public id: string
 
   @column()
-  public title: string
+  public title: string | null
 
   @column()
-  public description: string
+  public description: string | null
 
   @column()
-  public robots: string
+  public robots: string | null
 
   @column()
-  public canonical: string
+  public canonical: string | null
 
   @column()
   public imageId: string | null

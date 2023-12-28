@@ -1,5 +1,14 @@
 @layout('layouts/front')
 
+@section('meta')
+  @!front.seo({
+    seo: {
+      title : 'Blog de Jérémy Chaufourier',
+      description: 'Retrouver des articles autour de sujets qui me passionnent dans le monde du développement'
+    }
+  })
+@end
+
 @section('body')
   <div>
     <div class="container mx-auto">

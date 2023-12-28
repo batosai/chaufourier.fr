@@ -1,0 +1,19 @@
+@if($props.seo)~
+  @if($props.seo.title)~
+  <title>{{ $props.seo.title }}</title>
+  @end~
+  @if($props.seo.description)~
+  <meta name="description" content="{{ $props.seo.description }}" />
+  @end~
+  @if($props.seo.robots)~
+  <meta name="robots" content="{{ $props.seo.robots }}" />
+  @end~
+  @if($props.seo.canonical)~
+  <link rel="canonical" href="{{ safe($props.seo.canonical) }}" />
+  @end~
+  @if($props.seo.image)~
+  <meta property="og:image" content="{{ env('APP_URL') }}{{ await $props.seo.image.file.getUrl('thumbnail') }}" />
+  @end~
+@else~
+  <title>{{ $props.default.title }}</title>
+@end~

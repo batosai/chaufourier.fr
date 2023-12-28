@@ -1,5 +1,14 @@
 @layout('layouts/front')
 
+@section('meta')
+  @!front.seo({
+    seo: article.seo,
+    default: {
+      title : article.title
+    }
+  })
+@end
+
 @section('script')
   @entryPointStyles('highlight')
   @entryPointScripts('highlight')

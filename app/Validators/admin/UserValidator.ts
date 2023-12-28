@@ -29,7 +29,7 @@ export default class UserValidator {
       ]),
       email: schema.string({}, emailUniqueRules(user)),
       password: schema.string.optional(passwordRules()),
-      avatar: schema.file.optional({
+      avatar: schema.file.nullableAndOptional({
         extnames: ['jpg', 'png', 'jpeg', 'heic'],
         size: MAX_Size,
       }),

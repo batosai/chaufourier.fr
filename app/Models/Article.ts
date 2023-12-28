@@ -56,7 +56,7 @@ export default class Article extends compose(BaseModel, Filterable) {
   public seoId: string | null
 
   @column.dateTime()
-  public publishedOn: DateTime
+  public publishedOn: DateTime | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

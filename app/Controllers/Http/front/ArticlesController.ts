@@ -18,6 +18,9 @@ export default class ArticlesController {
   public async show({ view, params, response }: HttpContextContract) {
     const article = await Article.findByOrFail('slug', params['slug'])
     await article.load('tags')
+    await article.load('seo', (s) => {
+      s.preload('image')
+    })
 
     if (!article.isVisibled()) {
       response.redirect('/blog')
@@ -29,6 +32,7 @@ export default class ArticlesController {
   public async preview({ view, params, bouncer }: HttpContextContract) {
     const article = await Article.findByOrFail('slug', params['slug'])
     await article.load('tags')
+    await article.load('seo')
 
     await bouncer.with('ArticlePolicy').authorize('preview', article)
 

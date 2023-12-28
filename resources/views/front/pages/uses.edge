@@ -1,5 +1,14 @@
 @layout('layouts/front')
 
+@section('meta')
+  @!front.seo({
+    seo: {
+      title : 'Technologies utilisés par Jérémy Chaufourier',
+      description: 'Retrouver la liste des techno que j\'utilise ou que j\'ai déjà utilisé'
+    }
+  })
+@end
+
 @section('body')
   <div>
     <div class="container mx-auto">

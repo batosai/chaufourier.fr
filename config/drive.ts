@@ -42,7 +42,7 @@ export default driveConfig({
     */
     local: {
       driver: 'local',
-      visibility: 'private',
+      visibility: 'public',
 
       /*
       |--------------------------------------------------------------------------

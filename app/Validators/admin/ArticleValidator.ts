@@ -8,9 +8,9 @@ export default class ArticleValidator {
     const fields = {
       title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
       slug: schema.string.optional([rules.escape(), rules.trim()]),
-      body: schema.string.optional(),
+      body: schema.string.nullableAndOptional(),
       tags: schema.array
-        .optional()
+        .nullableAndOptional()
         .members(schema.string([rules.exists({ table: 'tags', column: 'id' })])),
       imageId: schema.string.optional([
         rules.trim(),
@@ -20,7 +20,7 @@ export default class ArticleValidator {
         }),
       ]),
       visible: schema.boolean.nullableAndOptional(),
-      publishedOn: schema.date.optional(
+      publishedOn: schema.date.nullableAndOptional(
         { format: 'sql' }
       ),
     }

@@ -62,7 +62,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>{{ title }}</title>
+  @!section('meta')
   {{ csrfMeta() }}
   @entryPointStyles('app')
   @entryPointScripts('app')

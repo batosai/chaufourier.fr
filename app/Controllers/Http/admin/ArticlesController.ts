@@ -36,7 +36,6 @@ export default class ArticlesController {
 
     const article = new Article()
     await article.fill(payload)
-    article.visible = payload.visible === undefined ? false : true
     article.userId = auth.user!.id
     await article.save()
 

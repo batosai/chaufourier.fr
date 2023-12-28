@@ -6,11 +6,11 @@ export const MIN_LENGTH = 2
 export default class ArticleSeoValidator {
   constructor(protected ctx: HttpContextContract) {
     const fields = {
-      title: schema.string.optional([rules.escape(), rules.trim()]),
-      description: schema.string.optional([rules.escape(), rules.trim()]),
-      robots: schema.string.optional([rules.escape(), rules.trim()]),
-      canonical: schema.string.optional([rules.escape(), rules.trim()]),
-      imageId: schema.string.optional([
+      title: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
+      description: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
+      robots: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
+      canonical: schema.string.nullableAndOptional([rules.url(), rules.trim()]),
+      imageId: schema.string.nullableAndOptional([
         rules.trim(),
         rules.exists({
           table: 'media',

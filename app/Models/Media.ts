@@ -24,13 +24,13 @@ export default class Media extends compose(BaseModel, Attachmentable, Filterable
   public type: string
 
   @column()
-  public title: string
+  public title: string | null
 
   @column()
-  public description: string
+  public description: string | null
 
   @column()
-  public alt: string
+  public alt: string | null
 
   @column()
   public userId: string

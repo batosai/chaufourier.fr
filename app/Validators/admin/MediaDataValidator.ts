@@ -7,8 +7,8 @@ export default class MediaDataValidator {
   constructor(protected ctx: HttpContextContract) {
     const fields = {
       title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
-      description: schema.string.optional([rules.escape(), rules.trim()]),
-      alt: schema.string.optional([rules.escape(), rules.trim()]),
+      description: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
+      alt: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
     }
 
     this.schema = schema.create(fields)
