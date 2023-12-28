@@ -4,6 +4,7 @@ import { BaseModel, column, beforeCreate, belongsTo, BelongsTo } from '@ioc:Adon
 import Media from './Media'
 
 export default class Seo extends BaseModel {
+  public static table = 'seo'
   public static selfAssignPrimaryKey = true
 
   // Columns
@@ -13,6 +14,9 @@ export default class Seo extends BaseModel {
 
   @column()
   public title: string
+
+  @column()
+  public description: string
 
   @column()
   public robots: string

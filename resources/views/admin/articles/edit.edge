@@ -36,10 +36,23 @@
         }),
         enctype: 'multipart/form-data',
         error: false,
-        object: article  })
+        object: article
+      })
           @include('admin/articles/partials/form')
           @admin.section.action()
             @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_article', class: 'btn-primary normal-case' })
+          @end
+        @end
+      @end
+
+      @can('ArticlePolicy.seo', article)
+        @admin.section.content({ title: 'SEO', description: 'Edit SEO informations'})
+          @admin.section.action()
+            @if(article.seo)~
+              @!jrmc.button.link({ text: 'Edit', href: route('admin.articles.seo.edit', { id: article.seo.id, article_id: article.id }), class: 'btn-warning normal-case', 'up-layer':'new', 'up-mode':'drawer' })
+            @else~
+              @!jrmc.button.link({ text: 'Edit', href: route('admin.articles.seo.create', { article_id: article.id }), class: 'btn-warning normal-case', 'up-layer':'new', 'up-mode':'drawer' })
+            @end~
           @end
         @end
       @end

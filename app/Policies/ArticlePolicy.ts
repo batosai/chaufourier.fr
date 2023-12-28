@@ -19,6 +19,10 @@ export default class ArticlePolicy extends BasePolicy {
     return currentUser.isAdmin || currentUser.id === article.userId
   }
 
+  public async seo(currentUser: User, article: Article) {
+    return currentUser.isAdmin || currentUser.id === article.userId
+  }
+
   public async preview(currentUser: User, article: Article) {
     return currentUser.isAdmin || currentUser.id === article.userId
   }

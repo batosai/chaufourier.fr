@@ -29,6 +29,8 @@ success:
     create: Felicitations, the article is now created.
     edit: Felicitations, the article is now modify.
     delete: Felicitations, the article is now deleted.
+    seo:
+      edit: Felicitations, the seo is now modify.
   media:
     create: Felicitations, the media is now created.
     edit: Felicitations, the media is now modify.

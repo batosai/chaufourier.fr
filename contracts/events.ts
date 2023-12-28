@@ -33,7 +33,7 @@ declare module '@ioc:Adonis/Core/Event' {
     username: string
     userId: string | number
     action: 'CREATE' | 'DELETE' | 'UPDATE' | 'IMPERSONATE'
-    target?: 'ARTICLE' | 'USER' | 'TAG' | 'MEDIA'
+    target?: 'ARTICLE' | 'USER' | 'TAG' | 'MEDIA' | 'SEO'
     targetId?: string | number
     payload?: JSON | ModelObject
   }

@@ -1,0 +1,24 @@
+@jrmc.form.control({ name: 'title' })
+  @!jrmc.form.input()
+@end
+
+@jrmc.form.control({ name: 'description'})
+  @!jrmc.form.textarea()
+@end
+
+@jrmc.form.control({ name: 'imageId' })
+  @!admin.form.mediapicker({
+    hint: 'jpg, png or webp. 1O MB max.',
+    types: ['image/jpeg', 'image/png'],
+    entity: 'seo',
+    media: seo && seo.image ? seo.image : null
+  })
+@end
+
+@jrmc.form.control({ name: 'robots' })
+  @!jrmc.form.input()
+@end
+
+@jrmc.form.control({ name: 'canonical' })
+  @!jrmc.form.input()
+@end

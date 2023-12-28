@@ -1,0 +1,28 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.articles'), link: route('admin.articles.index') },
+        { label: t('admin.action.create') }
+      ]
+    })
+
+    @admin.section()
+      @admin.section.content({ title: 'SEO', description: 'Edit SEO informations', href: route('admin.articles.edit', article) })
+        @jrmc.form({ id: 'create_seo', action: route('admin.articles.seo.store', { article_id: article.id }), error: false })
+          @include('admin/articles/seo/partials/form')
+          @admin.section.action()
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_seo', class: 'btn-primary normal-case' })
+          @end
+        @end
+      @end
+    @end
+
+  @end
+@end

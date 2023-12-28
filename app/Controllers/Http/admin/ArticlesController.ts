@@ -68,6 +68,7 @@ export default class ArticlesController {
     const article = await Article.findOrFail(request.param('id'))
     await article.load('tags')
     await article.load('image')
+    await article.load('seo')
     await bouncer.with('ArticlePolicy').authorize('update', article)
 
     return view.render('admin/articles/edit', {
