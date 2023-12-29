@@ -16,6 +16,7 @@
 import Logger from '@ioc:Adonis/Core/Logger'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import Redirect from 'App/Models/Redirect'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
   protected statusPages = {
@@ -29,6 +30,12 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   public async handle(error: any, ctx: HttpContextContract) {
+    const redirect = await Redirect.findBy('source', ctx.request.url())
+
+    if (redirect) {
+      return ctx.response.redirect().status(redirect.code).toPath(redirect.destination)
+    }
+
     if (error.code === 'E_VALIDATION_FAILURE') {
       ctx.up.setTarget(ctx.up.getFailTarget())
     }
