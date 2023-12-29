@@ -1,9 +1,9 @@
 import { BaseModelFilter } from '@ioc:Adonis/Addons/LucidFilter'
 import { ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
-import User from 'App/Models/User'
+import Tag from 'App/Models/Tag'
 
 export default class TagFilter extends BaseModelFilter {
-  public $query: ModelQueryBuilderContract<typeof User, User>
+  public $query: ModelQueryBuilderContract<typeof Tag, Tag>
 
   name(value: string) {
     this.$query.where((builder) => {

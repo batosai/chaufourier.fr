@@ -32,7 +32,19 @@ export default class TagValidator {
               }
         ),
       ]),
-      slug: schema.string.optional([rules.escape(), rules.trim()]),
+      slug: schema.string.optional([
+        rules.escape(),
+        rules.trim(),
+        rules.unique({
+          table: 'tags',
+          column: 'slug',
+          whereNot: {
+            id: ctx.params.id,
+          },
+          caseInsensitive: true,
+        }
+      ),
+      ]),
     }
 
     this.schema = schema.create(fields)
