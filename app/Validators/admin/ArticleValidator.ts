@@ -7,7 +7,19 @@ export default class ArticleValidator {
   constructor(protected ctx: HttpContextContract) {
     const fields = {
       title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
-      slug: schema.string.optional([rules.escape(), rules.trim()]),
+      slug: schema.string.optional([
+        rules.escape(),
+        rules.trim(),
+        rules.unique({
+            table: 'articles',
+            column: 'slug',
+            whereNot: {
+              id: ctx.params.id,
+            },
+            caseInsensitive: true,
+          }
+        ),
+      ]),
       body: schema.string.nullableAndOptional(),
       tags: schema.array
         .nullableAndOptional()

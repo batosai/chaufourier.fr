@@ -4,6 +4,8 @@ import Event from '@ioc:Adonis/Core/Event'
 import Article from 'App/Models/Article'
 import ArticleSessionFilterService from 'App/Services/ArticleSessionFilterService'
 import ArticleValidator from 'App/Validators/admin/ArticleValidator'
+import Redirect from 'App/Models/Redirect'
+import RedirectService from 'App/Services/RedirectService'
 
 export default class ArticlesController {
   public async index(ctx: HttpContextContract) {
@@ -55,6 +57,12 @@ export default class ArticlesController {
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.article.create'))
+
+    /* Remove redirection */
+    await RedirectService.handle({
+      source: `/blog/${article.slug}`,
+      destination: `/blog/${article.slug}`
+    })
 
     if (up.getMode() === 'drawer') {
       up.setDismissLayer('{}')
@@ -108,6 +116,23 @@ export default class ArticlesController {
       payload: dirty,
     })
 
+    if (dirty.slug) {
+      const redirect = await RedirectService.handle({
+        source: `/blog/${original.slug}`,
+        destination: `/blog/${dirty.slug}`
+      })
+
+      Event.emit('audit:new', {
+        label: `Add redirect ${original.slug} in ${dirty.slug}`,
+        username: auth.user!.fullname,
+        userId: auth.user!.id,
+        action: 'CREATE',
+        target: 'REDIRECT',
+        targetId: redirect.id,
+        payload: redirect.serialize(),
+      })
+    }
+
     session.flash('success.message', i18n.formatMessage('form.success.article.edit'))
 
     if (up.getMode() === 'drawer') {
@@ -144,6 +169,21 @@ export default class ArticlesController {
     })
 
     session.flash('success.message', i18n.formatMessage('form.success.article.delete'))
+
+    const redirect = await RedirectService.handle({
+      source: `/blog/${payload.slug}`,
+      destination: `/blog/`
+    })
+
+    Event.emit('audit:new', {
+      label: `Add redirect ${payload.slug} in /`,
+      username: auth.user!.fullname,
+      userId: auth.user!.id,
+      action: 'CREATE',
+      target: 'REDIRECT',
+      targetId: redirect.id,
+      payload: redirect.serialize(),
+    })
 
     if (up.getMode() === 'drawer') {
       up.setDismissLayer('{}')
