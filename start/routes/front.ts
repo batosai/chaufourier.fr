@@ -5,9 +5,10 @@ Route.group(() => {
 
   Route.get('blog', 'front/ArticlesController.index').as('articles.index')
   Route.get('blog/:slug', 'front/ArticlesController.show').as('articles.show')
-  Route.get('preview/:slug', 'front/ArticlesController.preview').as('articles.preview').middleware('auth')
+  Route.get('preview/:slug', 'front/ArticlesController.preview')
+    .as('articles.preview')
+    .middleware('auth')
 
   Route.get('uses', 'front/PagesController.uses').as('pages.uses')
   // Route.get('contact', 'front/PagesController.contact').as('pages.contact')
-})
-  .as('front')
+}).as('front')

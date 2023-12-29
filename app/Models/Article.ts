@@ -11,7 +11,7 @@ import {
   ManyToMany,
   scope,
   hasOne,
-  HasOne
+  HasOne,
 } from '@ioc:Adonis/Lucid/Orm'
 import { types } from '@ioc:Adonis/Core/Helpers'
 import { compose } from '@ioc:Adonis/Core/Helpers'
@@ -64,18 +64,22 @@ export default class Article extends compose(BaseModel, Filterable) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
- // Computed
+  // Computed
 
   @computed()
   public get blocks() {
-    if (this.body) { // string for sqlite db
+    if (this.body) {
+      // string for sqlite db
       return types.isString(this.body) ? JSON.parse(this.body).blocks : this.body['blocks']
     }
     return {}
   }
 
   public isVisibled() {
-    if (!this.visible || (this.publishedOn && this.publishedOn.toMillis() > DateTime.utc().toMillis())) {
+    if (
+      !this.visible ||
+      (this.publishedOn && this.publishedOn.toMillis() > DateTime.utc().toMillis())
+    ) {
       return false
     }
     return true
@@ -99,9 +103,9 @@ export default class Article extends compose(BaseModel, Filterable) {
   })
   public tags: ManyToMany<typeof Tag>
 
-   // Scope
+  // Scope
 
-   public static visibleTo = scope((query, user: User) => {
+  public static visibleTo = scope((query, user: User) => {
     if (user.isAdmin) {
       return
     }

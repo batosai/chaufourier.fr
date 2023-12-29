@@ -11,8 +11,8 @@ export default class LinksController {
     const items = articles.map((article) => article.serialize())
 
     return {
-      'success': true,
-      items
+      success: true,
+      items,
     }
   }
 }

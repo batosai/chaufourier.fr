@@ -8,9 +8,9 @@ export default class ArticlesController {
     const limit = 8
 
     const articles = await Article.query()
-      .withScopes(scopes => scopes.published())
+      .withScopes((scopes) => scopes.published())
       .paginate(page, limit)
-      articles.baseUrl(Route.builder().make('front.articles.index'))
+    articles.baseUrl(Route.builder().make('front.articles.index'))
 
     return view.render('front/articles/index', { articles })
   }

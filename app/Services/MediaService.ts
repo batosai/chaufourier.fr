@@ -6,5 +6,4 @@ export default class MediaService {
   public async get(id: string): Promise<any> {
     return await Media.find(id)
   }
-
 }

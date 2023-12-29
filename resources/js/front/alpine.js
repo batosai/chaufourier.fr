@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import Clipboard from "@ryangjchandler/alpine-clipboard"
+import Clipboard from '@ryangjchandler/alpine-clipboard'
 
 function global() {
   return {
@@ -7,31 +7,30 @@ function global() {
     isDarkMode: false,
     themeInit() {
       if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
-        localStorage.theme = "dark";
-        document.documentElement.classList.add("dark");
-        this.isDarkMode = true;
+        localStorage.theme = 'dark'
+        document.documentElement.classList.add('dark')
+        this.isDarkMode = true
       } else {
-        localStorage.theme = "light";
-        document.documentElement.classList.remove("dark");
-        this.isDarkMode = false;
+        localStorage.theme = 'light'
+        document.documentElement.classList.remove('dark')
+        this.isDarkMode = false
       }
     },
     themeSwitch() {
-      if (localStorage.theme === "dark") {
-        localStorage.theme = "light";
-        document.documentElement.classList.remove("dark");
-        this.isDarkMode = false;
+      if (localStorage.theme === 'dark') {
+        localStorage.theme = 'light'
+        document.documentElement.classList.remove('dark')
+        this.isDarkMode = false
       } else {
-        localStorage.theme = "dark";
-        document.documentElement.classList.add("dark");
-        this.isDarkMode = true;
+        localStorage.theme = 'dark'
+        document.documentElement.classList.add('dark')
+        this.isDarkMode = true
       }
     },
-  };
+  }
 }
 
 Alpine.data('global', global)

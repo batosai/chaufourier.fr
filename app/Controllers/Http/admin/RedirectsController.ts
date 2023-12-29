@@ -13,7 +13,9 @@ export default class RedirectsController {
     const limit = 10
     const { page = 1, ...payload } = await RedirectSessionFilterService.handle(ctx)
 
-    const redirects = await Redirect.filter(payload).orderBy('createdAt', 'desc').paginate(page, limit)
+    const redirects = await Redirect.filter(payload)
+      .orderBy('createdAt', 'desc')
+      .paginate(page, limit)
     redirects.baseUrl(Route.builder().make('admin.redirects.index'))
     redirects.queryString(payload)
 

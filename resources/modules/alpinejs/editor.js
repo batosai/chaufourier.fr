@@ -112,7 +112,7 @@ export default () => ({
             availableTargets: ['_blank', '_self'],
             // availableRels: ['author', 'noreferrer'],
             validate: true,
-          }
+          },
         },
       },
     })

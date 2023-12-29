@@ -5,7 +5,6 @@ import ArticleSeoValidator from 'App/Validators/admin/ArticleSeoValidator'
 import Seo from 'App/Models/Seo'
 
 export default class ArticleSeoController {
-
   public async create({ request, view, bouncer }: HttpContextContract) {
     const article = await Article.findOrFail(request.param('article_id'))
     await bouncer.with('ArticlePolicy').authorize('seo', article)
@@ -90,5 +89,4 @@ export default class ArticleSeoController {
       response.redirect().toRoute('admin.articles.edit', article)
     }
   }
-
 }

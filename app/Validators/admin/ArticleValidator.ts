@@ -11,14 +11,13 @@ export default class ArticleValidator {
         rules.escape(),
         rules.trim(),
         rules.unique({
-            table: 'articles',
-            column: 'slug',
-            whereNot: {
-              id: ctx.params.id,
-            },
-            caseInsensitive: true,
-          }
-        ),
+          table: 'articles',
+          column: 'slug',
+          whereNot: {
+            id: ctx.params.id,
+          },
+          caseInsensitive: true,
+        }),
       ]),
       body: schema.string.nullableAndOptional(),
       tags: schema.array
@@ -32,9 +31,7 @@ export default class ArticleValidator {
         }),
       ]),
       visible: schema.boolean.nullableAndOptional(),
-      publishedOn: schema.date.nullableAndOptional(
-        { format: 'sql' }
-      ),
+      publishedOn: schema.date.nullableAndOptional({ format: 'sql' }),
     }
 
     this.schema = schema.create(fields)

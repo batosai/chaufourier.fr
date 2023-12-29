@@ -60,7 +60,7 @@ export default class ArticlesController {
     /* Remove redirection */
     await RedirectService.handle({
       source: `/blog/${article.slug}`,
-      destination: `/blog/${article.slug}`
+      destination: `/blog/${article.slug}`,
     })
 
     if (up.getMode() === 'drawer') {
@@ -118,7 +118,7 @@ export default class ArticlesController {
     if (dirty.slug) {
       const redirect = await RedirectService.handle({
         source: `/blog/${original.slug}`,
-        destination: `/blog/${dirty.slug}`
+        destination: `/blog/${dirty.slug}`,
       })
 
       Event.emit('audit:new', {
@@ -171,7 +171,7 @@ export default class ArticlesController {
 
     const redirect = await RedirectService.handle({
       source: `/blog/${payload.slug}`,
-      destination: `/blog/`
+      destination: `/blog/`,
     })
 
     Event.emit('audit:new', {

@@ -43,17 +43,16 @@ up-drawer * {
   @apply mt-8 mb-0 inline-block border border-blue-dark px-5 py-2 font-body font-semibold text-blue-dark no-underline transition-colors hover:bg-primary hover:text-white sm:mb-4;
 }
 
-
 .inline-code {
   @apply bg-red-900;
 }
 
 .inline-code::before {
-  content: ""
+  content: '';
 }
 
 .inline-code::after {
-  content: ""
+  content: '';
 }
 
 /* Pagination */
@@ -69,6 +68,5 @@ up-drawer * {
 .pagination .btn.btn-active {
   @apply border-secondary text-secondary;
 }
-
 
 @config "../../tailwind.front.config.js";

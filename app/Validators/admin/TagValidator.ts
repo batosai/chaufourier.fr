@@ -42,8 +42,7 @@ export default class TagValidator {
             id: ctx.params.id,
           },
           caseInsensitive: true,
-        }
-      ),
+        }),
       ]),
     }
 

@@ -44,7 +44,6 @@ export default class Seo extends BaseModel {
   })
   public image: BelongsTo<typeof Media>
 
-
   @belongsTo(() => Article, {
     foreignKey: 'articleId',
   })
