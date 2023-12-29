@@ -1,0 +1,17 @@
+@jrmc.form.control({ name: 'code', required: true })
+  @!jrmc.form.select({ options: [
+      { text: '301', value: 301 },
+      { text: '302', value: 302 },
+      { text: '404', value: 404 },
+    ],
+    class: 'sm:mr-4',
+  })
+@end
+
+@jrmc.form.control({ name: 'source', required: true })
+  @!jrmc.form.input()
+@end
+
+@jrmc.form.control({ name: 'destination', required: true })
+  @!jrmc.form.input()
+@end

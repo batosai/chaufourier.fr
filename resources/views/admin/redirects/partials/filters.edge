@@ -1,0 +1,22 @@
+@admin.filter({ name: 'redirects' })
+  @jrmc.form.control({ name: 'code', class: '!m-0 w-full', label: false })
+    @!jrmc.form.select({ options: [
+        { text: '301', value: 301 },
+        { text: '302', value: 302 },
+        { text: '404', value: 404 },
+      ],
+      class: 'sm:mr-4',
+      'up-autosubmit': ''
+    })
+  @end
+
+  <div class="join my-2 sm:my-0">
+    @jrmc.form.control({ name: 'search', class: '!m-0 w-full sm:w-auto', label: false })
+      @!jrmc.form.input({
+        placeholder: t('filters.redirects.search'),
+        class: 'join-item',
+      })
+    @end
+    @!jrmc.button.input({ text: 'Search', type: 'submit', class: 'btn-neutral join-item' })
+  </div>
+@end

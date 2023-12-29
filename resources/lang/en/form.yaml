@@ -35,5 +35,9 @@ success:
     create: Felicitations, the media is now created.
     edit: Felicitations, the media is now modify.
     delete: Felicitations, the media is now deleted.
+  redirect:
+    create: Felicitations, the redirect is now created.
+    edit: Felicitations, the redirect is now modify.
+    delete: Felicitations, the redirect is now deleted.
   cache:
     clear: Felicitations, the cache is clear.

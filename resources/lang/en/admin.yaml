@@ -8,6 +8,7 @@ sidebar:
   settings: Settings
   health: Health
   journals: Journals
+  redirects: Redirects
   preference: Preference
   system: System
 table:

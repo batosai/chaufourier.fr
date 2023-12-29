@@ -1,0 +1,28 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.redirects'), link: route('admin.redirects.index') },
+        { label: t('admin.action.create') }
+      ]
+    })
+
+    @admin.section()
+      @admin.section.content({ title: 'Create Tag', description: 'Create your redirect.', href: route('admin.redirects.index') })
+        @jrmc.form({ id: 'create_redirect', action: route('admin.redirects.store'), error: false })
+          @include('admin/redirects/partials/form')
+          @admin.section.action()
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_redirect', class: 'btn-primary normal-case' })
+          @end
+        @end
+      @end
+    @end
+
+  @end
+@end

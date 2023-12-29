@@ -1,0 +1,43 @@
+@layout('layouts/admin')
+
+@set('title', t('seo.admin.dashboard.title'))
+
+@section('body')
+  @admin.content()
+
+    @!admin.breadcrumb({
+      items: [
+        { label: t('admin.sidebar.dashboard'), link: route('admin.dashboard') },
+        { label: t('admin.sidebar.redirects'), link: route('admin.redirects.index') },
+        { label: t('admin.action.edit') }
+      ]
+    })
+
+    @admin.section()
+      @admin.section.content({ title: 'Edit Tag', description: 'Update your redirect.', href: route('admin.redirects.index') })
+        @jrmc.form({ id: 'edit_redirect', action: route('admin.redirects.update', redirect, {
+          qs: {
+            _method: 'PUT'
+          }
+        }),
+        enctype: 'multipart/form-data',
+        error: false,
+        object: redirect  })
+          @include('admin/redirects/partials/form')
+          @admin.section.action()
+            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_redirect', class: 'btn-primary normal-case' })
+          @end
+        @end
+      @end
+
+      @can('TagPolicy.delete', redirect)~
+        @admin.section.content({ title: 'Delete Tag', description: 'Its deletion will result in its withdrawal from all entities using it.'})
+          @admin.section.action()
+            @!jrmc.button.link({ text: 'Yes, delete this redirect', href: route('admin.redirects.destroy', redirect, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+          @end
+        @end
+      @end~
+    @end
+
+  @end
+@end

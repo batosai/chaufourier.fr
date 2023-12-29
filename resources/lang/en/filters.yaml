@@ -52,3 +52,11 @@ media:
   title+desc: Descending name
   createdAt+asc: Ascending date
   createdAt+desc: Descending date
+
+redirects:
+  page: Page
+  search: Search
+  code: Code
+  301: '301'
+  302: '302'
+  404: '404'

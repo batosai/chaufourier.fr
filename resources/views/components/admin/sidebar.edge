@@ -108,6 +108,17 @@
       })
     </li>
     @end
+    @can('RedirectPolicy.viewList')
+    <li>
+      @!admin.sidebar.link({
+        class: request.matchesRoute(['admin.redirects.index', 'admin.redirects.create', 'admin.redirects.edit']) ? 'active' : null,
+        text: t('admin.sidebar.redirects'),
+        icon: 'akar-icons:arrow-right-left',
+        href: route('admin.redirects.index'),
+        'up-alias': route('admin.redirects.index') + '*'
+      })
+    </li>
+    @end
     @can('AuditPolicy.viewList')
     <li>
       @!admin.sidebar.link({

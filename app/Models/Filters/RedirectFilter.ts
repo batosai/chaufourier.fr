@@ -17,8 +17,15 @@ export default class RedirectFilter extends BaseModelFilter {
     })
   }
 
-  order(value: string) {
-    const order = value.split('+')
-    this.$query.orderBy(`${order[0]}`, order[1] === 'asc' ? 'asc' : 'desc')
+  search(value: string) {
+    this.$query.where((builder) => {
+      builder.whereLike('source', `%${value}%`).orWhereLike('destination', `%${value}%`)
+    })
+  }
+
+  code(value: number) {
+    this.$query.where((builder) => {
+      builder.where('code', value)
+    })
   }
 }
