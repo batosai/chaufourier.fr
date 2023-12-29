@@ -4,7 +4,6 @@ import Event from '@ioc:Adonis/Core/Event'
 import Article from 'App/Models/Article'
 import ArticleSessionFilterService from 'App/Services/ArticleSessionFilterService'
 import ArticleValidator from 'App/Validators/admin/ArticleValidator'
-import Redirect from 'App/Models/Redirect'
 import RedirectService from 'App/Services/RedirectService'
 
 export default class ArticlesController {
