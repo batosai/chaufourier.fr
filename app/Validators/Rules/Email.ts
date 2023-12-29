@@ -11,10 +11,12 @@ export function emailUniqueRules(user) {
             whereNot: {
               id: user.id,
             },
+            caseInsensitive: true,
           }
         : {
             table: 'users',
             column: 'email',
+            caseInsensitive: true,
           }
     ),
   ]
