@@ -2,7 +2,6 @@ import EditorJS from '@editorjs/editorjs'
 import CodeTool from '@editorjs/code'
 import Header from '@editorjs/header'
 import Quote from '@editorjs/quote'
-import Warning from '@editorjs/warning'
 import Delimiter from '@editorjs/delimiter'
 import NestedList from '@editorjs/nested-list'
 import Embed from '@editorjs/embed'
@@ -15,6 +14,7 @@ import Hyperlink from 'editorjs-hyperlink'
 import DragDrop from 'editorjs-drag-drop'
 import Undo from 'editorjs-undo'
 
+import Alert from '../editorjs/alert'
 import ImagePicker from '../editorjs/imagePicker'
 
 // editor.js
@@ -71,14 +71,9 @@ export default () => ({
             captionPlaceholder: "Quote's author",
           },
         },
-        warning: {
-          class: Warning,
-          inlineToolbar: true,
+        alert: {
+          class: Alert,
           shortcut: 'CMD+SHIFT+W',
-          config: {
-            titlePlaceholder: 'Title',
-            messagePlaceholder: 'Message',
-          },
         },
         list: {
           class: NestedList,

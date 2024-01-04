@@ -30,8 +30,25 @@
 
 /* form */
 
-.cdx-input {
+.cdx-quote__text.cdx-input, .cdx-quote__caption.cdx-input {
   @apply !input;
+  @apply !h-auto;
+}
+
+.ce-code__textarea.cdx-input {
+  @apply !textarea;
+  min-height: 200px !important;
+}
+
+.ce-block__content .select {
+  @apply !bg-base-100;
+  @apply !border-base-100;
+}
+
+.ce-block__content .textarea {
+  @apply !bg-base-100;
+  @apply !border-base-100;
+  min-height: 200px;
 }
 
 /* table */

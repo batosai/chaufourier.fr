@@ -57,7 +57,6 @@
     "@editorjs/quote": "^2.6.0",
     "@editorjs/table": "^2.3.0",
     "@editorjs/underline": "^1.1.0",
-    "@editorjs/warning": "^1.4.0",
     "@japa/browser-client": "^1.2.0",
     "@japa/preset-adonis": "^1.2.0",
     "@japa/runner": "^2.5.1",
