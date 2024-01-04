@@ -17,13 +17,17 @@ export default class ImagePicker {
     const target = `media${Date.now()}`
     const element = this.data.id
       ? up.element.createFromHTML(
-          `<div class="my-2">${mediapickerHtmlEdit
+          `<div class="my-2">${mediapickerHtmlEdit({
+            target,
+            img: this.data.thumbnail,
+            id: this.data.id
+          })
             .replaceAll('{target}', target)
             .replace('{img}', this.data.thumbnail)
             .replace('{id}', this.data.id)}</div>`
         )
       : up.element.createFromHTML(
-          `<div class="my-2">${mediapickerHtmlCreate.replaceAll('{target}', target)}</div>`
+          `<div class="my-2">${mediapickerHtmlCreate({ target })}</div>`
         )
 
     return element
