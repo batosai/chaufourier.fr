@@ -39,7 +39,9 @@ module.exports = {
       'grey-lighter': '#eceef1',
       'grey-light': '#ccd7e0',
       'grey': '#adb6c4',
-      'red-900': 'rgb(127 29 29)',
+      'red-light': '#D93526',
+      'red-dark': '#861D13',
+      'red': '#D93526',
     },
 
     border: {
@@ -136,6 +138,35 @@ module.exports = {
                 margin: 0,
                 fontWeight: theme('fontWeight.normal'),
               },
+            },
+            '.alert': {
+              borderLeftWidth: '1rem',
+              borderColor: theme('colors.green-dark'),
+              borderRadius: '3px',
+              backgroundColor: theme('colors.green-light'),
+              padding: `${theme('spacing.4')} ${theme('spacing.6')}`,
+              color: theme('colors.green'),
+              fontStyle: 'normal',
+              margin: '1.25em 0',
+              p: {
+                margin: 0,
+                fontWeight: theme('fontWeight.normal'),
+              },
+            },
+            '.alert-info': {
+              borderColor: theme('colors.blue'),
+              backgroundColor: theme('colors.blue-light'),
+              color: theme('colors.blue'),
+            },
+            '.alert-warning': {
+              borderColor: theme('colors.yellow-dark'),
+              backgroundColor: theme('colors.yellow-light'),
+              color: theme('colors.grey'),
+            },
+            '.alert-error': {
+              borderColor: theme('colors.red-dark'),
+              backgroundColor: theme('colors.red-light'),
+              color: theme('colors.white'),
             },
           },
         },

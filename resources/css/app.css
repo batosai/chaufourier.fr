@@ -44,7 +44,7 @@ up-drawer * {
 }
 
 .inline-code {
-  @apply bg-red-900;
+  @apply bg-red-dark;
 }
 
 .inline-code::before {
