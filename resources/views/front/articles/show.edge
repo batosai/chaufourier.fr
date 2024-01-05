@@ -15,66 +15,51 @@
 @end
 
 @section('body')
-  <div>
-    <div class="container mx-auto">
-      <div class="pt-16 lg:pt-20">
-        <div class="border-b border-grey-lighter pb-8 sm:pb-12">
-          @each(tag in article.tags)~
-            <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8">{{ tag.name }}</span>
-          @end~
-          <h2 class="block font-body text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl">
-            {{ article.title }}
-          </h2>
 
-          @if(article.publishedOn)
-          <div class="flex items-center pt-5 sm:pt-8">
-            <p class="pr-2 font-body font-light text-primary dark:text-white">
-              {{ t('app.date', { value: article.publishedOn }) }}
-            </p>
-          </div>
-          @end
-        </div>
+  @front.head({
+    title: article.title,
+    description: t('app.date', { value: article.publishedOn })
+  })
+    @each(tag in article.tags)~
+      <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8">{{ tag.name }}</span>
+    @end~
+  @end
 
-        <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
-
-
-          @each(block in article.blocks)~
-            @if(block.type === 'header')
-              @!front.blocks.title({ ...block.data })
-            @elseif(block.type === 'paragraph')
-              @!front.blocks.p({ ...block.data })
-            @elseif(block.type === 'image')
-              @!front.blocks.image({ media: (await media.get(block.data.id)) })
-            @elseif(block.type === 'alert')
-              @!front.blocks.alert({ ...block.data })
-            @elseif(block.type === 'list')
-              @!front.blocks.list({ ...block.data })
-            @elseif(block.type === 'quote')
-              @!front.blocks.quote({ ...block.data })
-            @elseif(block.type === 'delimiter')
-              @!front.blocks.delimiter()
-            @elseif(block.type === 'table')
-              @!front.blocks.table({ ...block.data })
-            @elseif(block.type === 'code')
-              @!front.blocks.code({ ...block.data })
-            @else
-              {{ inspect(block) }}
-            @end
-          @end~
-
-        </div>
-
-        <div class="flex gap-4 items-center py-10">
-          <span class="pr-5 font-body font-medium text-primary dark:text-white"
-            >Partage</span>
-          <button type="button" onclick="window.open('http://twitter.com/share?url={{ request.completeUrl(true) }}', '_blank', 'width=400, height=300')">
-            @!front.icons.x()
-          </button>
-          <button type="button" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.completeUrl(true) }}', '_blank', 'width=400, height=300')">
-            @!front.icons.in()
-          </button>
-        </div>
-      </div>
-    </div>
+  <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
+    @each(block in article.blocks)~
+      @if(block.type === 'header')
+        @!front.blocks.title({ ...block.data })
+      @elseif(block.type === 'paragraph')
+        @!front.blocks.p({ ...block.data })
+      @elseif(block.type === 'image')
+        @!front.blocks.image({ media: (await media.get(block.data.id)) })
+      @elseif(block.type === 'alert')
+        @!front.blocks.alert({ ...block.data })
+      @elseif(block.type === 'list')
+        @!front.blocks.list({ ...block.data })
+      @elseif(block.type === 'quote')
+        @!front.blocks.quote({ ...block.data })
+      @elseif(block.type === 'delimiter')
+        @!front.blocks.delimiter()
+      @elseif(block.type === 'table')
+        @!front.blocks.table({ ...block.data })
+      @elseif(block.type === 'code')
+        @!front.blocks.code({ ...block.data })
+      @else
+        {{ inspect(block) }}
+      @end
+    @end~
   </div>
+
+  <div class="flex gap-4 items-center py-10">
+    <span class="pr-5 font-body font-medium text-primary dark:text-white"
+      >Partage</span>
+    <button type="button" onclick="window.open('http://twitter.com/share?url={{ request.completeUrl(true) }}', '_blank', 'width=400, height=300')">
+      @!front.icons.x()
+    </button>
+    <button type="button" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.completeUrl(true) }}', '_blank', 'width=400, height=300')">
+      @!front.icons.in()
+    </button>
+  </div>
+
 @end

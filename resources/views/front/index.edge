@@ -10,89 +10,80 @@
 @end
 
 @section('body')
-  <div>
-    <div class="container mx-auto">
-      <div class="border-b border-grey-lighter py-16 lg:py-20">
-        <div>
-          <img src="/avatar.jpg" class="h-16 w-16 rounded-full" alt="" loading="lazy" />
-        </div>
-        <h1 class="pt-3 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-5xl">
-          Jérémy Chaufourier.
-        </h1>
-        <p class="pt-3 font-body text-xl font-light text-primary dark:text-white">
-          Actuellement en poste de directeur technique chez <a href="https://www.opsone.net" class="underline hover:no-underline" target="_blank">Opsone</a>
-        </p>
-      </div>
+  @front.head({
+    title: 'jeremy_chaufourier',
+    description: 'Actuellement en poste de directeur technique chez <a href="https://www.opsone.net" class="underline hover:no-underline" target="_blank">Opsone</a>'
+  })
+    <img src="/avatar.jpg" class="h-16 w-16 rounded-full" alt="" loading="lazy" />
+  @end
 
-      <div class="border-b border-grey-lighter py-16 lg:py-20">
-        <div class="flex items-center pb-6">
-          <img src="/img/icon-story.png" alt="icon story" />
-          <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
-            Mon rôle
-          </h3>
-        </div>
-        <div>
-          <p class="font-body font-light text-primary dark:text-white">
-            J'ai une expérience variée dans la réalisation de missions multiples, comprenant notamment l'analyse préalable des besoins,
-            la réalisation d'audits techniques approfondis, ainsi que la coordination des équipes en collaboration directe avec le directeur de projet et les chefs de projet.
-            Ma responsabilité principale consiste à superviser et à encadrer efficacement une équipe de développeurs, généralement constituée d'une dizaine de membres.
-            <br />
-            <br />
-            En plus de mon rôle de manageur, je suis un développeur full stack expérimenté. Cette double compétence me permet d'intervenir activement pour renforcer mes équipes là où leurs compétences sont sollicitées, contribuant ainsi à la réussite et à la qualité des projets.
-            <br />
-            <br />
-            Ma polyvalence s'étend au-delà du développement et de la gestion d'équipes. Fort de ma maîtrise en développement full stack, j'apporte une valeur ajoutée significative en conseil aux clients.
-            Mes connaissances SEO me permettent d'optimiser les produits digitaux pour un meilleur référencement naturel. De plus, mon expérience sur la conformité RGPD constitue un atout sur la mise en place de ces rêgles.
-            Ajoutez à cela ma sensibilité à l'accessibilité numérique et à l'éco-conception, des aspects de plus en plus cruciaux,
-            je suis donc en mesure d'offrir des conseils avisés pour créer des solutions digitales performantes, respectueuses des normes réglementaires, accessibles à tous et réduisant leur impact environnemental.
-          </p>
-        </div>
-      </div>
-
-      <div class="py-16 lg:pb-20">
-        <div class="flex items-center">
-          <img src="/img/icon-project.png" alt="icon story" />
-          <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
-            Blog
-          </h3>
-          <a href="{{ route('front.articles.index') }}" class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
-            Tous les articles
-            <img
-              src="/img/long-arrow-right.png"
-              class="ml-3"
-              alt="arrow right"
-            />
-          </a>
-        </div>
-        <div class="pt-8">
-          @each(article in articles)~
-            @!front.post({ article })
-          @end~
-        </div>
-      </div>
-
-      <div class="pb-16 lg:pb-20">
-        <div class="flex items-center pb-6">
-          <img src="/img/icon-project.png" alt="icon story" />
-          <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
-            Stacks
-          </h3>
-          <a href="{{ route('front.pages.uses') }}" class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
-            Voir plus
-            <img
-              src="/img/long-arrow-right.png"
-              class="ml-3"
-              alt="arrow right"
-            />
-          </a>
-        </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
-            @!front.techno({ iconName: 'rails', title: 'Ruby on Rails' })
-            @!front.techno({ iconName: 'adonisjs', title: 'Adonis' })
-            @!front.techno({ iconName: 'tailwindcss', title: 'Tailwind' })
-            @!front.techno({ iconName: 'svelte', title: 'Svelte' })
-          </div>
-      </div>
+  <div class="border-b border-grey-lighter py-16 lg:py-20">
+    <div class="flex items-center pb-6">
+      <img src="/img/icon-story.png" alt="icon story" />
+      <h2 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+        Mon rôle
+      </h2>
     </div>
+    <div>
+      <p class="font-body font-light text-justify text-primary dark:text-white">
+        J'ai une expérience variée dans la réalisation de missions multiples, comprenant notamment l'analyse préalable des besoins,
+        la réalisation d'audits techniques approfondis, ainsi que la coordination des équipes en collaboration directe avec le directeur de projet et les chefs de projet.
+        Ma responsabilité principale consiste à superviser et à encadrer efficacement une équipe de développeurs, généralement constituée d'une dizaine de membres.
+        <br />
+        <br />
+        En plus de mon rôle de manageur, je suis un développeur full stack expérimenté. Cette double compétence me permet d'intervenir activement pour renforcer mes équipes là où leurs compétences sont sollicitées, contribuant ainsi à la réussite et à la qualité des projets.
+        <br />
+        <br />
+        Ma polyvalence s'étend au-delà du développement et de la gestion d'équipes. Fort de ma maîtrise en développement full stack, j'apporte une valeur ajoutée significative en conseil aux clients.
+        Mes connaissances SEO me permettent d'optimiser les produits digitaux pour un meilleur référencement naturel. De plus, mon expérience sur la conformité RGPD constitue un atout sur la mise en place de ces rêgles.
+        Ajoutez à cela ma sensibilité à l'accessibilité numérique et à l'éco-conception, des aspects de plus en plus cruciaux,
+        je suis donc en mesure d'offrir des conseils avisés pour créer des solutions digitales performantes, respectueuses des normes réglementaires, accessibles à tous et réduisant leur impact environnemental.
+      </p>
+    </div>
+  </div>
+
+  <div class="py-16 lg:pb-20">
+    <div class="flex items-center">
+      <img src="/img/icon-project.png" alt="icon story" />
+      <h2 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+        Blog
+      </h2>
+      <a href="{{ route('front.articles.index') }}" class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
+        Tous les articles
+        <img
+          src="/img/long-arrow-right.png"
+          class="ml-3"
+          alt="arrow right"
+        />
+      </a>
+    </div>
+    <div class="pt-8">
+      @each(article in articles)~
+        @!front.post({ article })
+      @end~
+    </div>
+  </div>
+
+  <div class="pb-16 lg:pb-20">
+    <div class="flex items-center pb-6">
+      <img src="/img/icon-project.png" alt="icon story" />
+      <h2 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+        Stacks
+      </h2>
+      <a href="{{ route('front.pages.uses') }}" class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
+        Voir plus
+        <img
+          src="/img/long-arrow-right.png"
+          class="ml-3"
+          alt="arrow right"
+        />
+      </a>
+    </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
+        @!front.techno({ iconName: 'rails', title: 'Ruby on Rails' })
+        @!front.techno({ iconName: 'adonisjs', title: 'Adonis' })
+        @!front.techno({ iconName: 'tailwindcss', title: 'Tailwind' })
+        @!front.techno({ iconName: 'svelte', title: 'Svelte' })
+      </div>
   </div>
 @end

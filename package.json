@@ -115,6 +115,7 @@
     "edge-iconify": "^1.0.1",
     "execa": "^5.1.0",
     "highlight.js": "^11.9.0",
+    "htmx.org": "^1.9.10",
     "luxon": "^3.4.4",
     "pg": "^8.11.3",
     "phc-argon2": "^1.1.4",

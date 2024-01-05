@@ -10,94 +10,88 @@
 @end
 
 @section('body')
-  <div>
-    <div class="container mx-auto">
-      <div class="py-16 lg:py-20">
-        <div>
-          <img src="/img/icon-uses.png" alt="icon uses" />
-        </div>
-        <h1 class="pt-5 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl">
-          /uses
-        </h1>
 
+  @front.head({
+    title: 'uses'
+  })
+    <img src="/img/icon-uses.png" alt="icon uses" loading="lazy" />
+  @end
 
-        <div class="pt-16 lg:pt-20">
-          <h2 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            En ce moment
-          </h2>
+  <div class="pt-16 lg:pt-20">
+    <h2 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
+      En ce moment
+    </h2>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
-            @!front.techno({ iconName: 'rails', title: 'Ruby on Rails' })
-            @!front.techno({ iconName: 'adonisjs', title: 'Adonis' })
-            @!front.techno({ iconName: 'wordpress', title: 'Wordpress', classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'svelte', title: 'Svelte' })
-            @!front.techno({ iconName: 'tailwindcss', title: 'Tailwind' })
-            @!front.techno({ iconName: 'playwright', title: 'Playwright' })
-            @!front.techno({ iconName: 'typescript', title: 'Typescript' })
-            @!front.techno({ iconName: 'unpoly', title: 'Unpoly', classes: 'bg-black dark:bg-transparent' })
-            @!front.techno({ iconName: 'alpine', title: 'Alpine' })
-            @!front.techno({ iconName: 'stimulus', title: 'Stimulus', classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'turbo', title: 'Turbo', classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'webpack', title: 'Webpack' })
-            @!front.techno({ iconName: 'debian', title: 'debian' })
-            @!front.techno({ iconName: 'ubuntu', title: 'Ubuntu' })
-            @!front.techno({ iconName: 'apache', title: 'Apache' })
-            @!front.techno({ iconName: 'nginx', title: 'Nginx' })
-            @!front.techno({ iconName: 'docker', title: 'Docker' })
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
+      @!front.techno({ iconName: 'rails', title: 'Ruby on Rails' })
+      @!front.techno({ iconName: 'adonisjs', title: 'Adonis' })
+      @!front.techno({ iconName: 'wordpress', title: 'Wordpress', classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'svelte', title: 'Svelte' })
+      @!front.techno({ iconName: 'tailwindcss', title: 'Tailwind' })
+      @!front.techno({ iconName: 'playwright', title: 'Playwright' })
+      @!front.techno({ iconName: 'typescript', title: 'Typescript' })
+      @!front.techno({ iconName: 'unpoly', title: 'Unpoly', classes: 'bg-black dark:bg-transparent' })
+      @!front.techno({ iconName: 'alpine', title: 'Alpine' })
+      @!front.techno({ iconName: 'stimulus', title: 'Stimulus', classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'turbo', title: 'Turbo', classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'webpack', title: 'Webpack' })
+      @!front.techno({ iconName: 'debian', title: 'debian' })
+      @!front.techno({ iconName: 'ubuntu', title: 'Ubuntu' })
+      @!front.techno({ iconName: 'apache', title: 'Apache' })
+      @!front.techno({ iconName: 'nginx', title: 'Nginx' })
+      @!front.techno({ iconName: 'docker', title: 'Docker' })
 
-          </div>
-
-          <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            Testé
-          </h3>
-
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
-
-            @!front.techno({ iconName: 'vuejs', title: 'VueJS' })
-            @!front.techno({ iconName: 'directus', title: 'Directus', classes: 'bg-black dark:bg-transparent' })
-            @!front.techno({ iconName: 'strapi', title: 'Strapi' })
-            @!front.techno({ iconName: 'deno', title: 'Deno', classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'laravel', title: 'Laravel' })
-            @!front.techno({ iconName: 'nextjs', title: 'Next', classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'nuxtjs', title: 'Nuxt' })
-            @!front.techno({ iconName: 'vite', title: 'Vite' })
-            @!front.techno({ iconName: 'prometheus', title: 'Prometheus' })
-            @!front.techno({ iconName: 'ansible', title: 'Ansible' })
-
-          </div>
-
-
-          <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
-            Par le passé
-          </h3>
-
-          <div class="grid grid-cols-3 sm:grid-cols-6 gap-x-16 lg:gap-x-24 gap-y-20">
-            @!front.techno({ iconName: 'magento', small: true })
-            @!front.techno({ iconName: 'react', small: true })
-            @!front.techno({ iconName: 'ionic', small: true })
-            @!front.techno({ iconName: 'angularjs', small: true })
-            @!front.techno({ iconName: 'cordova', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'symfony', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'zend', small: true })
-            @!front.techno({ iconName: 'mongodb', small: true })
-            @!front.techno({ iconName: 'express', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'objectivec', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'swift', small: true })
-            @!front.techno({ iconName: 'java', small: true })
-            @!front.techno({ iconName: 'sass', small: true })
-            @!front.techno({ iconName: 'less', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'stylus', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'gulp', small: true })
-            @!front.techno({ iconName: 'electron', small: true, classes: 'dark:bg-white' })
-            @!front.techno({ iconName: 'graphql', small: true })
-            @!front.techno({ iconName: 'jasmine', small: true })
-            @!front.techno({ iconName: 'jest', small: true })
-            @!front.techno({ iconName: 'woocommerce', small: true })
-            @!front.techno({ iconName: 'rspec', small: true })
-          </div>
-
-        </div>
-      </div>
     </div>
+
+    <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
+      Testé
+    </h3>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20 border-b border-grey-lighter pb-16 mb-16">
+
+      @!front.techno({ iconName: 'vuejs', title: 'VueJS' })
+      @!front.techno({ iconName: 'directus', title: 'Directus', classes: 'bg-black dark:bg-transparent' })
+      @!front.techno({ iconName: 'strapi', title: 'Strapi' })
+      @!front.techno({ iconName: 'deno', title: 'Deno', classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'laravel', title: 'Laravel' })
+      @!front.techno({ iconName: 'nextjs', title: 'Next', classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'nuxtjs', title: 'Nuxt' })
+      @!front.techno({ iconName: 'vite', title: 'Vite' })
+      @!front.techno({ iconName: 'prometheus', title: 'Prometheus' })
+      @!front.techno({ iconName: 'ansible', title: 'Ansible' })
+
+    </div>
+
+
+    <h3 class="pb-8 font-body text-2xl font-semibold text-primary dark:text-white">
+      Par le passé
+    </h3>
+
+    <div class="grid grid-cols-3 sm:grid-cols-6 gap-x-16 lg:gap-x-24 gap-y-20">
+      @!front.techno({ iconName: 'magento', small: true })
+      @!front.techno({ iconName: 'react', small: true })
+      @!front.techno({ iconName: 'ionic', small: true })
+      @!front.techno({ iconName: 'angularjs', small: true })
+      @!front.techno({ iconName: 'cordova', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'symfony', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'zend', small: true })
+      @!front.techno({ iconName: 'mongodb', small: true })
+      @!front.techno({ iconName: 'express', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'objectivec', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'swift', small: true })
+      @!front.techno({ iconName: 'java', small: true })
+      @!front.techno({ iconName: 'sass', small: true })
+      @!front.techno({ iconName: 'less', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'stylus', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'gulp', small: true })
+      @!front.techno({ iconName: 'electron', small: true, classes: 'dark:bg-white' })
+      @!front.techno({ iconName: 'graphql', small: true })
+      @!front.techno({ iconName: 'jasmine', small: true })
+      @!front.techno({ iconName: 'jest', small: true })
+      @!front.techno({ iconName: 'woocommerce', small: true })
+      @!front.techno({ iconName: 'rspec', small: true })
+    </div>
+
   </div>
+
 @end

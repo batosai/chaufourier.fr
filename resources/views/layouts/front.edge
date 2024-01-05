@@ -69,15 +69,17 @@
   @!section('script')
 </head>
 <body
+  hx-boost="true"
   x-data="global()"
-  x-init="themeInit()"
   :class="isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''"
   class="dark:bg-primary"
 >
 
   <div id="main">
     @include('front/partials/header')
-    @!section('body')
+    <div class="container mx-auto">
+      @!section('body')
+    </div>
     @include('front/partials/footer')
   </div>
 

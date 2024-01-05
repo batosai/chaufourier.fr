@@ -1,4 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const edgeComponent = require('@jrmc/edge-components/build/tailwind.config').default
+const light = require('daisyui/src/theming/themes')['[data-theme=light]']
+const dark = require('daisyui/src/theming/themes')['[data-theme=dark]']
 
 module.exports = {
   content: [
@@ -8,7 +11,6 @@ module.exports = {
     './resources/views/components/front/**/*.edge',
   ],
   safelist: ['dark'],
-  darkMode: 'class',
   theme: {
     fontFamily: {
       body: ['Poppins', 'sans-serif'],
@@ -190,9 +192,29 @@ module.exports = {
       }),
     },
   },
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...light,
+          primary: light.accent,
+          accent: light.primary,
+        },
+      },
+      {
+        dark: {
+          ...dark,
+          primary: dark.accent,
+          accent: dark.primary,
+        },
+      },
+    ],
+    darkTheme: 'dark',
+  },
   plugins: [
     require('@tailwindcss/typography')({
       modifiers: [],
     }),
+    ...edgeComponent.plugins,
   ],
 }

@@ -2,13 +2,6 @@
   <div class="flex flex-row-reverse items-center justify-between py-6 lg:py-10">
 
     <div class="flex items-center lg:hidden">
-      <span class="cursor-pointer" @click="themeSwitch()" x-show="isDarkMode">
-        @!front.icons.sun()
-      </span>
-      <span class="cursor-pointer" @click="themeSwitch()" x-show="! isDarkMode">
-        @!front.icons.moon()
-      </span>
-
       <svg
         width="24"
         height="15"
@@ -48,7 +41,7 @@
           >
         </li>
 
-        <li class="group relative mr-6 mb-1">
+        <li class="group relative mb-1">
           <div
             class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow"
           ></div>
@@ -57,15 +50,6 @@
             class="relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary"
             >Uses</a
           >
-        </li>
-
-        <li class="cursor-pointer text-3xl">
-          <span @click="themeSwitch()" x-show="isDarkMode">
-            @!front.icons.sun()
-          </span>
-          <span @click="themeSwitch()" x-show="! isDarkMode">
-            @!front.icons.moon()
-          </span>
         </li>
       </ul>
     </div>
