@@ -1,0 +1,37 @@
+@layout('layouts/front')
+
+@section('meta')
+  @!front.seo({
+    seo: {
+      title : 'Gestion de vos préférences sur les cookies - développeur WEB / Mobile',
+      description: 'Développeur backend / frontend et mobile pour vos projets.'
+    }
+  })
+@end
+
+@section('body')
+
+  @!front.head({
+    title: 'Gestion de vos préférences sur les cookies',
+    description: 'Certaines fonctionnalités de ce site reposent sur l’usage de cookies.Le bandeau cookies ne s’affiche pas sur la page d’accueil lors de votre navigation car seuls des cookies nécessaires au fonctionnement du site sont déposés (vous pouvez cependant vous y opposer en cliquant sur le bouton « Interdire » ci-dessous).'
+  })
+
+  <div class="py-16 lg:py-20">
+    <div class="pt-5">
+      @jrmc.form({ action: route('front.gdpr.store'), error: false })~
+        @!front.service({
+          title: 'Mesure d\'audience',
+          description: 'Les services de mesure d\'audience sont nécessaires au fonctionnement du site en permettant sa bonne administration. Vous avez cependant la possibilité de vous opposer à leur usage.',
+          name: 'Unami',
+          url: 'https://umami.is/',
+          action: route('front.gdpr.store'),
+          cookie: {
+            name: 'umami',
+            value: cookies.umami
+          }
+        })
+      @end~
+    </div>
+  </div>
+
+@end

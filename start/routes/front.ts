@@ -11,6 +11,7 @@ Route.group(() => {
 
   Route.get('uses', 'front/PagesController.uses').as('pages.uses')
   // Route.get('contact', 'front/PagesController.contact').as('pages.contact')
+  Route.resource('gdpr', 'front/GdprController').only(['index', 'store'])
 
   Route.get('sitemap.xml', 'front/SitemapController').as('sitemap')
   Route.get('robots.txt', 'front/RobotsController').as('robots')
