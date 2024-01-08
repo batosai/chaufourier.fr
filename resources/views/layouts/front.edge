@@ -67,6 +67,13 @@
   @entryPointStyles('app')
   @entryPointScripts('app')
   @!section('script')
+
+  @if(env('NODE_ENV') === 'production')~
+    @if(request.cookie('_gdpr', { umami: false }).umami !== false)~
+      <script async src="https://umami.jrmc.dev/script.js" data-website-id="cdedb7bd-6042-4149-8045-0daef489b889"></script>
+    @end~
+  @end~
+
 </head>
 <body
   hx-boost="true"
@@ -74,7 +81,6 @@
   :class="isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''"
   class="dark:bg-primary"
 >
-
   <div id="main">
     @include('front/partials/header')
     <div class="container mx-auto">
