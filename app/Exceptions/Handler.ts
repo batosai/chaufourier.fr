@@ -13,9 +13,11 @@
 |
 */
 
+import Sentry from '@ioc:Adonis/Addons/Sentry'
 import Logger from '@ioc:Adonis/Core/Logger'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import Application from '@ioc:Adonis/Core/Application'
 import Redirect from 'App/Models/Redirect'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
@@ -38,6 +40,20 @@ export default class ExceptionHandler extends HttpExceptionHandler {
 
     if (error.code === 'E_VALIDATION_FAILURE') {
       ctx.up.setTarget(ctx.up.getFailTarget())
+    }
+
+    if (Application.nodeEnvironment === 'production') {
+      Sentry.setTag('url', ctx.request.url())
+      Sentry.setTag('hostname', ctx.request.hostname())
+      Sentry.setTag('ajax', ctx.request.ajax() ? true : false)
+      Sentry.setTag('method', ctx.request.method())
+      if (ctx.params) {
+        Sentry.setTag('params', JSON.stringify(ctx.params))
+      }
+      if (ctx.params.slug) {
+        Sentry.setTag('slug', ctx.params.slug)
+      }
+      Sentry.captureException(error)
     }
 
     return super.handle(error, ctx)
