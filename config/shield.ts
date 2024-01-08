@@ -48,7 +48,7 @@ export const csp: ShieldConfig['csp'] = {
     defaultSrc: ["'self'", 'https://umami.jrmc.dev'],
     styleSrc: ["'self'", "'unsafe-inline'"],
     imgSrc: ["'self'", 'data:', 'blob:'], // data: for mask-image ex: avatar, blob: for uppy
-    scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+    scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'", 'https://umami.jrmc.dev'],
     // connectSrc: ["*"]
   },
 
