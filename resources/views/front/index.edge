@@ -12,20 +12,20 @@
 @section('body')
   @front.head({
     title: 'jeremy_chaufourier',
-    description: 'Actuellement en poste de directeur technique chez <a href="https://www.opsone.net" class="underline hover:no-underline" target="_blank">Opsone</a>'
+    description: 'Actuellement en poste de directeur technique chez <a href="https://www.opsone.net" class="link link-primary" target="_blank">Opsone</a>'
   })
     <img src="/avatar.jpg" class="h-16 w-16 rounded-full" alt="" loading="lazy" />
   @end
 
-  <div class="border-b border-grey-lighter py-16 lg:py-20">
+  <div class="border-b py-16 lg:py-20">
     <div class="flex items-center pb-6">
       <img src="/img/icon-story.png" alt="icon story" />
-      <h2 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+      <h2 class="ml-3  text-2xl font-semibold">
         Mon rôle
       </h2>
     </div>
     <div>
-      <p class="font-body font-light text-justify text-primary dark:text-white">
+      <p class=" font-light text-justify">
         J'ai une expérience variée dans la réalisation de missions multiples, comprenant notamment l'analyse préalable des besoins,
         la réalisation d'audits techniques approfondis, ainsi que la coordination des équipes en collaboration directe avec le directeur de projet et les chefs de projet.
         Ma responsabilité principale consiste à superviser et à encadrer efficacement une équipe de développeurs, généralement constituée d'une dizaine de membres.
@@ -45,16 +45,11 @@
   <div class="py-16 lg:pb-20">
     <div class="flex items-center">
       <img src="/img/icon-project.png" alt="icon story" />
-      <h2 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+      <h2 class="ml-3  text-2xl font-semibold">
         Blog
       </h2>
-      <a href="{{ route('front.articles.index') }}" class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
+      <a href="{{ route('front.articles.index') }}" class="pl-10  italic link link-accent">
         Tous les articles
-        <img
-          src="/img/long-arrow-right.png"
-          class="ml-3"
-          alt="arrow right"
-        />
       </a>
     </div>
     <div class="pt-8">
@@ -67,16 +62,11 @@
   <div class="pb-16 lg:pb-20">
     <div class="flex items-center pb-6">
       <img src="/img/icon-project.png" alt="icon story" />
-      <h2 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+      <h2 class="ml-3  text-2xl font-semibold">
         Stacks
       </h2>
-      <a href="{{ route('front.pages.uses') }}" class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
+      <a href="{{ route('front.pages.uses') }}" class="pl-10  italic link link-accent">
         Voir plus
-        <img
-          src="/img/long-arrow-right.png"
-          class="ml-3"
-          alt="arrow right"
-        />
       </a>
     </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">

@@ -1,13 +1,13 @@
-<div class="border-b border-grey-lighter pt-10 pb-8">
+<div class="border-b pt-10 pb-8">
   <div class="flex">
-    <h2 class="grow text-primary dark:text-white mb-4">{{ title }} : {{ name }}</h2>
+    <h2 class="grow mb-4">{{ title }} : {{ name }}</h2>
     @!jrmc.form.toggle({ name: cookie.name, value: 'true', class: 'toggle-primary mr-2', checked: cookie.value, 'hx-trigger': 'click', 'hx-post': action  })
   </div>
 
-  <p class="pr-2 font-body font-light text-justify text-primary dark:text-white">
+  <p class="pr-2  font-light text-justify">
     {{ description }}
   </p>
-  <a href="{{ url }}" target="_blanck" class="text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary">
+  <a href="{{ url }}" target="_blanck" class="transition-colors hover:text-primary">
     Site officiel
   </a>
 </div>

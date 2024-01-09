@@ -21,11 +21,11 @@
     description: t('app.date', { value: article.publishedOn })
   })
     @each(tag in article.tags)~
-      <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8">{{ tag.name }}</span>
+      <span class="badge badge-primary">{{ tag.name }}</span>
     @end~
   @end
 
-  <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
+  <div class="prose prose max-w-none border-b py-8 dark:prose-dark sm:py-12">
     @each(block in article.blocks)~
       @if(block.type === 'header')
         @!front.blocks.title({ ...block.data })
@@ -52,7 +52,7 @@
   </div>
 
   <div class="flex gap-4 items-center py-10">
-    <span class="pr-5 font-body font-medium text-primary dark:text-white"
+    <span class="pr-5  font-medium"
       >Partage</span>
     <button type="button" onclick="window.open('http://twitter.com/share?url={{ request.completeUrl(true) }}', '_blank', 'width=400, height=300')">
       @!front.icons.x()

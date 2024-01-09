@@ -3,12 +3,12 @@
     <img src="/logos/{{ iconName }}.svg" class="m-2" width="{{ small ? '30' : '55' }}" loading="lazy" alt="{{ small ? iconName : '' }}" />
   </div>
   @if(title && small === undefined)~
-    <h3 class="mb-2 text-base font-semibold leading-tight text-primary dark:text-white">
+    <h3 class="mb-2 text-base font-semibold leading-tight">
       {{ title }}
     </h3>
   @end~
   @if(description)~
-    <p class="text-sm text-primary dark:text-white">
+    <p class="text-sm">
       {{{ description }}}
     </p>
   @end~

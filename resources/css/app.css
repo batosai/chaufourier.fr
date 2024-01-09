@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply font-body antialiased;
-}
-
 /* remove bounce effet */
 html,
 body,
@@ -28,23 +24,11 @@ up-drawer * {
 /* override block theme for editorjs */
 
 .twitter-card {
-  @apply mt-8 mb-8 rounded bg-yellow-lighter px-6 py-8 sm:mt-10 sm:mb-10 md:px-10;
-}
-
-.twitter-card .twitter-card-title {
-  @apply mt-0 font-body text-lg font-normal text-blue-dark dark:text-blue-dark sm:text-xl;
-}
-
-.twitter-card .twitter-card-source {
-  @apply block pt-2 font-body text-sm font-light text-blue-dark underline;
-}
-
-.twitter-card .twitter-card-btn {
-  @apply mt-8 mb-0 inline-block border border-blue-dark px-5 py-2 font-body font-semibold text-blue-dark no-underline transition-colors hover:bg-primary hover:text-white sm:mb-4;
+  @apply mt-8 mb-8 rounded bg-[#f6e8c6] px-6 py-8 sm:mt-10 sm:mb-10 md:px-10;
 }
 
 .inline-code {
-  @apply bg-red-dark;
+  @apply bg-error;
 }
 
 .inline-code::before {
@@ -57,8 +41,8 @@ up-drawer * {
 
 /* Pagination */
 
-.pagination .btn {
-  @apply ml-3 inline-block cursor-pointer border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary;
+ .pagination .btn {
+  @apply ml-3 inline-block cursor-pointer border-2 border-primary px-3 py-1  font-medium transition-colors hover:border-secondary hover:text-secondary dark:border-secondary dark:hover:border-secondary dark:hover:text-secondary;
 }
 
 .pagination .btn:first {
@@ -67,6 +51,24 @@ up-drawer * {
 
 .pagination .btn.btn-active {
   @apply border-secondary text-secondary;
+}
+
+/* Force class for dynamisation */
+
+.alert.info {
+  @apply alert-info;
+}
+
+.alert.success {
+  @apply alert-success;
+}
+
+.alert.warning {
+  @apply alert-warning;
+}
+
+.alert.error {
+  @apply alert-error;
 }
 
 @config "../../tailwind.front.config.js";

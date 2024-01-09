@@ -1,12 +1,12 @@
-<div class="border-b border-grey-lighter py-16 lg:py-20">
+<div class="border-b py-16 lg:py-20">
   <div>
     {{{ await $slots.main() }}}
   </div>
-  <h1 class="pt-5 font-body text-3xl font-semibold text-primary dark:text-white md:text-5xl">
+  <h1 class="pt-5  text-3xl font-semibold md:text-5xl">
     {{ `/${title}` }}
   </h1>
   @if(description)~
-  <p class="pt-3 font-body font-light text-primary dark:text-white">
+  <p class="pt-3  font-light">
     {{{ description }}}
   </p>
   @end~
