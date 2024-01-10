@@ -9,6 +9,7 @@ export default class ArticlesController {
 
     const articles = await Article.query()
       .withScopes((scopes) => scopes.published())
+      .preload('tags')
       .paginate(page, limit)
     articles.baseUrl(Route.builder().make('front.articles.index'))
 
