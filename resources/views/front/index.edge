@@ -17,15 +17,15 @@
     <img src="/avatar.jpg" class="h-16 w-16 rounded-full" alt="" loading="lazy" />
   @end
 
-  <div class="border-b py-16 lg:py-20">
+  <div class="border-b dark:border-secondary py-16 lg:py-20">
     <div class="flex items-center pb-6">
       @!front.icons.user()
-      <h2 class="ml-3  text-2xl font-semibold">
+      <h2 class="ml-3 text-2xl font-semibold">
         Mon rôle
       </h2>
     </div>
     <div>
-      <p class=" font-light text-justify">
+      <p class="font-light text-justify">
         J'ai une expérience variée dans la réalisation de missions multiples, comprenant notamment l'analyse préalable des besoins,
         la réalisation d'audits techniques approfondis, ainsi que la coordination des équipes en collaboration directe avec le directeur de projet et les chefs de projet.
         Ma responsabilité principale consiste à superviser et à encadrer efficacement une équipe de développeurs, généralement constituée d'une dizaine de membres.
@@ -42,27 +42,27 @@
     </div>
   </div>
 
-  <div class="py-16 lg:pb-20">
+  <div class="border-b dark:border-secondary py-16 lg:pb-20">
     <div class="flex items-center">
       @!front.icons.blog()
-      <h2 class="ml-3  text-2xl font-semibold">
+      <h2 class="ml-3 text-2xl font-semibold">
         Blog
       </h2>
       <a href="{{ route('front.articles.index') }}" class="pl-10  italic link link-accent">
         Tous les articles
       </a>
     </div>
-    <div class="pt-8">
+    <div class="pt-8 divide-y divide-neutral-content dark:divide-neutral">
       @each(article in articles)~
         @!front.post({ article })
       @end~
     </div>
   </div>
 
-  <div class="pb-16 lg:pb-20">
+  <div class="py-16 lg:pb-20">
     <div class="flex items-center pb-6">
       @!front.icons.stack()
-      <h2 class="ml-3  text-2xl font-semibold">
+      <h2 class="ml-3 text-2xl font-semibold">
         Stacks
       </h2>
       <a href="{{ route('front.pages.uses') }}" class="pl-10  italic link link-accent">

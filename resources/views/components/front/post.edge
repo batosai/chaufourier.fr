@@ -1,14 +1,14 @@
-<div class="border-b pt-10 pb-8">
-
-  @each(tag in article.tags)~
-    <span class="badge badge-primary">{{ tag.name }}</span>
-  @end~
-
+<div class="py-10">
   <a
     href="{{ route('front.articles.show', { slug: article.slug }) }}"
     class="block  text-lg font-semibold transition-colors hover:text-primary"
     >{{ article.title }}</a
   >
+
+  @each(tag in article.tags)~
+    <span class="badge badge-primary">{{ tag.name }}</span>
+  @end~
+
   <div class="flex items-center pt-4">
     <p class="pr-2  font-light">
       {{ t('app.date', { value: article.createdAt }) }}
