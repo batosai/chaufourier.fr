@@ -6,19 +6,28 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
         </div>
         <ul tabindex="0" class="menu menu-lg dropdown-content mt-3 -ml-5 z-[1] p-2 bg-base-100 w-screen">
-          <li><a href="{{ route('front.home') }}">Accueil</a></li>
-          <li><a href="{{ route('front.articles.index') }}">Blog</a></li>
-          <li><a href="{{ route('front.pages.uses') }}">Uses</a></li>
+          <li>
+            @!front.menu.link({ mobile: true, alias: 'front.home', label: 'Accueil' })
+          </li>
+          <li>
+            @!front.menu.link({ mobile: true, alias: 'front.articles.index', label: 'Blog' })
+          </li>
+          <li>
+            @!front.menu.link({ mobile: true, alias: 'front.pages.uses', label: 'Uses' })
+          </li>
+          <li>
+            @!front.menu.link({ mobile: true, alias: 'front.gdpr.index', label: 'Gestion des cookies' })
+          </li>
         </ul>
       </div>
     </div>
     <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
       <div class="hidden sm:block">
         <div class="flex space-x-4">
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <a href="{{ route('front.home') }}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Accueil</a>
-          <a href="{{ route('front.articles.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Blog</a>
-          <a href="{{ route('front.pages.uses') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Uses</a>
+          @!front.menu.link({ alias: 'front.home', label: 'Accueil' })
+          @!front.menu.link({ alias: 'front.articles.index', label: 'Blog' })
+          @!front.menu.link({ alias: 'front.pages.uses', label: 'Uses' })
+          @!front.menu.link({ alias: 'front.gdpr.index', label: 'Gestion des cookies' })
         </div>
       </div>
     </div>
