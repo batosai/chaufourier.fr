@@ -1,5 +1,5 @@
 @if(mobile)~
-  <a href="{{ route(alias) }}" {{{ request.matchesRoute([alias]) ? 'class="active"' : '' }}} {{{ request.matchesRoute([alias]) ? 'aria-current="page"' : '' }}}>{{ label }}</a>
+  <a href="{{ route(alias[0]) }}" {{{ request.matchesRoute(alias) ? 'class="active"' : '' }}} {{{ request.matchesRoute(alias) ? 'aria-current="page"' : '' }}}>{{ label }}</a>
 @else~
-  <a href="{{ route(alias) }}" class="{{ request.matchesRoute([alias]) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" {{{ request.matchesRoute([alias]) ? 'aria-current="page"' : '' }}}>{{ label }}</a>
+  <a href="{{ route(alias[0]) }}" class="{{ request.matchesRoute(alias) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" {{{ request.matchesRoute(alias) ? 'aria-current="page"' : '' }}}>{{ label }}</a>
 @end~

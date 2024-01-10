@@ -7,16 +7,16 @@
         </div>
         <ul tabindex="0" class="menu menu-lg dropdown-content mt-3 -ml-5 z-[1] p-2 bg-base-100 w-screen">
           <li>
-            @!front.menu.link({ mobile: true, alias: 'front.home', label: 'Accueil' })
+            @!front.menu.link({ mobile: true, alias: ['front.home'], label: 'Accueil' })
           </li>
           <li>
-            @!front.menu.link({ mobile: true, alias: 'front.articles.index', label: 'Blog' })
+            @!front.menu.link({ mobile: true, alias: ['front.articles.index', 'front.articles.show'], label: 'Blog' })
           </li>
           <li>
-            @!front.menu.link({ mobile: true, alias: 'front.pages.uses', label: 'Uses' })
+            @!front.menu.link({ mobile: true, alias: ['front.pages.uses'], label: 'Uses' })
           </li>
           <li>
-            @!front.menu.link({ mobile: true, alias: 'front.gdpr.index', label: 'Gestion des cookies' })
+            @!front.menu.link({ mobile: true, alias: ['front.gdpr.index'], label: 'Gestion des cookies' })
           </li>
         </ul>
       </div>
@@ -24,10 +24,10 @@
     <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
       <div class="hidden sm:block">
         <div class="flex space-x-4">
-          @!front.menu.link({ alias: 'front.home', label: 'Accueil' })
-          @!front.menu.link({ alias: 'front.articles.index', label: 'Blog' })
-          @!front.menu.link({ alias: 'front.pages.uses', label: 'Uses' })
-          @!front.menu.link({ alias: 'front.gdpr.index', label: 'Gestion des cookies' })
+          @!front.menu.link({ alias: ['front.home'], label: 'Accueil' })
+          @!front.menu.link({ alias: ['front.articles.index', 'front.articles.show'], label: 'Blog' })
+          @!front.menu.link({ alias: ['front.pages.uses'], label: 'Uses' })
+          @!front.menu.link({ alias: ['front.gdpr.index'], label: 'Gestion des cookies' })
         </div>
       </div>
     </div>
