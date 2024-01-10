@@ -42,7 +42,7 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       ctx.up.setTarget(ctx.up.getFailTarget())
     }
 
-    if (Application.nodeEnvironment === 'production') {
+    if (Application.nodeEnvironment === 'production' && error.code !== 'E_ROUTE_NOT_FOUND') {
       Sentry.setTag('url', ctx.request.url())
       Sentry.setTag('hostname', ctx.request.hostname())
       Sentry.setTag('ajax', ctx.request.ajax() ? true : false)
