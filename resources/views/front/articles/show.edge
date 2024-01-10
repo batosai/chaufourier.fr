@@ -25,7 +25,7 @@
     @end~
   @end
 
-  <div class="prose prose max-w-none border-b py-8 dark:prose-dark sm:py-12">
+  <div class="prose prose max-w-none py-8 dark:prose-dark sm:py-12">
     @each(block in article.blocks)~
       @if(block.type === 'header')
         @!front.blocks.title({ ...block.data })
@@ -52,7 +52,7 @@
   </div>
 
   <div class="flex gap-4 items-center py-10">
-    <span class="pr-5  font-medium"
+    <span class="pr-5 font-medium"
       >Partage</span>
     <button type="button" onclick="window.open('http://twitter.com/share?url={{ request.completeUrl(true) }}', '_blank', 'width=400, height=300')">
       @!front.icons.x()
