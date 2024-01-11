@@ -2,7 +2,7 @@
   <{{ style === 'unordered' ? 'ul' : 'ol' }}>
     @each(item in items)~
       <li>
-        {{ item.content }}
+        {{{ item.content }}}
         @if(item.items.length)~
           @!front.blocks.list({ style, items: item.items })
         @end~
