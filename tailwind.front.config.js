@@ -10,6 +10,7 @@ module.exports = {
     './resources/views/components/front/**/*.edge',
   ],
   plugins: [
+    require('tailwindcss-safe-area'),
     require('@tailwindcss/typography')({
       modifiers: [],
     }),
