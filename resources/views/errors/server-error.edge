@@ -1,1 +1,9 @@
-<p> It's a 500 </p>
+@layout('layouts/front')
+
+@section('body')
+  @!front.head({
+    title: '500',
+    description: 'It\'s a 500. Check the address or <a class="link link-primary" href="/">go back</a>'
+  })
+@end
+

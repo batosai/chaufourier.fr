@@ -1,1 +1,8 @@
-<p> It's a 404 </p>
+@layout('layouts/front')
+
+@section('body')
+  @!front.head({
+    title: '404',
+    description: 'Page not found.'
+  })
+@end

@@ -1,1 +1,9 @@
 <p> It's a 403 </p>
+@layout('layouts/front')
+
+@section('body')
+  @!front.head({
+    title: '403',
+    description: 'It\'s a 403. Check the address or <a class="link link-primary" href="/">go back</a>'
+  })
+@end
