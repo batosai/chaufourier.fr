@@ -21,6 +21,7 @@ import Application from '@ioc:Adonis/Core/Application'
 import Redirect from 'App/Models/Redirect'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
+  // protected disableStatusPagesInDevelopment = false
   protected statusPages = {
     '403': 'errors/unauthorized',
     '404': 'errors/not-found',

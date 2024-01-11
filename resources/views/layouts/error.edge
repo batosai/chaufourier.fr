@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.png" />
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+
+  @if(env('NODE_ENV') === 'production')~
+    @if(request.cookie('_gdpr', { umami: false }).umami !== false)~
+      <script async src="https://umami.jrmc.dev/script.js" data-website-id="cdedb7bd-6042-4149-8045-0daef489b889"></script>
+    @end~
+  @end~
+
+</head>
+<body
+  hx-boost="true"
+>
+  <main>
+    @include('front/partials/header')
+    <div class="container mx-auto px-4">
+      @!section('body')
+    </div>
+    @include('front/partials/footer')
+  </main>
+
+</body>
+</html>
