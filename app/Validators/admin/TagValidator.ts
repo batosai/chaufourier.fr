@@ -11,7 +11,6 @@ export default class TagValidator {
   ) {
     const fields = {
       name: schema.string([
-        rules.escape(),
         rules.trim(),
         rules.lowerCase(),
         rules.minLength(MIN_LENGTH),

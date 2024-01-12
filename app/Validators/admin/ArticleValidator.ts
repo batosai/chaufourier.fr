@@ -6,7 +6,7 @@ export const MIN_LENGTH = 2
 export default class ArticleValidator {
   constructor(protected ctx: HttpContextContract) {
     const fields = {
-      title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
+      title: schema.string([rules.trim(), rules.minLength(MIN_LENGTH)]),
       slug: schema.string.optional([
         rules.escape(),
         rules.trim(),

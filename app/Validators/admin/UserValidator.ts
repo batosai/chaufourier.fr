@@ -16,13 +16,11 @@ export default class UserValidator {
   ) {
     const fields = {
       lastname: schema.string([
-        rules.escape(),
         rules.trim(),
         rules.minLength(MIN_LENGTH),
         rules.maxLength(MAX_LENGTH),
       ]),
       firstname: schema.string([
-        rules.escape(),
         rules.trim(),
         rules.minLength(MIN_LENGTH),
         rules.maxLength(MAX_LENGTH),

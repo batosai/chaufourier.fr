@@ -6,9 +6,9 @@ export const MIN_LENGTH = 2
 export default class MediaDataValidator {
   constructor(protected ctx: HttpContextContract) {
     const fields = {
-      title: schema.string([rules.escape(), rules.trim(), rules.minLength(MIN_LENGTH)]),
-      description: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
-      alt: schema.string.nullableAndOptional([rules.escape(), rules.trim()]),
+      title: schema.string([rules.trim(), rules.minLength(MIN_LENGTH)]),
+      description: schema.string.nullableAndOptional([rules.trim()]),
+      alt: schema.string.nullableAndOptional([rules.trim()]),
     }
 
     this.schema = schema.create(fields)
