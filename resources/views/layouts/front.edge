@@ -66,6 +66,9 @@
   {{ csrfMeta() }}
   @entryPointStyles('app')
   @entryPointScripts('app')
+  @entryPointStyles('highlight')
+  @entryPointScripts('highlight')
+
   @!section('script')
 
   @if(env('NODE_ENV') === 'production')~
