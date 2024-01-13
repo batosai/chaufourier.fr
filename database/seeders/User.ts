@@ -7,17 +7,10 @@ export default class extends BaseSeeder {
     await User.createMany([
       {
         role: Roles.ADMIN,
-        lastname: 'adonis',
-        firstname: 'virk',
-        email: 'virk@adonisjs.com',
+        lastname: 'Chaufourier',
+        firstname: 'Jeremy',
+        email: 'jeremy@chaufourier.fr',
         password: 'secret',
-      },
-      {
-        role: Roles.USER,
-        lastname: 'adonis',
-        firstname: 'romain',
-        email: 'romain@adonisjs.com',
-        password: 'supersecret',
       },
     ])
   }

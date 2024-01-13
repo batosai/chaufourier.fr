@@ -36,6 +36,7 @@ const databaseConfig: DatabaseConfig = {
         naturalSort: true,
         disableRollbacksInProduction: true,
       },
+      useNullAsDefault: true,
       healthCheck: Env.get('NODE_ENV') === 'production',
       debug: Env.get('NODE_ENV') === 'development',
     },
@@ -51,6 +52,9 @@ const databaseConfig: DatabaseConfig = {
         afterCreate: (conn, cb) => {
           conn.run('PRAGMA foreign_keys=true', cb)
         },
+      },
+      seeders: {
+        paths: ['./database/seeders/MainSeeder']
       },
       migrations: {
         naturalSort: true,
