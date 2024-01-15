@@ -18,6 +18,10 @@ export default class extends BaseSeeder {
       { name: 'php', slug: 'php' },
       { name: 'bash', slug: 'bash' },
       { name: 'git', slug: 'git' },
+      { name: 'trick', slug: 'trick' },
+      { name: 'tuto', slug: 'tuto' },
+      { name: 'side project', slug: 'side-project' },
+      { name: 'elasticsearch', slug: 'elasticsearch' },
     ])
   }
 }
