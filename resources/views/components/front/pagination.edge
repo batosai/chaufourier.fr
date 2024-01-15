@@ -1,8 +1,8 @@
 @if ($props.object.lastPage > 1)
-  <div class="pagination pt-8 lg:pt-16 w-full hidden sm:block">
+  <div class="pagination py-8 lg:py-16 w-full hidden sm:block">
     @!jrmc.pagination({ object: $props.object })
   </div>
-  <div class="pagination pt-8 lg:pt-16 w-full text-center sm:hidden">
+  <div class="pagination py-8 lg:py-16 w-full text-center sm:hidden">
     @!jrmc.pagination.light({ object: $props.object })
   </div>
 @end
