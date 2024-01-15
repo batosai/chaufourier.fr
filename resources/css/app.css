@@ -41,16 +41,8 @@ up-drawer * {
 
 /* Pagination */
 
- .pagination .btn {
-  @apply ml-3 inline-block cursor-pointer border-2 border-primary px-3 py-1  font-medium transition-colors hover:border-secondary hover:text-secondary dark:border-secondary dark:hover:border-secondary dark:hover:text-secondary;
-}
-
-.pagination .btn:first {
-  @apply ml-0;
-}
-
 .pagination .btn.btn-active {
-  @apply border-secondary text-secondary;
+  @apply border-primary text-primary;
 }
 
 /* Force class for dynamisation */
