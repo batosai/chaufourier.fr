@@ -13,7 +13,7 @@ export default class extends BaseSeeder {
         title: source.title,
         slug: source.slug,
         visible: source.visible,
-        body: source.body,
+        body: JSON.parse(source.body),
         publishedOn: source.publishedOn,
         imageId: null,
         userId: user!.id
