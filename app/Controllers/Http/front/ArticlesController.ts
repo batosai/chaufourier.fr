@@ -5,10 +5,11 @@ import Article from 'App/Models/Article'
 export default class ArticlesController {
   public async index({ request, view }: HttpContextContract) {
     const page = request.input('page', 1)
-    const limit = 8
+    const limit = 10
 
     const articles = await Article.query()
       .withScopes((scopes) => scopes.published())
+      .orderBy('publishedOn', 'desc')
       .preload('tags')
       .paginate(page, limit)
     articles.baseUrl(Route.builder().make('front.articles.index'))
