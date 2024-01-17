@@ -5,7 +5,6 @@ export default class extends BaseSeeder {
   public static environment = ['development']
 
   public async run() {
-
     await Tag.createMany([
       { name: 'adonisjs', slug: 'adonisjs' },
       { name: 'ruby on rails', slug: 'ruby-on-rails' },

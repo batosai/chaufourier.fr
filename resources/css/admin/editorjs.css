@@ -30,7 +30,8 @@
 
 /* form */
 
-.cdx-quote__text.cdx-input, .cdx-quote__caption.cdx-input {
+.cdx-quote__text.cdx-input,
+.cdx-quote__caption.cdx-input {
   @apply !input;
   @apply !h-auto;
 }

@@ -1,4 +1,4 @@
-export default ({target, img, id}) => `<div class="flex items-center gap-x-8 ${target}">
+export default ({ target, img, id }) => `<div class="flex items-center gap-x-8 ${target}">
   <div class="avatar " placeholder="null">
     <div class="bg-neutral w-24 mask rounded">
       <img src="${img}" alt="">

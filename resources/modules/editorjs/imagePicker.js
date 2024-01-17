@@ -20,15 +20,13 @@ export default class ImagePicker {
           `<div class="my-2">${mediapickerHtmlEdit({
             target,
             img: this.data.thumbnail,
-            id: this.data.id
+            id: this.data.id,
           })
             .replaceAll('{target}', target)
             .replace('{img}', this.data.thumbnail)
             .replace('{id}', this.data.id)}</div>`
         )
-      : up.element.createFromHTML(
-          `<div class="my-2">${mediapickerHtmlCreate({ target })}</div>`
-        )
+      : up.element.createFromHTML(`<div class="my-2">${mediapickerHtmlCreate({ target })}</div>`)
 
     return element
   }

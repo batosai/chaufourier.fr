@@ -16,7 +16,7 @@ export default class extends BaseSeeder {
         body: JSON.parse(source.body),
         publishedOn: source.publishedOn,
         imageId: null,
-        userId: user!.id
+        userId: user!.id,
       })
 
       if (article.$isPersisted) {
@@ -28,6 +28,5 @@ export default class extends BaseSeeder {
         await article.save()
       }
     }
-
   }
 }

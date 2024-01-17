@@ -1,7 +1,6 @@
 import form from './contents/alert/form'
 
 export default class Alert {
-
   /**
    * Notify core that read-only mode is supported
    */
@@ -55,9 +54,7 @@ export default class Alert {
    * @returns {Element}
    */
   render() {
-    return up.element.createFromHTML(
-      `<div class="my-2">${form(this.data)}</div>`
-    )
+    return up.element.createFromHTML(`<div class="my-2">${form(this.data)}</div>`)
   }
 
   /**

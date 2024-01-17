@@ -1,8 +1,25 @@
 import hljs from 'highlight.js'
 
-hljs.configure({ languages: ['js', 'html', 'css', 'ruby', 'erb', 'bash', 'markdown', 'dockerfile', 'json',  'php', 'python', 'rust', 'sql', 'nginx'] })
+hljs.configure({
+  languages: [
+    'js',
+    'html',
+    'css',
+    'ruby',
+    'erb',
+    'bash',
+    'markdown',
+    'dockerfile',
+    'json',
+    'php',
+    'python',
+    'rust',
+    'sql',
+    'nginx',
+  ],
+})
 
-document.body.addEventListener('htmx:load', function() {
+document.body.addEventListener('htmx:load', function () {
   hljs.highlightAll()
 })
 

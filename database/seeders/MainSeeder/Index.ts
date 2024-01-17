@@ -12,5 +12,4 @@ export default class extends BaseSeeder {
   private async runSeeder(Seeder: { default: typeof BaseSeeder }) {
     await new Seeder.default(this.client).run()
   }
-
 }
