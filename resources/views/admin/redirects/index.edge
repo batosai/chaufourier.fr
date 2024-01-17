@@ -43,7 +43,7 @@
             <td>{{ t('app.date', { value: redirect.createdAt }) }}</td>
             <td>
               @jrmc.button.link({ href: route('admin.redirects.edit', redirect), class: 'btn btn-neutral normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
-                Edit
+                {{ t('admin.action.edit') }}
               @end
             </td>
           </tr>

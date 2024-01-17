@@ -18,7 +18,7 @@
         @jrmc.form({ id: 'create_seo', action: route('admin.articles.seo.store', { article_id: article.id }), error: false })
           @include('admin/articles/seo/partials/form')
           @admin.section.action()
-            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_seo', class: 'btn-primary normal-case' })
+            @!jrmc.button.input({ text: t('form.submit'), type: 'submit', form: 'create_seo', class: 'btn-primary normal-case' })
           @end
         @end
       @end

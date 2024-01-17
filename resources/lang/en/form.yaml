@@ -9,6 +9,8 @@ resetPassword:
   passwordConfirmation: Repeat password
   validate: validate
 
+submit: Validate
+
 success:
   session: Connected.
   forgotPassword: You will receive an email within a few minutes telling you how to reset your password.

@@ -18,7 +18,7 @@
         @jrmc.form({ id: 'create_redirect', action: route('admin.redirects.store'), error: false })
           @include('admin/redirects/partials/form')
           @admin.section.action()
-            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'create_redirect', class: 'btn-primary normal-case' })
+            @!jrmc.button.input({ text: t('form.submit'), type: 'submit', form: 'create_redirect', class: 'btn-primary normal-case' })
           @end
         @end
       @end

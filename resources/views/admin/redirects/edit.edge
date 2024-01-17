@@ -25,7 +25,7 @@
         object: redirect  })
           @include('admin/redirects/partials/form')
           @admin.section.action()
-            @!jrmc.button.input({ text: 'Validate', type: 'submit', form: 'edit_redirect', class: 'btn-primary normal-case' })
+            @!jrmc.button.input({ text: t('form.submit'), type: 'submit', form: 'edit_redirect', class: 'btn-primary normal-case' })
           @end
         @end
       @end

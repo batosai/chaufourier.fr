@@ -1,5 +1,7 @@
 user:
-  name: Name
+  fullname: Name
+  lastname/hint: 2 characters minimum
+  firstname/hint: 2 characters minimum
   email: Email
   status: Status
   createdAt: Date
@@ -17,6 +19,7 @@ role/name:
 
 tag:
   name: Name
+  name/hint: 2 characters minimum
   createdAt: Date
 
 article:

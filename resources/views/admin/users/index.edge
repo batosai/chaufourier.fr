@@ -19,7 +19,7 @@
         @slot('header')
           <tr>
             <th class="w-12"></th>
-            <th>{{ t('models.user.name') }}</th>
+            <th>{{ t('models.user.fullname') }}</th>
             <th>{{ t('models.user.email') }}</th>
             <th>{{ t('models.user.status') }}</th>
             <th>{{ t('models.user.createdAt') }}</th>
@@ -52,15 +52,15 @@
             <td>{{ user.email }}</td>
             <td>
               @if(user.disabled)
-                @!jrmc.badge({ text: 'Disabled', class: 'badge-warning' })
+                @!jrmc.badge({ text: t('models.user/status.disabled'), class: 'badge-warning' })
               @else
-                @!jrmc.badge({ text: 'Enabled', class: 'badge-success' })
+                @!jrmc.badge({ text: t('models.user/status.enabled'), class: 'badge-success' })
               @end
             </td>
             <td>{{ t('app.date', { value: user.createdAt }) }}</td>
             <td>
               @jrmc.button.link({ href: route('admin.users.edit', user), class: 'btn btn-neutral normal-case', 'up-layer':'new', 'up-mode':'drawer', 'up-on-dismissed': 'up.reload("table")' })
-                Edit
+                {{ t('admin.action.edit') }}
               @end
             </td>
           </tr>

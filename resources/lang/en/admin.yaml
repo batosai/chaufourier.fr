@@ -17,3 +17,38 @@ action:
   create: Create
   edit: Edit
   show: Show
+title:
+  user:
+    create: Create User
+    edit: Edit User
+    delete: Deleted
+    forgot: Forgot password
+    enable: Enabled
+    disable: Disabled
+    impersonate: Impersonate
+  tag:
+    create: Create Tag
+    edit: Edit Tag
+    delete: Deleted
+description:
+  user:
+    create: Create a User
+    edit: Edit a User
+    delete: Delete the user account and all its data.
+    forgot: Send a password change link by email to the user.
+    enable: Deactivating the account blocks access to the application
+    disable: Activating the account unblocks access to the application
+    impersonate: Impersonate the user account.
+  tag:
+    create: Create a Tag
+    edit: Edit a Tag
+    delete: Its deletion will result in its withdrawal from all entities using it.
+button:
+  user:
+    delete: Yes, delete
+    forgot: Yes, forget
+    enable: Yes, Enabled
+    disable: Yes, Disabled
+    impersonate: Yes, impersonate
+  tag:
+    delete: Yes, delete this tag

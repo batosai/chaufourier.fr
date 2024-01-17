@@ -39,7 +39,7 @@
             <td>{{ t('app.date', { value: article.createdAt }) }}</td>
             <td>
               @jrmc.button.link({ href: route('admin.articles.edit', article), class: 'btn btn-neutral normal-case' })
-                Edit
+                {{ t('admin.action.edit') }}
               @end
             </td>
           </tr>
