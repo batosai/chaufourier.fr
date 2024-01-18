@@ -129,7 +129,7 @@
       @can('MediaPolicy.delete', user)
         @admin.section.content({ title: t('admin.media.title.delete'), description: t('admin.media.description.delete') })
           @admin.section.action()
-            @!jrmc.button.link({ text: t('admin.media.button.delete'), href: route('admin.media.destroy', media, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: t('admin.media.button.delete'), href: route('admin.media.destroy', media, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': t('admin.action.confirm'), 'up-method': 'DELETE' })
           @end
         @end
       @end

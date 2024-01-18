@@ -17,6 +17,7 @@ action:
   create: Create
   edit: Edit
   show: Show
+  confirm: Are you sur?
 
 user:
   title:

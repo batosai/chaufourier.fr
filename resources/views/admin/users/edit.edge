@@ -33,7 +33,7 @@
       @can('UserPolicy.forgot', user)
         @admin.section.content({ title: t('admin.user.title.forgot'), description: t('admin.user.description.forgot') })
           @admin.section.action()
-            @!jrmc.button.link({ text: t('admin.user.button.forgot'), href: route('admin.users.forgot.password', user), class: 'btn-info normal-case', 'data-color-button': 'btn-info', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+            @!jrmc.button.link({ text: t('admin.user.button.forgot'), href: route('admin.users.forgot.password', user), class: 'btn-info normal-case', 'data-color-button': 'btn-info', 'up-confirm': t('admin.action.confirm'), 'up-method': 'POST' })
           @end
         @end
       @end
@@ -41,7 +41,7 @@
       @can('UserPolicy.disabled', user)
         @admin.section.content({ title: user.disabled ? t('admin.user.title.enable') : t('admin.user.title.disable'), description: user.disabled ? t('admin.user.description.disable') : t('admin.user.description.enable') })
           @admin.section.action()
-            @!jrmc.button.link({ text: user.disabled ? t('admin.user.button.enable') : t('admin.user.button.disable'), href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning normal-case', 'data-color-button': 'btn-warning', 'up-confirm': 'Are you sur?', 'up-method': 'PATCH' })
+            @!jrmc.button.link({ text: user.disabled ? t('admin.user.button.enable') : t('admin.user.button.disable'), href: route('admin.users.toggle.disabled', user, { qs: { _method: 'PATCH' } }), class: 'btn-warning normal-case', 'data-color-button': 'btn-warning', 'up-confirm': t('admin.action.confirm'), 'up-method': 'PATCH' })
           @end
         @end
       @end
@@ -49,7 +49,7 @@
       @can('ImpersonatePolicy.create', user)
         @admin.section.content({ title: t('admin.user.title.impersonate'), description: t('admin.user.description.impersonate') })
           @admin.section.action()
-            @!jrmc.button.link({ text: t('admin.user.button.impersonate'), href: route('impersonate.store', { id: user.id }), class: 'btn-secondary normal-case', 'data-color-button': 'btn-secondary', 'up-confirm': 'Are you sur?', 'up-method': 'POST' })
+            @!jrmc.button.link({ text: t('admin.user.button.impersonate'), href: route('impersonate.store', { id: user.id }), class: 'btn-secondary normal-case', 'data-color-button': 'btn-secondary', 'up-confirm': t('admin.action.confirm'), 'up-method': 'POST' })
           @end
         @end
       @end
@@ -57,7 +57,7 @@
       @can('UserPolicy.delete', user)
         @admin.section.content({ title: t('admin.user.title.delete'), description: t('admin.user.description.delete') })
           @admin.section.action()
-            @!jrmc.button.link({ text: t('admin.user.button.delete'), href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: t('admin.user.button.delete'), href: route('admin.users.destroy', user, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': t('admin.action.confirm'), 'up-method': 'DELETE' })
           @end
         @end
       @end

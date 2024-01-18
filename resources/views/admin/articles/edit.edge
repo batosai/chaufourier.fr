@@ -62,7 +62,7 @@
       @can('ArticlePolicy.delete', article)
         @admin.section.content({ title: 'Delete article', description: 'Delete the article account and all its data.'})
           @admin.section.action()
-            @!jrmc.button.link({ text: 'Yes, delete', href: route('admin.articles.destroy', article, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: 'Yes, delete', href: route('admin.articles.destroy', article, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': t('admin.action.confirm'), 'up-method': 'DELETE' })
           @end
         @end
       @end
