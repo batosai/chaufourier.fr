@@ -14,7 +14,7 @@
     })
 
     @admin.section()
-      @admin.section.content({ title: 'Show Media', description: 'Show a media.', href: route('admin.media.index')})
+      @admin.section.content({ title: t('admin.media.title.show'), description: t('admin.media.description.show'), href: route('admin.media.index')})
         <div id="content-edit">
           <div>
             @if(media.file.preview('thumbnail')?.url)~
@@ -32,22 +32,22 @@
             </div>
           </div>
           <div>
-            <h3 class="font-medium">Information</h3>
+            <h3 class="font-medium">{{ t('admin.media.title.information') }}</h3>
             <dl class="mt-2 divide-y divide-neutral-focus border-b border-t border-neutral">
               <div class="flex justify-between py-3 text-sm font-medium">
-                <dt class="text-base-content">Uploaded by</dt>
+                <dt class="text-base-content">{{ t('admin.media.information.uploadedBy') }}</dt>
                 <dd class="text-neutral-content">{{ media.user.fullname }}</dd>
               </div>
               <div class="flex justify-between py-3 text-sm font-medium">
-                <dt class="text-base-content">Created</dt>
+                <dt class="text-base-content">{{ t('admin.media.information.createdAt') }}</dt>
                 <dd class="text-neutral-content">{{ t('app.date', { value: media.createdAt }) }}</dd>
               </div>
               <div class="flex justify-between py-3 text-sm font-medium">
-                <dt class="text-base-content">Last modified</dt>
+                <dt class="text-base-content">{{ t('admin.media.information.modifiedAt') }}</dt>
                 <dd class="text-neutral-content">{{ t('app.date', { value: media.updatedAt }) }}</dd>
               </div>
               <div class="flex justify-between py-3 text-sm font-medium">
-                <dt class="text-base-content">Dimensions</dt>
+                <dt class="text-base-content">{{ t('admin.media.information.dimensions') }}</dt>
                 <dd class="text-neutral-content">
                   {{ media.file.width }} x {{ media.file.height }}
                   @jrmc.dropdown({ class: 'dropdown-end' })
@@ -70,10 +70,10 @@
             </dl>
           </div>
           <div>
-            <h3 class="font-medium">Title</h3>
+            <h3 class="font-medium">{{ t('admin.media.information.title') }}</h3>
             <div class="mt-2 flex items-center justify-between">
               @unless(media.title)
-                <p class="text-sm italic">Add a title to this image.</p>
+                <p class="text-sm italic">{{ t('admin.media.information.title/hint') }}</p>
               @else
                 <p class="text-sm italic">{{ media.title }}</p>
               @end
@@ -85,10 +85,10 @@
             </div>
           </div>
           <div>
-            <h3 class="font-medium">Description</h3>
+            <h3 class="font-medium">{{ t('admin.media.information.description') }}</h3>
             <div class="mt-2 flex items-center justify-between">
               @unless(media.description)
-                <p class="text-sm italic">Add a description to this image.</p>
+                <p class="text-sm italic">{{ t('admin.media.information.description/hint') }}</p>
               @else
                 <p class="text-sm italic">{{ media.description }}</p>
               @end
@@ -100,10 +100,10 @@
             </div>
           </div>
           <div>
-            <h3 class="font-medium">Alternate Text</h3>
+            <h3 class="font-medium">{{ t('admin.media.information.alt') }}</h3>
             <div class="mt-2 flex items-center justify-between">
               @unless(media.alt)
-                <p class="text-sm italic">Add an alternate text to this image.</p>
+                <p class="text-sm italic">{{ t('admin.media.information.alt/hint') }}</p>
               @else
                 <p class="text-sm italic">{{ media.alt }}</p>
               @end
@@ -119,17 +119,17 @@
       @end
 
       @can('MediaPolicy.download', user)
-        @admin.section.content({ title: 'Download', description: 'Download this media.'})
+        @admin.section.content({ title: t('admin.media.title.download'), description: t('admin.media.description.download') })
           @admin.section.action()
-            @!jrmc.button.link({ text: 'yes, download', href: route('admin.media.download', media), class: 'btn-warning normal-case', download: true, 'data-color-button': 'btn-warning' })
+            @!jrmc.button.link({ text: t('admin.media.button.download'), href: route('admin.media.download', media), class: 'btn-warning normal-case', download: true, 'data-color-button': 'btn-warning' })
           @end
         @end
       @end
 
       @can('MediaPolicy.delete', user)
-        @admin.section.content({ title: 'Deleted', description: 'Delete this media.'})
+        @admin.section.content({ title: t('admin.media.title.delete'), description: t('admin.media.description.delete') })
           @admin.section.action()
-            @!jrmc.button.link({ text: 'yes, delete', href: route('admin.media.destroy', media, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: t('admin.media.button.delete'), href: route('admin.media.destroy', media, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
         @end
       @end

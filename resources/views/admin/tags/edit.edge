@@ -14,7 +14,7 @@
     })
 
     @admin.section()
-      @admin.section.content({ title: t('admin.title.tag.edit'), description: t('admin.description.tag.edit'), href: route('admin.tags.index') })
+      @admin.section.content({ title: t('admin.tag.title.edit'), description: t('admin.tag.description.edit'), href: route('admin.tags.index') })
         @jrmc.form({ id: 'edit_tag', action: route('admin.tags.update', tag, {
           qs: {
             _method: 'PUT'
@@ -31,9 +31,9 @@
       @end
 
       @can('TagPolicy.delete', tag)~
-        @admin.section.content({ title: t('admin.title.tag.delete'), description: t('admin.description.tag.delete') })
+        @admin.section.content({ title: t('admin.tag.title.delete'), description: t('admin.tag.description.delete') })
           @admin.section.action()
-            @!jrmc.button.link({ text: t('admin.button.tag.delete'), href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: t('admin.tag.button.delete'), href: route('admin.tags.destroy', tag, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
         @end
       @end~

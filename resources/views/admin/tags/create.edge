@@ -14,7 +14,7 @@
     })
 
     @admin.section()
-      @admin.section.content({ title: t('admin.title.tag.create'), description: t('admin.description.tag.create'), href: route('admin.tags.index') })
+      @admin.section.content({ title: t('admin.tag.title.create'), description: t('admin.tag.description.create'), href: route('admin.tags.index') })
         @jrmc.form({ id: 'create_tag', action: route('admin.tags.store'), error: false })
           @include('admin/tags/partials/form')
           @admin.section.action()

@@ -30,23 +30,23 @@
           @elseif(audit.action === 'IMPERSONATE')
             @!jrmc.badge({ text: audit.action, class: 'badge-warning' })
           @end
-        : Create at {{ t('app.date', { value: audit.createdAt }) }}
+        : {{ t('admin.journal.createdAt') }} {{ t('app.date', { value: audit.createdAt }) }}
       </p>
 
       <p class="mb-2">
-        <span>By </span>
+        <span>{{ t('admin.journal.by') }} </span>
         @!jrmc.badge({ text: audit.username, class: 'badge-info' })
-        <span>id </span>
+        <span>{{ t('admin.journal.id') }} </span>
         @!jrmc.badge({ text: audit.userId, class: 'badge-secondary' })
       </p>
       <p>
-        <span>Entity </span>
+        <span>{{ t('admin.journal.entity') }} </span>
         @!jrmc.badge({ text: audit.target, class: 'badge-info' })
-        <span>id </span>
+        <span>{{ t('admin.journal.id') }} </span>
         @!jrmc.badge({ text: audit.targetId, class: 'badge-secondary' })
       </p>
 
-      <div class="divider">Modify values</div>
+      <div class="divider">{{ t('admin.journal.value') }}</div>
 
       <code>{{ inspect(audit.payload) }}</code>
 

@@ -7,7 +7,7 @@
   @admin.content()
     @jrmc.form.control({ name: request.qs().target })
       @!admin.form.mediapicker({
-        hint: 'jpg, png or webp. 1O MB max.',
+        hint: 'jpg, png or webp.',
         target: request.qs().target,
         entity: request.qs().entity
       })

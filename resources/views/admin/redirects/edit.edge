@@ -14,7 +14,7 @@
     })
 
     @admin.section()
-      @admin.section.content({ title: 'Edit Tag', description: 'Update your redirect.', href: route('admin.redirects.index') })
+      @admin.section.content({ title: t('admin.redirect.title.edit'), description: t('admin.redirect.description.edit'), href: route('admin.redirects.index') })
         @jrmc.form({ id: 'edit_redirect', action: route('admin.redirects.update', redirect, {
           qs: {
             _method: 'PUT'
@@ -31,9 +31,9 @@
       @end
 
       @can('TagPolicy.delete', redirect)~
-        @admin.section.content({ title: 'Delete Tag', description: 'Its deletion will result in its withdrawal from all entities using it.'})
+        @admin.section.content({ title: t('admin.redirect.title.delete'), description: t('admin.redirect.description.delete') })
           @admin.section.action()
-            @!jrmc.button.link({ text: 'Yes, delete this redirect', href: route('admin.redirects.destroy', redirect, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
+            @!jrmc.button.link({ text: t('admin.redirect.button.delete'), href: route('admin.redirects.destroy', redirect, { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE' })
           @end
         @end
       @end~

@@ -15,9 +15,9 @@
     @admin.section()
 
       @can('CachePolicy.clear')
-        @admin.section.content({ title: 'Cache clear', description: 'Clear all cache.'})
+        @admin.section.content({ title: t('admin.system.title.cache'), description: t('admin.system.description.cache') })
           @admin.section.action()
-            @!jrmc.button.link({ text: 'Yes, clear all', href: route('admin.caches.destroy', { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE'})
+            @!jrmc.button.link({ text: t('admin.system.button.cache'), href: route('admin.caches.destroy', { qs: { _method: 'DELETE' } }), class: 'btn-error normal-case', 'data-color-button': 'btn-error', 'up-confirm': 'Are you sur?', 'up-method': 'DELETE'})
           @end
         @end
       @end

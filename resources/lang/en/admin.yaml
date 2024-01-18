@@ -17,8 +17,9 @@ action:
   create: Create
   edit: Edit
   show: Show
-title:
-  user:
+
+user:
+  title:
     create: Create User
     edit: Edit User
     delete: Deleted
@@ -26,12 +27,7 @@ title:
     enable: Enabled
     disable: Disabled
     impersonate: Impersonate
-  tag:
-    create: Create Tag
-    edit: Edit Tag
-    delete: Deleted
-description:
-  user:
+  description:
     create: Create a User
     edit: Edit a User
     delete: Delete the user account and all its data.
@@ -39,16 +35,74 @@ description:
     enable: Deactivating the account blocks access to the application
     disable: Activating the account unblocks access to the application
     impersonate: Impersonate the user account.
-  tag:
-    create: Create a Tag
-    edit: Edit a Tag
-    delete: Its deletion will result in its withdrawal from all entities using it.
-button:
-  user:
+  button:
     delete: Yes, delete
     forgot: Yes, forget
     enable: Yes, Enabled
     disable: Yes, Disabled
     impersonate: Yes, impersonate
-  tag:
+
+tag:
+  title:
+    create: Create Tag
+    edit: Edit Tag
+    delete: Deleted
+  description:
+    create: Create a Tag
+    edit: Edit a Tag
+    delete: Its deletion will result in its withdrawal from all entities using it.
+  button:
     delete: Yes, delete this tag
+
+redirect:
+  title:
+    create: Create redirection
+    edit: Edit redirection
+    delete: Delete redirection
+  description:
+    create: Create a redirection
+    edit: Edit a redirection
+    delete: Delete redirection
+  button:
+    delete: Yes, delete this redirection
+
+media:
+  title:
+    show: Show Media
+    delete: Deleted
+    download: Download
+    information: Informations
+  description:
+    show: Show a media.
+    delete: Delete this media.
+    download: Download this media.
+  button:
+    delete: yes, delete
+    download: yes, download
+  information:
+    uploadedBy: Uploaded by
+    createdAt: Created
+    modifiedAt: Last modified
+    dimensions: Dimensions
+    title: Title
+    title/hint: Add a title to this image.
+    description: Description
+    description/hint: Add a description to this image.
+    alt: Alternate Text
+    alt/hint: Add an alternate text to this image.
+
+journal:
+  createdAt: Create at
+  by: By
+  entity: Entity
+  id: id
+  value: Modify values
+
+system:
+  title:
+    cache: Cache clear
+  description:
+    cache: Clear all cache.
+  button:
+    cache: Yes, clear all
+
