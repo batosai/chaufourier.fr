@@ -14,7 +14,7 @@
     })
 
     @admin.section()
-      @admin.section.content({ title: 'SEO', description: 'Edit SEO informations', href: route('admin.articles.edit', article) })
+      @admin.section.content({ title: t('admin.article.title.seo'), description: t('admin.article.description.seo'), href: route('admin.articles.edit', article) })
         @jrmc.form({ id: 'create_seo', action: route('admin.articles.seo.store', { article_id: article.id }), error: false })
           @include('admin/articles/seo/partials/form')
           @admin.section.action()

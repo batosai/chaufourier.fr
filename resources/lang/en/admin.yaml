@@ -17,6 +17,8 @@ action:
   create: Create
   edit: Edit
   show: Show
+  view: View
+  preview: Preview
   confirm: Are you sur?
 
 user:
@@ -42,6 +44,20 @@ user:
     enable: Yes, Enabled
     disable: Yes, Disabled
     impersonate: Yes, impersonate
+
+article:
+  title:
+    create: Create article
+    edit: Edit article
+    delete: Delete article
+    seo: SEO
+  description:
+    create: Create an article.
+    edit: Edit this article
+    delete: Delete the article account and all its data.
+    seo: Edit SEO informations
+  button:
+    delete: Yes, delete
 
 tag:
   title:

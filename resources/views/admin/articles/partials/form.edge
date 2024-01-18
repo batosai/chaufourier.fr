@@ -19,7 +19,7 @@
 
 @jrmc.form.control({ name: 'imageId' })
   @!admin.form.mediapicker({
-    hint: 'jpg, png or webp. 1O MB max.',
+    hint: 'jpg, png or webp.',
     types: ['image/jpeg', 'image/png'],
     entity: 'articles',
     media: article && article.image ? article.image : null

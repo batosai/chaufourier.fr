@@ -14,7 +14,7 @@
     })
 
     @admin.section()
-      @admin.section.content({ title: 'SEO', description: 'Edit SEO informations', href: route('admin.articles.edit', article) })
+      @admin.section.content({ title: t('admin.article.title.seo'), description: t('admin.article.description.seo'), href: route('admin.articles.edit', article) })
         @jrmc.form({ id: 'edit_seo', action: route('admin.articles.seo.update', { id: seo.id, article_id: article.id }, {
           qs: {
             _method: 'PUT'
