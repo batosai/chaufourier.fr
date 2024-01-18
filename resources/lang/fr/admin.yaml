@@ -1,0 +1,125 @@
+sidebar:
+  content: Contenu
+  dashboard: Tableau de bord
+  users: Utilisateurs
+  tags: Tags
+  articles: Articles
+  media: Média
+  settings: Paramètres
+  health: Santé
+  journals: Journals
+  redirects: Redirections
+  preference: Préférence
+  system: Système
+table:
+  actions: Actions
+action:
+  create: Créer
+  edit: Editer
+  show: Voir
+  view: Voir
+  preview: Prévisualisation
+  confirm: Êtes-vous sûr ?
+
+user:
+  title:
+    create: Créer un utilisateur
+    edit: Modifier l'utilisateur
+    delete: Supprimé
+    forgot: Mot de passe oublié
+    enable: Activé
+    disable: Désactivé
+    impersonate: Impersonifier
+  description:
+    create: Créer un utilisateur.
+    edit: Modifier l'utilisateur.
+    delete: Supprimer le compte d'utilisateur et toutes ses données.
+    forgot: Envoyer un lien de changement de mot de passe par e-mail à l'utilisateur.
+    enable: La désactivation du compte bloque l'accès à l'application.
+    disable: L'activation du compte débloque l'accès à l'application.
+    impersonate: Usurper l'identité du compte d'utilisateur.
+  button:
+    delete: Oui, supprimer
+    forgot: Oui, envoyer
+    enable: Oui, Activer
+    disable: Oui, Désactiver
+    impersonate: Oui, usurper
+
+article:
+  title:
+    create: Créer un article
+    edit: Modifier l'article
+    delete: Supprimer l'article
+    seo: SEO
+  description:
+    create: Créer un article.
+    edit: Modifier l'article.
+    delete: Supprimer l'article et toutes ses données.
+    seo: Modifier les informations sur le référencement.
+  button:
+    delete: Oui, supprimer
+
+tag:
+  title:
+    create: Créer un Tag
+    edit: Modifier le Tag
+    delete: Supprimer
+  description:
+    create: Créer un Tag.
+    edit: Modifier le Tag.
+    delete: Sa suppression entraînera son retrait de toutes les entités qui l'utilisent.
+  button:
+    delete: Oui, supprimer
+
+redirect:
+  title:
+    create: Créer une redirection
+    edit: Modifier la redirection
+    delete: Supprimer la redirection
+  description:
+    create: Créer une redirection.
+    edit: Modifier la redirection.
+    delete: Supprimer la redirection.
+  button:
+    delete: Oui, supprimer
+
+media:
+  title:
+    show: Voir le Media
+    delete: Supprimer
+    download: Télécharger
+    information: Informations
+  description:
+    show: Voir le Media.
+    delete: Supprimer ce media.
+    download: Télécharger ce media.
+  button:
+    delete: Oui, supprimer
+    download: Oui, télécharger
+  information:
+    uploadedBy: Ajouter par
+    createdAt: Créer
+    modifiedAt: Dernière modification
+    dimensions: Dimensions
+    title: Titre
+    title/hint: Ajouter un titre à cette image.
+    description: Description
+    description/hint: Ajouter une description à l'image.
+    alt: Texte alternative
+    alt/hint: Ajouter un texte alternative.
+
+journal:
+  createdAt: Créer le
+  by: Par
+  entity: Entité
+  id: id
+  value: Valeurs modifiés
+
+system:
+  title:
+    cache: Vider les caches
+  description:
+    cache: Vider tous les caches.
+  button:
+    cache: Oui, vider les caches
+

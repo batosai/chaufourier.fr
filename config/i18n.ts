@@ -6,7 +6,9 @@
  */
 
 import Application from '@ioc:Adonis/Core/Application'
+import Env from '@ioc:Adonis/Core/Env'
 import { I18nConfig } from '@ioc:Adonis/Addons/I18n'
+
 
 const i18nConfig: I18nConfig = {
   /*
@@ -37,7 +39,7 @@ const i18nConfig: I18nConfig = {
   | is not supported by the your app
   |
   */
-  defaultLocale: 'en',
+  defaultLocale: Env.get('DEFAULT_LOCALE'),
 
   /*
   |--------------------------------------------------------------------------

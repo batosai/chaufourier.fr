@@ -1,0 +1,12 @@
+E_INVALID_AUTH_SESSION: Votre session a expiré
+E_INVALID_API_TOKEN: Jeton API invalide ou expiré
+E_INVALID_BASIC_CREDENTIALS: Informations d'identification invalides
+E_INVALID_AUTH_UID: Informations d'identification invalides
+E_INVALID_AUTH_PASSWORD: Informations d'identification invalides
+E_INVALID_DISABLED: Votre compte est désactivé
+E_UNAUTHORIZED_ACCESS: Accès non autorisé
+
+session:
+  forgotLink: Vous avez oublié votre mot de passe ?
+  loginLink: Connexion ?
+  invalidResetLink: Le lien de réinitialisation de votre mot de passe n'est pas valide ou a expiré.

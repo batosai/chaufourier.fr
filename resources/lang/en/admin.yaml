@@ -54,7 +54,7 @@ article:
   description:
     create: Create an article.
     edit: Edit this article
-    delete: Delete the article account and all its data.
+    delete: Delete the article and all its data.
     seo: Edit SEO informations
   button:
     delete: Yes, delete

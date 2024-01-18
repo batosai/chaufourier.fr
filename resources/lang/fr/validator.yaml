@@ -1,0 +1,40 @@
+shared:
+  email:
+    email: Email validation failed
+    required: Email field is required
+    unique: An account with this email already exists
+    exists: Email not exist
+  firstname:
+    required: Firstname is required
+    minLength: Firstname must be at least { min_length } characters long
+    maxLength: Firstname must be at maximum { max_length } characters long
+  lastname:
+    required: Lastname is required
+    minLength: Lastname must be at least { min_length } characters long
+    maxLength: Lastname must be at maximum { max_length } characters long
+  name:
+    required: Name is required
+    minLength: Name must be at least { min_length } characters long
+  title:
+    required: Title is required
+    minLength: Title must be at least { min_length } characters long
+  password:
+    required: Password field is required
+    minLength: Password must be at least { password_min_length } characters long
+    oneLowerCaseAtLeast: Password must contain at least one lowercase letter
+    oneUpperCaseAtLeast: Password must contain at least one uppercase letter
+    oneNumericAtLeast: Password must contain at least one digit
+    oneSpecialCharacterAtLeast: Password must contain at least one special character
+  password_confirmation:
+    required: Password confirmation is required
+    confirmed: Password and confirm password does not match.
+    minLength: Password must be at least { password_min_length } characters long
+  role:
+    required: Role field is required
+  avatar:
+    maxSize: Avatar must be at { max_size } maximum
+    extname: Invalid format avatar
+  file:
+    maxSize: File must be at { max_size } maximum
+  tags:
+    exists: Tag not exist

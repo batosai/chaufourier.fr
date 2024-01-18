@@ -8,5 +8,5 @@ E_UNAUTHORIZED_ACCESS: Unauthorized access
 
 session:
   forgotLink: Forgot your password?
-  loginLink: Login ?
+  loginLink: Login?
   invalidResetLink: Your password reset link is invalid or has expired.

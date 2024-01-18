@@ -1,0 +1,38 @@
+user:
+  fullname: Name
+  lastname/hint: 2 characters minimum
+  firstname/hint: 2 characters minimum
+  email: Email
+  status: Status
+  createdAt: Date
+journal:
+  label: Name
+  username: By
+  action: Event
+  createdAt: Date
+user/status:
+  enabled: Enabled
+  disabled: Disabled
+role/name:
+  admin: Admin
+  user: User
+
+tag:
+  name: Name
+  name/hint: 2 characters minimum
+  createdAt: Date
+
+article:
+  title: Title
+  createdAt: Date
+
+media:
+  title: Title
+  alt: Alternate text
+  description: Description
+
+redirect:
+  source: Source
+  destination: Destination
+  code: Code
+  createdAt: Date
