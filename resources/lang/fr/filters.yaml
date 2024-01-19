@@ -1,61 +1,61 @@
-filter: Filter
-order: Order
-reset: Clear all
+filter: Filtre
+order: Ordre
+reset: Tous supprimer
 results: '{itemsCount, plural,
-  =0 {no&nbsp;result}
-  one {1&nbsp;result}
-  other {#&nbsp;results}
+  =0 {aucun&nbsp;resultat}
+  one {1&nbsp;resultat}
+  other {#&nbsp;resultats}
   }'
 
 users:
   page: Page
-  search: Search
-  role: Role
-  enabled: Enabled
-  disabled: Disabled
-  order: Order
+  search: Recherche
+  role: Rôle
+  enabled: Activer
+  disabled: Désactiver
+  order: Ordre
   true: 'On'
-  all: All
-  firstname+asc: Ascending name
-  firstname+desc: Descending name
-  email+asc: Ascending email
-  email+desc: Descending email
-  createdAt+asc: Ascending date
-  createdAt+desc: Descending date
+  all: Tous
+  firstname+asc: Nom ascendant
+  firstname+desc: Nom descendant
+  email+asc: Email ascendant
+  email+desc: Email descendant
+  createdAt+asc: Date ascendant
+  createdAt+desc: Date descendant
   #roles
-  admin: Admin
-  user: User
+  admin: Administrateur
+  user: Utilisateur
 
 tags:
   page: Page
-  search: Search
-  order: Order
-  name+asc: Ascending name
-  name+desc: Descending name
-  createdAt+asc: Ascending date
-  createdAt+desc: Descending date
+  search: Recherche
+  order: Ordre
+  name+asc: Nom ascendant
+  name+desc: Nom descendant
+  createdAt+asc: Date ascendant
+  createdAt+desc: Date descendant
 
 articles:
   page: Page
-  search: Search
+  search: Recherche
   order: Order
-  title+asc: Ascending title
-  title+desc: Descending title
-  createdAt+asc: Ascending date
-  createdAt+desc: Descending date
+  title+asc: Titre ascendant
+  title+desc: Titre descendant
+  createdAt+asc: Date ascendant
+  createdAt+desc: Date descendant
 
 media:
   page: Page
-  search: Search
-  order: Order
-  title+asc: Ascending name
-  title+desc: Descending name
-  createdAt+asc: Ascending date
-  createdAt+desc: Descending date
+  search: Recherche
+  order: Ordre
+  title+asc: Nom ascendant
+  title+desc: Nom descendant
+  createdAt+asc: Date ascendant
+  createdAt+desc: Date descendant
 
 redirects:
   page: Page
-  search: Search
+  search: Recherche
   code: Code
   301: '301'
   302: '302'

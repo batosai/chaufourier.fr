@@ -1,10 +1,10 @@
 auth:
   session:
-    title: Login
+    title: Connexion
   forgotPassword:
-    title: Forgot your password
+    title: Mot de passe oublié
   resetPassword:
-    title: Reset your password
+    title: Réinitialiser votre mot de passe
 admin:
   dashboard:
-    title: Admin - Dashboard
+    title: Admin - Tableau de bord

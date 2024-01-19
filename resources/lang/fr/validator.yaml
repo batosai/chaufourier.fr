@@ -1,40 +1,40 @@
 shared:
   email:
-    email: Email validation failed
-    required: Email field is required
-    unique: An account with this email already exists
-    exists: Email not exist
+    email: Échec de la validation de l'e-mail
+    required: Le champ Email est obligatoire
+    unique: Un compte avec cet email existe déjà
+    exists: L'email n'existe pas
   firstname:
-    required: Firstname is required
-    minLength: Firstname must be at least { min_length } characters long
-    maxLength: Firstname must be at maximum { max_length } characters long
+    required: Le prénom est obligatoire
+    minLength: Le prénom doit être composé d'au moins { min_length } caractères.
+    maxLength: Le prénom doit comporter au maximum { max_length } caractères.
   lastname:
-    required: Lastname is required
-    minLength: Lastname must be at least { min_length } characters long
-    maxLength: Lastname must be at maximum { max_length } characters long
+    required: Le nom est obligatoire
+    minLength: Le nom doit être composé d'au moins { min_length } caractères.
+    maxLength: Le nom doit comporter au maximum { max_length } caractères.
   name:
-    required: Name is required
-    minLength: Name must be at least { min_length } characters long
+    required: Le nom est obligatoire
+    minLength: Le nom doit être composé d'au moins { min_length } caractères.
   title:
-    required: Title is required
-    minLength: Title must be at least { min_length } characters long
+    required: Le titre est obligatoire
+    minLength: Le titre doit être composé d'au moins { min_length } caractères.
   password:
-    required: Password field is required
-    minLength: Password must be at least { password_min_length } characters long
-    oneLowerCaseAtLeast: Password must contain at least one lowercase letter
-    oneUpperCaseAtLeast: Password must contain at least one uppercase letter
-    oneNumericAtLeast: Password must contain at least one digit
-    oneSpecialCharacterAtLeast: Password must contain at least one special character
+    required: Le champ du mot de passe est obligatoire
+    minLength: Le mot de passe doit être composé d'au moins { password_min_length } caractères.
+    oneLowerCaseAtLeast: Le mot de passe doit contenir au moins une lettre minuscule
+    oneUpperCaseAtLeast: Le mot de passe doit contenir au moins une lettre majuscule.
+    oneNumericAtLeast: Le mot de passe doit contenir au moins un chiffre
+    oneSpecialCharacterAtLeast: Le mot de passe doit contenir au moins un caractère spécial
   password_confirmation:
-    required: Password confirmation is required
-    confirmed: Password and confirm password does not match.
-    minLength: Password must be at least { password_min_length } characters long
+    required: La confirmation du mot de passe est requise
+    confirmed: Le mot de passe et le mot de passe de confirmation ne correspondent pas.
+    minLength: Le mot de passe doit être composé d'au moins { password_min_length } caractères.
   role:
-    required: Role field is required
+    required: Le champ "rôle" est obligatoire
   avatar:
-    maxSize: Avatar must be at { max_size } maximum
-    extname: Invalid format avatar
+    maxSize: L'avatar doit être à { max_size } maximum
+    extname: Format d'avatar invalide
   file:
-    maxSize: File must be at { max_size } maximum
+    maxSize: Le fichier doit avoir une taille maximale de { max_size }.
   tags:
-    exists: Tag not exist
+    exists: Le tag n'existe pas

@@ -1,45 +1,45 @@
 forgotPassword:
-  email: Your email
-  password: Your password
-  rememberMe: Remember me
-  validate: validate
+  email: Votre email
+  password: Votre mot de passe
+  rememberMe: Souvenez-vous de moi
+  validate: valider
 
 resetPassword:
-  password: New password
-  passwordConfirmation: Repeat password
-  validate: validate
+  password: Nouveau mot de passe
+  passwordConfirmation: Répéter le mot de passe
+  validate: valider
 
-submit: Validate
+submit: Valider
 
 success:
-  session: Connected.
-  forgotPassword: You will receive an email within a few minutes telling you how to reset your password.
-  resetPassword: Your password is change with success.
+  session: Connecté.
+  forgotPassword: Vous recevrez dans les minutes qui suivent un email vous indiquant comment réinitialiser votre mot de passe.
+  resetPassword: Votre mot de passe est modifié avec succès.
   user:
-    create: Felicitations, the user is now created.
-    edit: Felicitations, the user is now modify.
-    delete: Felicitations, the user is now deleted.
+    create: Félicitations, l'utilisateur est maintenant créé.
+    edit: Félicitations, l'utilisateur est maintenant modofié.
+    delete: Félicitations, l'utilisateur est maintenant supprimé.
     toggle:
-      enabled: Felicitations, the user is now enabled.
-      disabled: Felicitations, the user is now disabled.
-    forgot: An email has been sent with instructions on how to reset passwords
+      enabled: Félicitations, l'utilisateur est maintenant autorisé.
+      disabled: Félicitations, l'utilisateur est maintenant désactivé.
+    forgot: Un email a été envoyé avec des instructions sur la manière de réinitialiser les mots de passe.
   tag:
-    create: Felicitations, the tag is now created.
-    edit: Felicitations, the tag is now modify.
-    delete: Felicitations, the tag is now deleted.
+    create: Félicitations, le tag est maintenant créé.
+    edit: Félicitations, le tag est maintenant modifié.
+    delete: Félicitations, le tag est maintenant supprimé.
   article:
-    create: Felicitations, the article is now created.
-    edit: Felicitations, the article is now modify.
-    delete: Felicitations, the article is now deleted.
+    create: Félicitations, l'article est maintenant créé.
+    edit: Félicitations, l'article est maintenant modifié.
+    delete: Félicitations, l'article est maintenant supprimé.
     seo:
-      edit: Felicitations, the seo is now modify.
+      edit: Félicitations, le référencement est maintenant modifié.
   media:
-    create: Felicitations, the media is now created.
-    edit: Felicitations, the media is now modify.
-    delete: Felicitations, the media is now deleted.
+    create: Félicitations, les médias sont maintenant créés.
+    edit: Félicitations, les médias se modifient.
+    delete: Félicitations, les médias sont maintenant supprimés.
   redirect:
-    create: Felicitations, the redirect is now created.
-    edit: Felicitations, the redirect is now modify.
-    delete: Felicitations, the redirect is now deleted.
+    create: Félicitations, la redirection est maintenant créée.
+    edit: Félicitations, la réorientation est maintenant modifiée.
+    delete: Félicitations, la redirection est maintenant supprimée.
   cache:
-    clear: Felicitations, the cache is clear.
+    clear: Félicitations, le cache est clair.
