@@ -1,9 +1,15 @@
 user:
+  firstname: Prenom
+  lastname: Nom
   fullname: Nom
   lastname/hint: 2 caractères minimum
   firstname/hint: 2 caractères minimum
   email: Email
   status: Statut
+  role: role
+  avatar: Avatar
+  password: Mot de passe
+  password_confirmation: Confirmation du mot de passe
   createdAt: Date
 journal:
   label: Nom
@@ -20,11 +26,16 @@ role/name:
 tag:
   name: Nom
   name/hint: 2 caractères minimum
+  slug: Slug
   createdAt: Date
 
 article:
   title: Titre
+  slug: Slug
+  tags: Tags
+  imageId: Image
   createdAt: Date
+  publishedOn: Publier au
 
 media:
   title: Titte

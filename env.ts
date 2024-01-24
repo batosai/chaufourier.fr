@@ -32,4 +32,5 @@ export default Env.rules({
   SMTP_PASSWORD: Env.schema.string(),
   EMAIL_FROM: Env.schema.string(),
   SENTRY_DSN: Env.schema.string(),
+  UMAMI_KEY: Env.schema.string(),
 })

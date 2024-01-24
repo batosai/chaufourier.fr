@@ -1,4 +1,4 @@
-filter: Filter
+filters: Filters
 order: Order
 reset: Clear all
 results: '{itemsCount, plural,

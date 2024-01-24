@@ -1,8 +1,8 @@
-@jrmc.form.control({ name: 'lastname', required: true, hint: t('models.user.lastname/hint') })
+@jrmc.form.control({ name: 'lastname', label: t('models.user.lastname'), required: true, hint: t('models.user.lastname/hint') })
   @!jrmc.form.input()
 @end
 
-@jrmc.form.control({ name: 'firstname', required: true, hint: t('models.user.firstname/hint') })
+@jrmc.form.control({ name: 'firstname', label: t('models.user.firstname'), required: true, hint: t('models.user.firstname/hint') })
   @!jrmc.form.input()
 @end
 
@@ -34,10 +34,10 @@
   />
 @end
 
-@jrmc.form.control({ name: 'password' })
+@jrmc.form.control({ name: 'password', label: t('models.user.password') })
   @!jrmc.form.input({ type: 'password' })
 @end
 
-@jrmc.form.control({ name: 'password_confirmation' })
+@jrmc.form.control({ name: 'password_confirmation', label: t('models.user.password_confirmation') })
   @!jrmc.form.input({ type: 'password' })
 @end

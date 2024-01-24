@@ -3,13 +3,13 @@
   @!jrmc.form.toggle({ class: 'toggle-primary', value: '1' })
 @end
 
-@jrmc.form.control({ name: 'publishedOn' })
+@jrmc.form.control({ name: 'publishedOn', label: t('models.article.publishedOn') })
   @!jrmc.form.input({ type: 'date', class: 'w-full', value: article?.publishedOn ? article.publishedOn.toISODate() : '' })
 @end
 
 <div class="divider"></div>
 
-@jrmc.form.control({ name: 'title', required: true, hint: '2 characters minimum' })
+@jrmc.form.control({ name: 'title', label: t('models.article.title'), required: true, hint: '2 characters minimum' })
   @!jrmc.form.input()
 @end
 
@@ -17,7 +17,7 @@
   @!jrmc.form.input()
 @end
 
-@jrmc.form.control({ name: 'imageId' })
+@jrmc.form.control({ name: 'imageId', label: t('models.article.image') })
   @!admin.form.mediapicker({
     hint: 'jpg, png or webp.',
     types: ['image/jpeg', 'image/png'],

@@ -1,6 +1,6 @@
 <div class="py-10">
   <div class="flex">
-    <h2 class="grow mb-4">{{ title }} : {{ name }}</h2>
+    <h2 class="grow mb-4 font-bold">{{ title }} : {{ name }}</h2>
     @!jrmc.form.toggle({ name: cookie.name, value: 'true', class: 'toggle-primary mr-2', checked: cookie.value, 'hx-trigger': 'click', 'hx-post': action  })
   </div>
 

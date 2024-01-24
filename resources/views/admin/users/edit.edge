@@ -22,7 +22,7 @@
         }),
         enctype: 'multipart/form-data',
         error: false,
-        object: user  })
+        object: user })
           @include('admin/users/partials/form')
           @admin.section.action()
             @!jrmc.button.input({ text: t('form.submit'), type: 'submit', form: 'edit_user', class: 'btn-primary normal-case' })

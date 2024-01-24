@@ -22,7 +22,7 @@
         }),
         enctype: 'multipart/form-data',
         error: false,
-        object: tag  })
+        object: tag })
           @include('admin/tags/partials/form')
           @admin.section.action()
             @!jrmc.button.input({ text: t('form.submit'), type: 'submit', form: 'edit_tag', class: 'btn-primary normal-case' })

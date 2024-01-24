@@ -1,6 +1,6 @@
 const edgeComponent = require('@jrmc/edge-components/build/tailwind.config').default
-const emerald = require('daisyui/src/theming/themes')['[data-theme=emerald]']
-const dracula = require('daisyui/src/theming/themes')['[data-theme=dracula]']
+const emerald = require('daisyui/src/theming/themes')['emerald']
+const dracula = require('daisyui/src/theming/themes')['dracula']
 
 module.exports = {
   content: [

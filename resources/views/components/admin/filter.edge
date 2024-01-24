@@ -1,5 +1,6 @@
 @inject({
   object: session.get(`${name}Filter`),
+  translator: $context?.translator ? $context?.translator : { prefix: '', t: (k) => k }
 })
 
 <div x-data="{ open: false }">
@@ -12,7 +13,7 @@
             @if(session.has(`${name}Filter`))
               {{ Object.keys(session.get(`${name}Filter`, {})).length }}
             @end
-            Filters
+            {{ t('filters.filters') }}
           @end
 
           @if(session.has(`${name}Filter`))~

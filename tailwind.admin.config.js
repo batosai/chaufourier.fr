@@ -1,6 +1,6 @@
 const edgeComponent = require('@jrmc/edge-components/build/tailwind.config').default
-const light = require('daisyui/src/theming/themes')['[data-theme=light]']
-const dark = require('daisyui/src/theming/themes')['[data-theme=dark]']
+const light = require('daisyui/src/theming/themes')['light']
+const dark = require('daisyui/src/theming/themes')['dark']
 
 module.exports = {
   mode: 'jit',

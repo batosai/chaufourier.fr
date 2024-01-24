@@ -73,7 +73,7 @@
 
   @if(env('NODE_ENV') === 'production')~
     @if(request.cookie('_gdpr', { umami: false }).umami !== false)~
-      <script async src="https://umami.jrmc.dev/script.js" data-website-id="cdedb7bd-6042-4149-8045-0daef489b889"></script>
+      <script async src="https://umami.jrmc.dev/script.js" data-website-id="{{ env('UMAMI_KEY') }}" data-do-not-track="true"></script>
     @end~
   @end~
 
