@@ -111,7 +111,7 @@
     "@iconify-json/akar-icons": "^1.1.23",
     "@iconify-json/fa-solid": "^1.1.8",
     "@jrmc/attachment-advanced": "^1.1.2",
-    "@jrmc/edge-components": "^1.8.0-beta",
+    "@jrmc/edge-components": "^1.7.2",
     "@melchyore/adonis-cache": "^1.0.6",
     "adonis-lucid-filter": "^4.1.1",
     "adonis5-sentry": "^3.2.0",
