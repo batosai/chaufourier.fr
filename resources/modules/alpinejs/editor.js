@@ -1,5 +1,4 @@
 import EditorJS from '@editorjs/editorjs'
-import CodeTool from '@editorjs/code'
 import Header from '@editorjs/header'
 import Quote from '@editorjs/quote'
 import Delimiter from '@editorjs/delimiter'
@@ -16,6 +15,7 @@ import Undo from 'editorjs-undo'
 
 import Alert from '../editorjs/alert'
 import ImagePicker from '../editorjs/imagePicker'
+import CodeTool from '../editorjs/code'
 
 // editor.js
 
