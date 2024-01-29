@@ -138,7 +138,8 @@
 /* popover */
 
 .ce-popover {
-  --color-background: hsl(var(--b1));
+  @apply bg-base-100;
+  /* --color-background: hsl(var(--b1)); */
   --color-border: hsl(var(--b1));
   --color-background-item-hover: hsl(var(--b2));
   --color-border-icon: hsl(var(--b2));
