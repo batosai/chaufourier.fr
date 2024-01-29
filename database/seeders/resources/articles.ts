@@ -31,6 +31,7 @@ export default [
           id: 'VzeOWEc9HE',
           type: 'code',
           data: {
+            language: "html",
             code: '<form action="/action_page.php">\n  First name: <input type="text" name="firstname" autofocus /><br />\n  Last name: <input type="text" name="lastname" /><br />\n  <input type="submit" />\n</form>\n',
           },
         },
@@ -100,7 +101,7 @@ export default [
             text: 'La syntaxe de base de <code class="inline-code">git mv</code> est la suivante :',
           },
         },
-        { id: '0C1fS8vVAG', type: 'code', data: { code: 'git mv ancien_nom nouveau_nom' } },
+        { id: '0C1fS8vVAG', type: 'code', data: { language: "shell", code: 'git mv ancien_nom nouveau_nom' } },
         {
           id: 'wQzNNJmx6O',
           type: 'paragraph',
@@ -164,6 +165,7 @@ export default [
           id: 'wpthcnEX5B',
           type: 'code',
           data: {
+            language: "ruby",
             code: 'require \'date\'\n\nmilliseconds = DateTime.now.strftime("%Q")\nputs "Date en millisecondes : #{milliseconds}"\n',
           },
         },
@@ -214,6 +216,7 @@ export default [
           id: '8uLTGARmJH',
           type: 'code',
           data: {
+            language: "ruby",
             code: 'start_time = DateTime.now.strftime("%Q").to_i # La fonction ou le code à mesurer\nend_time = DateTime.now.strftime("%Q").to_i \nelapsed_time = end_time - start_time\n\nputs "Temps d\'exécution : #{elapsed_time} millisecondes"\n',
           },
         },
@@ -276,6 +279,7 @@ export default [
           id: 'lJRLSLxEMg',
           type: 'code',
           data: {
+            language: "html",
             code: '<section>\n  <p>https://<wbr>chaufourier<wbr>.fr<wbr>/blog</p>\n</section>\n',
           },
         },
@@ -391,7 +395,7 @@ export default [
         {
           id: 'Esfhydw_rj',
           type: 'code',
-          data: { code: "curl -X DELETE 'http://localhost:9200/_all'\n" },
+          data: { language: "shell", code: "curl -X DELETE 'http://localhost:9200/_all'\n" },
         },
         {
           id: 'jOxgic5PSN',
@@ -409,6 +413,7 @@ export default [
           id: 'odWqfqD3ce',
           type: 'code',
           data: {
+            language: "shell",
             code: 'curl -XDELETE "http://localhost:9200/users_development_20181023170138169"\n',
           },
         },
@@ -452,6 +457,7 @@ export default [
           id: '8GFqSjTtP_',
           type: 'code',
           data: {
+            language: "js",
             code: 'const element = document.querySelector("selector");\nelement.classList.add("class"); \n',
           },
         },
@@ -478,6 +484,7 @@ export default [
           id: 'ywQcufVngi',
           type: 'code',
           data: {
+            language: "js",
             code: 'const firstParagraph = document.querySelector("p");\nfirstParagraph.classList.add("text-center", "text-xxl", "italic"); \n',
           },
         },
