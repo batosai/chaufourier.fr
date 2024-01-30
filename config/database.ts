@@ -32,6 +32,9 @@ const databaseConfig: DatabaseConfig = {
         password: Env.get('PG_PASSWORD', ''),
         database: Env.get('PG_DB_NAME'),
       },
+      seeders: {
+        paths: ['./database/seeders/MainSeeder'],
+      },
       migrations: {
         naturalSort: true,
         disableRollbacksInProduction: true,

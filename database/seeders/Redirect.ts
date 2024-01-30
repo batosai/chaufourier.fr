@@ -2,8 +2,6 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import Redirect from 'App/Models/Redirect'
 
 export default class extends BaseSeeder {
-  public static environment = ['development']
-
   public async run() {
     await Redirect.createMany([
       { source: '/tips', destination: '/blog', code: 301 },

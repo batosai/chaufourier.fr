@@ -2,8 +2,6 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import Tag from 'App/Models/Tag'
 
 export default class extends BaseSeeder {
-  public static environment = ['development']
-
   public async run() {
     await Tag.createMany([
       { name: 'adonisjs', slug: 'adonisjs' },
