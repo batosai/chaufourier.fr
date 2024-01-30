@@ -11,7 +11,7 @@ env:
   failure: 🔴
   cancelled: ❌
   skipped: ⭕
-  node_version: 18
+  node_version: 20
   true: ✅
   false: 🔴
 
@@ -104,6 +104,7 @@ jobs:
           script: |
             cd ${{ secrets.APP_PATH }}/source/build
             ln -s ${{ secrets.APP_PATH }}/shared/tmp ${{ secrets.APP_PATH }}/source/build/
+            ln -s ${{ secrets.APP_PATH }}/shared/uploads ${{ secrets.APP_PATH }}/source/build/
             ln -s ${{ secrets.APP_PATH }}/shared/.env ${{ secrets.APP_PATH }}/source/build/
             npm ci --silent --no-progress --production
             node ace migration:run --force
