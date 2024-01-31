@@ -29,6 +29,7 @@ up-drawer * {
 
 .inline-code {
   @apply bg-error;
+  @apply text-error-content;
 }
 
 .inline-code::before {
