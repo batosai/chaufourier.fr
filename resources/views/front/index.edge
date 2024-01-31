@@ -12,7 +12,7 @@
 @section('body')
   @front.head({
     title: 'jeremy_chaufourier',
-    description: 'Actuellement en poste de directeur technique chez <a href="https://www.opsone.net" class="link link-primary" target="_blank">Opsone</a>'
+    description: 'Actuellement en poste de directeur technique chez <a href="https://www.opsone.net" class="link" target="_blank">Opsone</a>'
   })
     <img src="/avatar.jpg" class="h-16 w-16 rounded-full" alt="" loading="lazy" />
   @end
@@ -48,7 +48,7 @@
       <h2 class="ml-3 text-2xl font-semibold">
         Blog
       </h2>
-      <a href="{{ route('front.articles.index') }}" class="pl-10  italic link link-accent">
+      <a href="{{ route('front.articles.index') }}" class="pl-10 italic link">
         Tous les articles
       </a>
     </div>
@@ -65,7 +65,7 @@
       <h2 class="ml-3 text-2xl font-semibold">
         Stacks
       </h2>
-      <a href="{{ route('front.pages.uses') }}" class="pl-10  italic link link-accent">
+      <a href="{{ route('front.pages.uses') }}" class="pl-10 italic link">
         Voir plus
       </a>
     </div>
