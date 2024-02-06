@@ -109,7 +109,7 @@ export default [
             text: 'Dans cette commande, <code class="inline-code">ancien_nom</code> représente le nom actuel du fichier, tandis que <code class="inline-code">nouveau_nom</code> est le nouveau nom que vous souhaitez lui donner. Par exemple, pour renommer un fichier nommé <code class="inline-code">MYFILE.png</code> en <code class="inline-code">myfile.png</code>, on utilisera la commande suivante :',
           },
         },
-        { id: 'jz-FOsYEIw', type: 'code', data: { code: 'git mv MYFILE.png myfile.png \n' } },
+        { id: 'jz-FOsYEIw', type: 'code', data: { language: "shell", code: 'git mv MYFILE.png myfile.png \n' } },
         {
           id: 'D7ImzOYG3h',
           type: 'header',
@@ -378,7 +378,7 @@ export default [
         {
           id: 'Qt_VV08b_z',
           type: 'code',
-          data: { code: 'curl "http://localhost:9200/_cat/indices?v"\n' },
+          data: { language: "shell", code: 'curl "http://localhost:9200/_cat/indices?v"\n' },
         },
         {
           id: 'HJZHUIsN0F',
