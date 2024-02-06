@@ -3,6 +3,6 @@
   <button type="button" aria-label="Copier le code" class="absolute top-5 right-5" data-clipboard-text="{{ code }}">
   @!front.icons.copy()
   </button>
-  <pre class="m-0"><code>{{ code }}</code></pre>
+  {{{ highlighter.codeToHtml(code, { lang: language }) }}}
 </div>
 @end~

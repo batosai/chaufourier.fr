@@ -46,7 +46,6 @@ Encore.setPublicPath('/assets')
 |
 */
 Encore.addEntry('app', './resources/js/app.js')
-Encore.addEntry('highlight', './resources/js/highlight.js')
 Encore.addEntry('admin', './resources/js/admin.js')
 
 /*
