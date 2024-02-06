@@ -55,7 +55,8 @@
       "pattern": "resources/views/**/*.edge",
       "reloadServer": false
     },
-    "resources/lang/**/*.(json|yaml)"
+    "resources/lang/**/*.(json|yaml)",
+    "resources/syntaxes/**/*.json"
   ],
   "aceProviders": ["@adonisjs/repl"],
   "tests": {
