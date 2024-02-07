@@ -5,6 +5,7 @@ export default class HomeController {
   public async handle({ view }: HttpContextContract) {
     const articles = await Article.query()
       .withScopes((scopes) => scopes.published())
+      .orderBy('publishedOn', 'desc')
       .preload('tags')
       .limit(4)
 
