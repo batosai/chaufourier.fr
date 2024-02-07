@@ -34,6 +34,9 @@
           <tr class="divide-y dark:divide-white/10" data-test="article-{{ article.id }}">
             <th></th>
             <td>
+              @if(article.visible)
+                @!jrmc.badge({ class: ['indicator-item', 'indicator-center', 'badge-primary', 'badge-xs'] })
+              @end
               <span class="font-bold">{{ article.title }}</span>
             </td>
             <td>{{ t('app.date', { value: article.createdAt }) }}</td>
