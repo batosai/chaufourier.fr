@@ -1,6 +1,8 @@
 @if($props.seo)~
   @if($props.seo.title)~
   <title>{{ $props.seo.title }}</title>
+  @else~
+  <title>{{ $props.default.title }}</title>
   @end~
   @if($props.seo.description)~
   <meta name="description" content="{{ $props.seo.description }}" />
