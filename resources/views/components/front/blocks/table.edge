@@ -4,9 +4,9 @@
       <tr>
         @each(col in rows)~
           @if(withHeadings && index === 0)~
-          <th>{{ col }}</th>
+          <th>{{{ col }}}</th>
           @else~
-          <td>{{ col }}</td>
+          <td>{{{ col }}}</td>
           @end~
         @end~
       </tr>
