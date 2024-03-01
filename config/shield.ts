@@ -45,10 +45,10 @@ export const csp: ShieldConfig['csp'] = {
   |
   */
   directives: {
-    defaultSrc: ["'self'", 'https://umami.jrmc.dev'],
+    defaultSrc: ["'self'", 'https://umami.jrmc.dev', 'https://youtu.be', 'https://www.youtube.com'],
     styleSrc: ["'self'", "'unsafe-inline'"],
     imgSrc: ["'self'", 'data:', 'blob:'], // data: for mask-image ex: avatar, blob: for uppy
-    scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'", 'https://umami.jrmc.dev'],
+    scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'", 'https://umami.jrmc.dev', 'https://youtu.be', 'https://www.youtube.com'],
     // connectSrc: ["*"]
   },
 
