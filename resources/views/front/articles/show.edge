@@ -40,6 +40,8 @@
         @!front.blocks.table({ ...block.data })
       @elseif(block.type === 'code')
         @!front.blocks.code({ ...block.data })
+      @elseif(block.type === 'embed')
+        @!front.blocks.embed({ ...block.data })
       @else
         {{ inspect(block) }}
       @end
