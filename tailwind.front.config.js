@@ -11,6 +11,7 @@ module.exports = {
   ],
   plugins: [
     require('tailwindcss-safe-area'),
+    require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography')({
       modifiers: [],
     }),
