@@ -147,7 +147,7 @@ export default class MediaController {
     const media = await Media.findOrFail(id)
     await bouncer.with('MediaPolicy').authorize('download', media)
 
-    const filePath = Application.tmpPath(`uploads/${media.file.name}`)
+    const filePath = Application.makePath(`uploads/${media.file.name}`)
 
     response.attachment(filePath, media.file.originalName)
   }
