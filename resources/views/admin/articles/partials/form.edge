@@ -20,7 +20,7 @@
 @jrmc.form.control({ name: 'imageId', label: t('models.article.image') })
   @!admin.form.mediapicker({
     hint: 'jpg, png or webp.',
-    types: ['image/jpeg', 'image/png'],
+    types: ['image/jpeg', 'image/png', 'image/webp'],
     entity: 'articles',
     media: article && article.image ? article.image : null
   })
